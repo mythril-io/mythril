@@ -1,0 +1,21 @@
+// 1. Import the initial variables
+@import "node_modules/bulma/sass/utilities/initial-variables";
+@import "node_modules/bulma/sass/utilities/functions";
+
+// 2. Set your own initial variables
+// Update the blue shade, used for links
+//$blue: #06bcef;
+// Add pink and its invert
+//$pink: #ff8080;
+//$pink-invert: #fff;
+// Update the sans-serif font family
+//$family-sans-serif: "Helvetica", "Arial", sans-serif;
+
+// 3. Set the derived variables
+$link: hsl(171, 100%, 41%) !default
+$link-invert: findColorInvert(hsl(171, 100%, 41%)) !default
+$link-focus-border: hsl(171, 100%, 41%) !default
+
+//Change weight to 300
+$title-weight: $weight-light !default
+$subtitle-weight: $weight-light !default

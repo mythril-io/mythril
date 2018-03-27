@@ -1,0 +1,42 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch": "cross-env NODE_ENV=development node_modules/webpack/bin/webpack.js --watch --progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "watch-poll": "npm run watch -- --watch-poll",
+        "hot": "cross-env NODE_ENV=development node_modules/webpack-dev-server/bin/webpack-dev-server.js --inline --hot --config=node_modules/laravel-mix/setup/webpack.config.js",
+        "prod": "npm run production",
+        "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
+    },
+    "devDependencies": {
+        "axios": "^0.17",
+        "babel-preset-stage-2": "^6.24.1",
+        "bootstrap-sass": "^3.3.7",
+        "cross-env": "^5.1",
+        "jquery": "^3.2",
+        "laravel-mix": "^1.0",
+        "lodash": "^4.17.4",
+        "vue": "^2.5.7"
+    },
+    "dependencies": {
+        "bulma": "^0.6.2",
+        "bulma-extensions": "^0.5.2",
+        "chart.js": "^2.7.2",
+        "markdown-it": "^8.4.1",
+        "marked": "^0.3.12",
+        "moment": "^2.20.1",
+        "moment-timezone": "^0.5.14",
+        "nprogress": "^0.2.0",
+        "vee-validate": "^2.0.0",
+        "vue-chartjs": "^3.2.1",
+        "vue-flatpickr-component": "^6.1.0",
+        "vue-infinite-scroll": "^2.0.2",
+        "vue-meta": "^1.4.3",
+        "vue-multiselect": "^2.0.8",
+        "vue-router": "^3.0.1",
+        "vuejs-paginate": "^1.5.1",
+        "vuex": "^3.0.1",
+        "vuex-persistedstate": "^2.4.2"
+    }
+}

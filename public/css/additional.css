@@ -1,0 +1,259 @@
+html ::-moz-selection {
+  background: #00d1b2;
+  color: #fff;
+}
+html ::selection {
+  background: #00d1b2;
+  color: #fff;
+}
+
+/*Common*/
+.break {
+  height: 15px;
+  width: 100%;
+}
+.section-break {
+  height: 50px;
+  width: 100%;
+}
+.comma + .comma:before {
+  content: ", ";
+}
+
+/*Header*/
+.logo {
+  color: #00d1b2;
+  font-size: 30px;
+  padding-top: 2px; /* for bulma 4.0*/
+}
+.disabled {
+  cursor: default;
+}
+.hero-bg {
+  background-image:  linear-gradient(
+          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.5)
+  ), url('https://cdn.reshift.nl/media/media/images/ni-no-kuni-ii-revenant-kingdom-1746.jpg'); /*/images/z11.jpg */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.hero-bg-login {
+  background-image: url('/images/zelda.png');
+  background-repeat: no-repeat;
+  background-position: 65% 0%;
+  background-attachment: fixed;
+  background-size: contain;
+}
+.hero-bg-register {
+  background-image: url('https://mythril.nyc3.digitaloceanspaces.com/general/login-register-link.png');
+  background-repeat: no-repeat;
+  background-position: 65% 0%; 
+  background-attachment: fixed;
+  background-size: contain;
+}
+.hero-bg-games {
+  background-image: url('/images/sf.png');
+  background-repeat: no-repeat;
+  background-position: 40% 5%; 
+  background-attachment: fixed;
+  background-size: contain;
+}
+#animationTitle {
+  animation-name: moveLeft;
+  animation-duration: 1.2s;
+  animation-timing-function: ease;
+}
+#animationSub {
+   animation-name: moveLeft;
+   animation-duration: 1.2s;
+   animation-timing-function: ease;
+   animation-delay: 0.5s;
+   animation-fill-mode: forwards;
+   opacity: 0;
+ }
+#animationAdd {
+  animation-name: moveRight;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+#animationBG {
+  animation-name: fadeIn;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+}
+.imageFade {
+  animation-name: fadeIn;
+  animation-duration: 1s;
+  animation-timing-function: ease;
+}
+@keyframes move {
+  0% {background-position: 0px 0px, 0 0, 0 0}
+  100% {background-position: -100px 0px, 0 0, 0 0}
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes moveRight {
+  from {
+    transform: translateX(-60px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+@keyframes moveLeft {
+  from {
+    transform: translateX(80px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0px);
+    opacity: 1;
+  }
+}
+
+/*Reviews and Recomendations*/
+.recomendation-col {
+  width: 200px;
+  margin-bottom: 35px;
+}
+.recomendation-image {
+  position: absolute;
+  margin-left: 45px;
+  margin-top: 25px;
+}
+.image-behind img:hover {
+  z-index: 10;
+}
+
+/*Game Page*/
+.hero-game-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+.dotted-border {
+  border-bottom: 1px dotted #efefef;
+  text-decoration: none;
+}
+.heart {
+  color: red;
+}
+.wishlist {
+  color: blue;
+}
+.tab-container {
+  box-shadow:inset 0px 0px 0px 1px #dbdbdb;
+}
+@media screen and (min-width: 1024px) {
+  .cover-title {
+    bottom: -7rem;
+    padding-left: 265px;
+  }
+  .cover-nav {
+    padding-left: 265px;
+  }
+  .cover-sidebar {
+     position: relative;
+     width: 239px;
+     top: -170px;
+   }
+  .cover-content {
+    margin-left: 265px;
+    margin-top: -20px;
+  }
+}
+#animationTitle {
+  animation-name: moveLeft;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+}
+#animationSub {
+   animation-name: moveLeft;
+   animation-duration: 2s;
+   animation-timing-function: ease;
+   animation-delay: 0.5s;
+   animation-fill-mode: forwards;
+   opacity: 0;
+ }
+#animationAdd {
+  animation-name: moveRight;
+  animation-duration: 2s;
+  animation-timing-function: ease;
+  animation-delay: 0.5s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+.icon-text {
+  background: rgba(0,0,0,0.5);
+  border-radius: 0px 5px 0 0;
+  color: #fff;
+  font-size: 12px;
+  line-height: 1;
+  padding: 7px;
+  bottom: 0px;
+  position: absolute;
+}
+
+/*Games Page*/
+.message-header a:link {
+  text-decoration: none !important;
+}
+
+/*Game Page Left Nav*/
+.genre-link a:link, .genre-link a:visited, .genre-link a:hover {
+  color: #FFFFFF;
+  text-decoration: none;
+}
+
+.stat-count{
+    width: 60px;
+    cursor: default;
+ }
+.stat-label{
+    width: 180px;
+    cursor: default;
+    opacity: 0.9;
+}
+
+.profile-icon {
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+.profile-icon:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+/*Vue Multiselect*/
+.multiselect__option--highlight, .multiselect__option--highlight:after, .multiselect__tag, .multiselect__spinner:before {
+  background-color: #00d1b2 !important; /* is-primary */
+}
+.multiselect__option--selected.multiselect__option--highlight, .multiselect__option--selected.multiselect__option--highlight:after{
+  background:#ff6a6a !important; /* red */
+  color:#fff !important;
+}
+.multiselect__select::before {
+  border-style: none !important;
+}
+.multiselect--active {
+  z-index: 29 !important;
+}
+input[type="range"].slider:not([orient="vertical"]).has-output + output, input[type="range"].slider:not([orient="vertical"]).has-output-tooltip + output {
+  z-index: 25 !important;
+}
