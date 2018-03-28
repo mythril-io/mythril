@@ -11,13 +11,13 @@
         <div class="level-item has-text-centered">
           <div>
             <p class="heading">Users</p>
-            <p class="title">{{ reviewsCount }}</p>
+            <p class="title">{{ usersCount }}</p>
           </div>
         </div>
         <div class="level-item has-text-centered">
           <div>
             <p class="heading">Reviews</p>
-            <p class="title">{{ usersCount }}</p>
+            <p class="title">{{ reviewsCount }}</p>
           </div>
         </div>
         <div class="level-item has-text-centered">
