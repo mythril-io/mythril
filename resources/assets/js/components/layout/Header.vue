@@ -60,7 +60,7 @@
 					<div class="navbar-item">
 						<div class="field is-grouped">
 
-							<p class="control has-icons-left">
+							<p class="control has-icons-left is-hidden-touch">
 							  <input class="input" type="text" placeholder="Search..." style="width: 200px"
 							  	v-model="search" 
 							  	v-on:keyup.enter="submit">
