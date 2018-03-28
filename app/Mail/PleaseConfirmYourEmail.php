@@ -36,6 +36,6 @@ class PleaseConfirmYourEmail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.verify')->from("admin@mythril.io", "Mythril")->subject("Mythril.io - Please Confirm Your Email");;
+        return $this->view('emails.verify')->subject("Mythril.io - Please Confirm Your Email");;
     }
 }
