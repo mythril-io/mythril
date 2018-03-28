@@ -41,9 +41,6 @@
 						Currently, there are no reviews in the database. Be the first to write one! <router-link :to="{name: 'CreateReview'}" >Write a Review</router-link>
 					</div>
 		    	</div>
-		    	<div class="column is-two-fifths">
-		    		<img src="/images/reviews/book.png" alt="Book" class="imageFade">
-		    	</div>
 			</div>
 
 		</div>

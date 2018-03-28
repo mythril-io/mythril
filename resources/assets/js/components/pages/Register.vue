@@ -102,9 +102,9 @@ import NProgress from 'nprogress'
 export default {
   data() {
     return {
-      email: 'vincent@email.com',
-      username: 'Vincent',
-      password: 'password',
+      email: '',
+      username: '',
+      password: '',
       passwordConfirm: ''
     }
   },

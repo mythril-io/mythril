@@ -64,7 +64,7 @@ import VeeValidate from 'vee-validate';
 export default {
   data() {
     return {
-      email: 'cloud@email.com',
+      email: '',
       password: '',
     }
   },

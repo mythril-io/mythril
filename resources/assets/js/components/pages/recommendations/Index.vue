@@ -38,11 +38,8 @@
 			<div class="columns is-multiline is-centered" v-else>
 		    	<div class="column is-12">
 		    		<div class="notification is-warning" >
-						Currently, there are no recommendations in the database. Be the first to write one! <router-link :to="{name: 'CreateReview'}" >Write a Rcommendation</router-link>
+						Currently, there are no recommendations in the database. Be the first to write one! <router-link :to="{name: 'CreateReview'}" >Write a Recommendation</router-link>
 					</div>
-		    	</div>
-		    	<div class="column is-two-fifths">
-		    		<img src="/images/reviews/book.png" alt="Book" class="imageFade">
 		    	</div>
 			</div>
 
