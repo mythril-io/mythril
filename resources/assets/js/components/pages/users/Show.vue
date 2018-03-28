@@ -14,7 +14,7 @@
 
 				<div class="column is-narrow">
 					<h1 class="title">
-						{{ this.displayedUser.username }} <span class="tag is-light">Staff</span>
+						{{ this.displayedUser.username }} <!-- <span class="tag is-light">Staff</span> -->
 					</h1>
 					<h2 class="subtitle">
 						<span class="has-text-light is-size-6">

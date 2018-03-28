@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Password;
 use App\Mail\PleaseConfirmYourEmail;
-
+use App\Rules\ReCaptcha;
 
 class AuthController extends Controller
 {
@@ -121,6 +121,7 @@ class AuthController extends Controller
             'username' => 'required|string|max:255|unique:users',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6',
+            'recaptcha' => ['required', new ReCaptcha],
         ]);
         
         $user = User::create([
