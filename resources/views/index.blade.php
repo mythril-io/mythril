@@ -9,7 +9,7 @@
         
         <meta name="theme-color" content="#00d1b2">
 
-        <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Mythril</title>
         <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
         <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
