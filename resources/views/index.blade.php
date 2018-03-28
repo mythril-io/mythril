@@ -17,8 +17,6 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/additional.css') }}" rel="stylesheet">
 
-        <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer></script>
-
     </head>
     <body>
 
@@ -43,5 +41,6 @@
             this.rows = minRows + rows;
         });
     </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=vueRecaptchaApiLoaded&render=explicit" async defer></script>
     </body>
 </html>
