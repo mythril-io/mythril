@@ -32,7 +32,7 @@
 		    <tr v-for="entry in userLibrary" :key="entry.id">
 		      <td>
 				<abbr v-if="entry.release.alternate_title" :title="entry.release.alternate_title">
-					{{ entry.release.platform.acronym }} 
+					{{ entry.release.platform.acronym }}
 				</abbr>
 				<span v-else>{{ entry.release.platform.acronym }}</span>
 				<span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
