@@ -28,9 +28,7 @@
 	          <i class="fab fa-github-alt fa-lg"></i>
 	        </a> -->
 	      </p>
-	      <p>
-			<a href='https://ko-fi.com/P5P4BB7L' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://az743702.vo.msecnd.net/cdn/kofi3.png?v=0' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
-	      </p>
+	      <p v-html="koFiButton"></p>
 	    </div>
 	  </div>
 	</footer>
@@ -39,5 +37,14 @@
 
 <script>
 	export default {
+		data() {
+			return {
+				koFiButton: ''
+			}
+		},
+		created() {
+			kofiwidget2.init('Buy Us a Coffee', '#ff5d61', 'P5P4BB7L');
+			this.koFiButton = kofiwidget2.getHTML()
+		}
 	}
 </script>

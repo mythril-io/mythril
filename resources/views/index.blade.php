@@ -17,6 +17,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <link href="{{ asset('css/additional.css') }}" rel="stylesheet">
 
+        <script type='text/javascript' src='/js/kofi-button.js'></script>
     </head>
     <body>
 
