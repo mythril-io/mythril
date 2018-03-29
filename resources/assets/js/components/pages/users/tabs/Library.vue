@@ -59,7 +59,12 @@
             <th>
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
-            <td>{{ entry.release.platform.name }}</td>
+            <td>
+              {{ entry.release.platform.name }}
+              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
@@ -102,7 +107,12 @@
             <th>
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
-            <td>{{ entry.release.platform.name }}</td>
+            <td>
+              {{ entry.release.platform.name }}
+              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
@@ -146,7 +156,12 @@
             <th>
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
-            <td>{{ entry.release.platform.name }}</td>
+            <td>
+              {{ entry.release.platform.name }}
+              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
@@ -190,7 +205,12 @@
             <th>
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
-            <td>{{ entry.release.platform.name }}</td>
+            <td>
+              {{ entry.release.platform.name }}
+              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
@@ -234,7 +254,12 @@
             <th>
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
-            <td>{{ entry.release.platform.name }}</td>
+            <td>
+              {{ entry.release.platform.name }}
+              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
@@ -278,7 +303,12 @@
             <th>
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
-            <td>{{ entry.release.platform.name }}</td>
+            <td>
+              {{ entry.release.platform.name }}
+              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
+                <i class="fas fa-info-circle"></i>
+              </span>
+            </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
@@ -320,22 +350,28 @@ export default {
   },
   computed: {
     currentlyPlaying() {
-      return _.filter(this.displayedUser.libraries, ['play_status_id', 1])
+      var filtered = _.filter(this.displayedUser.libraries, ['play_status_id', 1])
+      return _.orderBy(filtered, 'game.title', 'asc');
     },
     planToPlay() {
-      return _.filter(this.displayedUser.libraries, ['play_status_id', 2])
+      var filtered = _.filter(this.displayedUser.libraries, ['play_status_id', 2])
+      return _.orderBy(filtered, 'game.title', 'asc');
     },
     completed() {
-      return _.filter(this.displayedUser.libraries, ['play_status_id', 3])
+      var filtered = _.filter(this.displayedUser.libraries, ['play_status_id', 3])
+      return _.orderBy(filtered, 'game.title', 'asc');
     },
     onHold() {
-      return _.filter(this.displayedUser.libraries, ['play_status_id', 4])
+      var filtered = _.filter(this.displayedUser.libraries, ['play_status_id', 4])
+      return _.orderBy(filtered, 'game.title', 'asc');
     },
     dropped() {
-      return _.filter(this.displayedUser.libraries, ['play_status_id', 5])
+      var filtered = _.filter(this.displayedUser.libraries, ['play_status_id', 5])
+      return _.orderBy(filtered, 'game.title', 'asc');
     },
     continuous() {
-      return _.filter(this.displayedUser.libraries, ['play_status_id', 6])
+      var filtered = _.filter(this.displayedUser.libraries, ['play_status_id', 6])
+      return _.orderBy(filtered, 'game.title', 'asc');
     }
   },
   methods: {
