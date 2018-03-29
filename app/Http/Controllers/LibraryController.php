@@ -142,7 +142,7 @@ class LibraryController extends Controller
 
                 $existingEntry = $existingEntry->load([
                     'playStatus',
-                    'release' => function($q) {$q->with(['platform']);}
+                    'release' => function($q) {$q->with(['platform', 'publisher']);}
                 ]);
 
                 return response()->json($existingEntry, 201);
@@ -165,7 +165,7 @@ class LibraryController extends Controller
         }
         $newEntry = $newEntry->load([
             'playStatus',
-            'release' => function($q) {$q->with(['platform']);}
+            'release' => function($q) {$q->with(['platform', 'publisher']);}
         ]);
 
         return response()->json($newEntry, 201);
@@ -230,7 +230,7 @@ class LibraryController extends Controller
 
         $existingEntry = $existingEntry->load([
             'playStatus',
-            'release' => function($q) {$q->with(['platform']);}
+            'release' => function($q) {$q->with(['platform', 'publisher']);}
         ]);
 
         return response()->json($existingEntry, 200);

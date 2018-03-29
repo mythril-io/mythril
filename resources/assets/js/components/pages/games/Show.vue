@@ -224,7 +224,9 @@ export default {
     },
   	orderedPlatforms(releases) {
   		var platforms = _.map(releases, 'platform');
-  		return _.orderBy(platforms, ['name'], ['asc']);
+  		var sorted = _.orderBy(platforms, ['name'], ['asc']);
+        return _.uniqBy(sorted, 'id');
+
   	},
   	orderedGenres(genres) { 
   		return _.orderBy(genres, ['name'], ['asc']);

@@ -66,9 +66,6 @@ export default {
     	user: function () { this.checkUserItem() }
   	},
 	methods: {
-		customLabel ({ id, desc }) {
-	      return `${id} – ${desc}`
-	    },
     	close() {
       		this.$emit('close')
     	},
