@@ -82,7 +82,7 @@ class LibraryController extends Controller
             ['user_id', $uID]
         ])->with([
         'playStatus',
-        'release' => function($q) {$q->with(['platform', 'publisher']);}
+        'release' => function($q) { $q->with(['platform', 'publisher']); }
         ])->get();
 
         if($entries->isEmpty()) { return response()->json(['error' => "No Library Entries for the Authenticated User"], 404); }
@@ -142,7 +142,7 @@ class LibraryController extends Controller
 
                 $existingEntry = $existingEntry->load([
                     'playStatus',
-                    'release' => function($q) {$q->with(['platform', 'publisher']);}
+                    'release' => function($q) { $q->with(['platform', 'publisher']); }
                 ]);
 
                 return response()->json($existingEntry, 201);
@@ -165,7 +165,7 @@ class LibraryController extends Controller
         }
         $newEntry = $newEntry->load([
             'playStatus',
-            'release' => function($q) {$q->with(['platform', 'publisher']);}
+            'release' => function($q) { $q->with(['platform', 'publisher']); }
         ]);
 
         return response()->json($newEntry, 201);
@@ -230,7 +230,7 @@ class LibraryController extends Controller
 
         $existingEntry = $existingEntry->load([
             'playStatus',
-            'release' => function($q) {$q->with(['platform', 'publisher']);}
+            'release' => function($q) { $q->with(['platform', 'publisher']); }
         ]);
 
         return response()->json($existingEntry, 200);
