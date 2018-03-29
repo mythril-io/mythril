@@ -62,7 +62,7 @@ class Release extends Model
      */
     public function publisher()
     {
-      return $this->belongsTo('App\publisher', 'publisher_id')
+      return $this->belongsTo('App\Publisher', 'publisher_id')
             ->select(['id','name']);
     }
 
