@@ -82,7 +82,7 @@ class LibraryController extends Controller
             ['user_id', $uID]
         ])->with([
         'playStatus',
-        'release' => function($q) {$q->with(['platform']);}
+        'release' => function($q) {$q->with(['platform', 'publisher']);}
         ])->get();
 
         if($entries->isEmpty()) { return response()->json(['error' => "No Library Entries for the Authenticated User"], 404); }

@@ -36,6 +36,11 @@
 									<option v-for="release in this.releases" :value="release">
 									  {{ release.platform.name }}
 									  {{ release.alternate_title ? ('(' + release.alternate_title + ')') : "" }}
+									  | Publisher: {{ release.publisher.name }}
+									  {{ release['NA'] ? "[NA]" : "" }}
+									  {{ release['JP'] ? "[JP]" : "" }}
+									  {{ release['EU'] ? "[EU]" : "" }}
+									  {{ release['WW'] ? "[WW]" : "" }}
 									</option>
 								  </select>
 								</div>

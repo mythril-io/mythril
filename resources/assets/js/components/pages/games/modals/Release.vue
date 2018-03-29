@@ -17,7 +17,12 @@
 				    <option :value="null" disabled>Select a Release</option>
 					<option v-for="release in game.releases" :value="release.id">
 					  {{ release['platform']['name'] }}
-					  {{ release['alternate_title'] ? ('(' + release['alternate_title'] + ')') : "" }}
+					  {{ release['alternate_title'] ? (' ('+ release['alternate_title'] + ') ') : "" }}
+					  | Publisher: {{ release['publisher']['name'] }}
+					  {{ release['NA'] ? "[NA]" : "" }}
+					  {{ release['JP'] ? "[JP]" : "" }}
+					  {{ release['EU'] ? "[EU]" : "" }}
+					  {{ release['WW'] ? "[WW]" : "" }}
 					</option>
 				  </select>
 				</div>
@@ -41,9 +46,11 @@
 
 <script>
 import NProgress from 'nprogress'
+import Multiselect from 'vue-multiselect'
 
 export default {
 	props: [ 'modalState', 'game', 'user', 'item' ],
+	components: {Multiselect},
 	data() {
 		return {
 			selectedReleaseID: null,
@@ -59,6 +66,9 @@ export default {
     	user: function () { this.checkUserItem() }
   	},
 	methods: {
+		customLabel ({ id, desc }) {
+	      return `${id} – ${desc}`
+	    },
     	close() {
       		this.$emit('close')
     	},
@@ -152,3 +162,4 @@ export default {
 	}
 }
 </script>
+<style src="vue-multiselect/dist/vue-multiselect.min.css"></style>

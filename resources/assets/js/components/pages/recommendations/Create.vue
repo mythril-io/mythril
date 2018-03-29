@@ -34,6 +34,11 @@
 									<option v-for="release in this.releasesOne" :value="release">
 									  {{ release.platform.name }}
 									  {{ release.alternate_title ? ('(' + release.alternate_title + ')') : "" }}
+									  | Publisher: {{ release.publisher.name }}
+									  {{ release['NA'] ? "[NA]" : "" }}
+									  {{ release['JP'] ? "[JP]" : "" }}
+									  {{ release['EU'] ? "[EU]" : "" }}
+									  {{ release['WW'] ? "[WW]" : "" }}
 									</option>
 								  </select>
 								</div>
@@ -74,6 +79,11 @@
 									<option v-for="release in this.releasesTwo" :value="release">
 									  {{ release.platform.name }}
 									  {{ release.alternate_title ? ('(' + release.alternate_title + ')') : "" }}
+									  | Publisher: {{ release.publisher.name }}
+									  {{ release['NA'] ? "[NA]" : "" }}
+									  {{ release['JP'] ? "[JP]" : "" }}
+									  {{ release['EU'] ? "[EU]" : "" }}
+									  {{ release['WW'] ? "[WW]" : "" }}
 									</option>
 								  </select>
 								</div>

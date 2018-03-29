@@ -31,8 +31,13 @@
 		  <tbody>
 		    <tr v-for="entry in userLibrary" :key="entry.id">
 		      <td>
-				<abbr v-if="entry.release.alternate_title" :title="entry.release.alternate_title">{{ entry.release.platform.acronym }}</abbr>
+				<abbr v-if="entry.release.alternate_title" :title="entry.release.alternate_title">
+					{{ entry.release.platform.acronym }}
+				</abbr>
 				<span v-else>{{ entry.release.platform.acronym }}</span>
+				<span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
+					<i class="fas fa-info-circle"></i>
+				</span>
 	      	  </td>
 		      <td>{{ entry.own ? 'Yes' : 'No' }}</td>
 		      <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
@@ -81,7 +86,12 @@
 			    <option :value="null" disabled>Select a Release</option>
 				<option v-for="release in game.releases" :value="release.id">
 				  {{ release['platform']['name'] }}
-				  {{ release['alternate_title'] ? ('(' + release['alternate_title'] + ')') : "" }}
+				  {{ release['alternate_title'] ? (' ('+ release['alternate_title'] + ') ') : "" }}
+				  | Publisher: {{ release['publisher']['name'] }}  
+				  {{ release['NA'] ? "[NA]" : "" }}
+				  {{ release['JP'] ? "[JP]" : "" }}
+				  {{ release['EU'] ? "[EU]" : "" }}
+				  {{ release['WW'] ? "[WW]" : "" }}
 				</option>
 			</select>
         </div>
