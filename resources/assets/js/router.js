@@ -14,6 +14,7 @@ const User = require('./components/pages/users/Show.vue')
 const Admin = require('./components/pages/admin/Index.vue')
 const VerifyEmail = require('./components/pages/VerifyEmail.vue')
 const Staff = require('./components/pages/site/Staff.vue')
+const Faq = require('./components/pages/site/Faq.vue')
 
 // Define routes in VueRouter instance
 const router = new VueRouter({
@@ -46,6 +47,11 @@ const router = new VueRouter({
           name: 'Staff', 
           component: Staff,  
           meta: { title: 'Staff'} 
+        }, { 
+          path: '/faq', 
+          name: 'Faq', 
+          component: Faq,  
+          meta: { title: 'Frequently Asked Questions'} 
         }, { 
           path: '/games', 
           name: 'Games', 
