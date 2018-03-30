@@ -1,7 +1,7 @@
 <template>
 <div>
 	<div class="columns">
-		<div class="column is-9 is-10-widescreen">
+		<div class="column is-8 is-9-widescreen">
 		    <div class="content">
 		        <h2>About Me</h2>
 		    </div>
@@ -41,7 +41,7 @@
 				</div>
 			</div>
 			
-			<div v-if="this.displayedUser.libraries.length > 0">
+			<div v-if="this.orderedLibrary.length > 0">
 			    <div class="content">
 			        <h2>Currently Playing</h2>
 			    </div>
@@ -57,7 +57,10 @@
 			</div>
                    
 		</div>
-		<div class="column is-3 is-2-widescreen">
+
+		<div class="is-divider-vertical is-hidden-mobile"></div>
+
+		<div class="column">
 		    <div class="content">
 		        <h2>Favourite Games</h2>
 		    </div>
