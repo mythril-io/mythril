@@ -17,13 +17,13 @@
 	        <a class="icon is-medium" href="https://twitter.com/mythril_io" target="_blank">
 	          <i class="fab fa-twitter fa-lg"></i>
 	        </a>
-	        <a class="icon is-medium" href="#">
+	        <a class="icon is-medium" href="https://www.facebook.com/Mythril-1856001717764618" target="_blank">
 	          <i class="fab fa-facebook-square fa-lg"></i>
 	        </a>
 	        <a class="icon is-medium" href="https://www.youtube.com/channel/UCSfbSlgiS3ghdcHihNJZ8TA" target="_blank">
 	          <i class="fab fa-youtube fa-lg"></i>
 	        </a>
-	        <a class="icon is-medium" href="#">
+	        <a class="icon is-medium" href="https://www.instagram.com/mythril_io/" target="_blank">
 	          <i class="fab fa-instagram fa-lg"></i>
 	        </a>
 <!-- 	        <a class="icon is-medium" href="#">
