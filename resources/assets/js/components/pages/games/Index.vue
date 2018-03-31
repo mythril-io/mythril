@@ -22,7 +22,7 @@
 				<div class="column is-12">
 					<article class="message">
 					  <div class="message-body">
-					    Curious on how games are organized/consolidated? Please take a look at our <router-link :to="{name: 'Faq'}"><strong>F.A.Q.</strong></router-link> to get a better understanding.
+					    Curious on how games are organized/consolidated? Please take a look at our <router-link :to="{name: 'Faq'}"><strong>FAQ</strong></router-link> to get a better understanding.
 					  </div>
 					</article>
 				</div>

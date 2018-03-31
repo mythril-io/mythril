@@ -14,7 +14,7 @@
 		</div>
 		<div class="level-item">
 			<div>
-				<h1 class="title">Most Populer Games</h1>
+				<h1 class="title">Most Popular Games</h1>
 				<h2 class="subtitle content">
 				  <ol>
 				    <li v-for="game in popular">

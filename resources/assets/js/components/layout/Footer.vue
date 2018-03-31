@@ -6,7 +6,7 @@
 	    <div class="content has-text-centered">
 	      <p>
 	        &copy; <strong>Mythril</strong> 2018<br>
-	        	<router-link :to="{name: 'Faq'}">F.A.Q.</router-link> | 
+	        	<router-link :to="{name: 'Faq'}">FAQ</router-link> | 
 	        	<router-link :to="{name: 'TermsOfService'}">Terms of Service</router-link> | 
 	        	<router-link :to="{name: 'PrivacyPolicy'}">Privacy Policy</router-link>
 	      </p>
