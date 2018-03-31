@@ -176,7 +176,7 @@ class Game extends Model
 
       //Ready Images
       $icon = Image::make($request->get('icon'));
-      $banner = Image::make($request->get('banner'));
+      $banner = Image::make($request->get('banner'))->encode('jpg', 80);
 
       //Icon Image
       $iconExtension = explode('/', $icon->mime() )[1];

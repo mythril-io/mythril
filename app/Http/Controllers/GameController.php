@@ -178,7 +178,7 @@ class GameController extends Controller
             }
             if(!empty($request->banner)){
                 //make image and upload
-                $banner = Image::make($request->get('banner'));
+                $banner = Image::make($request->get('banner'))->encode('jpg', 80);
                 $bannerExtension = explode('/', $banner->mime() )[1];
                 $bannerName = $game->id.'.'.$bannerExtension;
                 $banner = $banner->stream();

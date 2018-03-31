@@ -76,7 +76,7 @@
 
             <div class="field">
               <label class="label">Banner</label>
-              <image-upload @updateImage="updateBanner" name="banner" validation="required|image|size:2000"></image-upload>
+              <image-upload @updateImage="updateBanner" name="banner" validation="required|image|size:8000"></image-upload>
               <span v-show="errors.has('banner')" class="help is-danger">{{ errors.first('banner') }}</span>
             </div>
           </div>
