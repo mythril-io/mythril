@@ -8,6 +8,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         
         <meta name="theme-color" content="#00d1b2">
+        <meta name="google-site-verification" content="iQkhEqF2PiMwavCVpivYrAJayn_22urlTFrgK71b-no" />
 
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <title>Mythril</title>
@@ -18,6 +19,7 @@
         <link href="{{ asset('css/additional.css') }}" rel="stylesheet">
 
         <script type='text/javascript' src='/js/kofi-button.js'></script>
+
     </head>
     <body>
 
