@@ -122,7 +122,7 @@
 							    <span class="icon">
 							      <i class="fas fa-search"></i>
 							    </span>
-							    <span>Search</span>
+							    <span class="is-hidden-touch">Search</span>
 							</a>
 						</div>
 						
