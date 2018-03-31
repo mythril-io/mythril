@@ -15,6 +15,8 @@ const Admin = require('./components/pages/admin/Index.vue')
 const VerifyEmail = require('./components/pages/VerifyEmail.vue')
 const Staff = require('./components/pages/site/Staff.vue')
 const Faq = require('./components/pages/site/Faq.vue')
+const PrivacyPolicy = require('./components/pages/site/PrivacyPolicy.vue')
+const TermsOfService = require('./components/pages/site/TermsOfService.vue')
 
 // Define routes in VueRouter instance
 const router = new VueRouter({
@@ -52,6 +54,16 @@ const router = new VueRouter({
           name: 'Faq', 
           component: Faq,  
           meta: { title: 'Frequently Asked Questions'} 
+        }, { 
+          path: '/privacy-policy', 
+          name: 'PrivacyPolicy', 
+          component: PrivacyPolicy,  
+          meta: { title: 'Privacy Policy'} 
+        }, { 
+          path: '/terms-of-service', 
+          name: 'TermsOfService', 
+          component: TermsOfService,  
+          meta: { title: 'Terms of Service'} 
         }, { 
           path: '/games', 
           name: 'Games', 

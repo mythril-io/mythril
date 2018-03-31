@@ -7,8 +7,8 @@
 	      <p>
 	        &copy; <strong>Mythril</strong> 2018<br>
 	        	<router-link :to="{name: 'Faq'}">F.A.Q.</router-link> | 
-	        	<a href="#">Terms of Service</a> | 
-	        	<a href="#">Privacy Policy</a>
+	        	<router-link :to="{name: 'TermsOfService'}">Terms of Service</router-link> | 
+	        	<router-link :to="{name: 'PrivacyPolicy'}">Privacy Policy</router-link>
 	      </p>
 	      <p>
 	      	<a class="icon is-medium" href="https://discord.gg/VMp7UNJ" target="_blank">
