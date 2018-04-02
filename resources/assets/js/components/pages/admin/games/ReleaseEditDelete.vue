@@ -41,7 +41,7 @@
 	          </thead>
 	          <tbody>
 	            <tr v-for="release in selectedGame.releases">
-	              <td>{{ release['altTitle'] ? release['altTitle'] : "N/A" }}</td>
+	              <td>{{ release['alternate_title'] ? release['alternate_title'] : "N/A" }}</td>
 	              <td>{{ release['platform']['name'] }}</td>
 	              <td>{{ release['publisher']['name'] }}</td>
 	              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "N/A"  }}</td>

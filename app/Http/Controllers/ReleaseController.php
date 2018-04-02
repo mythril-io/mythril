@@ -72,7 +72,7 @@ class ReleaseController extends Controller
     public function update(Request $request, $id)
     {
        $this->validate($request,[
-           'releases' => 'required',
+           'release' => 'required',
        ]);
 
         DB::table('releases')
