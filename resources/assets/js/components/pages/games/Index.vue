@@ -442,7 +442,7 @@ export default {
     })
     .catch((error) => console.log("Genres array not updated."));
 
-    setTimeout(() => { this.busy = false; }, 2500);
+    setTimeout(() => { this.busy = false; }, 500);
 
   }
 }
