@@ -64,9 +64,10 @@
 		    <div class="content">
 		        <h2>Favourite Games</h2>
 		    </div>
-                    <div class="columns is-multiline is-mobile" v-if="displayedUser.favourites.length > 0" >
-                        <div class="column is-3-mobile is-6-tablet" v-for="favourite in displayedUser.favourites">
-                            <div class="image card tooltip is-tooltip-primary" :data-tooltip="favourite.game.title">
+                    <div class="columns is-multiline is-mobile" v-if="displayedUser.favourites.length > 0">
+                        <div class="column is-3-mobile is-6-tablet" v-for="favourite in orderedFavourites">
+                            <div class="image card tooltip is-tooltip-primary" 
+                            	:data-tooltip="favourite.release.alternate_title ? favourite.release.alternate_title : favourite.game.title">
                             	<router-link :to="{name: 'Game', params: { id: favourite.game.id }}">
                                 	<img :src="'https://mythril.nyc3.digitaloceanspaces.com/games/icons/'+ favourite.game.icon +''">
                                 </router-link>
@@ -96,6 +97,9 @@ export default {
 		orderedLibrary: function () {
 			var playingEntries = _.filter(this.displayedUser.libraries, ['play_status_id', 1]);
 			return _.orderBy(playingEntries, 'game_id', 'desc')
+		},
+		orderedFavourites: function () {
+			return _.orderBy(this.displayedUser.favourites, 'game.title', 'asc');
 		}
 	},
 	filters: {
