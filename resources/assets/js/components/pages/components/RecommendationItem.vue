@@ -1,6 +1,6 @@
 <template>
 
-    <div class="columns is-mobile">
+    <div class="columns is-mobile is-multiline">
       <div class="column is-narrow recomendation-col is-clearfix">
         <div class="image image-behind is-pulled-left card tooltip is-tooltip-primary" :data-tooltip="recommendation.release.alternate_title ? recommendation.release.alternate_title : recommendation.game.title">
             <router-link :to="{name: 'Game', params: { id: recommendation.game.id }}">
