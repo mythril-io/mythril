@@ -229,7 +229,8 @@ export default {
 	            for(var j = 0; j < this.dbReleases.length; j++)
 	            {
 	              if(this.platform.name === this.dbReleases[j].platform.name &&
-	                this.publisher.name === this.dbReleases[j].publisher.name)
+	                this.publisher.name === this.dbReleases[j].publisher.name &&
+	                this.altTitle === this.dbReleases[j].alternate_title)
 	              {
 	              	flash('This release already exists in the Database. Please enter different release details.', 'error')
 	                return;
@@ -243,7 +244,8 @@ export default {
 	            for(var j = 0; j < this.releases.length; j++)
 	            {
 	              if(this.platform.name === this.releases[j].platform.name &&
-	                this.publisher.name === this.releases[j].publisher.name)
+	                this.publisher.name === this.releases[j].publisher.name &&
+	                this.altTitle == this.releases[j].altTitle)
 	              {
 	              	flash('This release was already entered in the form. Please enter different release details.', 'error')
 	                return;
