@@ -5,7 +5,7 @@
 		<markdown-editor 
 			v-model="content" 
 			name="content"
-			v-validate="'required|min: 750'">
+			v-validate="'required|min: 500'">
 		</markdown-editor>
 		<p v-show="errors.has('content')" class="help is-danger">{{ errors.first('content') }}</p>
 	</div>

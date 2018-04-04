@@ -84,7 +84,7 @@ class ReviewController extends Controller
             'game_id' => 'required',
             'release_id' => 'required',
             'summary' => 'required|min: 60|max: 255',
-            'content' => 'required|min: 750',
+            'content' => 'required|min: 500',
             'score' => 'numeric|between:1,100|required'
         ]);
 
@@ -162,7 +162,7 @@ class ReviewController extends Controller
 
         $this->validate($request, [
             'summary' => 'required|min: 60|max: 255',
-            'content' => 'required|min: 750',
+            'content' => 'required|min: 500',
             'score' => 'numeric|between:1,100|required'
         ]);
 
