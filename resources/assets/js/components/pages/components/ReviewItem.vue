@@ -5,7 +5,8 @@
             <div style="color: #FFF; width: 100%; padding: 0px;">
                 <div style="padding: 20px 24px 0px 24px;">
                     <strong class="has-text-primary">{{ review.release.alternate_title ? review.release.alternate_title : review.game.title }}</strong><br>
-                    {{ review.summary | truncate('120') }}
+                    <span class="is-hidden-mobile">{{ review.summary | truncate('120') }}</span>
+                    <span class="is-hidden-tablet ">{{ review.summary | truncate('60') }}</span>
                 </div>
               <hr>
               <div class="is-clearfix" style="padding: 0px 24px 20px 24px;">
@@ -22,7 +23,7 @@
                           <span class="tag">{{ review.release.platform.acronym }}</span>
                         </div>
                       </div>
-                      <div class="control">
+                      <div class="control is-hidden-mobile">
                         <div class="tags has-addons">
                           <span class="tag" v-if="(review.like_count + review.dislike_count) == 0">0 users liked this review</span>
                           <span class="tag" v-else>{{ review.like_count }} out of {{ review.like_count + review.dislike_count }} users liked this review</span>
@@ -54,6 +55,7 @@ export default {
     props: ['review', 'hideUser'],
     filters: {
         truncate: function(string, value) {
+            if(string.length < value) { return string }
             return string.substring(0, value) + '...';
         }
     },
