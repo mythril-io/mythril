@@ -147,6 +147,7 @@ export default {
 	            {
 	              if(editedRelease.platform.name === this.selectedGame.releases[j].platform.name &&
 	                editedRelease.publisher.name === this.selectedGame.releases[j].publisher.name &&
+	                editedRelease.alternate_title === this.selectedGame.releases[j].alternate_title &&
 	                editedRelease.id != this.selectedGame.releases[j].id)
 	              {
 	              	flash('This release already exists in the Database. Please enter different release details.', 'error')
