@@ -16,7 +16,7 @@
 			<div class="field">
               <label class="label">Alternate Title (Optional)</label>
               <p class="control has-icons-left">
-                <input class="input" type="text" placeholder="Alternate Title" v-model="altTitle" name="altTitle" >
+                <input class="input" type="text" placeholder="Alternate Title" v-model="alternate_title" name="alternate_title" >
                 <span class="icon is-small is-left">
                   <i class="fas fa-folder"></i>
                 </span>
@@ -149,7 +149,7 @@ export default {
     props:['release'],
 	data() { 
 		return {
-			altTitle: '',
+			alternate_title: '',
 			platform: null,
 			publisher: null,
 			coDeveloper: null,
@@ -181,7 +181,7 @@ export default {
 	          (this.NA||this.EU||this.JP||this.WW))
 	        {
 	        	var editedRelease = {
-					altTitle: this.altTitle,
+					alternate_title: this.alternate_title,
 					platform: this.platform,
 					publisher: this.publisher,
 					codeveloper: this.coDeveloper,
@@ -197,7 +197,7 @@ export default {
 	        else { flash('Please fill out required release fields.', 'error'); }
 		},
 		updateFormData() {
-			this.altTitle = this.release.altTitle;
+			this.alternate_title = this.release.alternate_title;
 			this.platform = this.release.platform
 			this.publisher = this.release.publisher;
 			this.coDeveloper = this.release.coDeveloper;

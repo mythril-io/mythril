@@ -17,7 +17,7 @@
 			<div class="field">
               <label class="label">Alternate Title (Optional)</label>
               <p class="control has-icons-left">
-                <input class="input" type="text" placeholder="Alternate Title" v-model="altTitle" name="altTitle" >
+                <input class="input" type="text" placeholder="Alternate Title" v-model="alternate_title" name="alternate_title" >
                 <span class="icon is-small is-left">
                   <i class="fas fa-folder"></i>
                 </span>
@@ -153,7 +153,7 @@
 	          </thead>
 	          <tbody>
 	            <tr v-for="release in releases">
-	              <td>{{ release['altTitle'] ? release['altTitle'] : "N/A" }}</td>
+	              <td>{{ release['alternate_title'] ? release['alternate_title'] : "N/A" }}</td>
 	              <td>{{ release['platform']['name'] }}</td>
 	              <td>{{ release['publisher']['name'] }}</td>
 	              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "N/A"  }}</td>
@@ -183,7 +183,7 @@ export default {
     props:['existingReleases'],
 	data() { 
 		return {
-			altTitle: '',
+			alternate_title: '',
 			platform: null,
 			publisher: null,
 			coDeveloper: null,
@@ -230,7 +230,7 @@ export default {
 	            {
 	              if(this.platform.name === this.dbReleases[j].platform.name &&
 	                this.publisher.name === this.dbReleases[j].publisher.name &&
-	                this.altTitle === this.dbReleases[j].alternate_title)
+	                this.alternate_title === this.dbReleases[j].alternate_title)
 	              {
 	              	flash('This release already exists in the Database. Please enter different release details.', 'error')
 	                return;
@@ -245,7 +245,7 @@ export default {
 	            {
 	              if(this.platform.name === this.releases[j].platform.name &&
 	                this.publisher.name === this.releases[j].publisher.name &&
-	                this.altTitle == this.releases[j].altTitle)
+	                this.alternate_title == this.releases[j].alternate_title)
 	              {
 	              	flash('This release was already entered in the form. Please enter different release details.', 'error')
 	                return;
@@ -259,7 +259,7 @@ export default {
 		createRelease() {
 			//Create a newRelease object
 			var newRelease = {
-				altTitle: this.altTitle,
+				alternate_title: this.alternate_title,
 				platform: this.platform,
 				publisher: this.publisher,
 				codeveloper: this.coDeveloper,
@@ -278,7 +278,7 @@ export default {
 			this.resetForm();
 		},
 		resetForm() {
-			this.altTitle = '';
+			this.alternate_title = '';
 			this.platform = null;
 			this.publisher = null;
 			this.coDeveloper = null;

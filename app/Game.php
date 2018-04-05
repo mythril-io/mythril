@@ -219,7 +219,7 @@ class Game extends Model
      foreach($releases as $release)
      {
        $releaseMatch = DB::table('releases')->where([
-          ['alternate_title', array_get($release, 'altTitle')],
+          ['alternate_title', array_get($release, 'alternate_title')],
           ['platform_id', array_get($release, 'platform.id')],
           ['publisher_id', array_get($release, 'publisher.id')],
           ['game_id', $gameid],
@@ -231,7 +231,7 @@ class Game extends Model
              'platform_id' => array_get($release, 'platform.id'),
              'publisher_id' => array_get($release, 'publisher.id'),
              'codeveloper_id' => array_get($release, 'codeveloper.id', null),
-             'alternate_title' => array_get($release, 'altTitle'),
+             'alternate_title' => array_get($release, 'alternate_title'),
              'NA' => array_get($release, 'NA'),
              'EU' => array_get($release, 'EU'),
              'JP' => array_get($release, 'JP'),

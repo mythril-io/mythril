@@ -81,7 +81,7 @@ class ReleaseController extends Controller
                 'platform_id' => array_get($request, 'release.platform.id'),
                 'publisher_id' => array_get($request, 'release.publisher.id'),
                 'codeveloper_id' => array_get($request, 'release.codeveloper.id', null),
-                'alternate_title' => array_get($request, 'release.altTitle'),
+                'alternate_title' => array_get($request, 'release.alternate_title'),
                 'NA' => array_get($request, 'release.NA'),
                 'EU' => array_get($request, 'release.EU'),
                 'JP' => array_get($request, 'release.JP'),
