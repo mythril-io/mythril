@@ -18,7 +18,7 @@
 			            </tr>
 			          </thead>
 			          <tbody>
-			            <tr v-for="release in game.releases">
+			            <tr v-for="release in sortedReleases">
 			              <td>{{ release['alternate_title'] ? release['alternate_title'] : "N/A" }}</td>
 			              <td>{{ release['platform']['name'] }}</td>
 			              <td>{{ release['publisher']['name'] }}</td>
@@ -51,6 +51,11 @@ export default {
 	    }
 	  }
 	},
+  	computed: {
+	    sortedReleases() {
+	      return _.orderBy(this.game.releases, 'platform.name', 'asc');
+	  	}
+    },
 	methods: {
       	addToLibrary(release) {
 
