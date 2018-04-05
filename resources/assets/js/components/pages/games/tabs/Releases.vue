@@ -19,10 +19,10 @@
 			          </thead>
 			          <tbody>
 			            <tr v-for="release in sortedReleases">
-			              <td>{{ release['alternate_title'] ? release['alternate_title'] : "N/A" }}</td>
+			              <td>{{ release['alternate_title'] ? release['alternate_title'] : "-" }}</td>
 			              <td>{{ release['platform']['name'] }}</td>
 			              <td>{{ release['publisher']['name'] }}</td>
-			              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "N/A"  }}</td>
+			              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "-"  }}</td>
 			              <td>{{ release['NA'] | dateFormat }}</td>
 			              <td>{{ release['JP'] | dateFormat }}</td>
 			              <td>{{ release['EU'] | dateFormat }}</td>
@@ -47,7 +47,7 @@ export default {
 	    }
 	    else
 	    {
-	      return "N/A";
+	      return "-";
 	    }
 	  }
 	},
