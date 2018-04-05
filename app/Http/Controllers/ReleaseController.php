@@ -119,7 +119,7 @@ class ReleaseController extends Controller
      */
     public function destroy($id)
     {
-        $release = Release::find($request->id);
+        $release = Release::find($id);
         $release->delete();
 
         return response()->json(null, 204);
