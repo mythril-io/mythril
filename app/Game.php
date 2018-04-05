@@ -219,6 +219,7 @@ class Game extends Model
      foreach($releases as $release)
      {
        $releaseMatch = DB::table('releases')->where([
+          ['alternate_title', array_get($release, 'altTitle')],
           ['platform_id', array_get($release, 'platform.id')],
           ['publisher_id', array_get($release, 'publisher.id')],
           ['game_id', $gameid],
