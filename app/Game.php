@@ -222,6 +222,7 @@ class Game extends Model
           ['alternate_title', array_get($release, 'alternate_title')],
           ['platform_id', array_get($release, 'platform.id')],
           ['publisher_id', array_get($release, 'publisher.id')],
+          ['region_id', array_get($release, 'region.id')],
           ['game_id', $gameid],
       ])->count();
        
