@@ -231,7 +231,7 @@ export default {
 	            {
 	              if(this.platform.name === this.releases[j].platform.name &&
 	                this.publisher.name === this.releases[j].publisher.name &&
-	                this.alternate_title == this.releases[j].alternate_title &&
+	                this.alternate_title === this.releases[j].alternate_title &&
 	                this.region.name === this.releases[j].region.name)
 	              {
 	              	flash('This release was already entered in the form. Please enter different release details.', 'error')
