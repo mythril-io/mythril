@@ -70,6 +70,7 @@ Route::group([
     Route::get('publishers', function() {return App\Publisher::select('id', 'name')->get();} );
     Route::get('genres', function() {return App\Genre::select('id', 'name')->get();} );
     Route::get('platforms', function() {return App\Platform::select('id', 'name')->get();} );
+    Route::get('regions', function() {return App\Region::select('id', 'name')->get();} );
 });
 
 /*

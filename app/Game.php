@@ -232,10 +232,8 @@ class Game extends Model
              'publisher_id' => array_get($release, 'publisher.id'),
              'codeveloper_id' => array_get($release, 'codeveloper.id', null),
              'alternate_title' => array_get($release, 'alternate_title'),
-             'NA' => array_get($release, 'NA'),
-             'EU' => array_get($release, 'EU'),
-             'JP' => array_get($release, 'JP'),
-             'WW' => array_get($release, 'WW')
+             'region_id' => array_get($release, 'region.id'),
+             'date' => array_get($release, 'date')
            ]);
        } 
      }

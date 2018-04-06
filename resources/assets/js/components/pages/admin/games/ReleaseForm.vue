@@ -75,53 +75,31 @@
               </p>
             </div>
 		</div>
-
-		<div class="column is-one-quarter">
-			<label class="label">
-			  North America
-			  <a class="delete" v-if="NA" @click="NA = null"></a>
-			</label>
-			<p class="control has-icons-left">
-			  <flat-pickr name="NA" v-model="NA" class="input" placeholder="Select Date"></flat-pickr>
-			  <span class="icon is-small is-left">
-			    <i class="fa fa-calendar"></i>
-			  </span>
-			</p>
+		
+		<div class="column is-half">
+			<div class="field">
+              <label class="label">Region</label>
+              <p class="control">
+                <multiselect
+                  v-model="region"
+                  :options="regions"
+                  placeholder="Select Region"
+                  track-by="name"
+                  label="name"
+                  :close-on-select="true"
+                  style="z-index:1000;">
+                </multiselect>
+              </p>
+            </div>
 		</div>
 
-		<div class="column is-one-quarter">
+		<div class="column is-half">
 			<label class="label">
-			  Japan
-			  <a class="delete" v-if="JP" @click="JP = null"></a>
+			  Date
+			  <a class="delete" v-if="date" @click="date = null"></a>
 			</label>
 			<p class="control has-icons-left">
-			  <flat-pickr name="JP" v-model="JP" class="input" placeholder="Select Date"></flat-pickr>
-			  <span class="icon is-small is-left">
-			    <i class="fa fa-calendar"></i>
-			  </span>
-			</p>
-		</div>
-
-		<div class="column is-one-quarter">
-			<label class="label">
-			  Europe
-			  <a class="delete" v-if="EU" @click="EU = null"></a>
-			</label>
-			<p class="control has-icons-left">
-			  <flat-pickr name="EU" v-model="EU" class="input" placeholder="Select Date"></flat-pickr>
-			  <span class="icon is-small is-left">
-			    <i class="fa fa-calendar"></i>
-			  </span>
-			</p>
-		</div>
-
-		<div class="column is-one-quarter">
-			<label class="label">
-			  Worldwide
-			  <a class="delete" v-if="WW" @click="WW = null"></a>
-			</label>
-			<p class="control has-icons-left">
-			  <flat-pickr name="WW" v-model="WW" class="input" placeholder="Select Date"></flat-pickr>
+			  <flat-pickr name="date" v-model="date" class="input" placeholder="Select Date"></flat-pickr>
 			  <span class="icon is-small is-left">
 			    <i class="fa fa-calendar"></i>
 			  </span>
@@ -144,10 +122,15 @@
 	              <th>Platform</th>
 	              <th>Publisher</th>
 	              <th>Co-Developer</th>
-	              <th>NA</th>
-	              <th>JP</th>
-	              <th>EU</th>
-	              <th>WW</th>
+	              <th>Region</th>
+	              <th>Date</th>
+
+		              	  <th>NA</th>
+			              <th>JP</th>
+			              <th>EU</th>
+						  <th>WW</th>
+
+
 	              <th class="has-text-centered">Delete?</th>
 	            </tr>
 	          </thead>
@@ -157,10 +140,14 @@
 	              <td>{{ release['platform']['name'] }}</td>
 	              <td>{{ release['publisher']['name'] }}</td>
 	              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "N/A"  }}</td>
-	              <td>{{ release['NA'] | dateFormat }}</td>
-	              <td>{{ release['JP'] | dateFormat }}</td>
-	              <td>{{ release['EU'] | dateFormat }}</td>
-	              <td>{{ release['WW'] | dateFormat }}</td>
+	              <td>{{ release['region'] ? release['region']['name'] : "-" }}</td>
+	              <td>{{ release['date'] | dateFormat }}</td>
+
+			              <td>{{ release['NA'] | dateFormat }}</td>
+			              <td>{{ release['JP'] | dateFormat }}</td>
+			              <td>{{ release['EU'] | dateFormat }}</td>
+						  <td>{{ release['WW'] | dateFormat }}</td>
+
 	              <td class="has-text-centered"><a class="delete" @click="removeRelease(release)"></a></td>
 	            </tr>
 	          </tbody>
@@ -187,17 +174,16 @@ export default {
 			platform: null,
 			publisher: null,
 			coDeveloper: null,
-			NA: null,
-			EU: null,
-			JP: null,
-			WW: null,
+			date: null,
+			region: null,
 
 			releases:[],
 			dbReleases: [],
 
 			platforms: [],
 			publishers: [],
-			developers: []
+			developers: [],
+			regions: []
 		}
 	},
 	filters: {
@@ -220,8 +206,7 @@ export default {
 	},
 	methods: {
 		checkRelease() {
-			if(this.platform && this.publisher &&
-	          (this.NA||this.EU||this.JP||this.WW))
+			if(this.platform && this.publisher && this.region && this.date)
 	        {
 	          //Check if release information is a duplicate of database entires
 	          if(this.dbReleases.length > 0)
@@ -263,10 +248,8 @@ export default {
 				platform: this.platform,
 				publisher: this.publisher,
 				codeveloper: this.coDeveloper,
-				NA: this.NA,
-				EU: this.EU,
-				JP: this.JP,
-				WW: this.WW
+				region: this.region,
+				date: this.date
 			}
 			//Add newRelease object to releases array
 			this.releases.push(newRelease);
@@ -282,10 +265,8 @@ export default {
 			this.platform = null;
 			this.publisher = null;
 			this.coDeveloper = null;
-			this.NA = null;
-			this.EU = null;
-			this.JP = null;
-			this.WW = null;
+			this.region = null;
+			this.date = null;
 		},
 		removeRelease: function (release) {
 			var index = this.releases.indexOf(release);
@@ -304,6 +285,10 @@ export default {
 			axios.get('/api/publishers')
 			.then((response) => { this.publishers = response.data; })
 			.catch((error) => console.log("Publishers array not updated."));
+
+			axios.get('/api/regions')
+			.then((response) => { this.regions = response.data; })
+			.catch((error) => console.log("Regions array not updated."));
 		}
 	}
 }

@@ -19,10 +19,7 @@
 					  {{ release['platform']['name'] }}
 					  {{ release['alternate_title'] ? (' ('+ release['alternate_title'] + ') ') : "" }}
 					  | Publisher: {{ release['publisher']['name'] }}
-					  {{ release['NA'] ? "[NA]" : "" }}
-					  {{ release['JP'] ? "[JP]" : "" }}
-					  {{ release['EU'] ? "[EU]" : "" }}
-					  {{ release['WW'] ? "[WW]" : "" }}
+					  {{ release['region'] ? ("["+ release.region.name +"]") : "" }}
 					</option>
 				  </select>
 				</div>

@@ -75,52 +75,30 @@
             </div>
 		</div>
 
-		<div class="column is-one-quarter">
-			<label class="label">
-			  North America
-			  <a class="delete" v-if="NA" @click="NA = null"></a>
-			</label>
-			<p class="control has-icons-left">
-			  <flat-pickr name="NA" v-model="NA" class="input" placeholder="Select Date"></flat-pickr>
-			  <span class="icon is-small is-left">
-			    <i class="fa fa-calendar"></i>
-			  </span>
-			</p>
+		<div class="column is-half">
+			<div class="field">
+              <label class="label">Region</label>
+              <p class="control">
+                <multiselect
+                  v-model="region"
+                  :options="regions"
+                  placeholder="Select Region"
+                  track-by="name"
+                  label="name"
+                  :close-on-select="true"
+                  style="z-index:1000;">
+                </multiselect>
+              </p>
+            </div>
 		</div>
 
-		<div class="column is-one-quarter">
+		<div class="column is-half">
 			<label class="label">
-			  Japan
-			  <a class="delete" v-if="JP" @click="JP = null"></a>
+			  Date
+			  <a class="delete" v-if="date" @click="date = null"></a>
 			</label>
 			<p class="control has-icons-left">
-			  <flat-pickr name="JP" v-model="JP" class="input" placeholder="Select Date"></flat-pickr>
-			  <span class="icon is-small is-left">
-			    <i class="fa fa-calendar"></i>
-			  </span>
-			</p>
-		</div>
-
-		<div class="column is-one-quarter">
-			<label class="label">
-			  Europe
-			  <a class="delete" v-if="EU" @click="EU = null"></a>
-			</label>
-			<p class="control has-icons-left">
-			  <flat-pickr name="EU" v-model="EU" class="input" placeholder="Select Date"></flat-pickr>
-			  <span class="icon is-small is-left">
-			    <i class="fa fa-calendar"></i>
-			  </span>
-			</p>
-		</div>
-
-		<div class="column is-one-quarter">
-			<label class="label">
-			  Worldwide
-			  <a class="delete" v-if="WW" @click="WW = null"></a>
-			</label>
-			<p class="control has-icons-left">
-			  <flat-pickr name="WW" v-model="WW" class="input" placeholder="Select Date"></flat-pickr>
+			  <flat-pickr name="date" v-model="date" class="input" placeholder="Select Date"></flat-pickr>
 			  <span class="icon is-small is-left">
 			    <i class="fa fa-calendar"></i>
 			  </span>
@@ -153,15 +131,14 @@ export default {
 			platform: null,
 			publisher: null,
 			coDeveloper: null,
-			NA: null,
-			EU: null,
-			JP: null,
-			WW: null,
+			date: null,
+			region: null,
 			id: 0,
 
 			platforms: [],
 			publishers: [],
-			developers: []
+			developers: [],
+			regions: []
 		}
 	},
 	created(){
@@ -177,18 +154,15 @@ export default {
 	methods: {
 		prepareRelease() {
 			//Create a newRelease object
-			if(this.platform && this.publisher &&
-	          (this.NA||this.EU||this.JP||this.WW))
+			if(this.platform && this.publisher && this.region && this.date)
 	        {
 	        	var editedRelease = {
 					alternate_title: this.alternate_title,
 					platform: this.platform,
 					publisher: this.publisher,
 					codeveloper: this.coDeveloper,
-					NA: this.NA,
-					EU: this.EU,
-					JP: this.JP,
-					WW: this.WW,
+					region: this.region,
+					date: this.date,
 					id: this.id
 				}
 				//Send Releases array to parent
@@ -201,10 +175,8 @@ export default {
 			this.platform = this.release.platform
 			this.publisher = this.release.publisher;
 			this.coDeveloper = this.release.coDeveloper;
-			this.NA = this.release.NA;
-			this.EU = this.release.EU;
-			this.JP = this.release.JP;
-			this.WW = this.release.WW;
+			this.region = this.release.region;
+			this.date = this.release.date;
 			this.id = this.release.id;
 		},
 		getFormData() {
@@ -219,6 +191,10 @@ export default {
 			axios.get('/api/publishers')
 			.then((response) => { this.publishers = response.data; })
 			.catch((error) => console.log("Publishers array not updated."));
+
+			axios.get('/api/regions')
+			.then((response) => { this.regions = response.data; })
+			.catch((error) => console.log("Regions array not updated."));
 		}
 	}
 }

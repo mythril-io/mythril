@@ -25,7 +25,7 @@ class Release extends Model
      */
     protected $fillable = [
         'game_id', 'platform_id', 'publisher_id', 'codeveloper_id', 'alternate_title',
-        'NA', 'EU', 'JP', 'WW'
+        'region_id', 'date'
     ];
 
     /**
@@ -64,6 +64,16 @@ class Release extends Model
     {
       return $this->belongsTo('App\Publisher', 'publisher_id')
             ->select(['id','name']);
+    }
+
+    /**
+     * The Region the Release belongs to.
+     *
+     */
+    public function region()
+    {
+      return $this->belongsTo('App\Region', 'region_id')
+            ->select(['id', 'name', 'acronym']);
     }
 
     /**

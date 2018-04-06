@@ -50,7 +50,7 @@ class GameController extends Controller
         'user',
         'genres',
         'developer',
-        'releases' => function($q) {$q->with(['platform', 'publisher', 'codeveloper']);}
+        'releases' => function($q) {$q->with(['platform', 'publisher', 'codeveloper', 'region']);}
       ])->latest()->get();
     }
 
@@ -111,7 +111,7 @@ class GameController extends Controller
                 'release' => function($q) {$q->with(['platform']);}, 
                 'user'
             ])->orderBy('created_at', 'desc')->limit(2);},
-            'releases' => function($q) {$q->with(['platform', 'publisher', 'codeveloper']);},
+            'releases' => function($q) {$q->with(['platform', 'publisher', 'codeveloper', 'region']);},
             'libraries' => function($q) {$q->with([
                 'user', 
                 'playStatus',
