@@ -74,6 +74,7 @@ export default {
     props: ['reviews', 'game'],
     filters: {
         truncate: function(string, value) {
+            if(string.length < value) { return string }
             return string.substring(0, value) + '...';
         }
     },
