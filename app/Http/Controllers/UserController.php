@@ -76,7 +76,7 @@ class UserController extends Controller
             'libraries' => function($q) {$q->with([
                 'game' => function($q) {$q->with(['genres']);}, 
                 'playStatus',
-                'release' => function($q) {$q->with(['platform', 'publisher']);} 
+                'release' => function($q) {$q->with(['platform', 'publisher', 'region']);} 
             ]);}
         ])->withCount('reviews', 'recommendations', 'libraries', 'followers', 'following')->where('id', '=', $id)->first();
 

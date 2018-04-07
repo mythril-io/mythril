@@ -60,10 +60,9 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              {{ entry.release.platform.name }}
-              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
-                <i class="fas fa-info-circle"></i>
-              </span>
+              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
+                {{ entry.release.platform.name }}
+              </abbr>
             </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
@@ -108,10 +107,9 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              {{ entry.release.platform.name }}
-              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
-                <i class="fas fa-info-circle"></i>
-              </span>
+              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
+                {{ entry.release.platform.name }}
+              </abbr>
             </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
@@ -157,10 +155,9 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              {{ entry.release.platform.name }}
-              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
-                <i class="fas fa-info-circle"></i>
-              </span>
+              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
+                {{ entry.release.platform.name }}
+              </abbr>
             </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
@@ -206,10 +203,9 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              {{ entry.release.platform.name }}
-              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
-                <i class="fas fa-info-circle"></i>
-              </span>
+              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
+                {{ entry.release.platform.name }}
+              </abbr>
             </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
@@ -255,10 +251,9 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              {{ entry.release.platform.name }}
-              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
-                <i class="fas fa-info-circle"></i>
-              </span>
+              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
+                {{ entry.release.platform.name }}
+              </abbr>
             </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
@@ -304,10 +299,9 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              {{ entry.release.platform.name }}
-              <span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
-                <i class="fas fa-info-circle"></i>
-              </span>
+              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
+                {{ entry.release.platform.name }}
+              </abbr>
             </td>
             <td>{{ entry.score ? entry.score : 'N/A' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
