@@ -66,7 +66,7 @@
                 <multiselect
                   v-model="coDeveloper"
                   :options="developers"
-                  placeholder="Select Platform"
+                  placeholder="Select Co-Developer"
                   track-by="name"
                   label="name"
                   :close-on-select="true"
@@ -124,13 +124,6 @@
 	              <th>Co-Developer</th>
 	              <th>Region</th>
 	              <th>Date</th>
-
-		              	  <th>NA</th>
-			              <th>JP</th>
-			              <th>EU</th>
-						  <th>WW</th>
-
-
 	              <th class="has-text-centered">Delete?</th>
 	            </tr>
 	          </thead>
@@ -142,12 +135,6 @@
 	              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "N/A"  }}</td>
 	              <td>{{ release['region'] ? release['region']['name'] : "-" }}</td>
 	              <td>{{ release['date'] | dateFormat }}</td>
-
-			              <td>{{ release['NA'] | dateFormat }}</td>
-			              <td>{{ release['JP'] | dateFormat }}</td>
-			              <td>{{ release['EU'] | dateFormat }}</td>
-						  <td>{{ release['WW'] | dateFormat }}</td>
-
 	              <td class="has-text-centered"><a class="delete" @click="removeRelease(release)"></a></td>
 	            </tr>
 	          </tbody>

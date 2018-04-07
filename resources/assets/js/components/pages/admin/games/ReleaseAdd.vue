@@ -35,12 +35,6 @@
 			              <th>Co-Developer</th>
 			              <th>Region</th>
 			              <th>Date</th>
-
-			              <th>NA</th>
-			              <th>JP</th>
-			              <th>EU</th>
-						  <th>WW</th>
-
 			            </tr>
 			          </thead>
 			          <tbody>
@@ -51,12 +45,6 @@
 			              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "N/A"  }}</td>
 			              <td>{{ release['region'] ? release['region']['name'] : "-" }}</td>
 			              <td>{{ release['date'] | dateFormat }}</td>
-
-			              <td>{{ release['NA'] | dateFormat }}</td>
-			              <td>{{ release['JP'] | dateFormat }}</td>
-			              <td>{{ release['EU'] | dateFormat }}</td>
-						  <td>{{ release['WW'] | dateFormat }}</td>
-
 			            </tr>
 			          </tbody>
 			        </table>

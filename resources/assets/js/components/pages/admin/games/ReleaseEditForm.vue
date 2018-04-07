@@ -65,7 +65,7 @@
                 <multiselect
                   v-model="coDeveloper"
                   :options="developers"
-                  placeholder="Select Platform"
+                  placeholder="Select Co-Developer"
                   track-by="name"
                   label="name"
                   :close-on-select="true"

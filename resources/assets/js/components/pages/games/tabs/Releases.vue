@@ -22,7 +22,7 @@
 			              <td>{{ release['publisher']['name'] }}</td>
 			              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "-"  }}</td>
 			              <td>{{ release['region'] ? release['region']['name'] : "-" }}</td>
-			              <td>{{ release['date'] }}</td>
+			              <td>{{ release['date'] | dateFormat }}</td>
 			            </tr>
 			          </tbody>
 			        </table>
