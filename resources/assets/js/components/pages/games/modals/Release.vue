@@ -15,11 +15,10 @@
 				<div class="select is-fullwidth is-small">
 				  <select v-model="selectedReleaseID" class="is-focused">
 				    <option :value="null" disabled>Select a Release</option>
-					<option v-for="release in game.releases" :value="release.id">
+					<option v-for="release in sortedReleases" :value="release.id">
 					  {{ release['platform']['name'] }}
-					  {{ release['alternate_title'] ? (' ('+ release['alternate_title'] + ') ') : "" }}
-					  | Publisher: {{ release['publisher']['name'] }}
 					  {{ release['region'] ? ("["+ release.region.name +"]") : "" }}
+					  {{ release['alternate_title'] ? (' - '+ release['alternate_title']) : "" }}
 					</option>
 				  </select>
 				</div>
@@ -60,6 +59,11 @@ export default {
  	watch: {
     	user: function () { this.checkUserItem() }
   	},
+  	computed: {
+	    sortedReleases() {
+	      return _.orderBy(this.game.releases, 'platform.name', 'asc');
+	  	}
+    },
 	methods: {
     	close() {
       		this.$emit('close')

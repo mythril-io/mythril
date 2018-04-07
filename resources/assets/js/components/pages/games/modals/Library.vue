@@ -35,7 +35,8 @@
 					{{ entry.release.platform.acronym }}
 				</abbr>
 				<span v-else>{{ entry.release.platform.acronym }}</span>
-				<span class="icon has-text-info tooltip" :data-tooltip="'Publisher: ' + entry.release.publisher.name">
+				<span class="icon has-text-info tooltip is-tooltip-right" 
+					:data-tooltip="'Region: '+ entry.release.region.name +', Publisher: ' + entry.release.publisher.name">
 					<i class="fas fa-info-circle"></i>
 				</span>
 	      	  </td>
@@ -84,11 +85,10 @@
         <div class="select is-fullwidth is-small">
 			<select v-model="selectedReleaseID" class="is-focused" :disabled="editMode">
 			    <option :value="null" disabled>Select a Release</option>
-				<option v-for="release in game.releases" :value="release.id">
+				<option v-for="release in sortedReleases" :value="release.id">
 				  {{ release['platform']['name'] }}
-				  {{ release['alternate_title'] ? (' ('+ release['alternate_title'] + ') ') : "" }}
-				  | Publisher: {{ release['publisher']['name'] }}  
 				  {{ release['region'] ? ("["+ release.region.name +"]") : "" }}
+				  {{ release['alternate_title'] ? (' - '+ release['alternate_title']) : "" }}
 				</option>
 			</select>
         </div>
@@ -206,9 +206,14 @@ export default {
 			userLibrary: []
 		}
 	},
- 	 watch: {
+ 	watch: {
     	user: function () { this.checkUserLibrary() }
   	},
+  	computed: {
+	    sortedReleases() {
+	      return _.orderBy(this.game.releases, 'platform.name', 'asc');
+	  	}
+    },
 	methods: {
     	close() {
     		this.endEditMode();
