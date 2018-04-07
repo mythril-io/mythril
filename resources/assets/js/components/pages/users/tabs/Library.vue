@@ -64,13 +64,13 @@
                 {{ entry.release.platform.name }}
               </abbr>
             </td>
-            <td>{{ entry.score ? entry.score : 'N/A' }}</td>
+            <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
-            <td>{{ entry.hours ? entry.hours : 'N/A' }}</td>
+            <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
               <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
-              <span v-else>N/A</span>
+              <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
               <div class="buttons">
@@ -111,13 +111,13 @@
                 {{ entry.release.platform.name }}
               </abbr>
             </td>
-            <td>{{ entry.score ? entry.score : 'N/A' }}</td>
+            <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
-            <td>{{ entry.hours ? entry.hours : 'N/A' }}</td>
+            <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
               <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
-              <span v-else>N/A</span>
+              <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
               <div class="buttons">
@@ -159,13 +159,13 @@
                 {{ entry.release.platform.name }}
               </abbr>
             </td>
-            <td>{{ entry.score ? entry.score : 'N/A' }}</td>
+            <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
-            <td>{{ entry.hours ? entry.hours : 'N/A' }}</td>
+            <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
               <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
-              <span v-else>N/A</span>
+              <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
               <div class="buttons">
@@ -207,13 +207,13 @@
                 {{ entry.release.platform.name }}
               </abbr>
             </td>
-            <td>{{ entry.score ? entry.score : 'N/A' }}</td>
+            <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
-            <td>{{ entry.hours ? entry.hours : 'N/A' }}</td>
+            <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
               <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
-              <span v-else>N/A</span>
+              <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
               <div class="buttons">
@@ -255,13 +255,13 @@
                 {{ entry.release.platform.name }}
               </abbr>
             </td>
-            <td>{{ entry.score ? entry.score : 'N/A' }}</td>
+            <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
-            <td>{{ entry.hours ? entry.hours : 'N/A' }}</td>
+            <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
               <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
-              <span v-else>N/A</span>
+              <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
               <div class="buttons">
@@ -303,13 +303,13 @@
                 {{ entry.release.platform.name }}
               </abbr>
             </td>
-            <td>{{ entry.score ? entry.score : 'N/A' }}</td>
+            <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
-            <td>{{ entry.hours ? entry.hours : 'N/A' }}</td>
+            <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
               <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
-              <span v-else>N/A</span>
+              <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
               <div class="buttons">
