@@ -114,7 +114,7 @@ class UserController extends Controller
 
         $this->validate($request, [
             'about_me' => 'string|nullable',
-            'timezone' => 'timezone',
+            'timezone' => 'timezone|nullable',
             'birthday' => 'date|nullable',
             'gender' => 'alpha|nullable',
             'location' => 'string|max: 150|nullable'
