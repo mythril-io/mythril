@@ -90,19 +90,19 @@ class Game extends Model
     /**
      * Scope for adding a row column.
      */
-    public function scopeWithRowNumber($query, $columns = ['*'])
-    {
-        // Set the row number
-        $offset = (int) $query->getQuery()->offset;
-        DB::statement(DB::raw("set @row={$offset}"));
+    // public function scopeWithRowNumber($query, $columns = ['*'])
+    // {
+    //     // Set the row number
+    //     $offset = (int) $query->getQuery()->offset;
+    //     DB::statement(DB::raw("set @row={$offset}"));
 
-        // Adjust SELECT clause to contain the row
-        if ( ! count($query->getQuery()->columns)) $query->select($columns);
-        $sub = $query->addSelect([DB::raw('@row:=@row+1 as row')]);
+    //     // Adjust SELECT clause to contain the row
+    //     if ( ! count($query->getQuery()->columns)) $query->select($columns);
+    //     $sub = $query->addSelect([DB::raw('@row:=@row+1 as row')]);
 
-        // Return the result instead of builder object
-        return $query;
-    }
+    //     // Return the result instead of builder object
+    //     return $query;
+    // }
 
     /**
      * Reset trending_pages_views for each game
@@ -143,16 +143,20 @@ class Game extends Model
       });
 
       //Update score_rank for all games
-      Game::orderBy('score', 'desc')->withRowNumber()->chunk(100, function ($games) {
+      Game::orderBy('score', 'desc')->chunk(100, function ($games) {
+        $count = 0;
         foreach ($games as $game) {
-          $game->update(['score_rank' => $game->row]);
+          $count++;
+          $game->update(['score_rank' => $count]);
         }
       });
 
       //Update popularity_rank for all games
-      Game::orderBy('library_count', 'desc')->withRowNumber()->chunk(100, function ($games) {
+      Game::orderBy('library_count', 'desc')->chunk(100, function ($games) {
+        $count = 0;
         foreach ($games as $game) {
-          $game->update(['popularity_rank' => $game->row]);
+          $count++;
+          $game->update(['popularity_rank' => $count]);
         }
       });
     }
