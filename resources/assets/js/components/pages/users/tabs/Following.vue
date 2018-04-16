@@ -12,9 +12,11 @@
 		<user-profile-component :users="following" type="following"></user-profile-component>
     </div>
 
-    <div class="notification is-warning" v-else>
-    	No users found.
-    </div>
+    <article class="message is-warning" v-else>
+      <div class="message-body">
+        No users found.
+      </div>
+    </article>
 
 </div>
 </template>

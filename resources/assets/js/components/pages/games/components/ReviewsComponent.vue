@@ -56,13 +56,17 @@
         </div>
     </div>
 
-    <div class="notification is-warning" v-else-if="game">
+    <article class="message is-warning" v-else-if="game">
+      <div class="message-body">
         No reviews found. Be the first to write one! <router-link :to="{name: 'CreateReview', query: { game: game.id }}" >Write a Review</router-link>
-    </div>
+      </div>
+    </article>
 
-    <div class="notification is-warning" v-else>
-        No reviews found.</router-link>
-    </div>
+    <article class="message is-warning" v-else>
+      <div class="message-body">
+        No reviews found.
+      </div>
+    </article>
 
 </div>
 </template>

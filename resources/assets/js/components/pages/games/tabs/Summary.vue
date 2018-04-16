@@ -62,9 +62,12 @@
                     </div>
                 </div>
             </div>
-            <div class="notification is-warning" v-else>
+            <article class="message is-warning" v-else>
+              <div class="message-body">
                 No recommendations found. Be the first to write one! <router-link :to="{name: 'CreateRecommendation'}" >Write a Recommendation</router-link>
-            </div>
+              </div>
+            </article>
+
         <!--</div>-->
         <!--</blockquote>-->
 

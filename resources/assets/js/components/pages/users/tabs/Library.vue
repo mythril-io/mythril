@@ -34,9 +34,11 @@
   <div class="content" v-if="displayedUser.libraries.length == 0">
     <h2>Library</h2>
 
-    <div class="notification is-warning" >
-      This user has no games in their library.
-    </div>
+    <article class="message is-warning">
+      <div class="message-body">
+        This user has no games in their library.
+      </div>
+    </article>
   </div>
 
   <div class="content" v-if="currentlyPlaying.length > 0 && playingSection">

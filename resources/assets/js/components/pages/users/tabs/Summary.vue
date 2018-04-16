@@ -74,7 +74,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="notification is-warning" v-else>No favourites.</div>
+				    <article class="message is-warning" v-else>
+				      <div class="message-body">
+				        No favourites.
+				      </div>
+				    </article>
 		</div>
 	</div>
 

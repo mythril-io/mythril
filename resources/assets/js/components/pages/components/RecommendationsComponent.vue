@@ -11,9 +11,11 @@
         </div>
     </div>
 
-    <div class="notification is-warning" v-else>
+    <article class="message is-warning" v-else>
+      <div class="message-body">
         No recommendations found.
-    </div>
+      </div>
+    </article>
 
 </div>
 </template>
