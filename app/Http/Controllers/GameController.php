@@ -36,7 +36,7 @@ class GameController extends Controller
         'developer',
         // 'user',
         // 'releases' => function($q) {$q->with(['platform', 'publisher', 'codeveloper']);}
-      ])->filter($filters)->orderBy('popularity_rank', 'asc')->paginate(20);
+      ])->filter($filters)->orderByRaw('-popularity_rank desc')->paginate(20);
     }
 
     /**
