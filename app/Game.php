@@ -129,7 +129,9 @@ class Game extends Model
       //Update score for all games
       Game::chunk(100, function ($games) {
         foreach ($games as $game) {
-          $score = ($game->libraries()->count() > 0 ? number_format(($game->libraries()->avg('score')/10)*100, 2) : null);
+          $filtered = $game->libraries()->whereNotNull('score');
+          $score = ($filtered->count() > 0 ? number_format(($filtered->avg('score')/10)*100, 2) : null);
+
           $game->update(['score' => $score]);
         }
       });
