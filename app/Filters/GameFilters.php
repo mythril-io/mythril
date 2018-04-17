@@ -35,7 +35,7 @@ class GameFilters extends QueryFilters
     {
         if($order == 'popular') 
         {
-            return $this->builder->orderBy('popularity_rank', 'asc');
+            return $this->builder->orderByRaw('-popularity_rank desc');
         }
         else if($order == 'recent') 
         {
@@ -43,7 +43,7 @@ class GameFilters extends QueryFilters
         }
         else if($order == 'rating') 
         {
-            return $this->builder->orderBy('score_rank', 'asc');
+            return $this->builder->orderByRaw('-score_rank desc');
         }
         else { return $this->builder; }
     }

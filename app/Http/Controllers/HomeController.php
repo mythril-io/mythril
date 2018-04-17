@@ -33,14 +33,14 @@ class HomeController extends Controller
         ])->orderBy('created_at', 'desc')->limit(6)->get();
 
         //Top 5 rated games
-        $ranked = Game::orderBy('score_rank', 'asc')->limit(5)->get();
+        $ranked = Game::orderByRaw('-score_rank desc')->limit(5)->get();
         //dd($ranked);
 
         //Top 5 popular games
-        $popular = Game::orderBy('popularity_rank', 'asc')->limit(5)->get();
+        $popular = Game::orderByRaw('-popularity_rank desc')->limit(5)->get();
 
         //Top 6 trending games
-        $trending = Game::orderBy('trending_page_views', 'desc')->orderBy('popularity_rank', 'asc')->limit(6)->get();
+        $trending = Game::orderBy('trending_page_views', 'desc')->orderByRaw('-popularity_rank desc')->limit(6)->get();
 
         return response()->json(array(
             'ranked' => $ranked, 
