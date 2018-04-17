@@ -115,7 +115,7 @@
 				<div class="column">
 					<div class="field is-grouped">
 					  	<div class="control is-expanded">
-					    	<input class="input is-primary is-medium" type="text" placeholder="Search Games..." v-model="search" @keyup.enter="applyFilters">
+					    	<input class="input is-medium" type="text" placeholder="Search Games..." v-model="search" @keyup.enter="applyFilters">
 						</div>
 						<div class="control">
 							<a class="button is-primary is-medium" @click="applyFilters">
