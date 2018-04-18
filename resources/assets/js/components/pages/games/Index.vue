@@ -159,7 +159,11 @@
 							          <div class="card-image imageFade">
 							            <figure class="image tooltip is-tooltip-primary" :data-tooltip="game.title" >
 						            		<a :href="'games/' + game.id">
-						              			<img :src="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title" class="imageFade">
+						            			<div class="text-container">
+							              			<img :src="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title" class="imageFade">
+							              			<div class="text-shadow is-hidden-tablet "></div>
+							              			<div class="bottom-left is-hidden-tablet ">{{ game.title }}</div>
+						              			</div>
 						              		</a>
 							            </figure>
 							          </div>
