@@ -5,7 +5,7 @@
 			  <div class="navbar-brand">
 			    <router-link class="navbar-item" :to="{name: 'Home'}">
 	    			<i class="material-icons logo">videogame_asset</i>
-	    			<img src="https://mythril.nyc3.digitaloceanspaces.com/logo/1.png" alt="Mythril Logo">
+	    			<img :src="this.$store.state.cdnURL + 'logo/1.png'" alt="Mythril Logo">
 			    </router-link>
 			    <div class="navbar-burger burger" data-target="navMenuIndex" 
 			    	:class="{ 'is-active': navBurger }" 
@@ -164,8 +164,8 @@
 		},
 		computed: {
 		userAvatarURL() {
-			if(this.user.avatar) { return 'https://mythril.nyc3.digitaloceanspaces.com/users/avatars/' + this.user.avatar;}
-			else { return 'https://mythril.nyc3.digitaloceanspaces.com/users/avatars/default.jpg' }
+			if(this.user.avatar) { return this.$store.state.cdnURL + 'users/avatars/' + this.user.avatar;}
+			else { return this.$store.state.cdnURL + 'users/avatars/default.jpg' }
 		},
 		avatarStyle() {
 			return {

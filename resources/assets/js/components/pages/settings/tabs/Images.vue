@@ -85,8 +85,8 @@ export default {
 	        });
       	},
         updateExistingImages() {
-			this.existingAvatar = 'https://mythril.nyc3.digitaloceanspaces.com/users/avatars/' + this.user.avatar;
-			this.existingBanner = 'https://mythril.nyc3.digitaloceanspaces.com/users/banners/' + this.user.banner;
+			this.existingAvatar = this.$store.state.cdnURL + 'users/avatars/' + this.user.avatar;
+			this.existingBanner = this.$store.state.cdnURL + 'users/banners/' + this.user.banner;
         },
 		updateAvatar(file) {
 			this.avatar = file;

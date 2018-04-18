@@ -7,7 +7,8 @@ Vue.use(Vuex)
 const store = new Vuex.Store({
   state: {
     user: null,
-    userAuthenticated: false
+    userAuthenticated: false,
+    cdnURL: 'https://mythril.nyc3.cdn.digitaloceanspaces.com/'
   },
   plugins: [createPersistedState()],
   mutations: {

@@ -49,7 +49,7 @@
 					<div class="column is-3-mobile is-3-tablet is-3-desktop is-2-widescreen" v-for="library in orderedLibrary" :key="library.id">
 						<router-link :to="{name: 'Game', params: { id: library.game.id }}">
 	                        <div class="card image imageFade tooltip is-tooltip-primary" :data-tooltip="getLibraryTitle(library)">
-	                            <img :src="'https://mythril.nyc3.digitaloceanspaces.com/games/icons/'+ library.game.icon">
+	                            <img :src="$store.state.cdnURL + 'games/icons/'+ library.game.icon">
 	                        </div>
 	                    </router-link>
                     </div>
@@ -69,7 +69,7 @@
                             <div class="image card tooltip is-tooltip-primary" 
                             	:data-tooltip="favourite.release.alternate_title ? favourite.release.alternate_title : favourite.game.title">
                             	<router-link :to="{name: 'Game', params: { id: favourite.game.id }}">
-                                	<img :src="'https://mythril.nyc3.digitaloceanspaces.com/games/icons/'+ favourite.game.icon +''">
+                                	<img :src="$store.state.cdnURL + 'games/icons/'+ favourite.game.icon +''">
                                 </router-link>
                             </div>
                         </div>

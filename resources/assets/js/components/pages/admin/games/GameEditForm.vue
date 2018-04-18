@@ -181,8 +181,8 @@ export default {
 			this.developer = this.game.developer
 			this.genres = this.game.genres;
 			this.synopsis = this.game.synopsis;
-			this.existingIcon = 'https://mythril.nyc3.digitaloceanspaces.com/games/icons/' + this.game.icon;
-			this.existingBanner = 'https://mythril.nyc3.digitaloceanspaces.com/games/banners/' + this.game.banner;
+			this.existingIcon = this.$store.state.cdnURL + 'games/icons/' + this.game.icon;
+			this.existingBanner = this.$store.state.cdnURL + 'games/banners/' + this.game.banner;
 			this.releases = this.game.releases;
 		},
 		getFormData() {

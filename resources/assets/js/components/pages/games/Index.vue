@@ -159,7 +159,7 @@
 							          <div class="card-image imageFade">
 							            <figure class="image tooltip is-tooltip-primary" :data-tooltip="game.title" >
 						            		<a :href="'games/' + game.id">
-						              			<img :src="'https://mythril.nyc3.digitaloceanspaces.com/games/icons/' + game.icon" :alt="game.title" class="imageFade">
+						              			<img :src="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title" class="imageFade">
 						              		</a>
 							            </figure>
 							          </div>
@@ -173,7 +173,7 @@
 								                        <div class="card-image imageFade">
 								                          <figure class="image tooltip is-tooltip-primary" :data-tooltip="game.title">
 								                          	<a :href="'games/' + game.id">
-								                            	<img :src="'https://mythril.nyc3.digitaloceanspaces.com/games/icons/' + game.icon" class="imageFade">
+								                            	<img :src="$store.state.cdnURL + 'games/icons/' + game.icon" class="imageFade">
 								                        	</a>
 								                          </figure>
 								                        </div>

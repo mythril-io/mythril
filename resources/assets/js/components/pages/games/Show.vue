@@ -69,7 +69,7 @@
             <div class="card">
                 <div class="card-image imageFade">
                     <figure class="image">
-                        <img :src="'https://mythril.nyc3.digitaloceanspaces.com/games/icons/' + game.icon" class="imageFade" :alt="game.title">
+                        <img :src="this.$store.state.cdnURL + 'games/icons/' + game.icon" class="imageFade" :alt="game.title">
                     </figure>
                 </div>
             </div>
@@ -208,7 +208,7 @@ export default {
   methods: {
     avatarStyle(avatar) {
         return {
-            backgroundImage: 'url(https://mythril.nyc3.digitaloceanspaces.com/users/avatars/' + avatar + ')',
+            backgroundImage: 'url(' + this.$store.state.cdnURL + 'users/avatars/' + avatar + ')',
             backgroundSize: 'cover',
             backgroundPosition: 'center top', 
             backgroundRepeat: 'no-repeat',
@@ -219,7 +219,7 @@ export default {
     bannerStyle(banner) {
         return {
             backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),' +
-              'url(https://mythril.nyc3.digitaloceanspaces.com/games/banners/' + banner + ')'
+              'url(' + this.$store.state.cdnURL + 'games/banners/' + banner + ')'
         }
     },
   	orderedPlatforms(releases) {

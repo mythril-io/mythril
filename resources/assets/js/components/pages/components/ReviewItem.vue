@@ -62,7 +62,7 @@ export default {
     methods: {
         bannerStyle(banner) {
             return {
-                backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://mythril.nyc3.digitaloceanspaces.com/games/banners/'+ banner +')',
+                backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + this.$store.state.cdnURL + 'games/banners/'+ banner +')',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center', 
                 backgroundRepeat: 'no-repeat',

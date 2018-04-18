@@ -57,7 +57,7 @@
 			                <div class="card-image imageFade">
 			                    <figure class="image tooltip is-tooltip-primary" :data-tooltip="this.review.game.title">
 			                    	<router-link :to="{name: 'Game', params: { id: this.review.game.id }}">
-			                        	<img :src="'https://mythril.nyc3.digitaloceanspaces.com/games/icons/' + this.review.game.icon" class="imageFade" :alt="this.review.game.title">
+			                        	<img :src="this.$store.state.cdnURL + 'games/icons/' + this.review.game.icon" class="imageFade" :alt="this.review.game.title">
 			                    	</router-link>
 			                    </figure>
 			                </div>

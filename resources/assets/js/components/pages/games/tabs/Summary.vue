@@ -96,7 +96,7 @@ export default {
     methods: {
         iconStyle(icon) {
             return {
-                backgroundImage: 'url(https://mythril.nyc3.digitaloceanspaces.com/games/icons/' + icon + ')',
+                backgroundImage: 'url(' + this.$store.state.cdnURL + 'games/icons/' + icon + ')',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center top', 
                 backgroundRepeat: 'no-repeat',
@@ -105,7 +105,7 @@ export default {
             }
         },
         getIcon(icon) {
-            return ('https://mythril.nyc3.digitaloceanspaces.com/games/icons/' + icon)
+            return (this.$store.state.cdnURL + 'games/icons/' + icon)
         }
     }
     // filters: {

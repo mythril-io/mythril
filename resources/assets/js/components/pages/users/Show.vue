@@ -118,11 +118,11 @@ export default {
     	return this.authenticationModal;
     },
     userAvatar() {
-    	if(this.displayedUser.avatar) { return 'https://mythril.nyc3.digitaloceanspaces.com/users/avatars/' + this.displayedUser.avatar;}
-    	else { return 'https://mythril.nyc3.digitaloceanspaces.com/users/avatars/default.jpg' }
+    	if(this.displayedUser.avatar) { return this.$store.state.cdnURL + 'users/avatars/' + this.displayedUser.avatar;}
+    	else { return this.$store.state.cdnURL + 'users/avatars/default.jpg' }
     },
 	userBannerURL() {
-		if(this.displayedUser.banner) { return 'https://mythril.nyc3.digitaloceanspaces.com/users/banners/' + this.displayedUser.banner;}
+		if(this.displayedUser.banner) { return this.$store.state.cdnURL + 'users/banners/' + this.displayedUser.banner;}
 	},
 	bannerStyle() {
 		if(this.displayedUser.banner) {

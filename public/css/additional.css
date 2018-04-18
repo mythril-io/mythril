@@ -30,10 +30,6 @@ html ::selection {
   cursor: default;
 }
 .hero-bg {
-  background-image:  linear-gradient(
-          rgba(0, 0, 0, 0.5),
-          rgba(0, 0, 0, 0.5)
-  ), url('https://cdn.reshift.nl/media/media/images/ni-no-kuni-ii-revenant-kingdom-1746.jpg'); /*/images/z11.jpg */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -47,7 +43,7 @@ html ::selection {
   background-size: contain;
 }
 .hero-bg-register {
-  background-image: url('https://mythril.nyc3.digitaloceanspaces.com/general/login-register-link.png');
+  background-image: url('https://mythril.nyc3.cdn.digitaloceanspaces.com/general/login-register-link.png');
   background-repeat: no-repeat;
   background-position: 65% 0%; 
   background-attachment: fixed;

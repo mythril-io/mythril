@@ -67,8 +67,8 @@ export default {
   },
   computed: {
     userAvatar() {
-    	if(this.user.avatar) { return 'https://mythril.nyc3.digitaloceanspaces.com/users/avatars/' + this.user.avatar;}
-    	else { return 'https://mythril.nyc3.digitaloceanspaces.com/users/avatars/default.jpg' }
+    	if(this.user.avatar) { return this.$store.state.cdnURL + 'users/avatars/' + this.user.avatar;}
+    	else { return this.$store.state.cdnURL + 'users/avatars/default.jpg' }
     }
   },
   watch: {
