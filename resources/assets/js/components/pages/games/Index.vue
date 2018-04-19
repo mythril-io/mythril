@@ -154,14 +154,13 @@
 							</div>
 							<div class="columns is-mobile is-multiline" v-else-if="games.length > 0">
 							
-								<div class="column is-one-third-mobile is-one-quarter-tablet is-one-fifth-desktop" v-if="simpleView" v-for="game in games" :key="game.id" >
+								<div class="column is-half-mobile is-one-quarter-tablet is-one-fifth-desktop" v-if="simpleView" v-for="game in games" :key="game.id" >
 							        <div class="card">
 							          <div class="card-image imageFade">
 							            <figure class="image tooltip is-tooltip-primary" :data-tooltip="game.title" >
 						            		<a :href="'games/' + game.id">
 						            			<div class="text-container">
 							              			<img :src="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title" class="imageFade">
-							              			<div class="text-shadow is-hidden-tablet "></div>
 							              			<div class="bottom-left is-hidden-tablet ">{{ game.title }}</div>
 						              			</div>
 						              		</a>
