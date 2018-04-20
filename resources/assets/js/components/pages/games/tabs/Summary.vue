@@ -53,12 +53,17 @@
         <!--<div class="notification has-text-centered">-->
         <!--<blockquote>-->
             <div class="columns is-multiline is-mobile" v-if="topRecommendations.length > 0">
-                <div class="column is-4-mobile is-2-tablet is-2-desktop" v-for="game in topRecommendations.splice(0,6)">
-                    <div class="image card tooltip is-tooltip-primary" :data-tooltip="game[0].second_game.title">
-                        <router-link :to="{name: 'Game', params: { id: game[0].second_game_id }}">
-                            <div class="icon-text">{{ game.length }} User(s)</div>
-                            <img :src="getIcon(game[0].second_game.icon)">
-                        </router-link>
+                <div class="column is-narrow" v-for="game in topRecommendations.splice(0,6)" style="min-width: 140px; max-width: 175px">
+                    <div class="image card tooltip is-tooltip-primary item-shadow" :data-tooltip="game[0].second_game.title">
+                        <div class="text-container">
+                            <router-link :to="{name: 'Game', params: { id: game[0].second_game_id }}">
+                                <div class="icon-text">
+                                    {{ game.length }} User(s)
+                                    <span class="is-hidden-tablet"> - {{ game[0].second_game.title }}</span>
+                                </div>
+                                <img :src="getIcon(game[0].second_game.icon)">
+                            </router-link>
+                        </div>
                     </div>
                 </div>
             </div>

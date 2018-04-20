@@ -1,7 +1,7 @@
 <template>
 	
     <router-link :to="{ name: 'Review', params: { id: review.id }}">
-        <div class="notification is-paddingless" v-bind:style="bannerStyle(review.game.banner)">
+        <div class="notification is-paddingless item-shadow" v-bind:style="bannerStyle(review.game.banner)">
             <div style="color: #FFF; width: 100%; padding: 0px;">
                 <div style="padding: 20px 24px 0px 24px;">
                     <strong class="has-text-primary">{{ review.release.alternate_title ? review.release.alternate_title : review.game.title }}</strong><br>

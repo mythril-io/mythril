@@ -18,7 +18,7 @@
 	</section>
 	<section class="section">
 		<div class="container">
-			<div class="columns is-multiline">
+			<div class="columns is-mobile is-multiline">
 				<div class="column is-12">
 					<article class="message">
 					  <div class="message-body">
@@ -26,10 +26,50 @@
 					  </div>
 					</article>
 				</div>
-				<div class="column is-4-tablet is-3-desktop is-hidden-mobile">
+				<div class="column is-12">
+					<div class="field is-grouped">
+					  	<div class="control is-expanded">
+					    	<input class="input is-medium" type="text" placeholder="Search Games..." v-model="search" @keyup.enter="applyFilters">
+						</div>
+						<div class="control">
+							<a class="button is-primary is-medium" @click="applyFilters">
+							    <span class="icon">
+							      <i class="fas fa-search"></i>
+							    </span>
+							    <span class="is-hidden-touch">Search</span>
+							</a>
+						</div>
+
+						<div class="control is-hidden-desktop">
+							<a class="button is-medium is-danger" @click="hideFilters=!hideFilters" v-bind:class="{ 'is-outlined': hideFilters }">
+								<span class="icon is-small">
+								  <i class="fas fa-filter"></i>
+								</span>
+							</a>
+						</div>
+						
+						<div class="field has-addons">
+							<div class="control">
+								<a class="button is-medium is-primary" v-bind:class="{ 'is-outlined': detailedView }" @click='toggleView'>
+									<span class="icon is-small">
+									  <i class="fas fa-th"></i>
+									</span>
+								</a>
+							</div>
+							<div class="control">
+								<a class="button is-medium is-primary" v-bind:class="{ 'is-outlined': simpleView }" @click='toggleView'>
+									<span class="icon is-small">
+									  <i class="fas fa-list"></i>
+									</span>
+								</a>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<div class="column is-3-desktop" v-bind:class="{ 'is-hidden-touch': hideFilters }">
 				
 					<aside class="menu box">
-<!-- 						<span class="button is-fullwidth is-static">Filters</span> -->				
 					  <p class="menu-label">
 					    Minimum Average Score
 					  </p>
@@ -108,42 +148,10 @@
 					  	</div>
 						<hr>
 						<span class="button is-danger is-fullwidth" @click="clearFilters">Clear Filters</span> 
-						<!-- <br><img src="/images/games/game_filter_sidebar.png" class="imageFade"> -->
 					</aside>
 
 				</div>
-				<div class="column">
-					<div class="field is-grouped">
-					  	<div class="control is-expanded">
-					    	<input class="input is-medium" type="text" placeholder="Search Games..." v-model="search" @keyup.enter="applyFilters">
-						</div>
-						<div class="control">
-							<a class="button is-primary is-medium" @click="applyFilters">
-							    <span class="icon">
-							      <i class="fas fa-search"></i>
-							    </span>
-							    <span class="is-hidden-touch">Search</span>
-							</a>
-						</div>
-						
-						<div class="field has-addons">
-							<div class="control">
-								<a class="button is-medium is-primary" v-bind:class="{ 'is-outlined': detailedView }" @click='toggleView'>
-									<span class="icon is-small">
-									  <i class="fas fa-th"></i>
-									</span>
-								</a>
-							</div>
-							<div class="control">
-								<a class="button is-medium is-primary" v-bind:class="{ 'is-outlined': simpleView }" @click='toggleView'>
-									<span class="icon is-small">
-									  <i class="fas fa-list"></i>
-									</span>
-								</a>
-							</div>
-						</div>
-					</div>
-					<hr>	
+				<div class="column is-12-mobile is-12-tablet is-9-desktop">
 
 						<div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" :infinite-scroll-immediate-check="false">
 
@@ -152,10 +160,10 @@
 						    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
 						    	</div>
 							</div>
-							<div class="columns is-mobile is-multiline" v-else-if="games.length > 0">
+							<div class="columns is-mobile is-multiline is-centered" v-else-if="games.length > 0">
 							
-								<div class="column is-half-mobile is-one-quarter-tablet is-one-fifth-desktop" v-if="simpleView" v-for="game in games" :key="game.id" >
-							        <div class="card">
+								<div class="column is-narrow" v-if="simpleView" v-for="game in games" :key="game.id" style="min-width: 140px; max-width: 175px">
+							        <div class="card item-shadow ">
 							          <div class="card-image imageFade">
 							            <figure class="image tooltip is-tooltip-primary" :data-tooltip="game.title" >
 						            		<a :href="'games/' + game.id">
@@ -169,59 +177,40 @@
 							        </div>
 						        </div>
 
-						        <div class="column is-12" v-if="detailedView" v-for="(game, index) in games" :key="game.id" >
-								    <div class="columns is-mobile is-multiline" >
-								      <div class="column is-one-fifth">
-								                      <div class="card">
-								                        <div class="card-image imageFade">
-								                          <figure class="image tooltip is-tooltip-primary" :data-tooltip="game.title">
-								                          	<a :href="'games/' + game.id">
-								                            	<img :src="$store.state.cdnURL + 'games/icons/' + game.icon" class="imageFade">
-								                        	</a>
-								                          </figure>
-								                        </div>
-								                      </div>
-								      </div>
-								      <div class="column">
-								      	<article class="message">
-											<div class="message-header">
-												<a :href="'games/' + game.id">{{ game.title }}</a>
-											</div>
-								      		<div class="message-body">
-										        {{ game.synopsis | truncate('200') }}
-									    	</div>
-										</article>
-												<div class="field is-grouped is-grouped-multiline">
-												  <div class="control">
-												    <div class="tags has-addons">
-												      <span class="tag is-dark">Developer</span>
-												      <span class="tag is-info">{{ game.developer.name }}</span>
-												    </div>
-												  </div>
-
-												  <div class="control">
-												    <div class="tags has-addons">
-												      <span class="tag is-dark">Score</span>
-												      <span class="tag is-primary"><b>{{ game.score ? (game.score + '%') : 'N/A'  }}</b></span>
-												    </div>
-												  </div>
-
-												  <div class="control">
-												    <div class="tags has-addons">
-												      <span class="tag is-dark">Ranked</span>
-												      <span class="tag is-light"><b>{{ game.score_rank ? ('#' + game.score_rank) : 'N/A' }}</b></span>
-												    </div>
-												  </div>
-
-												  <div class="control">
-												    <div class="tags has-addons">
-												      <span class="tag is-dark">Popularity</span>
-												      <span class="tag is-light"><b>{{ game.popularity_rank ? ('#' + game.popularity_rank) : 'N/A' }}</b></span>
-												    </div>
-												  </div>
-												</div>
-								      </div>
-								    </div>
+						        <div class="column" v-if="detailedView" >
+									<div class="columns is-mobile is-multiline is-centered">						        	
+									  <div class="column" style="min-width: 350px;" v-for="(game, index) in games" :key="game.id">
+									      <div class="columns is-gapless is-mobile card" style="max-height: 175px;">
+									        <div class="column is-narrow" >
+									          <figure class="card image imageFade item-shadow" style="min-width: 140px; max-width: 175px">
+									          	<router-link :to="{name: 'Game', params: { id: game.id }}">
+										            <div class="text-container">
+										              <img :src="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title">
+										              <div class="bottom-left">{{ game.title }}</div>
+										            </div>
+									        	</router-link>
+									          </figure>
+									        </div>
+									        <div class="column" style="background-color: #f5f5f5">
+									          <div class="content is-size-7">
+									            <div style="background-color: #d7d7d7; padding: 8px; font-weight: 500; overflow-y: scroll; max-height: 40px;">
+									                <div class="tags">
+									                  <span class="tag is-info">
+									                  	{{ game.developer.name }}
+									                  </span>
+									                  <span class="tag is-primary">
+									                  	{{ game.score ? (game.score + '%') : 'No Score'  }}
+									                  </span>
+									                </div>
+									            </div>
+									            <div style="padding: 8px; overflow-y: scroll; max-height: 135px;">
+									            	{{ game.synopsis }}
+									            </div>
+									          </div>
+									        </div>
+									      </div>
+									    </div> 
+									</div> 
 						        </div>
 
 						    </div>
@@ -259,6 +248,7 @@ export default {
       newGamesLoading: false,
       detailedView: false,
       simpleView: true,
+      hideFilters: true,
 
       developers: [],
       publishers: [],
