@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<nav class="navbar is-fixed-top has-shadow">
+		<nav class="navbar is-fixed-top has-shadow is-spaced">
 			<div class="container">
 			  <div class="navbar-brand">
 			    <router-link class="navbar-item" :to="{name: 'Home'}">
@@ -61,7 +61,7 @@
 						<div class="field is-grouped">
 
 							<p class="control has-icons-left is-hidden-touch">
-							  <input class="input" type="text" placeholder="Search..." style="width: 200px"
+							  <input class="input nav-search" type="text" placeholder="Search..." style="width: 200px"
 							  	v-model="search" 
 							  	v-on:keyup.enter="submit">
 							  <span class="icon is-left">

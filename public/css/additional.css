@@ -6,6 +6,11 @@ html ::selection {
   background: #00d1b2;
   color: #fff;
 }
+@media screen and (min-width: 1090px) {
+  .nav-bar-spacing {
+    padding-top: 5.25rem !important;
+  }
+}
 
 /*Common*/
 .break {
@@ -61,6 +66,11 @@ html ::selection {
 
 
 /*Header*/
+.nav-search {
+  background-color: #f5f5f5; 
+  box-shadow: none; 
+  border-color: transparent;
+}
 .logo {
   color: #00d1b2;
   font-size: 30px;
@@ -88,6 +98,7 @@ html ::selection {
   background-position: 65% 0%; 
   background-attachment: fixed;
   background-size: contain;
+  background-position-y: 2rem;
 }
 .hero-bg-games {
   background-image: url('/images/sf.png');
