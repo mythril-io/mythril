@@ -261,6 +261,25 @@ html ::selection {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+.game-detail-header {
+  background-color: #d7d7d7; 
+  padding: 8px; 
+  font-weight: 500; 
+  overflow: hidden; 
+  max-height: 40px;
+}
+.game-detail-header:hover {
+  overflow-y: scroll; 
+}
+.game-detail-content {
+  padding: 8px; 
+  overflow: hidden; 
+  max-height: 135px;
+}
+.game-detail-content:hover {
+  overflow-y: scroll; 
+}
+
 /*Game Page Left Nav*/
 .genre-link a:link, .genre-link a:visited, .genre-link a:hover {
   color: #FFFFFF;

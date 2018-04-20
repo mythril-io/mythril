@@ -193,7 +193,7 @@
 									        </div>
 									        <div class="column" style="background-color: #f5f5f5">
 									          <div class="content is-size-7">
-									            <div style="background-color: #d7d7d7; padding: 8px; font-weight: 500; overflow-y: scroll; max-height: 40px;">
+									            <div class="game-detail-header">
 									                <div class="tags">
 									                  <span class="tag is-info">
 									                  	{{ game.developer.name }}
@@ -203,7 +203,7 @@
 									                  </span>
 									                </div>
 									            </div>
-									            <div style="padding: 8px; overflow-y: scroll; max-height: 135px;">
+									            <div class="game-detail-content">
 									            	{{ game.synopsis }}
 									            </div>
 									          </div>
