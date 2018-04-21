@@ -112,7 +112,7 @@ export default {
     	},
     	bannerStyle() {
     		//random integer between 1 and 10
-    		var randomInt = Math.floor(Math.random() * 10) + 1;
+    		var randomInt = Math.floor(Math.random() * 11) + 1;
     		return {
                 backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(' + this.$store.state.cdnURL + 'general/banners/'+ randomInt +'.jpg)', 
             }
