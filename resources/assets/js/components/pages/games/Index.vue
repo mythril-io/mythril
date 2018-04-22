@@ -162,7 +162,7 @@
 							</div>
 							<div class="columns is-mobile is-multiline is-centered" v-else-if="games.length > 0">
 							
-								<div class="column" v-if="simpleView" v-for="game in games" :key="game.id" style="min-width: 155px; max-width: 175px">
+								<div class="column" v-if="simpleView" v-for="game in games" :key="game.id" style="min-width: 160px; max-width: 205px">
 							        <div class="card item-shadow ">
 							          <div class="card-image imageFade">
 							            <figure class="image tooltip is-tooltip-primary" :data-tooltip="game.title" >

@@ -3,7 +3,7 @@
 	<h1 class="title">Trending</h1>
 
     <div class="columns is-multiline is-mobile is-centered">
-      <div class="column" v-for="game in trending" style="min-width: 150px; max-width: 200px">
+      <div class="column" v-for="game in trending" style="min-width: 150px; max-width: 228px">
         <router-link :to="{name: 'Game', params: { id: game.id }}">
             <figure class="card image imageFade tooltip is-tooltip-primary item-shadow" :data-tooltip="game.title">
               <div class="text-container">
