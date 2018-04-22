@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<nav class="navbar is-fixed-top has-shadow is-spaced">
+		<nav class="navbar is-fixed-top has-shadow" :class="{ 'is-spaced': !scrolled }" style="transition: 0.3s;">
 			<div class="container">
 			  <div class="navbar-brand">
 			    <router-link class="navbar-item" :to="{name: 'Home'}">
@@ -159,7 +159,8 @@
 		data() {
 			return {
 				navBurger: false,
-				search: ''
+				search: '',
+				scrolled: false
 			}
 		},
 		computed: {
@@ -185,7 +186,16 @@
 	    	},
 	    	submit() {
 	    		this.$router.push({ name: 'Games', query: { search: this.search  }})
-	    	}
-  		}
+	    	},
+	    	handleScroll () {
+			  this.scrolled = window.scrollY > 100;
+			}
+  		},
+  		created () {
+		  window.addEventListener('scroll', this.handleScroll);
+		},
+		destroyed () {
+		  window.removeEventListener('scroll', this.handleScroll);
+		}
 	}
 </script>
