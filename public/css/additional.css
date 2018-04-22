@@ -103,10 +103,10 @@ html ::selection {
 .hero-bg-games {
   background-image: url('https://mythril.nyc3.cdn.digitaloceanspaces.com/general/games.png');
   background-repeat: no-repeat;
-  background-position: 40% 5%; 
+  background-position: 40% 0%;
   background-attachment: fixed;
-  background-size: contain;
-  background-position-y: 4rem;
+  background-size: 475px;
+  background-position-y: 2rem;
 }
 #animationTitle {
   animation-name: moveLeft;
