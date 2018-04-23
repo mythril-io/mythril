@@ -5,11 +5,15 @@
 		  <div class="hero-body">
 		    <div class="container">
 		      <h1 class="title">
-		        Browse Games
+		      	<span class="has-background-primary">
+		      		Browse Games
+		      	</span>
 		      </h1>
 			  <h2 class="subtitle">
 				<span class="has-text-grey-dark is-size-6">
-					Have a game in mind?
+					<span class="has-background-primary">
+						Have a game in mind?
+					</span>
 				</span>
 			  </h2>
 		    </div>
