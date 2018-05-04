@@ -46,6 +46,22 @@ html ::selection {
   opacity: 1;
 }
 
+.review-shadow {
+  transition: all 0.1s ease-in-out;
+}
+.review-shadow::after {
+  transition: opacity 0.1s ease-in-out;
+}
+/* Translate the review item */
+.review-shadow:hover {
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateY(-5px);
+}
+/* Fade in the pseudo-element with the bigger shadow */
+.review-shadow:hover::after {
+  opacity: 1;
+}
+
 .text-container {
   position: relative;
   color: white;
