@@ -5,7 +5,9 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Register an Account with Mythril!
+            <span class="has-background-primary">
+              Register an Account with Mythril!
+            </span>
           </h1>
 <!--           <h2 class="subtitle">
             Join the Community!

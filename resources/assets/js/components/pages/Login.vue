@@ -5,7 +5,9 @@
       <div class="hero-body">
         <div class="container">
           <h1 class="title">
-            Welcome Back!
+            <span class="has-background-primary">
+              Welcome Back!
+            </span>
           </h1>
         </div>
       </div>
