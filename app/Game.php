@@ -116,7 +116,7 @@ class Game extends Model
 
       Game::chunk(100, function ($games) {
         foreach ($games as $game) {
-          $game->update(['trending_page_views' => null]);
+          $game->update(['trending_page_views' => 0]);
         }
       });
     }
@@ -145,20 +145,22 @@ class Game extends Model
       });
 
       //Update score_rank for all games
+      $scoreRank = 0;
       Game::orderBy('score', 'desc')->chunk(100, function ($games) {
-        $count = 0;
+        //$count = 0;
         foreach ($games as $game) {
-          $count++;
-          $game->update(['score_rank' => $count]);
+          $scoreRank++;
+          $game->update(['score_rank' => $scoreRank]);
         }
       });
 
       //Update popularity_rank for all games
+      $popularityRank = 0;
       Game::orderBy('library_count', 'desc')->chunk(100, function ($games) {
-        $count = 0;
+        //$count = 0;
         foreach ($games as $game) {
-          $count++;
-          $game->update(['popularity_rank' => $count]);
+          $popularityRank++;
+          $game->update(['popularity_rank' => $popularityRank]);
         }
       });
     }
