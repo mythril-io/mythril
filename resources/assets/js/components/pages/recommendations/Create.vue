@@ -35,10 +35,7 @@
 									  {{ release.platform.name }}
 									  {{ release.alternate_title ? ('(' + release.alternate_title + ')') : "" }}
 									  | Publisher: {{ release.publisher.name }}
-									  {{ release['NA'] ? "[NA]" : "" }}
-									  {{ release['JP'] ? "[JP]" : "" }}
-									  {{ release['EU'] ? "[EU]" : "" }}
-									  {{ release['WW'] ? "[WW]" : "" }}
+									  | Region: {{ release.region.name }}
 									</option>
 								  </select>
 								</div>
@@ -80,10 +77,7 @@
 									  {{ release.platform.name }}
 									  {{ release.alternate_title ? ('(' + release.alternate_title + ')') : "" }}
 									  | Publisher: {{ release.publisher.name }}
-									  {{ release['NA'] ? "[NA]" : "" }}
-									  {{ release['JP'] ? "[JP]" : "" }}
-									  {{ release['EU'] ? "[EU]" : "" }}
-									  {{ release['WW'] ? "[WW]" : "" }}
+									  | Region: {{ release.region.name }}
 									</option>
 								  </select>
 								</div>
