@@ -109,15 +109,14 @@ class Game extends Model
      */
     public static function resetTrendingViews() 
     {
-        // $games = Game::all()
-        // foreach($games as $game) {
-        //     $game->trending_page_views = 0;
-        // }
-
-      Game::chunk(100, function ($games) {
-        foreach ($games as $game) {
-          $game->update(['trending_page_views' => 0]);
-        }
+      // Game::chunk(100, function ($games) {
+      //   foreach ($games as $game) {
+      //     $game->update(['trending_page_views' => 0]);
+      //   }
+      // });
+      
+      DB::transaction(function () {
+          DB::table('games')->update(['trending_page_views' => 0]);
       });
     }
 
@@ -146,7 +145,7 @@ class Game extends Model
 
       //Update score_rank for all games
       $scoreRank = 0;
-      Game::orderBy('score', 'desc')->chunk(100, function ($games) {
+      Game::orderBy('score', 'desc')->chunk(100, function ($games) use (&$scoreRank) {
         //$count = 0;
         foreach ($games as $game) {
           $scoreRank++;
@@ -156,7 +155,7 @@ class Game extends Model
 
       //Update popularity_rank for all games
       $popularityRank = 0;
-      Game::orderBy('library_count', 'desc')->chunk(100, function ($games) {
+      Game::orderBy('library_count', 'desc')->chunk(100, function ($games) use (&$popularityRank) {
         //$count = 0;
         foreach ($games as $game) {
           $popularityRank++;
