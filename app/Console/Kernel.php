@@ -31,7 +31,7 @@ class Kernel extends ConsoleKernel
 
         $schedule->call(function () {
             Game::resetTrendingViews();
-        })->daily();
+        })->monthly();
     }
 
     /**
