@@ -9,7 +9,7 @@
 		            <div class="card">
 		                <div class="card-image imageFade">
 		                    <figure class="image">
-		                        <img :src="existingAvatar" class="imageFade">
+		                        <img v-lazy="existingAvatar" class="imageFade">
 		                    </figure>
 		                </div>
 		            </div><br>
@@ -32,7 +32,7 @@
 	            <div class="card" style="max-width: 600px !important">
 	                <div class="card-image imageFade">
 	                    <figure class="image">
-	                        <img :src="existingBanner" class="imageFade">
+	                        <img v-lazy="existingBanner" class="imageFade">
 	                    </figure>
 	                </div>
 	            </div><br>

@@ -17,7 +17,8 @@
         "jquery": "^3.3.1",
         "laravel-mix": "^2.1.11",
         "lodash": "^4.17.5",
-        "vue": "^2.5.16"
+        "vue": "^2.5.16",
+        "vue-lazyload": "^1.2.6"
     },
     "dependencies": {
         "bulma": "^0.7.0",

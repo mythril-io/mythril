@@ -69,7 +69,7 @@
             <div class="card">
                 <div class="card-image imageFade">
                     <figure class="image">
-                        <img :src="this.$store.state.cdnURL + 'games/icons/' + game.icon" class="imageFade" :alt="game.title">
+                        <img v-lazy="this.$store.state.cdnURL + 'games/icons/' + game.icon" class="imageFade" :alt="game.title">
                     </figure>
                 </div>
             </div>

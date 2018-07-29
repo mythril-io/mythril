@@ -7,7 +7,7 @@
         <router-link :to="{name: 'Game', params: { id: game.id }}">
             <figure class="card image imageFade tooltip is-tooltip-primary item-shadow" :data-tooltip="game.title">
               <div class="text-container">
-                <img :src="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title">
+                <img v-lazy="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title">
                 <div class="bottom-left is-hidden-tablet ">{{ game.title }}</div>
               </div>
             </figure>

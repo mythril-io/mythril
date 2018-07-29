@@ -4,7 +4,7 @@
 			
 			<div class="columns is-multiline">
 				<div class="column is-one-fifth is-hidden-mobile">
-					<img src="https://mythril.nyc3.digitaloceanspaces.com/general/link.png" alt="Link" class="imageFade">
+					<img v-lazy="'https://mythril.nyc3.digitaloceanspaces.com/general/link.png'" alt="Reviews" class="imageFade">
 				</div>
 				<div class="column">
 				    <h1 class="title">Add a Review</h1>

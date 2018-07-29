@@ -48,8 +48,10 @@
 				<div class="columns is-multiline is-mobile">
 					<div class="column is-3-mobile is-3-tablet is-3-desktop is-2-widescreen" v-for="library in orderedLibrary" :key="library.id">
 						<router-link :to="{name: 'Game', params: { id: library.game.id }}">
-	                        <div class="card image imageFade tooltip is-tooltip-primary" :data-tooltip="getLibraryTitle(library)">
-	                            <img :src="$store.state.cdnURL + 'games/icons/'+ library.game.icon">
+	                        <div class="card image imageFade tooltip is-tooltip-primary item-shadow" :data-tooltip="getLibraryTitle(library)">
+	                        	<div class="text-container">
+		                            <img v-lazy="$store.state.cdnURL + 'games/icons/'+ library.game.icon">
+		                        </div>
 	                        </div>
 	                    </router-link>
                     </div>
@@ -66,12 +68,14 @@
 		    </div>
                     <div class="columns is-multiline is-mobile" v-if="displayedUser.favourites.length > 0">
                         <div class="column is-3-mobile is-6-tablet" v-for="favourite in orderedFavourites">
-                            <div class="image card tooltip is-tooltip-primary" 
-                            	:data-tooltip="favourite.release.alternate_title ? favourite.release.alternate_title : favourite.game.title">
-                            	<router-link :to="{name: 'Game', params: { id: favourite.game.id }}">
-                                	<img :src="$store.state.cdnURL + 'games/icons/'+ favourite.game.icon +''">
-                                </router-link>
-                            </div>
+                        	<router-link :to="{name: 'Game', params: { id: favourite.game.id }}">
+	                            <figure class="card image imageFade tooltip is-tooltip-primary item-shadow" 
+	                            	:data-tooltip="favourite.release.alternate_title ? favourite.release.alternate_title : favourite.game.title">
+	                            		<div class="text-container">
+	                                		<img v-lazy="$store.state.cdnURL + 'games/icons/'+ favourite.game.icon">
+	                                	</div>
+	                            </figure>
+                            </router-link>
                         </div>
                     </div>
 				    <article class="message is-warning" v-else>

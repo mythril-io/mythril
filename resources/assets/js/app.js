@@ -63,13 +63,13 @@ Vue.use(infiniteScroll)
 // import VueFuse from 'vue-fuse'
 // Vue.use(VueFuse)
 
-// import VueLazyload from 'vue-lazyload'
-// Vue.use(VueLazyload, {
-//   preLoad: 1.3,
-//   // error: 'dist/error.png',
-//   // loading: 'dist/loading.gif',
-//   attempt: 1
-// })
+import VueLazyload from 'vue-lazyload'
+Vue.use(VueLazyload, {
+  preLoad: 1.3,
+  // error: 'dist/error.png',
+  // loading: 'https://image.ibb.co/dauszT/default.jpg',
+  attempt: 1
+})
 
 /**
  * Custom Components

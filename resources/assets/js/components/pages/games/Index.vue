@@ -172,7 +172,7 @@
 							            <figure class="image tooltip is-tooltip-primary" :data-tooltip="game.title" >
 						            		<a :href="'games/' + game.id">
 						            			<div class="text-container">
-							              			<img :src="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title" class="imageFade">
+							              			<img v-lazy="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title" class="imageFade">
 							              			<div class="bottom-left is-hidden-tablet ">{{ game.title }}</div>
 						              			</div>
 						              		</a>
@@ -189,7 +189,7 @@
 									          <figure class="card image imageFade item-shadow" style="min-width: 140px; max-width: 175px">
 									          	<router-link :to="{name: 'Game', params: { id: game.id }}">
 										            <div class="text-container">
-										              <img :src="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title">
+										              <img v-lazy="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title">
 										              <div class="bottom-left">{{ game.title }}</div>
 										            </div>
 									        	</router-link>

@@ -55,12 +55,12 @@
 					<div class="column is-hidden-touch is-narrow recomendation-col is-clearfix">
 			            <div class="image image-behind is-pulled-left card tooltip is-tooltip-primary" :data-tooltip="getFirstGameTitle">
 			            	<router-link :to="{name: 'Game', params: { id: recommendation.game.id }}">
-			            		<img :src="this.$store.state.cdnURL + 'games/icons/' + recommendation.game.icon" :alt="getFirstGameTitle" class="image is-128x128">
+			            		<img v-lazy="this.$store.state.cdnURL + 'games/icons/' + recommendation.game.icon" :alt="getFirstGameTitle" class="image is-128x128">
 			            	</router-link>
 			            </div>
 			            <div class="image recomendation-image is-pulled-right card tooltip is-tooltip-bottom is-tooltip-primary" :data-tooltip="getSecondGameTitle">
 			            	<router-link :to="{name: 'Game', params: { id: recommendation.second_game.id }}">
-			            		<img :src="this.$store.state.cdnURL + 'games/icons/' + recommendation.second_game.icon" :alt="getSecondGameTitle" class="image is-128x128">
+			            		<img v-lazy="this.$store.state.cdnURL + 'games/icons/' + recommendation.second_game.icon" :alt="getSecondGameTitle" class="image is-128x128">
 			            	</router-link>
 			            </div>
 					</div>

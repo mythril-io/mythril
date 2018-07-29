@@ -61,7 +61,7 @@
                                     {{ game.length }} User(s)
                                     <span class="is-hidden-tablet"> - {{ game[0].second_game.title }}</span>
                                 </div>
-                                <img :src="getIcon(game[0].second_game.icon)">
+                                <img v-lazy="getIcon(game[0].second_game.icon)">
                             </router-link>
                         </div>
                     </div>
