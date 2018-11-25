@@ -1,22 +1,38 @@
-
 // Fonts
 //@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
 
 // Variables
 @import "variables";
 
-// Bulma
-@import "node_modules/bulma/bulma";
-//@import 'node_modules/bulma-extensions/extensions';
 
-@import 'node_modules/bulma-extensions/bulma-divider/dist/bulma-divider';
-@import 'node_modules/bulma-extensions/bulma-badge/dist/bulma-badge';
-@import 'node_modules/bulma-extensions/bulma-pageloader/dist/bulma-pageloader';
-@import 'node_modules/bulma-extensions/bulma-slider/dist/bulma-slider';
-@import 'node_modules/bulma-extensions/bulma-checkradio/dist/bulma-checkradio';
+// Import Bulma and Buefy styles
+@import "~bulma";
+@import "~buefy/src/scss/buefy";
 
-@import 'node_modules/bulma-extensions/bulma-tooltip/dist/bulma-tooltip';
-//@import "oldTooltip";
+// Bulma Extensions
+// @import "~bulma-extensions/dist/css/bulma-extensions";
+@import "~bulma-extensions/bulma-divider/src/sass/index.sass";
+@import "~bulma-extensions/bulma-badge/src/sass/index.sass";
+@import "~bulma-extensions/bulma-pageloader/src/sass/index.sass";
+@import "~bulma-extensions/bulma-slider/src/sass/index.sass";
+
+// @import "../../bulma-accordion/src/sass/index.sass";
+// @import "../../bulma-badge/src/sass/index.sass";
+// @import "../../bulma-calendar/src/sass/index.sass";
+// @import "../../bulma-carousel/src/sass/index.sass";
+// @import "../../bulma-checkradio/src/sass/index.sass";
+// @import "../../bulma-divider/src/sass/index.sass";
+// @import "../../bulma-iconpicker/src/sass/index.sass";
+// @import "../../bulma-pageloader/src/sass/index.sass";
+// @import "../../bulma-pricingtable/src/sass/index.sass";
+// @import "../../bulma-quickview/src/sass/index.sass";
+// @import "../../bulma-ribbon/src/sass/index.sass";
+// @import "../../bulma-slider/src/sass/index.sass";
+// @import "../../bulma-steps/src/sass/index.sass";
+// @import "../../bulma-switch/src/sass/index.sass";
+// @import "../../bulma-tagsinput/src/sass/index.sass";
+// @import "../../bulma-timeline/src/sass/index.sass";
+// @import "../../bulma-tooltip/src/sass/index.sass";
 
 //NProgress
 @import "node_modules/nprogress/nprogress";
