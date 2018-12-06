@@ -97,8 +97,17 @@
                     <div class="columns is-multiline is-mobile" v-if="this.game.libraries.length > 0">
                         <div class="column is-4" v-for="library in this.game.libraries">
                             <router-link :to="{name: 'User', params: { id: library.user.id }}">
-                                <div class="image is-1by1 card tooltip is-tooltip-primary profile-icon" v-bind:style="avatarStyle(library.user.avatar)" v-if="library.user.avatar" :data-tooltip="library.user.username + ': ' + library.play_status.name + ' (' + library.release.platform.acronym + ')'"></div>
-                                <div class="image is-1by1 card tooltip is-tooltip-primary profile-icon" v-bind:style="avatarStyle('default.jpg')" :data-tooltip="library.user.username + ': ' + library.play_status.name" v-else></div>
+                                <div class="card image is-square username-hover profile-icon" v-if="library.user.avatar">
+                                    <img v-lazy="$store.state.cdnURL + 'users/avatars/' + library.user.avatar" style="object-fit: cover;" 
+                                        :title="library.user.username + ': ' + library.play_status.name + ' (' + library.release.platform.acronym + ')'">
+                                    <div class="username-text">{{ library.user.username }}</div>
+                                </div>
+
+                                <div class="card image is-square username-hover profile-icon" v-else>
+                                    <img v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'" style="object-fit: cover;"
+                                        :title="library.user.username + ': ' + library.play_status.name + ' (' + library.release.platform.acronym + ')'">
+                                    <div class="username-text">{{ library.user.username }}</div>
+                                </div>
                             </router-link>
                         </div>
                     </div>

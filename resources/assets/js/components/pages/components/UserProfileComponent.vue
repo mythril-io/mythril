@@ -5,20 +5,41 @@
             <div class="card imageFade">
             	<div v-if="type=='followers'">
 	                <router-link :to="{name: 'User', params: { id: user.follower_id }}" >
-	                    <figure class="image tooltip is-tooltip-primary is-1by1 imageFade" :data-tooltip="user.username" v-bind:style="avatarStyle(user.avatar)" v-if="user.avatar"></figure>
-	                    <figure class="image tooltip is-tooltip-primary is-1by1 imageFade" :data-tooltip="user.username" v-bind:style="avatarStyle('default.jpg')" v-else></figure>
+						<figure class="image is-square username-hover" v-if="user.avatar">
+							<img v-lazy="$store.state.cdnURL + 'users/avatars/' + user.avatar" style="object-fit: cover;" :title="user.username">
+							<div class="username-text">{{ user.username }}</div>
+						</figure>
+
+	                    <figure class="image is-square username-hover" v-else>
+							<img v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'" style="object-fit: cover;" :title="user.username">
+							<div class="username-text">{{ user.username }}</div>
+						</figure>
 	                </router-link>
             	</div>
             	<div v-else-if="type=='following'">
 	                <router-link :to="{name: 'User', params: { id: user.leader_id }}" >
-	                    <figure class="image tooltip is-tooltip-primary is-1by1 imageFade" :data-tooltip="user.username" v-bind:style="avatarStyle(user.avatar)" v-if="user.avatar"></figure>
-	                    <figure class="image tooltip is-tooltip-primary is-1by1 imageFade" :data-tooltip="user.username" v-bind:style="avatarStyle('default.jpg')" v-else></figure>
+						<figure class="image is-square username-hover" v-if="user.avatar">
+							<img v-lazy="$store.state.cdnURL + 'users/avatars/' + user.avatar" style="object-fit: cover;" :title="user.username">
+							<div class="username-text">{{ user.username }}</div>
+						</figure>
+
+	                    <figure class="image is-square username-hover" v-else>
+							<img v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'" style="object-fit: cover;" :title="user.username">
+							<div class="username-text">{{ user.username }}</div>
+						</figure>
 	                </router-link>	
             	</div>
             	<div v-else>
 	                <router-link :to="{name: 'User', params: { id: user.id }}">
-	                    <figure class="image tooltip is-tooltip-primary is-1by1 imageFade" :data-tooltip="user.username" v-bind:style="avatarStyle(user.avatar)" v-if="user.avatar"></figure>
-	                    <figure class="image tooltip is-tooltip-primary is-1by1 imageFade" :data-tooltip="user.username" v-bind:style="avatarStyle('default.jpg')" v-else></figure>
+						<figure class="image is-square username-hover" v-if="user.avatar">
+							<img v-lazy="$store.state.cdnURL + 'users/avatars/' + user.avatar" style="object-fit: cover;" :title="user.username">
+							<div class="username-text">{{ user.username }}</div>
+						</figure>
+
+	                    <figure class="image is-square username-hover" v-else>
+							<img v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'" style="object-fit: cover;" :title="user.username">
+							<div class="username-text">{{ user.username }}</div>
+						</figure>
 	                </router-link>
             	</div>
             </div>

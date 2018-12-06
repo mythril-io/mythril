@@ -5,15 +5,11 @@
 		  <div class="hero-body">
 		    <div class="container">
 		      <h1 class="title">
-		      	<span class="has-background-primary">
-		      		Browse Games
-		      	</span>
+		      	<span class="has-background-primary">Browse Games</span>
 		      </h1>
 			  <h2 class="subtitle">
 				<span class="has-text-grey-dark is-size-6">
-					<span class="has-background-primary">
-						Have a game in mind?
-					</span>
+					<span class="has-background-primary">Have a game in mind?</span>
 				</span>
 			  </h2>
 		    </div>
@@ -25,8 +21,7 @@
 			<div class="columns is-mobile is-multiline">
 				<div class="column is-12">
 					<article class="message">
-					  <div class="message-body">
-					    Curious on how games are organized/consolidated? Please take a look at our <router-link :to="{name: 'Faq'}"><strong>FAQ</strong></router-link> to get a better understanding.
+					  <div class="message-body">Curious on how games are organized/consolidated? Please take a look at our <router-link :to="{name: 'Faq'}"><strong>FAQ</strong></router-link> to get a better understanding.
 					  </div>
 					</article>
 				</div>
@@ -159,73 +154,73 @@
 
 						<div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" :infinite-scroll-immediate-check="false">
 
-						    <div v-if="gamesLoading" class="columns">
-						    	<div class="column">
-						    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
-						    	</div>
+							<div v-if="gamesLoading" class="columns">
+								<div class="column">
+									<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
+								</div>
 							</div>
+
 							<div class="columns is-mobile is-multiline is-centered" v-else-if="games.length > 0">
 							
 								<div class="column" v-if="simpleView" v-for="game in games" :key="game.id" style="min-width: 155px; max-width: 175px">
-							        <div class="card item-shadow ">
-							          <div class="card-image imageFade">
-							            <figure class="image tooltip is-tooltip-primary" :data-tooltip="game.title" >
-						            		<a :href="'games/' + game.id">
-						            			<div class="text-container">
-							              			<img v-lazy="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title" class="imageFade">
-							              			<div class="bottom-left is-hidden-tablet ">{{ game.title }}</div>
-						              			</div>
-						              		</a>
-							            </figure>
-							          </div>
-							        </div>
-						        </div>
+									<b-tooltip :label="game.title">
+										<figure class="card image item-shadow imageFade">
+											<a :href="'games/' + game.id">
+												<div class="text-container">
+														<img v-lazy="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title" class="imageFade">
+														<div class="bottom-left is-hidden-tablet ">{{ game.title }}</div>
+													</div>
+												</a>
+										</figure>
+									</b-tooltip>
+								</div>
 
-						        <div class="column" v-if="detailedView" >
+								<div class="column" v-if="detailedView" >
 									<div class="columns is-mobile is-multiline is-centered">						        	
-									  <div class="column" style="min-width: 350px;" v-for="(game, index) in games" :key="game.id">
-									      <div class="columns is-gapless is-mobile card" style="max-height: 175px;">
-									        <div class="column is-narrow" >
-									          <figure class="card image imageFade item-shadow" style="min-width: 140px; max-width: 175px">
-									          	<router-link :to="{name: 'Game', params: { id: game.id }}">
-										            <div class="text-container">
-										              <img v-lazy="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title">
-										              <div class="bottom-left">{{ game.title }}</div>
-										            </div>
-									        	</router-link>
-									          </figure>
-									        </div>
-									        <div class="column" style="background-color: #f5f5f5">
-									          <div class="content is-size-7">
-									            <div class="game-detail-header">
-									                <div class="tags">
-									                  <span class="tag is-info">
-									                  	{{ game.developer.name }}
-									                  </span>
-									                  <span class="tag is-primary">
-									                  	{{ game.score ? (game.score + '%') : 'No Score'  }}
-									                  </span>
-									                </div>
-									            </div>
-									            <div class="game-detail-content">
-									            	{{ game.synopsis }}
-									            </div>
-									          </div>
-									        </div>
-									      </div>
-									    </div> 
+										<div class="column" style="min-width: 350px;" v-for="(game, index) in games" :key="game.id">
+												<div class="columns is-gapless is-mobile card" style="max-height: 175px;">
+													<div class="column is-narrow" >
+														<figure class="card image imageFade item-shadow" style="min-width: 140px; max-width: 175px">
+															<router-link :to="{name: 'Game', params: { id: game.id }}">
+																<div class="text-container">
+																	<img v-lazy="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title">
+																	<div class="bottom-left">{{ game.title }}</div>
+																</div>
+														</router-link>
+														</figure>
+													</div>
+													<div class="column" style="background-color: #f5f5f5">
+														<div class="content is-size-7">
+															<div class="game-detail-header">
+																	<div class="tags">
+																		<span class="tag is-info">
+																			{{ game.developer.name }}
+																		</span>
+																		<span class="tag is-primary">
+																			{{ game.score ? (game.score + '%') : 'No Score'  }}
+																		</span>
+																	</div>
+															</div>
+															<div class="game-detail-content">
+																{{ game.synopsis }}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div> 
 									</div> 
-						        </div>
+								</div>
 
-						    </div>
+						  </div>
+							
 							<article v-else class="message">
-							  <div class="message-body">No Games Found.</div>
+								<div class="message-body">No Games Found.</div>
 							</article>
 
-						    <div v-if="newGamesLoading" class="columns">
-						    	<div class="column">
-						    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
-						    	</div>
+							<div v-if="newGamesLoading" class="columns">
+								<div class="column">
+									<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
+								</div>
 							</div>
 
 						</div>

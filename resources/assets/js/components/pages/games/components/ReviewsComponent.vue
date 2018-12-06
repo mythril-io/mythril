@@ -7,8 +7,15 @@
                 <div class="card">
                     <div class="card-image imageFade">
                         <router-link :to="{name: 'User', params: { id: review.user.id }}">
-                            <figure class="image tooltip is-tooltip-primary is-1by1 imageFade" :data-tooltip="review.user.username" v-bind:style="avatarStyle(review.user.avatar)" v-if="review.user.avatar"></figure>
-                            <figure class="image tooltip is-tooltip-primary is-1by1 imageFade" :data-tooltip="review.user.username" v-bind:style="avatarStyle('default.jpg')" v-else></figure>
+                            <figure class="image is-square username-hover" v-if="review.user.avatar">
+                                <img v-lazy="$store.state.cdnURL + 'users/avatars/' + review.user.avatar" style="object-fit: cover;" :title="review.user.username">
+                                <div class="username-text">{{ review.user.username }}</div>
+                            </figure>
+
+                            <figure class="image is-square username-hover" v-else>
+                                <img v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'" style="object-fit: cover;" :title="review.user.username">
+                                <div class="username-text">{{ review.user.username }}</div>
+                            </figure>
                         </router-link>
                     </div>
                 </div>

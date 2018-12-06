@@ -26,12 +26,16 @@ import router     from './router'
 import Vuex       from 'Vuex'
 import store      from './store'
 import Meta       from 'vue-meta'
+import VeeValidate from 'vee-validate';
+import infiniteScroll from 'vue-infinite-scroll'
+import Buefy from 'buefy'
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(Meta)
+Vue.use(infiniteScroll)
+Vue.use(Buefy)
 
-import VeeValidate from 'vee-validate';
 const config = {
   errorBagName: 'errors', // change if property conflicts
   fieldsBagName: 'fields', 
@@ -56,9 +60,6 @@ const config = {
   i18nRootKey: 'validations' // the nested key under which the validation messsages will be located
 };
 Vue.use(VeeValidate, config);
-
-import infiniteScroll from 'vue-infinite-scroll'
-Vue.use(infiniteScroll)
 
 // import VueFuse from 'vue-fuse'
 // Vue.use(VueFuse)

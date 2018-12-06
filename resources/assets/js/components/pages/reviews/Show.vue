@@ -53,18 +53,18 @@
 			
 		    	<div class="columns">
 		    		<div class="column is-2 is-hidden-touch">
-		    			<div class="card">
-			                <div class="card-image imageFade">
-			                    <figure class="image tooltip is-tooltip-primary" :data-tooltip="this.review.game.title">
-			                    	<router-link :to="{name: 'Game', params: { id: this.review.game.id }}">
-			                        	<img v-lazy="this.$store.state.cdnURL + 'games/icons/' + this.review.game.icon" class="imageFade" :alt="this.review.game.title">
-			                    	</router-link>
-			                    </figure>
-			                </div>
-			            </div>
+						<b-tooltip :label="this.review.game.title">
+							<figure class="card image imageFade">
+								<div class="text-container">
+									<router-link :to="{name: 'Game', params: { id: this.review.game.id }}">
+										<img v-lazy="this.$store.state.cdnURL + 'games/icons/' + this.review.game.icon" class="imageFade" :alt="this.review.game.title">
+									</router-link>
+								</div>
+							</figure>
+						</b-tooltip>
 		    		</div>
 		    		<div class="column">
-				    	<h2 class="title">Summary/<abbr title="Too Long; Didn't Read">TL;DR</abbr></h2>
+				    	<h2 class="title">Summary/<b-tooltip label="Too Long; Didn't Read" type="is-light" position="is-bottom" dashed>TL;DR</b-tooltip></h2>
 						<div class="notification is-warning review-summary">
 							{{ this.review.summary }}
 						</div>
