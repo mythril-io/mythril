@@ -53,15 +53,23 @@
 
 				<div class="columns">
 					<div class="column is-hidden-touch is-narrow recomendation-col is-clearfix">
-			            <div class="image image-behind is-pulled-left card tooltip is-tooltip-primary" :data-tooltip="getFirstGameTitle">
-			            	<router-link :to="{name: 'Game', params: { id: recommendation.game.id }}">
-			            		<img v-lazy="this.$store.state.cdnURL + 'games/icons/' + recommendation.game.icon" :alt="getFirstGameTitle" class="image is-128x128">
-			            	</router-link>
+			            <div class="image-behind is-pulled-left">
+							<b-tooltip :label="getFirstGameTitle">
+								<div class="card image text-container">
+									<router-link :to="{name: 'Game', params: { id: recommendation.game.id }}">
+										<img v-lazy="this.$store.state.cdnURL + 'games/icons/' + recommendation.game.icon" :alt="getFirstGameTitle" class="image is-128x128">
+									</router-link>
+								</div>
+							</b-tooltip>
 			            </div>
-			            <div class="image recomendation-image is-pulled-right card tooltip is-tooltip-bottom is-tooltip-primary" :data-tooltip="getSecondGameTitle">
-			            	<router-link :to="{name: 'Game', params: { id: recommendation.second_game.id }}">
-			            		<img v-lazy="this.$store.state.cdnURL + 'games/icons/' + recommendation.second_game.icon" :alt="getSecondGameTitle" class="image is-128x128">
-			            	</router-link>
+			            <div class="recomendation-image is-pulled-right" :data-tooltip="getSecondGameTitle">
+							<b-tooltip :label="getSecondGameTitle" position="is-bottom">
+								<div class="card image text-container">
+									<router-link :to="{name: 'Game', params: { id: recommendation.second_game.id }}">
+										<img v-lazy="this.$store.state.cdnURL + 'games/icons/' + recommendation.second_game.icon" :alt="getSecondGameTitle" class="image is-128x128">
+									</router-link>
+								</div>
+							</b-tooltip>
 			            </div>
 					</div>
 					<div class="column">

@@ -5,12 +5,14 @@
     <div class="columns is-multiline is-mobile is-centered">
       <div class="column" v-for="game in trending" style="min-width: 150px; max-width: 228px">
         <router-link :to="{name: 'Game', params: { id: game.id }}">
-            <figure class="card image imageFade tooltip is-tooltip-primary item-shadow" :data-tooltip="game.title">
-              <div class="text-container">
-                <img v-lazy="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title">
-                <div class="bottom-left is-hidden-tablet ">{{ game.title }}</div>
-              </div>
-            </figure>
+            <b-tooltip :label="game.title">
+              <figure class="card image imageFade item-shadow">
+                <div class="text-container">
+                  <img v-lazy="$store.state.cdnURL + 'games/icons/' + game.icon" :alt="game.title">
+                  <div class="bottom-left is-hidden-tablet ">{{ game.title }}</div>
+                </div>
+              </figure>
+            </b-tooltip>
         </router-link>
       </div>
     </div>

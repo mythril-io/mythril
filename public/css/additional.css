@@ -46,20 +46,31 @@ html ::selection {
   opacity: 1;
 }
 
-.review-shadow {
+.hover-shadow-lift {
   transition: all 0.1s ease-in-out;
 }
-.review-shadow::after {
+.hover-shadow-lift::after {
   transition: opacity 0.1s ease-in-out;
 }
-/* Translate the review item */
-.review-shadow:hover {
+/* Translate the item */
+.hover-shadow-lift:hover {
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
   transform: translateY(-5px);
 }
 /* Fade in the pseudo-element with the bigger shadow */
-.review-shadow:hover::after {
+.hover-shadow-lift:hover::after {
   opacity: 1;
+}
+
+.hover-translate:hover {
+  -moz-transform: scale(1.025);
+  -webkit-transform: scale(1.025);
+  transform: scale(1.025);
+}
+.hover-translate {
+  -moz-transition: all .2s ease;
+  -webkit-transition: all .2s ease;
+  transition: all .2s ease;
 }
 
 .text-container {
@@ -289,6 +300,27 @@ html ::selection {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
+.username-text {
+  position: absolute;
+  bottom: 0px;
+  left: 0px;
+  font-size: 0.75rem;
+  text-align: left;
+  width: 100%;
+  padding: 5px 8px 5px 8px;
+  color: #fff;
+  background-color: #00d1b2;
+  opacity: 0;
+  transition: 0.2s;
+  white-space: nowrap; 
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}
+.username-hover:hover .username-text{
+  display: block;   
+  opacity: 1;
+}
+
 .game-detail-header {
   background-color: #d7d7d7; 
   padding: 8px; 
@@ -327,6 +359,7 @@ html ::selection {
 .profile-icon {
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
+    transition: 0.2s;
 }
 
 .profile-icon:hover {
@@ -350,4 +383,44 @@ html ::selection {
 }
 input[type="range"].slider:not([orient="vertical"]).has-output + output, input[type="range"].slider:not([orient="vertical"]).has-output-tooltip + output {
   z-index: 25 !important;
+}
+
+/*Custom tooltip*/
+
+.custom-tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+.custom-tooltip .custom-tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: #00d1b2;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  bottom: -190%;
+  left: 50%;
+  margin-left: -60px;
+  
+  /* Fade in tooltip - takes 1 second to go from 0% to 100% opac: */
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+.custom-tooltip .custom-tooltiptext::after {
+  content: " ";
+  position: absolute;
+  bottom: 100%;  /* At the top of the tooltip */
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent #00d1b2 transparent;
+}
+.custom-tooltip:hover .custom-tooltiptext {
+  visibility: visible;
+  opacity: 1;
 }
