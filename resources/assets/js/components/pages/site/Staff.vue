@@ -24,11 +24,15 @@
 			</article>
 			<div class="columns is-mobile">
 				<div class="column is-4-mobile is-3-tablet is-2-desktop">
-					<div class="card imageFade">
-		                <router-link :to="{name: 'User', params: { id: 1 }}">
-		                    <figure class="image tooltip is-tooltip-primary is-1by1 imageFade" data-tooltip="Cloud" v-bind:style="avatarStyle('1.png')"></figure>
-		                </router-link>
-	            	</div>
+							<router-link :to="{name: 'User', params: { id: 1 }}">
+								<b-tooltip label="Cloud">
+									<figure class="card image imageFade item-shadow">
+										<div class="text-container">
+											<img v-lazy="$store.state.cdnURL + 'users/avatars/1.png'">
+										</div>
+									</figure>
+								</b-tooltip>
+							</router-link>
 				</div>
 			</div>
 		</div>

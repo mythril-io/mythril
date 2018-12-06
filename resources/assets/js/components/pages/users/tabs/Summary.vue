@@ -48,11 +48,14 @@
 				<div class="columns is-multiline is-mobile">
 					<div class="column is-3-mobile is-3-tablet is-3-desktop is-2-widescreen" v-for="library in orderedLibrary" :key="library.id">
 						<router-link :to="{name: 'Game', params: { id: library.game.id }}">
-	                        <div class="card image imageFade tooltip is-tooltip-primary item-shadow" :data-tooltip="getLibraryTitle(library)">
-	                        	<div class="text-container">
-		                            <img v-lazy="$store.state.cdnURL + 'games/icons/'+ library.game.icon">
-		                        </div>
-	                        </div>
+							<b-tooltip :label="getLibraryTitle(library)">
+								<figure class="card image imageFade item-shadow">
+									<div class="text-container">
+										<img v-lazy="$store.state.cdnURL + 'games/icons/' + library.game.icon" :alt="library.game.title">
+										<div class="bottom-left is-hidden-tablet ">{{ library.game.title }}</div>
+									</div>
+								</figure>
+							</b-tooltip>
 	                    </router-link>
                     </div>
 				</div>
@@ -69,12 +72,14 @@
                     <div class="columns is-multiline is-mobile" v-if="displayedUser.favourites.length > 0">
                         <div class="column is-3-mobile is-6-tablet" v-for="favourite in orderedFavourites">
                         	<router-link :to="{name: 'Game', params: { id: favourite.game.id }}">
-	                            <figure class="card image imageFade tooltip is-tooltip-primary item-shadow" 
-	                            	:data-tooltip="favourite.release.alternate_title ? favourite.release.alternate_title : favourite.game.title">
-	                            		<div class="text-container">
-	                                		<img v-lazy="$store.state.cdnURL + 'games/icons/'+ favourite.game.icon">
-	                                	</div>
-	                            </figure>
+								<b-tooltip :label="favourite.release.alternate_title ? favourite.release.alternate_title : favourite.game.title">
+									<figure class="card image imageFade item-shadow">
+										<div class="text-container">
+											<img v-lazy="$store.state.cdnURL + 'games/icons/' + favourite.game.icon" :alt="favourite.game.title">
+											<div class="bottom-left is-hidden-tablet ">{{ favourite.game.title }}</div>
+										</div>
+									</figure>
+								</b-tooltip>
                             </router-link>
                         </div>
                     </div>

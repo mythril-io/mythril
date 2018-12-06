@@ -6,7 +6,11 @@
 				<h2 class="subtitle content">
 				  <ol>
 				    <li v-for="game in ranked">
-				    	<router-link :to="{name: 'Game', params: { id: game.id }}">{{ game.title }}</router-link>
+				    	<router-link :to="{name: 'Game', params: { id: game.id }}">
+								<b-tooltip :label="game.synopsis" type="is-light" position="is-bottom" size="is-large" multilined animated>
+									{{ game.title }}
+								</b-tooltip>
+							</router-link>
 			    	</li>
 				  </ol>
 				</h2>
@@ -18,7 +22,11 @@
 				<h2 class="subtitle content">
 				  <ol>
 				    <li v-for="game in popular">
-				    	<router-link :to="{name: 'Game', params: { id: game.id }}">{{ game.title }}</router-link>
+				    	<router-link :to="{name: 'Game', params: { id: game.id }}">
+								<b-tooltip :label="game.synopsis" type="is-light" position="is-bottom" size="is-large" multilined animated>
+									{{ game.title }}
+								</b-tooltip>
+							</router-link>
 				    </li>
 				  </ol>
 				</h2>

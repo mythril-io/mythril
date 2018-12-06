@@ -5,7 +5,7 @@
 	
 	<div class="columns is-multiline">
 		<div class="column is-6-tablet is-4-desktop" v-for="activity in recentUserActivity">
-			<div class="notification">
+			<div class="notification hover-translate">
 			  <article class="media">
 			    <div class="media-left">
 			    	<router-link :to="{name: 'User', params: { id: activity.user.id }}">	
