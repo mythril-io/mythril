@@ -51,7 +51,7 @@
 			  <a>Recommendations ({{ this.game.recommendations_count }})</a>
 			</router-link>
 			<router-link tag="li" :to="{name: 'GameReleases'}">
-			  <a>Releases ({{ this.game.releases.length }})</a>
+			  <a>Releases ({{ this.game.releases.length }}) <span class="tag is-warning" style="margin-left: 7px;">Updated!</span></a>
 			</router-link>
 			<router-link tag="li" :to="{name: 'GameStats'}">
 			  <a>Stats</a>

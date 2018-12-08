@@ -34,7 +34,9 @@ Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(Meta)
 Vue.use(infiniteScroll)
-Vue.use(Buefy)
+Vue.use(Buefy, {
+  defaultIconPack: 'fas',
+})
 
 const config = {
   errorBagName: 'errors', // change if property conflicts

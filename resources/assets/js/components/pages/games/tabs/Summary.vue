@@ -54,17 +54,19 @@
         <!--<blockquote>-->
             <div class="columns is-multiline is-mobile" v-if="topRecommendations.length > 0">
                 <div class="column is-narrow" v-for="game in topRecommendations.splice(0,6)" style="min-width: 140px; max-width: 175px">
-                    <div class="image card tooltip is-tooltip-primary item-shadow" :data-tooltip="game[0].second_game.title">
-                        <div class="text-container">
-                            <router-link :to="{name: 'Game', params: { id: game[0].second_game_id }}">
-                                <div class="icon-text">
-                                    {{ game.length }} User(s)
-                                    <span class="is-hidden-tablet"> - {{ game[0].second_game.title }}</span>
+                    <router-link :to="{name: 'Game', params: { id: game[0].second_game_id }}">
+                        <b-tooltip :label="game[0].second_game.title">
+                        <figure class="card image imageFade item-shadow">
+                            <div class="text-container">
+                            <img v-lazy="getIcon(game[0].second_game.icon)" :title="game[0].second_game.title">
+                            <div class="bottom-left">
+                                {{ game.length }} User{{ game.length==1 ? "" : "s" }}
+                                <span class="is-hidden-tablet"> - {{ game[0].second_game.title }}</span>
                                 </div>
-                                <img v-lazy="getIcon(game[0].second_game.icon)">
-                            </router-link>
-                        </div>
-                    </div>
+                            </div>
+                        </figure>
+                        </b-tooltip>
+                    </router-link>
                 </div>
             </div>
             <article class="message is-warning" v-else>

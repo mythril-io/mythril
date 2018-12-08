@@ -62,16 +62,16 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
-                {{ entry.release.platform.name }}
-              </abbr>
+              <b-tooltip :label="'Region: '+entry.release.region.name" dashed>{{ entry.release.platform.name }}</b-tooltip>
             </td>
             <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
             <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
-              <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
+              <span v-if="entry.notes">
+                <b-tooltip :label="entry.notes" position="is-left" dashed multilined>View</b-tooltip>
+              </span>
               <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
@@ -109,9 +109,7 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
-                {{ entry.release.platform.name }}
-              </abbr>
+              <b-tooltip :label="'Region: '+entry.release.region.name" dashed>{{ entry.release.platform.name }}</b-tooltip>
             </td>
             <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
@@ -157,16 +155,16 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
-                {{ entry.release.platform.name }}
-              </abbr>
+              <b-tooltip :label="'Region: '+entry.release.region.name" dashed>{{ entry.release.platform.name }}</b-tooltip>
             </td>
             <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
             <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
-              <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
+              <span v-if="entry.notes">
+                <b-tooltip :label="entry.notes" position="is-left" dashed multilined>View</b-tooltip>
+              </span>
               <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
@@ -205,16 +203,16 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
-                {{ entry.release.platform.name }}
-              </abbr>
+              <b-tooltip :label="'Region: '+entry.release.region.name" dashed>{{ entry.release.platform.name }}</b-tooltip>
             </td>
             <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
             <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
-              <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
+              <span v-if="entry.notes">
+                <b-tooltip :label="entry.notes" position="is-left" dashed multilined>View</b-tooltip>
+              </span>
               <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
@@ -253,16 +251,16 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
-                {{ entry.release.platform.name }}
-              </abbr>
+              <b-tooltip :label="'Region: '+entry.release.region.name" dashed>{{ entry.release.platform.name }}</b-tooltip>
             </td>
             <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
             <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
-              <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
+              <span v-if="entry.notes">
+                <b-tooltip :label="entry.notes" position="is-left" dashed multilined>View</b-tooltip>
+              </span>
               <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
@@ -301,16 +299,16 @@
               <router-link :to="{name: 'Game', params: { id: entry.game.id }}">{{ getGameTitle(entry) }}</router-link>
             </th>
             <td>
-              <abbr title="" class="tooltip" :data-tooltip="'Region: '+entry.release.region.name">
-                {{ entry.release.platform.name }}
-              </abbr>
+              <b-tooltip :label="'Region: '+entry.release.region.name" dashed>{{ entry.release.platform.name }}</b-tooltip>
             </td>
             <td>{{ entry.score ? entry.score : '-' }}</td>
             <td>{{ entry.own ? 'Yes' : 'No' }}</td>
             <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
             <td>{{ entry.hours ? entry.hours : '-' }}</td>
             <td v-if="userOwns">
-              <span v-if="entry.notes" class="tooltip is-tooltip-multiline is-tooltip-left" :data-tooltip="entry.notes"><abbr title="">View</abbr></span>
+              <span v-if="entry.notes">
+                <b-tooltip :label="entry.notes" position="is-left" dashed multilined>View</b-tooltip>
+              </span>
               <span v-else>-</span>
             </td>
 <!--             <td v-if="userOwns">
