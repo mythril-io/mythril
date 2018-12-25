@@ -3,13 +3,11 @@
 	<section class="hero is-primary">
 	  <div class="hero-body">
 	    <div class="container">
-			<h1 class="title has-text-centered-desktop">
-				{{ this.review.release.alternate_title ? this.review.release.alternate_title : this.review.game.title }} Review
-			</h1>
+			<h1 class="title has-text-centered-desktop">{{ this.review.release.alternate_title ? this.review.release.alternate_title : this.review.game.title }} Review</h1>
 			<h2 class="subtitle has-text-centered-desktop">
 				<span class="tag is-light"><a :href="'/games?platforms=[' + this.review.release.platform.id + ']'" :title="this.review.release.platform.name">{{ this.review.release.platform.name }}</a></span>
 				<span class="has-text-grey-dark is-size-6">
-					&nbsp; Reviewed by <router-link :to="{name: 'User', params: { id: this.review.user.id }}" class="dotted-border">{{ this.review.user.username }}</router-link> 
+					Reviewed by <router-link :to="{name: 'User', params: { id: this.review.user.id }}" class="dotted-border">{{ this.review.user.username }}</router-link> 
 					on {{ dateFormat(this.review.created_at) }}
 				</span>
 			</h2>
