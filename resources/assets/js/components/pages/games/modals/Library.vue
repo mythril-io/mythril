@@ -16,7 +16,7 @@
 	<div v-else-if="userLibrary.length > 0">
 		<h6 class="title is-6">Releases currently in your library:</h6>
 
-		<table class="table is-fullwidth is-striped is-hoverable" style="font-size: 0.8rem">
+		<table class="table is-fullwidth is-striped is-hoverable" style="font-size: 0.8rem; margin-bottom: 10px;">
 		  <thead>
 		    <tr>
 		      <th><abbr title="Alternate Title shown if applicable">Platform</abbr></th>
@@ -31,39 +31,44 @@
 		  <tbody>
 		    <tr v-for="entry in userLibrary" :key="entry.id">
 		      <td>
-				<abbr v-if="entry.release.alternate_title" :title="entry.release.alternate_title">
-					{{ entry.release.platform.acronym }}
-				</abbr>
-				<span v-else>{{ entry.release.platform.acronym }}</span>
-				<span class="icon has-text-info tooltip is-tooltip-right" 
-					:data-tooltip="'Region: '+ entry.release.region.name +', Publisher: ' + entry.release.publisher.name">
-					<i class="fas fa-info-circle"></i>
-				</span>
-	      	  </td>
+						<b-tooltip :label="'Region: '+ entry.release.region.name +', Publisher: ' + entry.release.publisher.name" position="is-right">
+							<abbr v-if="entry.release.alternate_title" :title="entry.release.alternate_title">
+								{{ entry.release.platform.acronym }}
+							</abbr>
+							<span v-else>{{ entry.release.platform.acronym }}</span>
+						  <b-icon
+                pack="fas"
+                icon="info-circle"
+                size="is-small"
+								type="is-info" style="margin: 1px 0 0 3px;">
+							</b-icon>
+						</b-tooltip>
+
+	      	</td>
 		      <td>{{ entry.own ? 'Yes' : 'No' }}</td>
 		      <td>{{ entry.digital ? 'Yes' : 'No' }}</td>
 		      <td>{{ entry.score ? entry.score : 'N/A'}}</td>
 		      <td>{{ entry.play_status.name }}</td>
 		      <td>
-				<abbr v-if="entry.notes" :title="entry.notes">View</abbr>
-				<span v-else>N/A</span>
-	      	  </td>
+						<abbr v-if="entry.notes" :title="entry.notes">View</abbr>
+						<span v-else>N/A</span>
+	      	</td>
 		      <td>
-				<div class="buttons">
-				  <span class="button is-warning is-small" @click="startEditMode(entry)" title="Edit">
-					<span class="icon is-small">
-					  <i class="fas fa-edit"></i>
-					</span>
-				  </span>
-				  <span class="button is-danger is-small" @click="deleteEntry(entry)" title="Delete">
-					<span class="icon is-small">
-					  <i class="fas fa-trash-alt"></i>
-					</span>
-				  </span>
-				</div>
+						<div class="buttons">
+							<span class="button is-warning is-small" @click="startEditMode(entry)" title="Edit">
+							<span class="icon is-small">
+								<i class="fas fa-edit"></i>
+							</span>
+							</span>
+							<span class="button is-danger is-small" @click="deleteEntry(entry)" title="Delete">
+							<span class="icon is-small">
+								<i class="fas fa-trash-alt"></i>
+							</span>
+							</span>
+						</div>
 		      </td>
 		    </tr>
-		    </tbody>
+			</tbody>
 		</table>
 	</div>
 
