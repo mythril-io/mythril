@@ -6,13 +6,9 @@
         <div class="hero-body">
             <div class="container cover-title is-clearfix">
                 <span class="is-pulled-left">
-                <h1 class="title" id="animationTitle">
-                     {{ this.game.title }}
-                </h1>
-                <h2 class="subtitle" id="animationSub">
-                    Developed by: <em><a :href="'/games?developer=' + this.game.developer.id" class="dotted-border">{{ this.game.developer.name }}</a></em>
-                </h2>
-                    </span>
+                    <h1 class="title" id="animationTitle">{{ this.game.title }}</h1>
+                    <h2 class="subtitle" id="animationSub">Developed by: <em><a :href="'/games?developer=' + this.game.developer.id" class="dotted-border">{{ this.game.developer.name }}</a></em></h2>
+                </span>
                 <span class="is-pulled-right" id="animationAdd" style="margin-top: 20px">
                     <span class="button" :class="[userHasLibrary ? 'is-warning' : 'is-primary']"  @click="addLibrary">
                         <span>{{ userHasLibrary ? 'Edit Library' : 'Add to Library' }}</span>
@@ -154,26 +150,26 @@
 </template>
 
 <script>
-import AuthenticationModal from '../../utilities/AuthenticationModal.vue';
-import ReleaseModal from './modals/Release.vue';
-import LibraryModal from './modals/Library.vue';
-import NavLibrary from './components/NavLibrary.vue';
+import AuthenticationModal from "../../utilities/AuthenticationModal.vue";
+import ReleaseModal from "./modals/Release.vue";
+import LibraryModal from "./modals/Library.vue";
+import NavLibrary from "./components/NavLibrary.vue";
 
 export default {
-  props: [ 'user' ],
-  components:{
-    'authentication-modal': AuthenticationModal,
-    'release-modal': ReleaseModal,
-    'library-modal': LibraryModal,
-    'nav-library': NavLibrary
+  props: ["user"],
+  components: {
+    "authentication-modal": AuthenticationModal,
+    "release-modal": ReleaseModal,
+    "library-modal": LibraryModal,
+    "nav-library": NavLibrary
   },
-  metaInfo () {
+  metaInfo() {
     return {
-        titleTemplate: '%s - ' + this.game.title 
-        // meta: [
-     //         { vmid: 'description', name: 'description', content: this.description }
-        // ]
-    }
+      titleTemplate: "%s - " + this.game.title
+      // meta: [
+      //         { vmid: 'description', name: 'description', content: this.description }
+      // ]
+    };
   },
   data() {
     return {
@@ -186,122 +182,174 @@ export default {
       userHasFavourite: false,
 
       wishlistModal: false,
-      userHasWishlist: false,
-    }
+      userHasWishlist: false
+    };
   },
   filters: {
-  	truncate: function(string, value) {
-    	return string.substring(0, value) + '...';
+    truncate: function(string, value) {
+      return string.substring(0, value) + "...";
     }
   },
   computed: {
     authModalState() {
-    	return this.authenticationModal;
+      return this.authenticationModal;
     },
     libraryModalState() {
-        return this.libraryModal;
+      return this.libraryModal;
     },
     favouriteModalState() {
-        return this.favouriteModal;
+      return this.favouriteModal;
     },
     wishlistModalState() {
-        return this.wishlistModal;
+      return this.wishlistModal;
     }
   },
   watch: {
-    user: function () { this.checkUserInfo() },
-    '$route.params.id': function (id) {
-      this.initialize()
+    user: function() {
+      this.checkUserInfo();
+    },
+    "$route.params.id": function(id) {
+      this.initialize();
     }
   },
   methods: {
     avatarStyle(avatar) {
-        return {
-            backgroundImage: 'url(' + this.$store.state.cdnURL + 'users/avatars/' + avatar + ')',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center top', 
-            backgroundRepeat: 'no-repeat',
-            width: '100%',
-            height: '100%'
-        }
+      return {
+        backgroundImage:
+          "url(" + this.$store.state.cdnURL + "users/avatars/" + avatar + ")",
+        backgroundSize: "cover",
+        backgroundPosition: "center top",
+        backgroundRepeat: "no-repeat",
+        width: "100%",
+        height: "100%"
+      };
     },
     bannerStyle(banner) {
-        return {
-            backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),' +
-              'url(' + this.$store.state.cdnURL + 'games/banners/' + banner + ')'
-        }
+      return {
+        backgroundImage:
+          "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5))," +
+          "url(" +
+          this.$store.state.cdnURL +
+          "games/banners/" +
+          banner +
+          ")"
+      };
     },
-  	orderedPlatforms(releases) {
-  		var platforms = _.map(releases, 'platform');
-  		var sorted = _.orderBy(platforms, ['name'], ['asc']);
-        return _.uniqBy(sorted, 'id');
-
-  	},
-  	orderedGenres(genres) { 
-  		return _.orderBy(genres, ['name'], ['asc']);
-  	},
+    orderedPlatforms(releases) {
+      var platforms = _.map(releases, "platform");
+      var sorted = _.orderBy(platforms, ["name"], ["asc"]);
+      return _.uniqBy(sorted, "id");
+    },
+    orderedGenres(genres) {
+      return _.orderBy(genres, ["name"], ["asc"]);
+    },
     toggleModal(modal) {
-        if(modal == 'auth') { this.authenticationModal = !this.authenticationModal; }
-        if(modal == 'library') { this.libraryModal = !this.libraryModal; }
-        if(modal == 'favourite') { this.favouriteModal = !this.favouriteModal; }
-        if(modal == 'wishlist') { this.wishlistModal = !this.wishlistModal; }
+      if (modal == "auth") {
+        this.authenticationModal = !this.authenticationModal;
+      }
+      if (modal == "library") {
+        this.libraryModal = !this.libraryModal;
+      }
+      if (modal == "favourite") {
+        this.favouriteModal = !this.favouriteModal;
+      }
+      if (modal == "wishlist") {
+        this.wishlistModal = !this.wishlistModal;
+      }
     },
     addLibrary() {
-        if(!this.user) { this.toggleModal('auth') }
-        else { this.toggleModal('library') }
+      if (!this.user) {
+        this.toggleModal("auth");
+      } else {
+        this.toggleModal("library");
+      }
     },
-  	addFavourite() {
-  		if(!this.user) { this.toggleModal('auth') }
-  		else { this.toggleModal('favourite') }
-  	},
+    addFavourite() {
+      if (!this.user) {
+        this.toggleModal("auth");
+      } else {
+        this.toggleModal("favourite");
+      }
+    },
     addWishlist() {
-        if(!this.user) { this.toggleModal('auth') }
-        else { this.toggleModal('wishlist') }
+      if (!this.user) {
+        this.toggleModal("auth");
+      } else {
+        this.toggleModal("wishlist");
+      }
     },
     updateFavourite(value) {
-        //console.log(JSON.parse(JSON.stringify(favourite)))
-        this.userHasFavourite = value;
-        this.toggleModal('favourite');
+      //console.log(JSON.parse(JSON.stringify(favourite)))
+      this.userHasFavourite = value;
+      this.toggleModal("favourite");
     },
     updateWishlist(value) {
-        this.userHasWishlist = value;
-        this.toggleModal('wishlist');
+      this.userHasWishlist = value;
+      this.toggleModal("wishlist");
     },
     checkUserInfo() {
-        if(!this.user) { 
-            this.userHasLibrary = false
-            this.userHasFavourite = false
-            this.userHasWishlist = false
-        }
-        else {
-            //Check Library
-            axios.get('/api/libraries/games/' + this.$route.params.id + '/users/' + this.user.id )
-            .then((response) => { this.userHasLibrary = true })
-            .catch((error) => this.userHasLibrary = false );
+      if (!this.user) {
+        this.userHasLibrary = false;
+        this.userHasFavourite = false;
+        this.userHasWishlist = false;
+      } else {
+        //Check Library
+        axios
+          .get(
+            "/api/libraries/games/" +
+              this.$route.params.id +
+              "/users/" +
+              this.user.id
+          )
+          .then(response => {
+            this.userHasLibrary = true;
+          })
+          .catch(error => (this.userHasLibrary = false));
 
-            //Check Favourite
-            axios.get('/api/favourites/games/' + this.$route.params.id + '/users/' + this.user.id )
-            .then((response) => { this.userHasFavourite = true })
-            .catch((error) => this.userHasFavourite = false );
+        //Check Favourite
+        axios
+          .get(
+            "/api/favourites/games/" +
+              this.$route.params.id +
+              "/users/" +
+              this.user.id
+          )
+          .then(response => {
+            this.userHasFavourite = true;
+          })
+          .catch(error => (this.userHasFavourite = false));
 
-            //Check Wishlist
-            axios.get('/api/wishlist/games/' + this.$route.params.id + '/users/' + this.user.id )
-            .then((response) => { this.userHasWishlist = true })
-            .catch((error) => this.userHasWishlist = false );
-        }
+        //Check Wishlist
+        axios
+          .get(
+            "/api/wishlist/games/" +
+              this.$route.params.id +
+              "/users/" +
+              this.user.id
+          )
+          .then(response => {
+            this.userHasWishlist = true;
+          })
+          .catch(error => (this.userHasWishlist = false));
+      }
     },
     initialize() {
-        axios.get('/api/games/' + this.$route.params.id )
-        .then((response) => { 
-            if(response.data === 404) { this.$router.replace({ name: 'Games'}) }
-            this.game = response.data; 
+      axios
+        .get("/api/games/" + this.$route.params.id)
+        .then(response => {
+          if (response.data === 404) {
+            this.$router.replace({ name: "Games" });
+          }
+          this.game = response.data;
         })
-        .catch((error) => this.$router.replace({ name: 'Games'}) );
-        if(this.user) { this.checkUserInfo() }
+        .catch(error => this.$router.replace({ name: "Games" }));
+      if (this.user) {
+        this.checkUserInfo();
+      }
     }
   },
   created() {
-    this.initialize()
+    this.initialize();
   }
-}
+};
 </script>

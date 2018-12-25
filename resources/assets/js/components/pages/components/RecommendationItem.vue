@@ -22,8 +22,7 @@
         </div>
       </div>
       <div class="column">
-        <div class="subtitle">
-          "If you liked 
+        <div class="subtitle">"If you liked 
           <router-link :to="{name: 'Game', params: { id: recommendation.game.id }}">
             {{ recommendation.release.alternate_title ? recommendation.release.alternate_title : recommendation.game.title }}</router-link>, you may also like
           <router-link :to="{name: 'Game', params: { id: recommendation.second_game.id }}">
