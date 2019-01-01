@@ -11,21 +11,27 @@
             <div class="notification is-light">
               <ul>
                 <li v-if="this.displayedUser.birthday">
-                  <span class="icon">
-                    <i class="fas fa-birthday-cake"></i>
-                  </span>
+                  <b-icon
+                      pack="fas"
+                      icon="fa-birthday-cake"
+                      size="is-small">
+                  </b-icon>
                   <em>{{ this.displayedUser.birthday | dateFormat }}</em>
                 </li>
                 <li v-if="this.displayedUser.location">
-                  <span class="icon">
-                    <i class="fas fa-compass"></i>
-                  </span>
+                  <b-icon
+                      pack="fas"
+                      icon="compass"
+                      size="is-small">
+                  </b-icon>
                   <em>{{ this.displayedUser.location }}</em>
                 </li>
                 <li v-if="this.displayedUser.gender">
-                  <span class="icon">
-                    <i class="fas fa-user"></i>
-                  </span>
+                  <b-icon
+                      pack="fas"
+                      icon="user"
+                      size="is-small">
+                  </b-icon>
                   <em>{{ this.displayedUser.gender }}</em>
                 </li>
               </ul>
@@ -45,7 +51,7 @@
           <div class="content">
             <h2>Currently Playing</h2>
           </div>
-          <div class="columns is-multiline is-mobile">
+          <div class="columns is-multiline is-mobile" style="margin-bottom: 5px;">
             <div
               class="column is-3-mobile is-3-tablet is-3-desktop is-2-widescreen"
               v-for="library in orderedLibraryPlaying"
@@ -68,7 +74,7 @@
           </div>
         </div>
 
-		<div v-if="this.orderedLibraryContinuous.length > 0">
+		    <div v-if="this.orderedLibraryContinuous.length > 0">
           <div class="content">
             <h2>Continuously  Playing</h2>
           </div>
@@ -93,7 +99,7 @@
               </router-link>
             </div>
           </div>
-		</div>
+		    </div>
 
       </div>
 

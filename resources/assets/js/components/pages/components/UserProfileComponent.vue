@@ -7,12 +7,12 @@
 	                <router-link :to="{name: 'User', params: { id: user.follower_id }}" >
 						<figure class="image is-square username-hover" v-if="user.avatar">
 							<img v-lazy="$store.state.cdnURL + 'users/avatars/' + user.avatar" style="object-fit: cover;" :title="user.username">
-							<div class="username-text">{{ user.username }}</div>
+							<div class="username-overlay"><span class="username-text">{{ user.username }}</span></div>
 						</figure>
 
 	                    <figure class="image is-square username-hover" v-else>
 							<img v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'" style="object-fit: cover;" :title="user.username">
-							<div class="username-text">{{ user.username }}</div>
+							<div class="username-overlay"><span class="username-text">{{ user.username }}</span></div>
 						</figure>
 	                </router-link>
             	</div>
@@ -20,12 +20,12 @@
 	                <router-link :to="{name: 'User', params: { id: user.leader_id }}" >
 						<figure class="image is-square username-hover" v-if="user.avatar">
 							<img v-lazy="$store.state.cdnURL + 'users/avatars/' + user.avatar" style="object-fit: cover;" :title="user.username">
-							<div class="username-text">{{ user.username }}</div>
+							<div class="username-overlay"><span class="username-text">{{ user.username }}</span></div>
 						</figure>
 
 	                    <figure class="image is-square username-hover" v-else>
 							<img v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'" style="object-fit: cover;" :title="user.username">
-							<div class="username-text">{{ user.username }}</div>
+							<div class="username-overlay"><span class="username-text">{{ user.username }}</span></div>
 						</figure>
 	                </router-link>	
             	</div>
@@ -33,12 +33,12 @@
 	                <router-link :to="{name: 'User', params: { id: user.id }}">
 						<figure class="image is-square username-hover" v-if="user.avatar">
 							<img v-lazy="$store.state.cdnURL + 'users/avatars/' + user.avatar" style="object-fit: cover;" :title="user.username">
-							<div class="username-text">{{ user.username }}</div>
+							<div class="username-overlay"><span class="username-text">{{ user.username }}</span></div>
 						</figure>
 
 	                    <figure class="image is-square username-hover" v-else>
 							<img v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'" style="object-fit: cover;" :title="user.username">
-							<div class="username-text">{{ user.username }}</div>
+							<div class="username-overlay"><span class="username-text">{{ user.username }}</span></div>
 						</figure>
 	                </router-link>
             	</div>

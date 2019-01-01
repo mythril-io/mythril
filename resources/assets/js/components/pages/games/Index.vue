@@ -24,7 +24,7 @@
               >Curious on how games are organized/consolidated? Please take a look at our
                 <router-link :to="{name: 'Faq'}">
                   <strong>FAQ</strong>
-                </router-link>to get a better understanding.
+                </router-link> to get a better understanding.
               </div>
             </article>
           </div>

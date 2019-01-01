@@ -57,10 +57,15 @@
 				<tbody>
 				  <tr>
 				    <th>
-				    	<span>Completion Percentage</span>
-						<span class="icon has-text-info tooltip is-tooltip-multiline" data-tooltip="Completion % = Completed Games / All Games (all play states)">
-						  <i class="fas fa-info-circle"></i>
-						</span>
+						<b-tooltip label="Completion % = Completed / All Play States" multilined>
+						<span>Completion Percentage</span>
+						  <b-icon
+							pack="fas"
+							icon="info-circle"
+							size="is-small"
+							type="is-info" custom-class="icon-margin">
+							</b-icon>
+						</b-tooltip>
 				    </th>
 				    <td>{{ completionPercentage }}</td>
 				  </tr>
