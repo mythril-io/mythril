@@ -73,9 +73,13 @@
 			  </a>
 			  <span class="divider">|</span>
 			  <a class="button is-light is-small" @click="preview=!preview">
-			    <span class="icon is-small">
-			    	<i class="fas fa-eye" v-if="preview"></i>
-			    	<i class="fas fa-eye-slash" v-else></i>
+            <b-icon
+								v-if="preview"
+                icon="eye"
+                size="is-small">
+            </b-icon>
+			    <span class="icon is-small" v-else>
+			      <i class="fas fa-eye-slash"></i>
 			    </span>
 			  </a>
 			</p>

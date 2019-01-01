@@ -12,7 +12,7 @@
                     style="object-fit: cover;"
                     :title="review.user.username"
                   >
-                  <div class="username-text">{{ review.user.username }}</div>
+                  <div class="username-overlay"><span class="username-text">{{ review.user.username }}</span></div>
                 </figure>
 
                 <figure class="image is-square username-hover" v-else>
@@ -21,7 +21,7 @@
                     style="object-fit: cover;"
                     :title="review.user.username"
                   >
-                  <div class="username-text">{{ review.user.username }}</div>
+                  <div class="username-overlay"><span class="username-text">{{ review.user.username }}</span></div>
                 </figure>
               </router-link>
             </div>

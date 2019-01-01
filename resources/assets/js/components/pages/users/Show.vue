@@ -29,7 +29,7 @@
                   :user="user"
                   :displayedUser="displayedUser"
                   :userOwns="userOwns"
-                  @authModal="toggleModal('auth')"
+                  @authModal="followGuard"
                 ></social-component>
               </div>
             </div>
@@ -71,19 +71,18 @@
         <router-view :displayedUser="displayedUser" :userOwns="userOwns" :key="$route.fullPath"></router-view>
       </div>
     </section>
-    <authentication-modal :modalState="authModalState" v-on:close="toggleModal('auth')"></authentication-modal>
   </div>
 </template>
 
 <script>
 import moment from "moment";
+import { ModalProgrammatic } from 'buefy/dist/components/modal'
 import AuthenticationModal from "../../utilities/AuthenticationModal.vue";
 import SocialComponent from "./components/SocialComponent.vue";
 
 export default {
   props: ["user"],
   components: {
-    "authentication-modal": AuthenticationModal,
     "social-component": SocialComponent
   },
   metaInfo() {
@@ -98,7 +97,6 @@ export default {
   data() {
     return {
       displayedUser: [],
-      authenticationModal: false,
       userOwns: false,
       userFollows: false
     };
@@ -112,9 +110,6 @@ export default {
     }
   },
   computed: {
-    authModalState() {
-      return this.authenticationModal;
-    },
     userAvatar() {
       if (this.displayedUser.avatar) {
         return (
@@ -158,14 +153,13 @@ export default {
     }
   },
   methods: {
-    toggleModal(modal) {
-      if (modal == "auth") {
-        this.authenticationModal = !this.authenticationModal;
-      }
-    },
     followGuard() {
       if (!this.user) {
-        this.toggleModal("auth");
+        ModalProgrammatic.open({
+          parent: this,
+          component: AuthenticationModal,
+          hasModalCard: true
+        })
       } else {
         this.followUser();
       }
