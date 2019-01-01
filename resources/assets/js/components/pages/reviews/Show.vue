@@ -109,7 +109,6 @@
 			</div>
 		</div>
 	</section>
-	<authentication-modal :modalState="authModalState" v-on:close="toggleModal('auth')"></authentication-modal>	 
 
 </div>
 </template>
@@ -118,6 +117,7 @@
 import NProgress from 'nprogress'
 import ReviewForm from './Form.vue'
 import DeleteForm from '../../utilities/DeleteForm.vue'
+import { ModalProgrammatic } from 'buefy/dist/components/modal'
 import AuthenticationModal from '../../utilities/AuthenticationModal.vue';
 var md = require('markdown-it')();
 var moment = require('moment-timezone');
@@ -128,7 +128,6 @@ export default {
 	data() {
 		return {
 		  review: [],
-		  authenticationModal: false,
 
 		  likes: 0,
 		  dislikes: 0,
@@ -144,9 +143,6 @@ export default {
 		compiledMarkdown: function () {
 			return md.render(this.review.content);
 		},
-	    authModalState() {
-	    	return this.authenticationModal;
-	    },
 	    totalLikeDislike() {
 	    	return (this.likes + this.dislikes);
 	    }
@@ -217,16 +213,25 @@ export default {
 	            }
 	        });
 		},
-	    toggleModal(modal) {
-	        if(modal == 'auth') { this.authenticationModal = !this.authenticationModal; }
-	    },
 	  	likeGuard() {
-	  		if(!this.user) { this.toggleModal('auth') }
+	  		if(!this.user) { 
+				ModalProgrammatic.open({
+				parent: this,
+				component: AuthenticationModal,
+				hasModalCard: true
+				})	  
+			}
 	  		else if(this.userOwns) { flash('Not Allowed To Like Own Review', 'error') }
 	  		else { this.toggleLike() }
 	  	},
 	  	dislikeGuard() {
-	  		if(!this.user) { this.toggleModal('auth') }
+	  		if(!this.user) { 
+				ModalProgrammatic.open({
+				parent: this,
+				component: AuthenticationModal,
+				hasModalCard: true
+				})	  
+			}
 	  		else if(this.userOwns) { flash('Not Allowed To Dislike Own Review', 'error') }
 	  		else { this.toggleDislike() }
 	  	},

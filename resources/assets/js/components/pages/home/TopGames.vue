@@ -2,8 +2,8 @@
 	<nav class="level">
 		<div class="level-item">
 			<div>
-				<h1 class="title">Top Rated Games</h1>
-				<h2 class="subtitle content">
+				<h1 class="title is-size-4-mobile">Top Rated Games</h1>
+				<h2 class="subtitle content is-size-6-mobile">
 				  <ol>
 				    <li v-for="game in ranked">
 				    	<router-link :to="{name: 'Game', params: { id: game.id }}">
@@ -18,8 +18,8 @@
 		</div>
 		<div class="level-item">
 			<div>
-				<h1 class="title">Most Popular Games</h1>
-				<h2 class="subtitle content">
+				<h1 class="title is-size-4-mobile">Most Popular Games</h1>
+				<h2 class="subtitle content is-size-6-mobile">
 				  <ol>
 				    <li v-for="game in popular">
 				    	<router-link :to="{name: 'Game', params: { id: game.id }}">
