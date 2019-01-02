@@ -31,7 +31,13 @@
 
           <user-profile-component :users="users"></user-profile-component>
 
-          <bulma-paginate :pages="pages" :initial-page="pageIndex" @paginate="changePage"></bulma-paginate>
+          <b-pagination
+              :total="total"
+              :current.sync="current"
+              per-page="20"
+              order="is-centered"
+              @change="changePage">
+          </b-pagination>
         </div>
       </div>
     </section>
@@ -48,7 +54,8 @@ export default {
   data() {
     return {
       users: [],
-      pageIndex: 1,
+      current: 1,
+
       total: 0,
       pages: 0,
       loading: true
@@ -80,7 +87,7 @@ export default {
       var page = 1;
     }
 
-    this.pageIndex = page - 1;
+    this.current = page;
     this.getUsers(page);
   }
 };
