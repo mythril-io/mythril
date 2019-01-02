@@ -36,7 +36,8 @@
 			:paginated="isPaginated"
 			:per-page="perPage"
 			:default-sort-direction="defaultSortDirection"
-      default-sort="date">
+      		default-sort="date"
+			icon-pack="mdi">
 
 			<template slot-scope="props">
 					<b-table-column field="platform.name" label="Platform" centered sortable >
@@ -71,11 +72,12 @@
 							<div class="content has-text-grey has-text-centered">
 									<p>
 											<b-icon
-													icon="emoticon-sad"
-													size="is-large">
+												icon="frown"
+												size="is-large"
+												pack="mdi">
 											</b-icon>
 									</p>
-									<p>Nothing here.</p>
+									<p>No releases.</p>
 							</div>
 					</section>
 			</template>
