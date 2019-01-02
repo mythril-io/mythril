@@ -34,7 +34,7 @@
           <b-pagination
               :total="total"
               :current.sync="current"
-              per-page="20"
+              per-page="24"
               order="is-centered"
               @change="changePage">
           </b-pagination>
