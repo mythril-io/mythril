@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return User::orderBy('created_at', 'desc')->paginate(50);
+        return User::orderBy('created_at', 'desc')->paginate(20);
     }
 
     /**

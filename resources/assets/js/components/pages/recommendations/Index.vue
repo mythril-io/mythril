@@ -31,9 +31,16 @@
             </div>
           </article>
 
-          <recommendations-component :recommendations="recommendations"></recommendations-component>
+          <recommendations-component style="margin-bottom: 10px;" :recommendations="recommendations"></recommendations-component>
 
-          <bulma-paginate :pages="pages" :initial-page="pageIndex" @paginate="changePage"></bulma-paginate>
+          <b-pagination
+              :total="total"
+              :current.sync="current"
+              per-page="8"
+              order="is-centered"
+              @change="changePage">
+          </b-pagination>
+
         </div>
 
         <div class="columns is-multiline is-centered" v-else>
@@ -63,7 +70,7 @@ export default {
   data() {
     return {
       recommendations: [],
-      pageIndex: 1,
+      current: 1,
       total: 0,
       pages: 0,
       loading: true
@@ -114,7 +121,7 @@ export default {
       var page = 1;
     }
 
-    this.pageIndex = page - 1;
+    this.current = page;
     this.getRecommendations(page);
   }
 };
