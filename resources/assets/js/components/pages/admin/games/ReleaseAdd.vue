@@ -34,7 +34,8 @@
 			              <th>Publisher</th>
 			              <th>Co-Developer</th>
 			              <th>Region</th>
-			              <th>Date</th>
+			              <th>Date Type</th>
+										<th>Date</th>
 			            </tr>
 			          </thead>
 			          <tbody>
@@ -44,7 +45,8 @@
 			              <td>{{ release['publisher']['name'] }}</td>
 			              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "N/A"  }}</td>
 			              <td>{{ release['region'] ? release['region']['name'] : "-" }}</td>
-			              <td>{{ release['date'] | dateFormat }}</td>
+										<td>{{ release['datetype'] ? release['datetype'].format : "N/A" }}</td>
+										<td>{{ release['date'] | dateFormat((release['datetype'] ? release['datetype'].id : 1)) }}</td>
 			            </tr>
 			          </tbody>
 			        </table>
@@ -87,18 +89,6 @@ export default {
 
     		updatedReleases: []
     	}
-	},
-	filters: {
-	  dateFormat(date) {
-	    if(date)
-	    {
-	      return moment.utc(date).format("MMM Do YYYY");;
-	    }
-	    else
-	    {
-	      return "N/A";
-	    }
-	  }
 	},
 	created() {
 		axios.get('/api/admin/games')

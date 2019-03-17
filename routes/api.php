@@ -71,6 +71,7 @@ Route::group([
     Route::get('genres', function() {return App\Genre::select('id', 'name')->get();} );
     Route::get('platforms', function() {return App\Platform::select('id', 'name')->get();} );
     Route::get('regions', function() {return App\Region::select('id', 'name')->get();} );
+    Route::get('datetypes', function() {return App\DateType::select('id', 'format')->get();} );
 });
 
 /*

@@ -138,14 +138,20 @@ export default {
 	    	} else {
 		    	this.selectedReleaseOne = null;
 				axios.get('/api/games/' + this.selectedGameOne.id)
-		        .then((response) => { this.releasesOne = response.data.releases; })
+		        .then((response) => { 
+							var nonTBDReleases = _.filter(response.data.releases, function(release){ return (release.date_type == null || release.date_type.id != 4); });
+							this.releasesOne =  _.orderBy(nonTBDReleases, 'platform.name', 'asc');; 
+						})
 		        .catch((error) => console.log("Releases One array not updated."));
 	    	}
 	    }
 	    else { 
 	    	this.selectedReleaseOne = null;
 			axios.get('/api/games/' + this.selectedGameOne.id)
-	        .then((response) => { this.releasesOne = response.data.releases; })
+	        .then((response) => { 
+						var nonTBDReleases = _.filter(response.data.releases, function(release){ return (release.date_type == null || release.date_type.id != 4); });
+						this.releasesOne =  _.orderBy(nonTBDReleases, 'platform.name', 'asc');; 
+					})
 	        .catch((error) => console.log("Releases One array not updated."));
 	    }
 	  },
@@ -164,14 +170,20 @@ export default {
 	    	} else {
 		    	this.selectedReleaseTwo = null;
 				axios.get('/api/games/' + this.selectedGameTwo.id)
-		        .then((response) => { this.releasesTwo = response.data.releases; })
+		        .then((response) => { 
+							var nonTBDReleases = _.filter(response.data.releases, function(release){ return (release.date_type == null || release.date_type.id != 4); });
+							this.releasesTwo =  _.orderBy(nonTBDReleases, 'platform.name', 'asc');;
+						})
 		        .catch((error) => console.log("Releases Two array not updated."));
 	    	}
 	    }
 	    else { 
 	    	this.selectedReleaseTwo = null;
 			axios.get('/api/games/' + this.selectedGameTwo.id)
-	        .then((response) => { this.releasesTwo = response.data.releases; })
+	        .then((response) => { 
+						var nonTBDReleases = _.filter(response.data.releases, function(release){ return (release.date_type == null || release.date_type.id != 4); });
+						this.releasesTwo =  _.orderBy(nonTBDReleases, 'platform.name', 'asc');; 
+					})
 	        .catch((error) => console.log("Releases Two array not updated."));
 	    }
 	  },
