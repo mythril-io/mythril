@@ -83,7 +83,8 @@ class ReleaseController extends Controller
                 'codeveloper_id' => array_get($request, 'release.codeveloper.id', null),
                 'alternate_title' => array_get($request, 'release.alternate_title'),
                 'region_id' => array_get($request, 'release.region.id'),
-                'date' => array_get($request, 'release.date')
+                'date' => array_get($request, 'release.date'),
+                'date_type_id' => array_get($request, 'release.date_type.id')
             ]);
 
         return response()->json(null, 200);

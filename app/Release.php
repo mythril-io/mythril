@@ -25,7 +25,7 @@ class Release extends Model
      */
     protected $fillable = [
         'game_id', 'platform_id', 'publisher_id', 'codeveloper_id', 'alternate_title',
-        'region_id', 'date'
+        'region_id', 'date', 'date_type_id'
     ];
 
     /**
@@ -74,6 +74,16 @@ class Release extends Model
     {
       return $this->belongsTo('App\Region', 'region_id')
             ->select(['id', 'name', 'acronym']);
+    }
+
+    /**
+     * The DateType the Release belongs to.
+     *
+     */
+    public function dateType()
+    {
+      return $this->belongsTo('App\DateType', 'date_type_id')
+            ->select(['id','format']);
     }
 
     /**

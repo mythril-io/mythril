@@ -63,7 +63,7 @@
 					</b-table-column>
 
 					<b-table-column field="date" label="Date" sortable>
-							{{ props.row.date | dateFormat }}
+							{{ props.row.date | dateFormat((props.row.date_type ? props.row.date_type.id : 1)) }}
 					</b-table-column>
 			</template>
 
@@ -91,18 +91,6 @@ import moment from 'moment';
 
 export default {
     props: ['game'],
-		filters: {
-			dateFormat(date) {
-				if(date)
-				{
-					return moment.utc(date).format("MMM Do YYYY");;
-				}
-				else
-				{
-					return "-";
-				}
-			}
-		},
 		data() {
 				return {
 						isStriped: true,

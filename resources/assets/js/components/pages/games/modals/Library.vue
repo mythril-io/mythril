@@ -84,7 +84,7 @@
 								<div class="field">
 									<div class="control">
 										<div class="select is-fullwidth is-small">
-									<select v-model="selectedReleaseID" class="is-focused" :disabled="editMode">
+									<select v-model="selectedReleaseID" class="is-focused" @change="disableInputs()" :disabled="editMode">
 											<option :value="null" disabled>Select a Release</option>
 												<option v-for="release in sortedReleases" :value="release.id">
 													{{ release['platform']['name'] }}
@@ -107,11 +107,11 @@
 								<div class="field is-narrow">
 									<div class="control">
 								<label class="checkbox">
-									<input type="checkbox" name="own" v-model="own">
+									<input type="checkbox" name="own" v-model="own" :disabled="isTBDRelease">
 									<span style="font-size:0.75rem">Own it?</span>
 								</label>
 								<label class="checkbox">
-									<input type="checkbox" name="digital" v-model="digital">
+									<input type="checkbox" name="digital" v-model="digital" :disabled="isTBDRelease">
 									<span style="font-size:0.75rem">Digital?</span>
 								</label>
 									</div>
@@ -127,8 +127,8 @@
 								<div class="field">
 									<p class="control is-expanded">
 										<div class="select is-small is-fullwidth">
-											<select name="status" v-model="playStatus">
-												<option v-for="status in playStatuses" :value="status.id">
+											<select name="status" v-model.lazy="playStatus" :disabled="isTBDRelease">
+												<option v-for="status in playStatuses" :value="status">
 													{{ status.name }}
 												</option>
 											</select>
@@ -138,7 +138,7 @@
 								<div class="field">
 									<p class="control is-expanded">
 										<div class="select is-small is-fullwidth">
-											<select name="score" v-model="score">
+											<select name="score" v-model="score" :disabled="isTBDRelease">
 												<option :value="null">Select a Score</option>
 												<option v-for="n in 10" :value="n">
 													{{ n }}
@@ -157,7 +157,7 @@
 							<div class="field-body">
 								<div class="field">
 									<p class="control is-expanded">
-										<input class="input is-small" type="number" min="1" name="hours" placeholder="Hours Played" v-model="hours">
+										<input class="input is-small" type="number" min="1" name="hours" placeholder="Hours Played" v-model="hours" :disabled="isTBDRelease">
 									</p>
 								</div>
 								<div class="field">
@@ -194,11 +194,12 @@ export default {
 			selectedReleaseID: null,
 			own: true,
 			digital: false,
-			playStatus: 1,
+			playStatus: null,
 			score: null,
 			hours: null,
 			notes: '',
-
+			
+			isTBDRelease: false,
 			loading: true,
 			editMode: false,
 			editEntry: null,
@@ -207,14 +208,33 @@ export default {
 		}
 	},
  	watch: {
-    	user: function () { this.checkUserLibrary() }
+			user: function () { this.checkUserLibrary() }
   	},
   	computed: {
 	    sortedReleases() {
 	      return _.orderBy(this.game.releases, 'platform.name', 'asc');
-	  	}
+			},
+	    computedPlaystatus() {
+	      return _.orderBy(this.game.releases, 'platform.name', 'asc');
+			}
     },
 	methods: {
+			disableInputs() {
+				var selectedReleaseID = this.selectedReleaseID;
+				var selectedRelease = _.find(this.game.releases, function(release){ return release.id == selectedReleaseID; });
+				if((selectedRelease.date_type != null) && (selectedRelease.date_type.id == 4)) {
+					this.isTBDRelease = true;
+					this.playstatus = _.find(this.playStatuses, function(status){ return status.id == 2; });
+
+					this.own = false;
+				}
+				else {
+					this.isTBDRelease = false;
+					this.playstatus = _.find(this.playStatuses, function(status){ return status.id == 1; });
+					this.own = true;
+				}
+				
+			},
     	close() {
     		this.endEditMode();
       	this.$emit('close')
@@ -223,7 +243,7 @@ export default {
 				this.selectedReleaseID = entry.release_id;
 				this.own = entry.own;
 				this.digital = entry.digital;
-				this.playStatus = entry.play_status_id;
+				this.playStatus = entry.play_status;
 				this.score = entry.score;
 				this.hours = entry.hours;
 				this.notes = entry.notes;
@@ -250,7 +270,7 @@ export default {
 	        NProgress.start();
 	        axios.post('/api/libraries/', {
 	        	release_id: this.selectedReleaseID,
-	        	play_status_id: this.playStatus,
+	        	play_status_id: this.playStatus.id,
 	        	own: this.own,
 	        	digital: this.digital,
 	        	score: this.score,  
@@ -280,7 +300,7 @@ export default {
 	        var success = true;
 	        NProgress.start();
 	        axios.patch(('/api/libraries/' + this.editEntry.id), {
-	        	play_status_id: this.playStatus,
+	        	play_status_id: this.playStatus.id,
 	        	own: this.own,
 	        	digital: this.digital,
 	        	score: this.score,
@@ -332,7 +352,7 @@ export default {
 				this.selectedReleaseID = null;
 				this.own = true;
 				this.digital = false;
-				this.playStatus = 1;
+				this.playStatus = _.find(this.playStatuses, function(status){ return status.id == 1; });;
 				this.score = null;
 				this.hours = null;
 				this.notes = '';
@@ -350,7 +370,8 @@ export default {
 		if(this.user) { this.checkUserLibrary() }
 		axios.get('/api/playstatuses')
 	    .then((response) => { 
-	    	this.playStatuses = response.data; 
+				this.playStatuses = response.data; 
+				this.playStatus = _.find(this.playStatuses, function(status){ return status.id == 1; });
 	    })
 	    .catch((error) => '' );
 	}
