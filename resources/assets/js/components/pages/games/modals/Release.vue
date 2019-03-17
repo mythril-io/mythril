@@ -56,7 +56,13 @@ export default {
   	},
   	computed: {
 	    sortedReleases() {
-	      return _.orderBy(this.game.releases, 'platform.name', 'asc');
+				if(this.item == 'Wishlist') {
+					var nonTBDReleases = this.game.releases
+				}
+				else {
+					var nonTBDReleases = _.filter(this.game.releases, function(release){ return (release.date_type == null || release.date_type.id != 4); });
+				}
+	      return _.orderBy(nonTBDReleases, 'platform.name', 'asc');
 	  	}
     },
 	methods: {

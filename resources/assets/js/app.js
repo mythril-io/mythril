@@ -87,13 +87,45 @@ Vue.component('bulma-paginate', require('./components/utilities/BulmaPaginate.vu
 /**
  * Uncomment below when compiling to production
  */
-Vue.config.devtools = false
+Vue.config.devtools = true
 Vue.config.debug = false
 Vue.config.silent = true
 
 
 //Access Token
 window.axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.getItem('access_token');
+
+//Global Filters
+
+  //required imports
+  import moment from 'moment';
+
+  //Date Filter
+  Vue.filter('dateFormat', function (date, datetype) {
+    if(date)
+    {
+      if(!datetype) { 
+        datetype = 1; 
+      }
+      switch(datetype) {
+        case 1:
+          return moment(date).format("MMM Do YYYY");
+          break;
+        case 2:
+          return moment(date).format("MMM YYYY");
+          break;
+        case 3:
+          return moment(date).format("YYYY");
+          break;
+        default:
+          return moment(date).format("MMM Do YYYY");
+      }
+    }
+    else
+    {
+      return "TBD";
+    }
+  })
 
 const app = new Vue({
     el: '#app',

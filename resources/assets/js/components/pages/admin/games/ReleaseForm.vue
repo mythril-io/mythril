@@ -76,7 +76,7 @@
             </div>
 		</div>
 		
-		<div class="column is-half">
+		<div class="column is-one-third">
 			<div class="field">
               <label class="label">Region</label>
               <p class="control">
@@ -93,17 +93,35 @@
             </div>
 		</div>
 
-		<div class="column is-half">
+		<div class="column is-one-third">
+			<div class="field">
+				<label class="label">Date Type</label>
+				<p class="control">
+					<multiselect
+						v-model="dateType"
+						:options="dateTypes"
+						placeholder="Select Date Type"
+						track-by="id"
+						label="format"
+						:close-on-select="true"
+						@input="changeDateType()"
+						style="z-index:1000;">
+					</multiselect>
+				</p>
+			</div>
+		</div>
+		<div class="column is-one-third">
 			<label class="label">
 			  Date
 			  <a class="delete" v-if="date" @click="date = null"></a>
 			</label>
-			<p class="control has-icons-left">
-			  <flat-pickr name="date" v-model="date" class="input" placeholder="Select Date"></flat-pickr>
+			<p class="control has-icons-left" v-show="showDateSelector">
+			  <flat-pickr name="date" v-model="date" class="input" :config='flatPickrConfig' placeholder="Select Date"></flat-pickr>
 			  <span class="icon is-small is-left">
 			    <i class="fa fa-calendar"></i>
 			  </span>
 			</p>
+			<p v-show="!showDateSelector">Date is <i>null</i></p>
 		</div>
 
 		<div class="column is-12">
@@ -123,7 +141,8 @@
 	              <th>Publisher</th>
 	              <th>Co-Developer</th>
 	              <th>Region</th>
-	              <th>Date</th>
+	              <th>Date Type</th>
+								<th>Date</th>
 	              <th class="has-text-centered">Delete?</th>
 	            </tr>
 	          </thead>
@@ -134,7 +153,8 @@
 	              <td>{{ release['publisher']['name'] }}</td>
 	              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "N/A"  }}</td>
 	              <td>{{ release['region'] ? release['region']['name'] : "-" }}</td>
-	              <td>{{ release['date'] | dateFormat }}</td>
+	              <td>{{ release['date_type'].format }}</td>
+								<td>{{ release['date'] | dateFormat(release['date_type'].id) }}</td>
 	              <td class="has-text-centered"><a class="delete" @click="removeRelease(release)"></a></td>
 	            </tr>
 	          </tbody>
@@ -162,6 +182,9 @@ export default {
 			publisher: null,
 			coDeveloper: null,
 			date: null,
+			dateType: null,
+			flatPickrConfig: { dateFormat: "Y-m-d"  },
+			showDateSelector: true,
 			region: null,
 
 			releases:[],
@@ -170,20 +193,9 @@ export default {
 			platforms: [],
 			publishers: [],
 			developers: [],
-			regions: []
+			regions: [],
+			dateTypes: []
 		}
-	},
-	filters: {
-	  dateFormat(date) {
-	    if(date)
-	    {
-	      return moment(date).format("MMM Do YYYY");;
-	    }
-	    else
-	    {
-	      return "N/A";
-	    }
-	  }
 	},
 	created(){
 		this.getFormData();
@@ -192,8 +204,34 @@ export default {
 		}
 	},
 	methods: {
+		changeDateType() {
+			//After selecting a datetype, update flat-pickr config object
+			var id = this.dateType ? this.dateType.id : ''
+			switch(id) {
+				case 1:
+					this.flatPickrConfig.dateFormat = "Y-m-d";
+					this.showDateSelector = true;
+					break;
+				case 2:
+					this.flatPickrConfig.dateFormat = "Y-m";
+					this.showDateSelector = true;
+					break;
+				case 3:
+					this.flatPickrConfig.dateFormat = "Y";
+					this.showDateSelector = true;
+					break;
+				case 4:
+					this.flatPickrConfig.dateFormat = "";
+					this.showDateSelector = false;
+					this.date = null;
+					break;
+				default:
+					this.flatPickrConfig.dateFormat = "Y-m-d";
+					this.showDateSelector = true;
+			}	
+		},
 		checkRelease() {
-			if(this.platform && this.publisher && this.region && this.date)
+			if(this.platform && this.publisher && this.region && this.dateType)
 	        {
 	          //Check if release information is a duplicate of database entires
 	          if(this.dbReleases.length > 0)
@@ -225,12 +263,40 @@ export default {
 	                return;
 	              }
 	            }
-	          }
+						}
+						
+						//Check if date was entered
+						if(this.dateType.id != 4 && !this.date) {
+							flash('Please enter a date.', 'error')
+							return;
+						}
+
 	          this.createRelease()
 	        }
 	        else { flash('Please fill out required release fields.', 'error'); }
 		},
 		createRelease() {
+			//Format Data for backend
+			var id = this.dateType ? this.dateType.id : ''
+			switch(id) {
+				case 1:
+					//Leave this.date as is
+					break;
+				case 2:
+					//Year and Month
+					this.date = this.date + "-01";
+					break;
+				case 3:
+					//Year Only
+					this.date = this.date + "-01-01";
+					break;
+				case 4:
+					this.date = null;
+					break;
+				default:
+					//Leave this.date as is
+			}
+
 			//Create a newRelease object
 			var newRelease = {
 				alternate_title: this.alternate_title,
@@ -238,7 +304,8 @@ export default {
 				publisher: this.publisher,
 				codeveloper: this.coDeveloper,
 				region: this.region,
-				date: this.date
+				date: this.date,
+				date_type: this.dateType
 			}
 			//Add newRelease object to releases array
 			this.releases.push(newRelease);
@@ -256,6 +323,7 @@ export default {
 			this.coDeveloper = null;
 			this.region = null;
 			this.date = null;
+			this.dateType = null;
 		},
 		removeRelease: function (release) {
 			var index = this.releases.indexOf(release);
@@ -278,6 +346,10 @@ export default {
 			axios.get('/api/regions')
 			.then((response) => { this.regions = response.data; })
 			.catch((error) => console.log("Regions array not updated."));
+
+			axios.get('/api/datetypes')
+			.then((response) => { this.dateTypes = response.data; })
+			.catch((error) => console.log("Date Types array not updated."));
 		}
 	}
 }

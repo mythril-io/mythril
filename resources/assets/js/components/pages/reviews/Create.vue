@@ -87,7 +87,10 @@ export default {
 	    	this.selectedRelease = null;
 	    	this.showReviewForm = false;
 			axios.get('/api/games/' + this.selectedGame.id)
-	        .then((response) => { this.releases = response.data.releases; })
+	        .then((response) => { 
+						var nonTBDReleases = _.filter(response.data.releases, function(release){ return (release.date_type == null || release.date_type.id != 4); });
+						this.releases =  _.orderBy(nonTBDReleases, 'platform.name', 'asc'); 
+					})
 	        .catch((error) => console.log("Releases array not updated."));
 	    }
 	  },

@@ -32,7 +32,8 @@
 	              <th>Publisher</th>
 	              <th>Co-Developer</th>
 	              <th>Region</th>
-	              <th>Date</th>
+	              <th>Date Type</th>
+								<th>Date</th>
 	              <th></th>
 	              <th></th>
 	            </tr>
@@ -44,7 +45,8 @@
 	              <td>{{ release['publisher']['name'] }}</td>
 	              <td>{{ release['codeveloper'] ? release['codeveloper']['name'] : "N/A"  }}</td>
 	              <td>{{ release['region'] ? release['region']['name'] : "-" }}</td>
-	              <td>{{ release['date'] | dateFormat }}</td>
+								<td>{{ release['datetype'] ? release['datetype'].format : "N/A" }}</td>
+								<td>{{ release['date'] | dateFormat((release['datetype'] ? release['datetype'].id : 1)) }}</td>
 	              <td class="has-text-centered"><a class="button is-primary" @click="toggleEdit(release)">Edit</a></td>
 	              <td class="has-text-centered"><a class="button is-danger" @click="toggleDelete(release)">Delete</a></td>
 	            </tr>
@@ -91,18 +93,6 @@ export default {
     		deleteRelease: null,
     		editRelease: null,
     	}
-	},
-	filters: {
-	  dateFormat(date) {
-	    if(date)
-	    {
-	      return moment.utc(date).format("MMM Do YYYY");;
-	    }
-	    else
-	    {
-	      return "N/A";
-	    }
-	  }
 	},
 	created() {
 		axios.get('/api/admin/games')
