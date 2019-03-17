@@ -127,7 +127,7 @@
 								<div class="field">
 									<p class="control is-expanded">
 										<div class="select is-small is-fullwidth">
-											<select name="status" v-model="playStatus" :disabled="isTBDRelease">
+											<select name="status" v-model.lazy="playStatus" :disabled="isTBDRelease">
 												<option v-for="status in playStatuses" :value="status">
 													{{ status.name }}
 												</option>
@@ -194,7 +194,7 @@ export default {
 			selectedReleaseID: null,
 			own: true,
 			digital: false,
-			playStatus: 1,
+			playStatus: null,
 			score: null,
 			hours: null,
 			notes: '',
@@ -213,15 +213,19 @@ export default {
   	computed: {
 	    sortedReleases() {
 	      return _.orderBy(this.game.releases, 'platform.name', 'asc');
+			},
+	    computedPlaystatus() {
+	      return _.orderBy(this.game.releases, 'platform.name', 'asc');
 			}
     },
 	methods: {
 			disableInputs() {
 				var selectedReleaseID = this.selectedReleaseID;
 				var selectedRelease = _.find(this.game.releases, function(release){ return release.id == selectedReleaseID; });
-				if(selectedRelease.date_type != null && selectedRelease.date_type.id == 4) {
+				if((selectedRelease.date_type != null) && (selectedRelease.date_type.id == 4)) {
 					this.isTBDRelease = true;
 					this.playstatus = _.find(this.playStatuses, function(status){ return status.id == 2; });
+
 					this.own = false;
 				}
 				else {

@@ -120,11 +120,10 @@ window.axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.
         default:
           return moment(date).format("MMM Do YYYY");
       }
-      return moment(date).format("MMM Do YYYY");
     }
     else
     {
-      return "N/A";
+      return "TBD";
     }
   })
 
