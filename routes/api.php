@@ -64,6 +64,9 @@ Route::group([
     //Library
     Route::get('library/games/{gid}/', 'LibraryController@gameEntries');
 
+    //Forums
+    Route::get('forums/tags', 'Forums\TagController@index' );
+
     //Misc
     Route::get('allgames', function() {return App\Game::all();} );
     Route::get('developers', function() {return App\Developer::select('id', 'name')->get();} );
@@ -134,6 +137,10 @@ Route::group([
 
     //User Settings
     Route::patch('users/{id}', 'UserController@update');
+
+    //Forums
+    Route::post('forums/discussions', 'Forums\DiscussionController@store');
+    Route::patch('forums/discussions/{id}', 'Forums\DiscussionController@update');
 });
 
 /*
@@ -174,6 +181,11 @@ Route::group([
 
     Route::put('releases/{id}/edit', 'ReleaseController@update'); //Edit one Release entry
     Route::delete('releases/{id}/delete', 'ReleaseController@destroy');
+
+    //Forums
+    Route::post('forums/tags', 'Forums\TagController@store');
+    Route::put('forums/tags/{id}/edit', 'Forums\TagController@update');
+    Route::delete('forums/tags/{id}/delete', 'Forums\TagController@destroy');   
 });
 
 // // Route to create a new role

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Game;
+use App\Release;
 use App\User;
 use App\Review;
 use App\Recommendation;
@@ -20,6 +21,7 @@ class HomeController extends Controller
     {
         //Stats - games_count, users_count, reviews_count, recommendations_count
         $games_count = Game::all()->count();
+        $releases_count = Release::all()->count();
         $users_count = User::all()->count();
         $reviews_count = Review::all()->count();
         $recommendations_count = Recommendation::all()->count();
@@ -47,6 +49,7 @@ class HomeController extends Controller
             'popular' => $popular,
             'trending' => $trending,
             'games_count' => $games_count,
+            'releases_count' => $releases_count,
             'users_count' => $users_count,
             'reviews_count' => $reviews_count,
             'recommendations_count' => $recommendations_count,

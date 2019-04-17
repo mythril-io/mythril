@@ -3,29 +3,7 @@
     <div v-if="reviews.length > 0">
       <div class="columns is-mobile" v-for="review in reviews">
         <div class="column is-2 is-hidden-touch">
-          <div class="card">
-            <div class="card-image imageFade">
-              <router-link :to="{name: 'User', params: { id: review.user.id }}">
-                <figure class="image is-square username-hover" v-if="review.user.avatar">
-                  <img
-                    v-lazy="$store.state.cdnURL + 'users/avatars/' + review.user.avatar"
-                    style="object-fit: cover;"
-                    :title="review.user.username"
-                  >
-                  <div class="username-overlay"><span class="username-text">{{ review.user.username }}</span></div>
-                </figure>
-
-                <figure class="image is-square username-hover" v-else>
-                  <img
-                    v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'"
-                    style="object-fit: cover;"
-                    :title="review.user.username"
-                  >
-                  <div class="username-overlay"><span class="username-text">{{ review.user.username }}</span></div>
-                </figure>
-              </router-link>
-            </div>
-          </div>
+					<user-avatar :user="review.user"/>
         </div>
         <div class="column">
           <div class="is-clearfix">
@@ -101,9 +79,11 @@
 
 <script>
 var moment = require("moment-timezone");
+import UserAvatar from '../../components/UserAvatar.vue';
 
 export default {
   props: ["reviews", "game"],
+  components: {UserAvatar},
   filters: {
     truncate: function(string, value) {
       if (string.length < value) {

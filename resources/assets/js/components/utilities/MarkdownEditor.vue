@@ -84,7 +84,7 @@
 			  </a>
 			</p>
 		</div>
-			<div class="columns is-gapless is-paddingless" id="editor">
+			<div class="columns is-gapless is-paddingless" id="editor" style="min-height: 250px;">
 			  <div class="column">
 			    <textarea :value="value" @input="update" ref="input" class="autoExpand" rows="10" data-min-rows="10" ></textarea>
 			  </div>

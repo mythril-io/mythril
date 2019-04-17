@@ -17,6 +17,7 @@ const Staff = require('./components/pages/site/Staff.vue')
 const Faq = require('./components/pages/site/Faq.vue')
 const PrivacyPolicy = require('./components/pages/site/PrivacyPolicy.vue')
 const TermsOfService = require('./components/pages/site/TermsOfService.vue')
+const Forums = require('./components/pages/forums/Index.vue')
 
 // Define routes in VueRouter instance
 const router = new VueRouter({
@@ -95,6 +96,16 @@ const router = new VueRouter({
               name: 'GameStats',
               component: require('./components/pages/games/tabs/Stats.vue')
             }]
+        }, { 
+          path: '/forums', 
+          name: 'Forums', 
+          component: Forums,  
+          meta: { title: 'Forums'} 
+        }, { 
+          path: '/forums/create', 
+          name: 'CreateThread', 
+          component: require('./components/pages/forums/discussions/create.vue'),
+          meta: { title: 'Create a Thread', requiresAuth: true }
         }, { 
           path: '/users', 
           name: 'Users', 

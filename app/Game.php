@@ -87,6 +87,14 @@ class Game extends Model
         return $this->hasMany('App\Recommendation');
     }
 
+   /**
+    * The Discussions the Game has.
+    *
+    */
+    public function discussions() {
+      return $this->hasMany('App\Forum\Discussion');
+    }
+
     /**
      * Scope for adding a row column.
      */

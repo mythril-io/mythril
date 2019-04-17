@@ -35,7 +35,8 @@ Vue.use(Vuex)
 Vue.use(Meta)
 Vue.use(infiniteScroll)
 Vue.use(Buefy, {
-  defaultIconPack: 'fas',
+  // defaultIconPack: 'fas',
+  defaultIconPack: 'mdi',
 })
 
 const config = {
@@ -99,6 +100,7 @@ window.axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.
 
   //required imports
   import moment from 'moment';
+  import numeral from 'numeral';
 
   //Date Filter
   Vue.filter('dateFormat', function (date, datetype) {
@@ -125,6 +127,16 @@ window.axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.
     {
       return "TBD";
     }
+  })
+
+  //Number Formating
+  Vue.filter('numberFormat', function (number) {
+    return numeral(number).format('0,0');
+  })
+
+  //Percentage Formating
+  Vue.filter('percentageFormat', function (number) {
+    return numeral(number).format('0%');
   })
 
 const app = new Vue({
