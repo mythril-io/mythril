@@ -76,7 +76,20 @@ class GameFilters extends QueryFilters
 
         //Ensure format is "n"
 
-        return $this->builder->select('games.id', 'games.title', 'games.synopsis', 'games.icon', 'games.developer_id', 'games.user_id', 'games.created_at', 'games.score', 'games.popularity_rank', 'games.score_rank')->distinct('games.id')->join('releases', 'games.id', '=', 'releases.game_id')->where('releases.publisher_id', $id);
+        return $this->builder
+            ->select('games.id', 
+                'games.title', 
+                'games.synopsis', 
+                'games.icon', 
+                'games.developer_id', 
+                'games.user_id', 
+                'games.created_at', 
+                'games.score', 
+                'games.popularity_rank', 
+                'games.score_rank')
+            ->distinct('games.id')
+            ->join('releases', 'games.id', '=', 'releases.game_id')
+            ->where('releases.publisher_id', $id);
     }
 
     /**
@@ -99,7 +112,20 @@ class GameFilters extends QueryFilters
         //Make an Array
         $ids = explode(',', $ids);
 
-        return $this->builder->select('games.id', 'games.title', 'games.synopsis', 'games.icon', 'games.developer_id', 'games.user_id', 'games.created_at', 'games.score', 'games.popularity_rank', 'games.score_rank')->distinct('games.id')->join('releases AS rTable', 'games.id', '=', 'rTable.game_id')->whereIn('rTable.platform_id', $ids);
+        return $this->builder
+            ->select('games.id', 
+                'games.title', 
+                'games.synopsis', 
+                'games.icon', 
+                'games.developer_id', 
+                'games.user_id', 
+                'games.created_at', 
+                'games.score', 
+                'games.popularity_rank', 
+                'games.score_rank')
+            ->distinct('games.id')
+            ->join('releases AS rTable', 'games.id', '=', 'rTable.game_id')
+            ->whereIn('rTable.platform_id', $ids);
     }
 
     /**
@@ -122,7 +148,20 @@ class GameFilters extends QueryFilters
         //Make an Array
         $ids = explode(',', $ids);
 
-        return $this->builder->select('games.id', 'games.title', 'games.synopsis', 'games.icon', 'games.developer_id', 'games.user_id', 'games.created_at', 'games.score', 'games.popularity_rank', 'games.score_rank')->distinct('games.id')->join('game_genre', 'games.id', '=', 'game_genre.game_id')->whereIn('game_genre.genre_id', $ids);
+        return $this->builder
+            ->select('games.id', 
+                'games.title', 
+                'games.synopsis', 
+                'games.icon', 
+                'games.developer_id', 
+                'games.user_id', 
+                'games.created_at', 
+                'games.score', 
+                'games.popularity_rank', 
+                'games.score_rank')
+            ->distinct('games.id')
+            ->join('game_genre', 'games.id', '=', 'game_genre.game_id')
+            ->whereIn('game_genre.genre_id', $ids);
     }
 
     /**

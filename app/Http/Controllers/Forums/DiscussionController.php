@@ -6,6 +6,8 @@ use App\Forums\Discussion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
+use App\User;
+use App\Filters\ForumFilters;
 use Illuminate\Support\Str;
 
 class DiscussionController extends Controller
@@ -18,25 +20,33 @@ class DiscussionController extends Controller
      */
     public function __construct(Request $request)
     {
-        // $this->middleware('auth:api', ['except' => ['index']]);
+        $this->middleware('auth:api', ['except' => ['index', 'show']]);
         // $this->middleware('role:admin', ['except' => ['index']]);
     }
 
     /**
      * Display a listing of the resource.
      *
+     * @param  string  $feed
+     * @param  string  $tag
+     * @param  ForumFilters $filters
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($tag = NULL, ForumFilters $filters)
     {
+        //Retrive Discussions
         return Discussion::with([
             'user',
             'tags',
+            'games'
             // 'categories' => function ($q) {
             //     $q->with('subcategories')->where('pivot_column', 'discussion_id');
             // }
-        ])->orderBy('created_at', 'desc')->paginate(20);
-
+        ])->when($tag, function ($query, $tag) {
+            return $query->whereHas('tags', function ($query) use ($tag) {
+                    $query->where('slug', '=', $tag);
+                });
+        })->filter($filters)->orderBy('created_at', 'desc')->paginate(15);
 
         // $users = App\User::with(['posts' => function ($query) {
         //     $query->where('title', 'like', '%first%');
@@ -71,23 +81,24 @@ class DiscussionController extends Controller
             'selectedTags' => 'required'
         ]);
 
+        
         //Create the Discussion
         $discussion = Discussion::create([
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => $userID,
-            'slug' => Str::slug($discussion->title)
+            'slug' => Str::slug($request->title)
         ]);
 
         //Attach Tags
-        $tagIds = collect($request->selectedTags)->pluck(['id'])->all();
+        $mainTagIds = collect($request->selectedTags)->pluck(['id']);
 
         if($request->selectedChildTags) {
-            $childTagIds = collect($request->selectedChildTags)->pluck(['id'])->all();
-            $tagIds = $tagIds->merge($childTagIds);
+            $childTagIds = collect($request->selectedChildTags)->pluck(['id']);
+            $tagIds = $mainTagIds->merge($childTagIds);
         }
 
-        $discussion->tags()->sync($tagIds); //sync: Any IDs that are not in the given array will be removed from the intermediate table
+        $discussion->tags()->sync($tagIds->all()); //sync: Any IDs that are not in the given array will be removed from the intermediate table
 
         //Attach Games if applicable
         if($request->selectedGames) {
@@ -104,12 +115,32 @@ class DiscussionController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Forums\Discussion  $discussion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Discussion $discussion)
+    public function show($id)
     {
-        //
+        $userID = User::getID();
+
+        $discussion = Discussion::with([
+            'user',
+            'tags',
+            'games'
+            // 'release' => function($q) {$q->with(['platform', 'publisher', 'codeveloper']);}
+        ])->where('id', '=', $id)->first();
+
+        if(!$discussion) { 
+            return response()->json(['error' => "Discussion Doesn't Exist"], 404); 
+        }
+        else {
+            $discussion->view_count += 1;
+            $discussion->save();
+        }
+
+        if(!$userID || $userID !== $discussion->user->id) { $userOwns = false; }
+        else if($userID === $discussion->user->id) { $userOwns = true; }
+
+        return response()->json(array('discussion'=>$discussion, 'userOwns'=> $userOwns), 200);
     }
 
     /**

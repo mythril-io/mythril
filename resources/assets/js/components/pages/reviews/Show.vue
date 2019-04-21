@@ -8,17 +8,17 @@
 			<h1 class="title has-text-centered has-text-white-bis">
 				<router-link :to="{name: 'Game', params: { id: this.review.game.id }}" class="has-text-white-bis">{{ this.review.release.alternate_title ? this.review.release.alternate_title : this.review.game.title }}</router-link> Review
 				</h1>
-			<h2 class="subtitle has-text-centered" style="margin-top: -1.05rem;">
-				<div class="field is-grouped is-grouped-multiline" style="justify-content: center;">
+			<h2 class="subtitle has-text-centered">
+				<div class="field is-grouped is-grouped-multiline centered-tags">
 					<div class="control">
 						<div class="tags has-addons">
-							<span class="tag"><a class="has-text-grey-dark" :href="'/games?platforms=[' + this.review.release.platform.id + ']'" :title="this.review.release.platform.name">{{ this.review.release.platform.name }}</a></span>
+							<span class="tag underline-link"><a class="has-text-grey-dark" :href="'/games?platforms=[' + this.review.release.platform.id + ']'" :title="this.review.release.platform.name">{{ this.review.release.platform.name }}</a></span>
 						</div>
 					</div>
 				
 					<div class="control">
 						<div class="tags has-addons">
-							<span class="tag is"><router-link :to="{name: 'User', params: { id: this.review.user.id }}" class="has-text-grey-dark">{{ this.review.user.username }}</router-link></span>
+							<span class="tag underline-link"><router-link :to="{name: 'User', params: { id: this.review.user.id }}" class="has-text-grey-dark">{{ this.review.user.username }}</router-link></span>
 							<span class="tag is-primary">{{ dateFormat(this.review.created_at) }}</span>
 						</div>
 					</div>

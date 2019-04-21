@@ -65,7 +65,9 @@ Route::group([
     Route::get('library/games/{gid}/', 'LibraryController@gameEntries');
 
     //Forums
-    Route::get('forums/tags', 'Forums\TagController@index' );
+    Route::get('forums/{tag?}', 'Forums\DiscussionController@index' );
+    Route::get('forums/discussions/{id}', 'Forums\DiscussionController@show');
+    Route::get('forums/tags/all', 'Forums\TagController@index' );
 
     //Misc
     Route::get('allgames', function() {return App\Game::all();} );

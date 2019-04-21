@@ -95,6 +95,18 @@ html ::selection {
 .icon svg {
   height: 1rem !important;
 }
+.centered-tags {
+  margin-top: -1.05rem !important; 
+  justify-content: center !important;
+}
+.underline-link {
+  cursor: pointer;
+  text-decoration: none !important;
+}
+.underline-link:hover {
+  cursor: pointer;
+  text-decoration: underline !important; 
+}
 
 
 
@@ -468,15 +480,15 @@ input[type="range"].slider:not([orient="vertical"]).has-output + output, input[t
     border: solid 1px #e1e1e1;
   }
 
-  /* .bounce-enter-active {
-    animation: bounce-in .5s;
+  .bounce-enter-active {
+    animation: bounce-in .3s;
   }
   .bounce-leave-active {
     animation: bounce-in .5s reverse;
   }
   @keyframes bounce-in {
     0% {
-      transform: scale(0);
+      transform: scale(1);
     }
     50% {
       transform: scale(1.05);
@@ -484,7 +496,7 @@ input[type="range"].slider:not([orient="vertical"]).has-output + output, input[t
     100% {
       transform: scale(1);
     }
-  } */
+  }
 
   .slide-down-enter-active {
     animation: slide-down 0.4s ease;

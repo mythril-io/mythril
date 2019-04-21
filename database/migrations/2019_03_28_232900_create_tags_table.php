@@ -41,8 +41,6 @@ class CreateTagsTable extends Migration
             $table->foreign('tag_id')->references('id')->on('tags');
 
             $table->primary(['discussion_id', 'tag_id']);
-
-            $table->timestamps();
         });
 
         DB::table('tags')->insert([

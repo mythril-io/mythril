@@ -22,8 +22,6 @@ class CreateDiscussionGameTable extends Migration
             $table->foreign('game_id')->references('id')->on('games');
 
             $table->primary(['discussion_id', 'game_id']);
-
-            $table->timestamps();
         });
     }
 

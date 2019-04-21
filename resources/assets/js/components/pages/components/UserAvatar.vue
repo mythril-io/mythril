@@ -4,7 +4,7 @@
         <router-link :to="{name: 'User', params: { id: user.id }}">
         <figure class="image is-square username-hover" v-if="user.avatar">
             <img
-            v-lazy="$store.state.cdnURL + 'users/avatars/' + user.avatar"
+            v-lazy="$store.state.userAvatarURL + user.avatar"
             style="object-fit: cover;"
             :title="user.username"
             >

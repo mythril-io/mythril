@@ -25,6 +25,6 @@ class Tag extends Model
      */
     public function discussions()
     {
-        return $this->hasMany('App\Forum\Discussion');
+        return $this->hasMany('App\Forums\Discussion');
     }
 }

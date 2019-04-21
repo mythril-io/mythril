@@ -97,15 +97,24 @@ const router = new VueRouter({
               component: require('./components/pages/games/tabs/Stats.vue')
             }]
         }, { 
-          path: '/forums', 
-          name: 'Forums', 
-          component: Forums,  
-          meta: { title: 'Forums'} 
+          path: '/forums', redirect: { name: 'Forums', params: { feed: 'recent' } }
         }, { 
+          path: '/forums/:tag?', 
+          name: 'Forums', 
+          components: {
+            reload: Forums
+          },
+          meta: { title: 'Forums'},
+        },  { 
           path: '/forums/create', 
           name: 'CreateThread', 
           component: require('./components/pages/forums/discussions/create.vue'),
           meta: { title: 'Create a Thread', requiresAuth: true }
+        }, { 
+          path: '/forums/discussions/:id/:slug', 
+          name: 'Discussion', 
+          component: require('./components/pages/forums/discussions/show.vue'),
+          meta: { title: 'Discussion' }
         }, { 
           path: '/users', 
           name: 'Users', 

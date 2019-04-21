@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Discussion extends Model
 {
+    use \App\Filters\Filterable;
+    
     /**
      * Hide the pivot table information, and the timestamps
      */
@@ -17,7 +19,7 @@ class Discussion extends Model
      * @var array
      */
     protected $fillable = [
-        'title' , 'body', 'user_id', 'views', 'edit_count'
+        'title' , 'body', 'user_id', 'views', 'edit_count', 'slug'
     ];
 
     /**
@@ -25,7 +27,7 @@ class Discussion extends Model
      */
     public function posts()
     {
-        return $this->hasMany('App\Forum\Post');
+        return $this->hasMany('App\Forums\Post');
     }
 
    /**
@@ -33,7 +35,7 @@ class Discussion extends Model
     */
     public function tags()
     {
-        return $this->belongsToMany('App\Forum\Tag');
+        return $this->belongsToMany('App\Forums\Tag');
     }
 
    /**

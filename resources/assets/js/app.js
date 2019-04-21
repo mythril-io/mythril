@@ -139,6 +139,21 @@ window.axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.
     return numeral(number).format('0%');
   })
 
+  //Date Formating (ex. 3 days ago)
+  Vue.filter('ago', function (date, user) {
+    if(user) {
+      if(user.timezone) {
+          return moment.utc(date).tz(user.timezone).fromNow();
+      }               
+    }
+    return moment.utc(date).local().fromNow();
+  })
+
+  Vue.filter('truncate', function (string, value) {
+    if(string.length < value) { return string }
+    return string.substring(0, value) + '...';
+  })
+
 const app = new Vue({
     el: '#app',
     router,
@@ -147,3 +162,5 @@ const app = new Vue({
       title: 'Mythril',
     }
 });
+
+

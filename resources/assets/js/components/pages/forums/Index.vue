@@ -34,12 +34,14 @@
               Tags
             </p>
             <ul class="menu-list">
-              <li><a class="notification is-primary">All</a></li>
+              <li>
+                <router-link :to="{name: 'Forums'}" :class="{ 'is-active': this.$route.params.tag==undefined }" exact>All</router-link>
+              </li>
               <li v-for="tag in parentTags">
-                <a>{{ tag.name }}</a>
+                <router-link :to="{name: 'Forums', params: { tag: tag.slug }}">{{ tag.name }}</router-link>
                 <ul v-if="tag.children">
                   <li v-for="tag in tag.children">
-                    <a>{{ tag.name }}</a>
+                    <router-link :to="{name: 'Forums', params: { tag: tag.slug }}">{{ tag.name }}</router-link>
                   </li>
                 </ul>
               </li>
@@ -51,127 +53,98 @@
 
             <div class="tabs">
                 <ul>
-                <li class="is-active">
-                    <a>
-                        <span class="icon is-small"><i class="far fa-bell" aria-hidden="true"></i></span>
+                <li :class="{ 'is-active': sort=='recent' }">
+                    <a @click="applyFilters('recent')">
+                        <span class="icon is-small"><i class="fa-bell" :class="[ sort=='recent' ? 'fas' : 'far']" aria-hidden="true"></i></span>
                         <span>RECENT</span>
                     </a>
                 </li>
-                <li>
-                    <a>
-                        <span class="icon is-small"><i class="far fa-comments" aria-hidden="true"></i></span>
-                        <span>TOP</span>
+                <li :class="{ 'is-active': sort=='popular' }">
+                    <a @click="applyFilters('popular')">
+                        <span class="icon is-small"><i class="fa-comments" :class="[ sort=='popular' ? 'fas' : 'far']" aria-hidden="true"></i></span>
+                        <span>POPULAR</span>
                     </a>
                 </li>
-                <li>
+                <li :class="{ 'is-active': sort=='likes' }">
+                    <a @click="applyFilters('likes')">
+                        <span class="icon is-small"><i class="fa-heart" :class="[ sort=='likes' ? 'fas' : 'far']" aria-hidden="true"></i></span>
+                        <span>LIKES</span>
+                    </a>
+                </li>
+                <li :class="{ 'is-active': sort=='users' }">
+                    <a @click="applyFilters('users')">
+                        <span class="icon is-small"><i class="fa-user" :class="[ sort=='users' ? 'fas' : 'far']" aria-hidden="true"></i></span>
+                        <span>USERS</span>
+                    </a>
+                </li>
+                <!-- <li>
                     <a>
                         <span class="icon is-small"><i class="fas fa-envelope-open-text" aria-hidden="true"></i></span>
                         <span>SUBSCRIBED</span>
                     </a>
-                </li>
+                </li> -->
                 </ul>
             </div>
 
+            <!-- Main container -->
+            <nav class="level">
+              <!-- Left side -->
+              <div class="level-left">
+                <div class="level-item">
+                  <div class="field has-addons">
+                    <p class="control">
+                      <input class="input" type="text" placeholder="Find a discussion">
+                    </p>
+                    <p class="control">
+                      <button class="button">
+                        Search
+                      </button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Right side -->
+              <div class="level-right">
+                <p class="level-item"><a>Subscribed</a></p>
+                <p class="level-item">
+                  <a class="button is-light" title="Mark All as Read">
+                    <b-icon
+                        pack="fas"
+                        icon="check"
+                        size="is-small">
+                    </b-icon>
+                  </a>
+                </p>
+              </div>
+            </nav>
+
             <div style="position: relative; min-height: 100px;">
-<!-- <nav class="level is-mobile">
-  <div class="level-left">
-    <div class="level-item is-hidden-mobile">
-      <p class="subtitle is-5">
-        <strong>123</strong> discussions
-      </p>
-    </div>
-    <div class="level-item">
-      <div class="field has-addons">
-        <p class="control">
-          <input class="input" type="text" placeholder="Find a post">
-        </p>
-        <p class="control">
-          <button class="button">
-            Search
-          </button>
-        </p>
-      </div>
-    </div>
 
-  </div>
+              <b-loading :is-full-page="false" :active.sync="isLoadingDiscussions"></b-loading>
 
-  <div class="level-right">
-      <p class="level-item">
-        <a class="button is-light">
-          <b-icon
-              pack="fas"
-              icon="check"
-              size="is-small">
-          </b-icon>
-        </a>
-      </p>
-      <div class="level-item">
-        <b-dropdown position="is-bottom-left" aria-role="list">
-            <button class="button is-primary" slot="trigger">
-                <span>Filters</span>
-                <b-icon icon="menu-down"></b-icon>
-            </button>
+              <div v-if="!isLoadingDiscussions">
+                <div v-if="discussions.length>0" v-for="discussion in discussions" >
+                  <discussion-item :discussion="discussion"></discussion-item>
+                </div>
 
-            <b-dropdown-item aria-role="listitem" custom>
-              <div class="field">
-                  <b-checkbox :value="true" type="is-light">General</b-checkbox>
+                <div v-if="discussions.length==0">
+                  <article class="message is-warning">
+                    <div class="message-body">
+                      No Discussions Found :(
+                    </div>
+                  </article>
+                </div>
               </div>
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" custom>
-              <div class="field">
-                  <b-checkbox :value="true" type="is-primary">Games</b-checkbox>
-              </div>
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" custom>
-              <div class="field">
-                  <b-checkbox :value="true" type="is-info">News</b-checkbox>
-              </div>
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" custom>
-              <div class="field">
-                  <b-checkbox :value="true" type="is-danger">Anime</b-checkbox>
-              </div>
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" custom>
-              <div class="field">
-                  <b-checkbox :value="true" type="is-warning">Music</b-checkbox>
-              </div>
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" custom>
-              <div class="field">
-                  <b-checkbox :value="true" type="is-success">Movies</b-checkbox>
-              </div>
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" custom paddingless>
-              <hr class="dropdown-divider">
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" custom>
-              <div class="field">
-                  <b-checkbox :value="true" type="is-info">Site Updates</b-checkbox>
-              </div>
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" custom>
-              <div class="field">
-                  <b-checkbox :value="true" type="is-light">Feedback</b-checkbox>
-              </div>
-            </b-dropdown-item>
-            <b-dropdown-item aria-role="listitem" custom>
-              <div class="field">
-                  <b-checkbox :value="true" type="is-light">Bugs</b-checkbox>
-              </div>
-            </b-dropdown-item>
-        </b-dropdown>
-      </div>
-    <p class="level-item"><strong>All</strong></p>
-    <p class="level-item"><a>Published</a></p>
-    <p class="level-item"><a>Drafts</a></p>
-    <p class="level-item"><a>Deleted</a></p>
-    <p class="level-item"><a class="button is-success">New</a></p>
-  </div>
-</nav> -->
 
+              <b-pagination
+                v-if="!isLoadingDiscussions && pages>1"
+                :total="total"
+                :current.sync="current"
+                per-page="15"
+                @change="changePage">
+              </b-pagination>
 
-              <b-loading :is-full-page="false" :active.sync="isLoadingTags"></b-loading>
             </div>
 
         </div>
@@ -184,14 +157,28 @@
 </template>
 <script>
 import ForumHeader from './common/ForumHeader.vue'
+import DiscussionItem from './discussions/DiscussionItem.vue'
 
 export default {
-  components: {ForumHeader},
+  components: {ForumHeader, DiscussionItem},
   data() {
     return {
+      //Tags
       tags: [],
       isLoadingTags: true,
       hideTags: true,
+
+      //Discussions
+      discussions: [],
+      isLoadingDiscussions: true,
+
+      //Pagination
+      current: 1,
+      total: 0,
+      pages: 0,
+
+      //Filters
+      sort: 'recent'
     };
   },
   computed: {
@@ -211,19 +198,68 @@ export default {
     }
   },
   methods: {
+    getDiscussions(page = 1) {
 
+      var query = "?page=" + page;
+      if (location.search) {
+        query = location.search + "&page=" + page;
+      }
+
+      // if(tag.length>0) {
+      //   tag = '/' + tag;
+      // }
+
+      var tag = (this.$route.params.tag ? '/' + this.$route.params.tag : '')
+
+      axios.get("/api/forums" + tag + query)
+        .then(response => {
+          this.discussions = response.data.data;
+          this.total = response.data.total;
+          this.pages = response.data.last_page;
+          this.isLoadingDiscussions = false
+        })
+        .catch(error => this.$router.push({ name: "Forums" }));
+    },
+    changePage(pageNum) {
+      this.isLoadingDiscussions = true;
+      this.$router.push({ name: "Forums", query: { page: pageNum } });
+    },
+    getTags() {
+      axios.get("/api/forums/tags/all")
+        .then(response => {
+          this.tags = response.data;
+          this.isLoadingTags = false;
+        })
+        .catch(error => console.log("Tags array not updated."));
+    },
+    getAndSetQueryParams(){
+      if (this.$route.query.sort) {
+        this.sort = this.$route.query.sort;
+      }
+    },
+    applyFilters(sort) {
+      this.sort = sort;
+
+      this.$router.replace({
+        query: {
+          sort: this.sort,
+        }
+      });
+    }
   },
   created() {
-    axios
-      .get("/api/forums/tags")
-      .then(response => {
-        this.tags = response.data;
-                setTimeout(() => {
-                  this.isLoadingTags = false
-                }, 3 * 1000)
-        // this.isLoadingTags = false;
-      })
-      .catch(error => console.log("Tags array not updated."));
+    this.getAndSetQueryParams();
+    this.getTags();
+
+    if (this.$route.query.page) {
+      var page = Number(this.$route.query.page);
+    } else {
+      var page = 1;
+    }
+    this.current = page;
+
+
+    this.getDiscussions(page);
   }
 };
 </script>

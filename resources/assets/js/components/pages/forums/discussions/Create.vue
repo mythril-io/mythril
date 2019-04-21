@@ -215,7 +215,7 @@ export default {
     submitDiscussion(discussion) {
         var success = true;
         NProgress.start();
-        axios.post('/api/discussions/', {
+        axios.post('/api/forums/discussions', {
             title: discussion.title,
             body: discussion.body,
             selectedTags: discussion.selectedTags,
@@ -298,7 +298,7 @@ export default {
   },
   created() {
     axios
-      .get("/api/forums/tags")
+      .get("/api/forums/tags/all")
       .then(response => {
         var parentTags = _.filter(response.data, function(tag){ return (tag.parent_id == null && tag.id != 7); });
         var childTags = _.filter(response.data, function(tag){ return tag.parent_id != null; });
