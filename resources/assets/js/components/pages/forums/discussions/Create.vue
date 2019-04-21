@@ -111,10 +111,13 @@
                 <p v-show="errors.has('body')" class="help is-danger">{{ errors.first('body') }}</p>
             </div>
 
-            <div class="field">
+            <div class="field is-grouped">
                 <div class="control">
                     <button class="button is-primary" @click="validateBeforeSubmit" :disabled="errors.any()">Post Discussion</button>
                 </div>
+            <p class="control">
+                <button class="button is-light" @click="confirmCancel">Cancel</button>
+            </p>
             </div>
 
 		</div>
@@ -198,6 +201,12 @@ export default {
     }
   },
   methods: {
+    confirmCancel() {
+        this.$dialog.confirm({
+            message: 'Are you sure you want to cancel?',
+            onConfirm: () => this.$router.push({ name: "Forums" })
+        })
+    },
     validateBeforeSubmit() {
         this.$validator.validateAll().then((result) => {
             if (result) { 

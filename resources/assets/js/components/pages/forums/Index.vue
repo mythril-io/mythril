@@ -52,51 +52,56 @@
         <div class="column">
 
             <div class="tabs">
-                <ul>
+              <ul>
                 <li :class="{ 'is-active': sort=='recent' }">
-                    <a @click="applyFilters('recent')">
+                    <a @click="setSort('recent')">
                         <span class="icon is-small"><i class="fa-bell" :class="[ sort=='recent' ? 'fas' : 'far']" aria-hidden="true"></i></span>
                         <span>RECENT</span>
                     </a>
                 </li>
                 <li :class="{ 'is-active': sort=='popular' }">
-                    <a @click="applyFilters('popular')">
+                    <a @click="setSort('popular')">
                         <span class="icon is-small"><i class="fa-comments" :class="[ sort=='popular' ? 'fas' : 'far']" aria-hidden="true"></i></span>
                         <span>POPULAR</span>
                     </a>
                 </li>
                 <li :class="{ 'is-active': sort=='likes' }">
-                    <a @click="applyFilters('likes')">
+                    <a @click="setSort('likes')">
                         <span class="icon is-small"><i class="fa-heart" :class="[ sort=='likes' ? 'fas' : 'far']" aria-hidden="true"></i></span>
                         <span>LIKES</span>
                     </a>
                 </li>
+                <li :class="{ 'is-active': sort=='views' }">
+                    <a @click="setSort('views')">
+                        <span class="icon is-small"><i class="fa-eye" :class="[ sort=='views' ? 'fas' : 'far']" aria-hidden="true"></i></span>
+                        <span>VIEWS</span>
+                    </a>
+                </li>
                 <li :class="{ 'is-active': sort=='users' }">
-                    <a @click="applyFilters('users')">
+                    <a @click="setSort('users')">
                         <span class="icon is-small"><i class="fa-user" :class="[ sort=='users' ? 'fas' : 'far']" aria-hidden="true"></i></span>
                         <span>USERS</span>
                     </a>
                 </li>
-                <!-- <li>
-                    <a>
-                        <span class="icon is-small"><i class="fas fa-envelope-open-text" aria-hidden="true"></i></span>
-                        <span>SUBSCRIBED</span>
-                    </a>
-                </li> -->
-                </ul>
+              </ul>
             </div>
 
             <!-- Main container -->
-            <nav class="level">
+            <nav class="level is-mobile">
               <!-- Left side -->
               <div class="level-left">
                 <div class="level-item">
                   <div class="field has-addons">
                     <p class="control">
-                      <input class="input" type="text" placeholder="Find a discussion">
+                      <input 
+                        class="input" 
+                        type="text" 
+                        placeholder="Find a discussion"
+                        v-model="search"
+                        @keyup.enter="applyFilters">
                     </p>
                     <p class="control">
-                      <button class="button">
+                      <button class="button" @click="applyFilters">
                         Search
                       </button>
                     </p>
@@ -178,7 +183,8 @@ export default {
       pages: 0,
 
       //Filters
-      sort: 'recent'
+      sort: 'recent',
+      search: ''
     };
   },
   computed: {
@@ -199,15 +205,10 @@ export default {
   },
   methods: {
     getDiscussions(page = 1) {
-
       var query = "?page=" + page;
       if (location.search) {
         query = location.search + "&page=" + page;
       }
-
-      // if(tag.length>0) {
-      //   tag = '/' + tag;
-      // }
 
       var tag = (this.$route.params.tag ? '/' + this.$route.params.tag : '')
 
@@ -236,13 +237,19 @@ export default {
       if (this.$route.query.sort) {
         this.sort = this.$route.query.sort;
       }
+      if (this.$route.query.search) {
+        this.search = this.$route.query.search;
+      }
     },
-    applyFilters(sort) {
+    setSort(sort) {
       this.sort = sort;
-
+      this.applyFilters();
+    },
+    applyFilters() {
       this.$router.replace({
         query: {
           sort: this.sort,
+          search: this.search
         }
       });
     }
@@ -257,7 +264,6 @@ export default {
       var page = 1;
     }
     this.current = page;
-
 
     this.getDiscussions(page);
   }

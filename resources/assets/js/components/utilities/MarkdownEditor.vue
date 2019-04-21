@@ -84,14 +84,14 @@
 			  </a>
 			</p>
 		</div>
-			<div class="columns is-gapless is-paddingless" id="editor" style="min-height: 250px;">
-			  <div class="column">
-			    <textarea :value="value" @input="update" ref="input" class="autoExpand" rows="10" data-min-rows="10" ></textarea>
-			  </div>
-			  <div class="column" v-if="preview">
-			    <div v-html="compiledMarkdown" class="content" id="parsed"></div>
-			  </div>
+		<div class="columns is-gapless is-paddingless" id="editor">
+			<div class="column">
+				<textarea :value="value" @input="update" ref="input" class="autoExpand" rows="10" data-min-rows="10"></textarea>
 			</div>
+			<div class="column" v-if="preview">
+				<div v-html="compiledMarkdown" class="content" id="parsed"></div>
+			</div>
+		</div>
 	</div>
 </div>
 </template>
@@ -159,9 +159,12 @@ export default {
 	background-color: #363636;
 	padding: 10px;
 	border-bottom: 1px solid #ccc;
+	border-radius: 4px 4px 0 0;
 }
 #editor {
 	background-color: #f6f6f6;
+	border-radius: 0 0 6px 6px;
+	min-height: 250px;
 }
 
 textarea, #parsed {
@@ -171,6 +174,7 @@ textarea, #parsed {
   vertical-align: top;
   box-sizing: border-box;
   padding: 20px;
+	border-radius: 0 0 6px 0;
 }
 textarea {
   border: none;
@@ -179,6 +183,7 @@ textarea {
   outline: none;
   font-size: 14px;
   font-family: 'Monaco', courier, monospace;
+	border-radius: 0 0 0 6px;
 }
 
 #parsed pre {

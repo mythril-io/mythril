@@ -133,7 +133,7 @@
 
 
 <div class="notification border-hover" style="margin-bottom: 10px;">
-    <nav class="level">
+    <nav class="level is-mobile">
         <div class="level-left">
         <div class="level-item has-text-centered is-hidden-touch">
             <b-tooltip

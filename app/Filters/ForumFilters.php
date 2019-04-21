@@ -26,11 +26,27 @@ class ForumFilters extends QueryFilters
         {
             return $this->builder->orderBy('like_count', 'desc');
         }
+        else if($order == 'views') 
+        {
+            return $this->builder->orderBy('view_count', 'desc');
+        }
         else if($order == 'users') 
         {
             return $this->builder->orderBy('user_count', 'desc');
         }
         else { return $this->builder; }
+    }
+
+    /**
+     * Filter by search keyword.
+     *
+     * @param  string $genre
+     * @return Builder
+     */
+    public function search($search = null)
+    {
+        if(empty($search)) {return $this->builder;}
+        return $this->builder->where('title', 'like', ('%'.$search.'%'));
     }
 
     // /**
