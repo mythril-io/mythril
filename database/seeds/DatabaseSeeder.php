@@ -11,7 +11,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // Create at least one test user for people working on app
         $this->call(UsersTableSeeder::class);
     }
 }
