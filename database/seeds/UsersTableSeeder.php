@@ -12,7 +12,7 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         // Test User for developers contributing to project
-        factory(App\User::class, 1)->create(['email' => 'mythril@test.com']);
+        factory(App\User::class, 1)->create(['email' => 'mythril@test.com', 'is_verified' => 1]);
         factory(App\User::class, 50)->create();
     }
 }
