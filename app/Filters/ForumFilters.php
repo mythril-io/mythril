@@ -40,7 +40,7 @@ class ForumFilters extends QueryFilters
     /**
      * Filter by search keyword.
      *
-     * @param  string $genre
+     * @param  string $search
      * @return Builder
      */
     public function search($search = null)
@@ -50,31 +50,21 @@ class ForumFilters extends QueryFilters
     }
 
     // /**
-    //  * Filter by Tag.
+    //  * Filter by subscriptions.
     //  *
-    //  * @param  string $slug
+    //  * @param  string $show
     //  * @return Builder
     //  */
-    // public function tag($slug = '')
+    // public function subscribed($show)
     // {
-    //     $slug = trim($slug);
-             
-    //     //Check if empty
-    //     if(isset($slug)) {
-    //         // It's empty
-    //         return $this->builder;
+    //     // if(empty($show)) {return $this->builder;}
+    //     // $show = ($show === 'true');
+    //     // $show === 'true'? true: false;
+    //     if($show === 'true' || $show === true) {
+    //         return $this->builder->where('is_subscribed', '=', true);
     //     }
     //     else {
-    //         //Ensure format is "tag-name-12"
-    //         // $re = '/^\d+(?:,\d+)*$/';
-    //         // if(!preg_match($re, $slug)) {return $this->builder;}
-        
-    //         return $this->builder
-    //         ->select('discussion.*')
-    //         ->distinct('discussion.id')
-    //         ->join('discussion_tag', 'discussion.id', '=', 'discussion_tag.discussion_id')
-    //         ->join('tags', 'tags.id', '=', 'discussion_tag.tag_id')
-    //         ->where('tags.slug', $slug);
+    //         return $this->builder;
     //     }
     // }
 

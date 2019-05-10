@@ -71,7 +71,7 @@ class WishlistController extends Controller
     public function store(Request $request)
     {   
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         $this->validate($request, [
             'release_id' => 'required'
@@ -138,7 +138,7 @@ class WishlistController extends Controller
     public function update(Request $request, $id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         $this->validate($request, [
             'release_id' => 'required'
@@ -166,7 +166,7 @@ class WishlistController extends Controller
     public function destroy($id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         $wishlistEntry = Wishlist::where([
             ['id', $id],

@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\User;
+use App\Input;
 use App\Filters\ForumFilters;
 use Illuminate\Support\Str;
 
 class DiscussionController extends Controller
 {
-
     /**
      * Create a new DiscussionController instance.
      *
@@ -27,30 +27,51 @@ class DiscussionController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  string  $feed
+     * @param  string  $tag
+     * @param  ForumFilters $filters
+     * @param  Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function index($tag = NULL, ForumFilters $filters, Request $request)
+    {
+        $subscribed = $request->input('subscribed');
+        $user = User::get();
+
+        if($subscribed==='true' && $user) {
+            //Retrive User Subscribed Discussions
+            return $this->getUserSubscriptions($tag, $filters);
+        } else {
+            //Retrive Discussions
+            return Discussion::with([
+                'user',
+                'tags',
+                'games'
+            ])->when($tag, function ($query, $tag) {
+                return $query->whereHas('tags', function ($query) use ($tag) {
+                        $query->where('slug', '=', $tag);
+                    });
+            })->filter($filters)->orderBy('created_at', 'desc')->paginate(15);
+
+        }
+    }
+
+    /**
+     * Display a listing of the subscribed resources.
+     *
      * @param  string  $tag
      * @param  ForumFilters $filters
      * @return \Illuminate\Http\Response
      */
-    public function index($tag = NULL, ForumFilters $filters)
-    {
-        //Retrive Discussions
-        return Discussion::with([
-            'user',
-            'tags',
-            'games'
-            // 'categories' => function ($q) {
-            //     $q->with('subcategories')->where('pivot_column', 'discussion_id');
-            // }
-        ])->when($tag, function ($query, $tag) {
-            return $query->whereHas('tags', function ($query) use ($tag) {
-                    $query->where('slug', '=', $tag);
-                });
-        })->filter($filters)->orderBy('created_at', 'desc')->paginate(15);
-
-        // $users = App\User::with(['posts' => function ($query) {
-        //     $query->where('title', 'like', '%first%');
-        // }])->get();
+    public function getUserSubscriptions($tag = NULL, ForumFilters $filters) {
+        return User::get()->subscriptions(Discussion::class)->with([
+                'user',
+                'tags',
+                'games'
+            ])->when($tag, function ($query, $tag) {
+                return $query->whereHas('tags', function ($query) use ($tag) {
+                        $query->where('slug', '=', $tag);
+                    });
+            })->filter($filters)->orderBy('created_at', 'desc')->paginate(15);
     }
 
     /**
@@ -72,7 +93,7 @@ class DiscussionController extends Controller
     public function store(Request $request)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized to Create Discussion. Please Login.'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized to Create Discussion. Please Login.'], 401); }
 
         //Validate Request
         $this->validate($request, [
@@ -91,11 +112,11 @@ class DiscussionController extends Controller
         ]);
 
         //Attach Tags
-        $mainTagIds = collect($request->selectedTags)->pluck(['id']);
+        $tagIds = collect($request->selectedTags)->pluck(['id']);
 
         if($request->selectedChildTags) {
             $childTagIds = collect($request->selectedChildTags)->pluck(['id']);
-            $tagIds = $mainTagIds->merge($childTagIds);
+            $tagIds = $tagIds->merge($childTagIds);
         }
 
         $discussion->tags()->sync($tagIds->all()); //sync: Any IDs that are not in the given array will be removed from the intermediate table
@@ -158,13 +179,13 @@ class DiscussionController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Forums\Discussion  $discussion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized to Edit Discussion'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized to Edit Discussion'], 401); }
 
         $this->validate($request, [
             'body' => 'required|string|min: 10',
@@ -187,14 +208,62 @@ class DiscussionController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Forums\Discussion  $discussion
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Discussion $discussion)
+    public function destroy(int $id)
     {
         $discussion = Discussion::find($id);
         $discussion->delete();
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * Subscribe to the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function toggleSubscribe($id)
+    {
+        $user = User::get();
+        if(!$user) { return response()->json(['error' => 'Unauthorized to Subscribe'], 401); }
+
+        $discussion = Discussion::find($id);
+        if(!$discussion) { return response()->json(['error' => 'Discussion not Found'], 404); }
+
+        $user->toggleSubscribe($discussion);
+        $status = $discussion->isSubscribedBy($user);
+
+        return response()->json($status, 200);
+    }
+
+    /**
+     * Like the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function toggleLike($id)
+    {
+        $user = User::get();
+        if(!$user) { return response()->json(['error' => 'Unauthorized to Like'], 401); }
+
+        $discussion = Discussion::find($id);
+        if(!$discussion) { return response()->json(['error' => 'Discussion not Found'], 404); }
+
+        $user->toggleLike($discussion);
+
+        $status = $discussion->isLikedBy($user);
+
+        if($status) {
+            $discussion->like_count += 1;
+        } else {
+            $discussion->like_count -= 1;
+        }
+        $discussion->save();
+
+        return response()->json($status, 200);
     }
 }

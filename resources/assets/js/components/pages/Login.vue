@@ -89,7 +89,11 @@ export default {
                     }).catch((error) => console.log(error));
                     
                     //Notify user of success
-                    flash('Welcome back!', 'success')
+                    this.$snackbar.open({
+                        message: 'Welcome back!', 
+                        type: 'is-primary',
+                        actionText: null
+                    })
 
                     //Redirect to Home Page
                     // this.$router.replace({ name: 'Home'})

@@ -85,7 +85,7 @@ class RecommendationController extends Controller
     public function store(Request $request)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized to Create Recommendation. Please Login.'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized to Create Recommendation. Please Login.'], 401); }
 
         $this->validate($request, [
             'game_id' => 'required',
@@ -169,7 +169,7 @@ class RecommendationController extends Controller
     public function update(Request $request, $id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized to Edit Recommendation'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized to Edit Recommendation'], 401); }
 
         $this->validate($request, [
             'content' => 'required|min: 200'
@@ -197,7 +197,7 @@ class RecommendationController extends Controller
     public function destroy($id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         $recommendation = Recommendation::where([
             ['id', $id],

@@ -78,7 +78,7 @@ class ReviewController extends Controller
     public function store(Request $request)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized to Create Review. Please Login.'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized to Create Review. Please Login.'], 401); }
 
         $this->validate($request, [
             'game_id' => 'required',
@@ -158,7 +158,7 @@ class ReviewController extends Controller
     public function update(Request $request, $id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized to Edit Review'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized to Edit Review'], 401); }
 
         $this->validate($request, [
             'summary' => 'required|min: 60|max: 255',
@@ -190,7 +190,7 @@ class ReviewController extends Controller
     public function destroy($id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         $review = Review::where([
             ['id', $id],

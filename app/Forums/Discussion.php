@@ -3,11 +3,17 @@
 namespace App\Forums;
 
 use Illuminate\Database\Eloquent\Model;
+use \App\Filters\Filterable;
+use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
+use Overtrue\LaravelFollow\Traits\CanBeLiked;
+use App\User;
 
 class Discussion extends Model
 {
-    use \App\Filters\Filterable;
-    
+    use Filterable, CanBeSubscribed, CanBeLiked;
+
+    protected $appends = ['is_subscribed', 'has_liked'];
+
     /**
      * Hide the pivot table information, and the timestamps
      */
@@ -54,4 +60,36 @@ class Discussion extends Model
     {
       return $this->belongsTo('App\User', 'user_id');
     }
+
+    /**
+     * Get User Subscription Status
+     *
+     * @return boolean
+     */
+    public function getIsSubscribedAttribute()
+    {
+        $user = User::get();
+        return $this->isSubscribedBy($user);
+    }
+
+    /**
+     * Get User Like Status
+     *
+     * @return boolean
+     */
+    public function getHasLikedAttribute()
+    {
+        $user = User::get();
+        return $this->isLikedBy($user);
+    }
+
+    // /**
+    //  * Get Like Count
+    //  *
+    //  * @return boolean
+    //  */
+    // public function getLikeCountAttribute()
+    // {
+    //     return $this->likers->count();
+    // }
 }

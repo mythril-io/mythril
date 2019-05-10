@@ -109,7 +109,7 @@ class LibraryController extends Controller
     public function store(Request $request)
     {
         $userID = User::getID();
-        if(!$userID === $request->user_id) { return response()->json(['error' => 'Unauthorized to Store Library Entry'], 403); }
+        if(!$userID === $request->user_id) { return response()->json(['error' => 'Unauthorized to Store Library Entry'], 401); }
 
         $this->validate($request, [
             'release_id' => 'required|numeric|min:1',
@@ -203,7 +203,7 @@ class LibraryController extends Controller
     public function update(Request $request, $id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         $this->validate($request, [
             'play_status_id' => 'required|numeric|min:1',
@@ -245,7 +245,7 @@ class LibraryController extends Controller
     public function destroy($id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         $libraryEntry = Library::where([
             ['id', $id],

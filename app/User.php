@@ -7,12 +7,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
-use Cog\Laravel\Love\Liker\Models\Traits\Liker;
-use Cog\Contracts\Love\Liker\Models\Liker as LikerContract;
+use Overtrue\LaravelFollow\Traits\CanSubscribe;
+use Overtrue\LaravelFollow\Traits\CanLike;
 
-class User extends Authenticatable implements JWTSubject, LikerContract
+class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, HasRoles, Liker;
+    use Notifiable, HasRoles, CanSubscribe, CanLike;
 
     protected $guard_name = 'api';
 
@@ -128,5 +128,15 @@ class User extends Authenticatable implements JWTSubject, LikerContract
     public static function getID() 
     {
         return isset(Auth::guard()->user()->id) ? Auth::guard()->user()->id : null;
+    }
+
+    /**
+     * Return User if authenticated
+     * 
+     * @return mixed
+     */
+    public static function get() 
+    {
+        return Auth::guard()->user();
     }
 }

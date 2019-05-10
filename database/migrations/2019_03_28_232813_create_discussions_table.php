@@ -27,7 +27,9 @@ class CreateDiscussionsTable extends Migration
             $table->integer('user_count')->unsigned()->default(0)->index();
             $table->integer('edit_count')->unsigned()->default(0);
 
-            $table->integer('pinned')->unsigned()->default(0);
+            $table->boolean('is_pinned')->default(false);
+            $table->boolean('is_locked')->default(false);
+            $table->boolean('is_subscribed')->default(false);
 
                 // $table->integer('post_number_index')->unsigned()->default(0);
             $table->integer('first_user_id')->unsigned()->nullable();

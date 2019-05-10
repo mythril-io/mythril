@@ -27,7 +27,11 @@ export default {
       axios.post('/api/auth/logout')
         .then((response) => { 
           Auth.removeSession();
-          flash('See you later!', 'success')
+          this.$snackbar.open({
+              message: 'See you later!', 
+              type: 'is-primary',
+              actionText: null
+          })
           //this.$router.go()
         })
         .catch((error) => flash('Could not logout', 'error'));

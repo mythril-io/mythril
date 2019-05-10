@@ -71,7 +71,7 @@ class FavouriteController extends Controller
     public function store(Request $request)
     {   
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         //Check if User already has 10 favourites
         $userFavourites = Favourite::where([
@@ -144,7 +144,7 @@ class FavouriteController extends Controller
     public function update(Request $request, $id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         $this->validate($request, [
             'release_id' => 'required'
@@ -172,7 +172,7 @@ class FavouriteController extends Controller
     public function destroy($id)
     {
         $userID = User::getID();
-        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+        if(!$userID) { return response()->json(['error' => 'Unauthorized, Please Login'], 401); }
 
         $favourite = Favourite::where([
             ['id', $id],

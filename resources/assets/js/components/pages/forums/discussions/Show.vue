@@ -9,13 +9,13 @@
             </h1>
             <h2 class="subtitle has-text-centered">
                 <div class="field is-grouped is-grouped-multiline centered-tags">
-                    <div class="control" v-for="tag in discussion.tags">
+                    <div class="control" v-for="tag in discussion.tags" :key="tag.id">
                         <div class="tags">
                             <router-link tag="span" :to="{name: 'Forums', params: { tag: tag.slug }}" :class="'tag is-dark underline-link '">{{ tag.name }}</router-link>
                         </div>
                     </div>
 
-                    <div class="control" v-for="game in discussion.games">
+                    <div class="control" v-for="game in discussion.games" :key="game.id">
                         <div class="tags has-addons">
                             <span class="tag">
                                 <b-icon
@@ -54,7 +54,7 @@
                 <div class="column">
                     <div class="content">
                         <div style="margin-bottom: 7px;"><strong>{{ discussion.user.username }}</strong> <small>{{ discussion.created_at | ago($store.user)  }}</small></div>
-                        <p>{{ discussion.body }}</p>
+                        <p v-html="compiledMarkdown"></p>
                     </div>
 
                     <!-- Main container -->
@@ -89,17 +89,28 @@
 
                         <!-- Right side -->
                         <div class="level-right">
-                        <p class="level-item"><a class="button">
-                            <span class="icon is-small">
-                                <i class="fas fa-reply"></i>
-                            </span>
-                        </a></p>
-                        <p class="level-item"><a class="button is-danger is-outlined">
-                            <span class="icon is-small">
-                                <i class="fas fa-heart"></i>
-                            </span>
-                        </a></p>
-                        <p class="level-item"><a class="button is-primary">Subscribe</a></p>
+                        <!-- <p class="level-item">
+                            <a class="button" @click="quoteReply(discussion)">
+                                <span class="icon is-small">
+                                    <i class="fas fa-reply"></i>
+                                </span>
+                            </a>
+                        </p> -->
+                        <p class="level-item">
+                            <a class="button is-danger"
+                                :class="{ 'is-outlined' : !discussion.has_liked, 'is-loading' : liking }" 
+                                @click="toggleLike()">
+                                <span class="icon is-small">
+                                    <i class="fas fa-heart"></i>
+                                </span>
+                            </a>
+                        </p>
+                        <p class="level-item">
+                            <a class="button is-primary" 
+                               :class="{ 'is-outlined' : !discussion.is_subscribed, 'is-loading' : subscribing }" 
+                               @click="subscribe()">{{ discussion.is_subscribed ? 'Unsubscribe' : 'Subscribe'}}
+                            </a>
+                        </p>
                         </div>
                     </nav>
                 </div>
@@ -107,12 +118,31 @@
         </div>
     </section>
 
+    <!-- Posts & Sidebar-->
+    <section class="section" v-if="posts.data.length > 0">
+        <div class="container">
+            <div class="columns is-variable is-5">
 
+                <!-- Posts -->
+                <div class="column" id="posts">
+                    <show-posts :posts="posts.data"></show-posts>
+                </div>
+
+                <!-- Sidebar-->
+                <div class="column is-narrow" style="width: 200px;">
+                    <affix class="sidebar-menu" relative-element-selector="#posts" style="width: 200px; margin-top: 10px;">
+                        <sidebar :discussion="discussion" :posts="posts"></sidebar>
+                    </affix>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- New Post -->
     <section class="section">
         <div class="container">
-            <div class="reply-placeholder  has-text-centered has-background-white	">
-                <p class="heading is-size-7">Post a Reply</p>
-            </div>
+            <create-post :discussion="discussion"></create-post>
         </div>
     </section>
 
@@ -120,11 +150,105 @@
 </template>
 
 <script>
+import { ModalProgrammatic } from 'buefy/dist/components/modal'
+import AuthenticationModal from "../../../utilities/AuthenticationModal.vue";
+import CreatePost from '../posts/Create.vue'
+import ShowPosts from '../posts/Show.vue'
+import Sidebar from './Sidebar.vue'
+import { Affix } from 'vue-affix';
+
+var md = require('markdown-it')();
+
 export default {
+  components: {CreatePost, ShowPosts, Sidebar, Affix},
     data() {
         return {
-            discussion: null
+            discussion: null,
+            posts: null,
+            subscribing: false,
+            liking: false,
+
         };
+    },
+	computed: {
+		compiledMarkdown: function () {
+			return md.render(this.discussion.body);
+		}
+	},
+    methods: {
+        quoteReply(discussion) {
+            if (!this.$store.state.user) {
+                ModalProgrammatic.open({
+                parent: this,
+                component: AuthenticationModal,
+                hasModalCard: true
+                })
+            } else {
+                //Pass the discussion (discussion id and username) to the create post component
+                //Use @plugin to link bback to the original post
+            }
+        },
+        toggleLike() {
+            if (!this.$store.state.user) {
+                ModalProgrammatic.open({
+                parent: this,
+                component: AuthenticationModal,
+                hasModalCard: true
+                })
+            } else {
+                this.liking = true;
+                axios.post('/api/forums/discussions/like/' + this.discussion.id )
+                .catch((error) => { 
+                    if(error.response.status === 403) { flash(error.response.data.error, 'error') }
+                    else{ 
+                        this.$snackbar.open({
+                            message: this.discussion.has_liked ? 'Unable to Remove Like' : 'Unable to Like', 
+                            type: 'is-danger',
+                        })
+                    }
+                    this.liking = false;
+                })
+                .then((response) => {
+                    this.discussion.has_liked = response.data;
+                    response.data ? this.discussion.like_count++ : this.discussion.like_count--;
+                    this.liking = false;
+                    this.$snackbar.open({
+                        message: response.data ? 'Liked Discussion' : 'Removed Like', 
+                        type: 'is-primary',
+                    })
+                });
+            }
+        },
+        subscribe() {
+            if (!this.$store.state.user) {
+                ModalProgrammatic.open({
+                parent: this,
+                component: AuthenticationModal,
+                hasModalCard: true
+                })
+            } else {
+                this.subscribing = true;
+                axios.post('/api/forums/discussions/subscribe/' + this.discussion.id )
+                .catch((error) => { 
+                    if(error.response.status === 403) { flash(error.response.data.error, 'error') }
+                    else{ 
+                        this.$snackbar.open({
+                            message: this.discussion.is_subscribed ? 'Unable to Unsubscribe' : 'Unable to Subscribe', 
+                            type: 'is-danger',
+                        })
+                    }
+                    this.subscribing = false;
+                })
+                .then((response) => {
+                    this.discussion.is_subscribed = response.data;
+                    this.subscribing = false;
+                    this.$snackbar.open({
+                        message: (response.data ? 'Subscribed' : 'Unsubscribed') + ' to Discussion', 
+                        type: 'is-primary',
+                    })
+                });
+            }
+        }
     },
     created() {
 		axios.get('/api/forums/discussions/' + this.$route.params.id )
@@ -135,22 +259,13 @@ export default {
                 this.$router.push({params: {slug: response.data.discussion.slug}}) 
             }
 		})
+        .catch((error) => this.$router.replace({ name: 'Forums'}) );
+        
+		axios.get('/api/forums/posts/' + this.$route.params.id )
+		.then((response) => { 
+            this.posts = response.data;
+		})
 		.catch((error) => this.$router.replace({ name: 'Forums'}) );
     }
 }
 </script>
-
-<style scoped>
-.reply-placeholder {
-    border: 2px dashed #fff;
-    width: 55%;
-    margin-right: auto;
-    margin-left: auto;
-    padding: 40px;
-    border-radius: 4px;
-}
-.reply-placeholder:hover {
-    border: 2px dashed #EEEEEE;
-    cursor: pointer;
-}
-</style>

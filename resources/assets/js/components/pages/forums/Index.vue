@@ -55,7 +55,7 @@
               <ul>
                 <li :class="{ 'is-active': sort=='recent' }">
                     <a @click="setSort('recent')">
-                        <span class="icon is-small"><i class="fa-bell" :class="[ sort=='recent' ? 'fas' : 'far']" aria-hidden="true"></i></span>
+                        <span class="icon is-small"><i class="fa-clock" :class="[ sort=='recent' ? 'fas' : 'far']" aria-hidden="true"></i></span>
                         <span>RECENT</span>
                     </a>
                 </li>
@@ -111,7 +111,17 @@
 
               <!-- Right side -->
               <div class="level-right">
-                <p class="level-item"><a>Subscribed</a></p>
+                <p class="level-item">
+                  <a class="button is-primary" 
+                     :class="{ 'is-outlined' : !subscribed, 'is-loading' : isLoadingDiscussions }"
+                     @click="toggleSubscribed()">
+                    <span class="icon">
+                      <i class="fas " :class="[ subscribed ? 'fa-envelope-open-text' : 'fa-envelope']"></i>
+                    </span>
+                    <span>Subscribed</span>
+                  </a>
+                  <!-- <a @click="toggleSubsciptions()">Subscribed</a> -->
+                </p>
                 <p class="level-item">
                   <a class="button is-light" title="Mark All as Read">
                     <b-icon
@@ -161,6 +171,8 @@
 </div>
 </template>
 <script>
+import { ModalProgrammatic } from 'buefy/dist/components/modal'
+import AuthenticationModal from "../../utilities/AuthenticationModal.vue";
 import ForumHeader from './common/ForumHeader.vue'
 import DiscussionItem from './discussions/DiscussionItem.vue'
 
@@ -184,7 +196,8 @@ export default {
 
       //Filters
       sort: 'recent',
-      search: ''
+      search: '',
+      subscribed: false,
     };
   },
   computed: {
@@ -205,6 +218,8 @@ export default {
   },
   methods: {
     getDiscussions(page = 1) {
+      this.isLoadingDiscussions = true;
+
       var query = "?page=" + page;
       if (location.search) {
         query = location.search + "&page=" + page;
@@ -240,16 +255,32 @@ export default {
       if (this.$route.query.search) {
         this.search = this.$route.query.search;
       }
+      if (this.$route.query.subscribed) {
+        this.subscribed = this.$route.query.subscribed;
+      }
     },
     setSort(sort) {
       this.sort = sort;
       this.applyFilters();
     },
+    toggleSubscribed() {
+      if (!this.$store.state.user) {
+          ModalProgrammatic.open({
+          parent: this,
+          component: AuthenticationModal,
+          hasModalCard: true
+          })
+      } else {
+        this.subscribed = !this.subscribed;
+        this.applyFilters();
+      }
+    },
     applyFilters() {
       this.$router.replace({
         query: {
           sort: this.sort,
-          search: this.search
+          search: this.search,
+          subscribed: this.subscribed
         }
       });
     }

@@ -86,7 +86,14 @@
 		</div>
 		<div class="columns is-gapless is-paddingless" id="editor">
 			<div class="column">
-				<textarea :value="value" @input="update" ref="input" class="autoExpand" rows="10" data-min-rows="10"></textarea>
+				<textarea 
+						:value="value" 
+						@input="update" 
+						ref="input" 
+						rows="10" 
+						data-min-rows="10" 
+						v-bind:class="{ 'lock-y-scroll' : lockHeight, 'autoExpand' : !lockHeight, 'monitor-height' : monitorHeight }"
+						></textarea>
 			</div>
 			<div class="column" v-if="preview">
 				<div v-html="compiledMarkdown" class="content" id="parsed"></div>
@@ -101,10 +108,10 @@ var md = require('markdown-it')();
 window._ = require('lodash');
 
 export default {
-  props: ['value'],
+  props: ['value', 'lockHeight', 'monitorHeight'],
   data() {
   	return {
-  		preview: true,
+			preview: true,
 
   		styles: {
   			'bold': { prefix: '**', subfix: '**' },
@@ -189,5 +196,12 @@ textarea {
 #parsed pre {
 	background-color: #363636;
 	color: #FFFFFF;
+}
+
+.lock-y-scroll {
+	overflow-y: scroll;
+}
+.monitor-height {
+	height: 75vh;
 }
 </style>

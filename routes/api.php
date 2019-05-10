@@ -67,6 +67,7 @@ Route::group([
     //Forums
     Route::get('forums/{tag?}', 'Forums\DiscussionController@index' );
     Route::get('forums/discussions/{id}', 'Forums\DiscussionController@show');
+    Route::get('forums/posts/{id}', 'Forums\PostController@index');
     Route::get('forums/tags/all', 'Forums\TagController@index' );
 
     //Misc
@@ -142,7 +143,10 @@ Route::group([
 
     //Forums
     Route::post('forums/discussions', 'Forums\DiscussionController@store');
+    Route::post('forums/discussions/subscribe/{id}', 'Forums\DiscussionController@toggleSubscribe');
+    Route::post('forums/discussions/like/{id}', 'Forums\DiscussionController@toggleLike');
     Route::patch('forums/discussions/{id}', 'Forums\DiscussionController@update');
+    Route::post('forums/posts', 'Forums\PostController@store');
 });
 
 /*
