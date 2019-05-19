@@ -1,7 +1,7 @@
 <template>
 	
 	<div class="columns is-mobile is-multiline is-centered">
-		<div class="column is-4-mobile is-2-tablet is-1-desktop" v-for="user in users">
+		<div class="column is-4-mobile is-2-tablet is-1-desktop" v-for="user in users" :key="user.id">
             <div class="card imageFade">
             	<div v-if="type=='followers'">
 	                <router-link :to="{name: 'User', params: { id: user.follower_id }}" >

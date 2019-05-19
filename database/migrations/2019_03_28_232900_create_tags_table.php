@@ -46,18 +46,16 @@ class CreateTagsTable extends Migration
         DB::table('tags')->insert([
             ['name' => 'General', 'slug' => 'general', 'colour' => 'is-light', 'order' => 1],
             ['name' => 'Games', 'slug' => 'games', 'colour' => 'is-primary', 'order' => 2],
-            ['name' => 'Hardware', 'slug' => 'hardware', 'colour' => 'has-background-grey', 'order' => 3],
-            ['name' => 'Anime', 'slug' => 'anime', 'colour' => 'is-danger', 'order' => 4],
-            ['name' => 'Music', 'slug' => 'music', 'colour' => 'is-warning', 'order' => 5],
-            ['name' => 'Movies', 'slug' => 'movies', 'colour' => 'is-success', 'order' => 6],
-            ['name' => 'Site Updates', 'slug' => 'site-updates', 'colour' => 'is-info', 'order' => 7],
-            ['name' => 'Site Feedback', 'slug' => 'site-feedback', 'colour' => 'has-background-grey-light', 'order' => 8],
-            ['name' => 'Bugs', 'slug' => 'bugs', 'colour' => 'has-background-grey-light', 'order' => 9]
+            ['name' => 'Release Discussion', 'slug' => 'release-discussion', 'colour' => 'is-dark', 'order' => 3],
+            ['name' => 'Hardware', 'slug' => 'hardware', 'colour' => 'has-background-grey', 'order' => 4],
+            ['name' => 'Anime', 'slug' => 'anime', 'colour' => 'is-danger', 'order' => 5],
+            ['name' => 'Music', 'slug' => 'music', 'colour' => 'is-warning', 'order' => 6],
+            ['name' => 'Movies', 'slug' => 'movies', 'colour' => 'is-success', 'order' => 7],
+            ['name' => 'Site Updates', 'slug' => 'site-updates', 'colour' => 'is-info', 'order' => 8],
+            ['name' => 'Site Feedback', 'slug' => 'site-feedback', 'colour' => 'has-background-grey-light', 'order' => 9],
+            ['name' => 'Bugs', 'slug' => 'bugs', 'colour' => 'has-background-grey-light', 'order' => 10]
         ]);
 
-        DB::table('tags')->insert([
-            ['name' => 'Release Discussion', 'slug' => 'release-discussion', 'colour' => 'is-dark', 'parent_id' => 2, 'order' => 1]
-        ]);
     }
 
     /**

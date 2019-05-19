@@ -10,6 +10,7 @@ use App\User;
 use App\Input;
 use App\Filters\ForumFilters;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class DiscussionController extends Controller
 {
@@ -45,12 +46,13 @@ class DiscussionController extends Controller
             return Discussion::with([
                 'user',
                 'tags',
-                'games'
+                'games',
+                'lastPost' => function($q) {$q->with(['user']);}
             ])->when($tag, function ($query, $tag) {
                 return $query->whereHas('tags', function ($query) use ($tag) {
                         $query->where('slug', '=', $tag);
                     });
-            })->filter($filters)->orderBy('created_at', 'desc')->paginate(15);
+            })->filter($filters)->orderBy('last_posted_at', 'desc')->paginate(15);
 
         }
     }
@@ -66,7 +68,8 @@ class DiscussionController extends Controller
         return User::get()->subscriptions(Discussion::class)->with([
                 'user',
                 'tags',
-                'games'
+                'games',
+                'lastUser'
             ])->when($tag, function ($query, $tag) {
                 return $query->whereHas('tags', function ($query) use ($tag) {
                         $query->where('slug', '=', $tag);
@@ -108,7 +111,9 @@ class DiscussionController extends Controller
             'title' => $request->title,
             'body' => $request->body,
             'user_id' => $userID,
-            'slug' => Str::slug($request->title)
+            'slug' => Str::slug($request->title),
+            'last_post_user_id' => $userID,
+            'last_posted_at' => Carbon::now()->toDateTimeString()
         ]);
 
         //Attach Tags
@@ -198,9 +203,9 @@ class DiscussionController extends Controller
 
         if(!$existingDiscussion) { return response()->json(['error' => "Discussion Doesn't Exist for the Authenticated User"], 404); }
             $existingDiscussion->body = $request->body;
+            $existingDiscussion->edit_count++;
+            $existingDiscussion->edited_at = Carbon::now()->toDateTimeString();
         $existingDiscussion->save();
-
-        DB::table('discussions')->where('id', $id)->increment('edit_count');
 
         return response()->json(null, 204);
     }
@@ -258,9 +263,9 @@ class DiscussionController extends Controller
         $status = $discussion->isLikedBy($user);
 
         if($status) {
-            $discussion->like_count += 1;
+            $discussion->increment('like_count', 1);
         } else {
-            $discussion->like_count -= 1;
+            $discussion->decrement('like_count', 1);
         }
         $discussion->save();
 

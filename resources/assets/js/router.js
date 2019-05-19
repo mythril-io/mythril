@@ -111,9 +111,11 @@ const router = new VueRouter({
           component: require('./components/pages/forums/discussions/create.vue'),
           meta: { title: 'Create a Thread', requiresAuth: true }
         }, { 
-          path: '/forums/discussions/:id/:slug', 
+          path: '/forums/discussions/:id/:slug/:postNum?', 
           name: 'Discussion', 
-          component: require('./components/pages/forums/discussions/show.vue'),
+          components: {
+            reload: require('./components/pages/forums/discussions/show.vue')
+          },
           meta: { title: 'Discussion' }
         }, { 
           path: '/users', 

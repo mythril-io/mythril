@@ -71,8 +71,8 @@
 			      <i class="fas fa-list-ol"></i>
 			    </span>
 			  </a>
-			  <span class="divider">|</span>
-			  <a class="button is-light is-small" @click="preview=!preview">
+			  <span v-if="!disablePreview" class="divider">|</span>
+			  <a v-if="!disablePreview" class="button is-light is-small" @click="preview=!preview">
             <b-icon
 								v-if="preview"
                 icon="eye"
@@ -95,7 +95,7 @@
 						v-bind:class="{ 'lock-y-scroll' : lockHeight, 'autoExpand' : !lockHeight, 'monitor-height' : monitorHeight }"
 						></textarea>
 			</div>
-			<div class="column" v-if="preview">
+			<div class="column" v-if="preview && !disablePreview">
 				<div v-html="compiledMarkdown" class="content" id="parsed"></div>
 			</div>
 		</div>
@@ -108,10 +108,19 @@ var md = require('markdown-it')();
 window._ = require('lodash');
 
 export default {
-  props: ['value', 'lockHeight', 'monitorHeight'],
+	props: {
+		value: {},
+		lockHeight: {},
+		monitorHeight: {},
+		preview: {
+			default: true
+		},
+		disablePreview: {
+			default: false
+		}
+	},
   data() {
   	return {
-			preview: true,
 
   		styles: {
   			'bold': { prefix: '**', subfix: '**' },
@@ -188,8 +197,8 @@ textarea {
   border-right: 1px solid #ccc;
   resize: none;
   outline: none;
-  font-size: 14px;
-  font-family: 'Monaco', courier, monospace;
+  font-size: 16px;
+  /* font-family: 'Monaco', courier, monospace; */
 	border-radius: 0 0 0 6px;
 }
 

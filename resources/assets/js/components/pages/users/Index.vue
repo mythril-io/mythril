@@ -31,6 +31,16 @@
 
           <user-profile-component :users="users"></user-profile-component>
 
+          <!-- <div class="columns columns is-mobile is-multiline is-centered">
+            <div v-for="user in users" class="column is-4-mobile is-2-tablet is-1-desktop" :key="user.id">
+              <user-avatar 
+                :user="user"
+                avatarSize="is-96x96"
+              >
+              </user-avatar>
+            </div>
+          </div> -->
+
           <b-pagination
               :total="total"
               :current.sync="current"
@@ -46,11 +56,12 @@
 
 <script>
 import UserProfileComponent from "../components/UserProfileComponent.vue";
+import UserAvatar from "../components/UserAvatar.vue";
 var moment = require("moment-timezone");
 
 export default {
   props: ["user"],
-  components: { UserProfileComponent },
+  components: { UserProfileComponent, UserAvatar },
   data() {
     return {
       users: [],

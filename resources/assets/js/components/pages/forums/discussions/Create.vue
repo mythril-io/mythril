@@ -47,7 +47,7 @@
             </div>
             
 
-            <transition name="slide-down">
+            <!-- <transition name="slide-down">
             <div class="field" v-if="selectedTags.length == 1 && tagsHasGame">
                 <b-field label="Child Tag (optional)">
                     <b-taginput
@@ -64,7 +64,7 @@
                     </b-taginput>
                 </b-field>
             </div>
-            </transition>
+            </transition> -->
 
             <transition name="slide-down">
             <div class="field" v-if="selectedTags && selectedTags.length && !stopTagSelection">

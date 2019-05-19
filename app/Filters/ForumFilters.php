@@ -16,7 +16,7 @@ class ForumFilters extends QueryFilters
     {
         if($order == 'recent') 
         {
-            return $this->builder->orderBy('created_at', 'desc');
+            return $this->builder->orderBy('last_posted_at', 'desc');
         }
         else if($order == 'popular') 
         {

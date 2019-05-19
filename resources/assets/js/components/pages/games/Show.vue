@@ -92,21 +92,11 @@
 
                         <div class="columns is-multiline is-mobile" v-if="this.game.libraries.length > 0">
                             <div class="column is-4" v-for="library in this.game.libraries">
-                                <router-link :to="{name: 'User', params: { id: library.user.id }}">
-                                    <div class="card image is-square username-hover profile-icon" v-if="library.user.avatar">
-                                        <img v-lazy="$store.state.cdnURL + 'users/avatars/' + library.user.avatar" style="object-fit: cover;">
-                                        <div class="username-overlay" 
-                                        :title="library.user.username + ': ' + library.play_status.name + ' (' + library.release.platform.acronym + ')'"
-                                        ><span class="username-text">{{ library.user.username }}</span></div>
-                                    </div>
-
-                                    <div class="card image is-square username-hover profile-icon" v-else>
-                                        <img v-lazy="$store.state.cdnURL + 'users/avatars/default.jpg'" style="object-fit: cover;">
-                                        <div class="username-overlay" 
-                                        :title="library.user.username + ': ' + library.play_status.name + ' (' + library.release.platform.acronym + ')'"
-                                        ><span class="username-text">{{ library.user.username }}</span></div>
-                                    </div>
-                                </router-link>
+                              <user-avatar 
+                                :user="library.user"
+                                avatarSize="is-64x64"
+                                :tooltip="library.user.username + ': ' + library.play_status.name + ' (' + library.release.platform.acronym + ')'"
+                              />
                             </div>
                         </div>
 
@@ -128,11 +118,13 @@ import AuthenticationModal from "../../utilities/AuthenticationModal.vue";
 import ReleaseModal from "./modals/Release.vue";
 import LibraryModal from "./modals/Library.vue";
 import NavLibrary from "./components/NavLibrary.vue";
+import UserAvatar from '../components/UserAvatar.vue';
 
 export default {
   props: ["user"],
   components: {
-    "nav-library": NavLibrary
+    "nav-library": NavLibrary,
+    UserAvatar
   },
   metaInfo() {
     return {

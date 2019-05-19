@@ -29,6 +29,9 @@ import Meta       from 'vue-meta'
 import VeeValidate from 'vee-validate';
 import infiniteScroll from 'vue-infinite-scroll'
 import Buefy from 'buefy'
+import VueScrollTo from 'vue-scrollto'
+import checkView from 'vue-check-view'
+var SocialSharing = require('vue-social-sharing');
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
@@ -38,6 +41,9 @@ Vue.use(Buefy, {
   // defaultIconPack: 'fas',
   defaultIconPack: 'mdi',
 })
+Vue.use(VueScrollTo)
+Vue.use(checkView)
+Vue.use(SocialSharing);
 
 const config = {
   errorBagName: 'errors', // change if property conflicts
@@ -133,6 +139,12 @@ window.axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.
   Vue.filter('numberFormat', function (number) {
     return numeral(number).format('0,0');
   })
+
+  //Number Formating
+  Vue.filter('numberFormatK', function (number) {
+    return numeral(number).format('0a');
+  })
+
 
   //Percentage Formating
   Vue.filter('percentageFormat', function (number) {

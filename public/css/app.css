@@ -1498,6 +1498,58 @@ a.has-text-danger:focus {
   background-color: #ff3860 !important;
 }
 
+.has-text-facebook {
+  color: #3C5A99 !important;
+}
+
+a.has-text-facebook:hover,
+a.has-text-facebook:focus {
+  color: #2e4474 !important;
+}
+
+.has-background-facebook {
+  background-color: #3C5A99 !important;
+}
+
+.has-text-reddit {
+  color: #FF4500 !important;
+}
+
+a.has-text-reddit:hover,
+a.has-text-reddit:focus {
+  color: #cc3700 !important;
+}
+
+.has-background-reddit {
+  background-color: #FF4500 !important;
+}
+
+.has-text-whatsapp {
+  color: #4AC959 !important;
+}
+
+a.has-text-whatsapp:hover,
+a.has-text-whatsapp:focus {
+  color: #33ad42 !important;
+}
+
+.has-background-whatsapp {
+  background-color: #4AC959 !important;
+}
+
+.has-text-twitter {
+  color: #1DA1F2 !important;
+}
+
+a.has-text-twitter:hover,
+a.has-text-twitter:focus {
+  color: #0c85d0 !important;
+}
+
+.has-background-twitter {
+  background-color: #1DA1F2 !important;
+}
+
 .has-text-black-bis {
   color: #121212 !important;
 }
@@ -3179,6 +3231,442 @@ fieldset[disabled] .button.is-danger.is-inverted.is-outlined {
   color: #fff;
 }
 
+.button.is-facebook {
+  background-color: #3C5A99;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-facebook:hover,
+.button.is-facebook.is-hovered {
+  background-color: #385590;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-facebook:focus,
+.button.is-facebook.is-focused {
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-facebook:focus:not(:active),
+.button.is-facebook.is-focused:not(:active) {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(60, 90, 153, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(60, 90, 153, 0.25);
+}
+
+.button.is-facebook:active,
+.button.is-facebook.is-active {
+  background-color: #354f87;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-facebook[disabled],
+fieldset[disabled] .button.is-facebook {
+  background-color: #3C5A99;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.button.is-facebook.is-inverted {
+  background-color: #fff;
+  color: #3C5A99;
+}
+
+.button.is-facebook.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+.button.is-facebook.is-inverted[disabled],
+fieldset[disabled] .button.is-facebook.is-inverted {
+  background-color: #fff;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #3C5A99;
+}
+
+.button.is-facebook.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+.button.is-facebook.is-outlined {
+  background-color: transparent;
+  border-color: #3C5A99;
+  color: #3C5A99;
+}
+
+.button.is-facebook.is-outlined:hover,
+.button.is-facebook.is-outlined:focus {
+  background-color: #3C5A99;
+  border-color: #3C5A99;
+  color: #fff;
+}
+
+.button.is-facebook.is-outlined.is-loading::after {
+  border-color: transparent transparent #3C5A99 #3C5A99 !important;
+}
+
+.button.is-facebook.is-outlined[disabled],
+fieldset[disabled] .button.is-facebook.is-outlined {
+  background-color: transparent;
+  border-color: #3C5A99;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #3C5A99;
+}
+
+.button.is-facebook.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+.button.is-facebook.is-inverted.is-outlined:hover,
+.button.is-facebook.is-inverted.is-outlined:focus {
+  background-color: #fff;
+  color: #3C5A99;
+}
+
+.button.is-facebook.is-inverted.is-outlined[disabled],
+fieldset[disabled] .button.is-facebook.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #fff;
+}
+
+.button.is-reddit {
+  background-color: #FF4500;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-reddit:hover,
+.button.is-reddit.is-hovered {
+  background-color: #f24200;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-reddit:focus,
+.button.is-reddit.is-focused {
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-reddit:focus:not(:active),
+.button.is-reddit.is-focused:not(:active) {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(255, 69, 0, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(255, 69, 0, 0.25);
+}
+
+.button.is-reddit:active,
+.button.is-reddit.is-active {
+  background-color: #e63e00;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-reddit[disabled],
+fieldset[disabled] .button.is-reddit {
+  background-color: #FF4500;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.button.is-reddit.is-inverted {
+  background-color: #fff;
+  color: #FF4500;
+}
+
+.button.is-reddit.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+.button.is-reddit.is-inverted[disabled],
+fieldset[disabled] .button.is-reddit.is-inverted {
+  background-color: #fff;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #FF4500;
+}
+
+.button.is-reddit.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+.button.is-reddit.is-outlined {
+  background-color: transparent;
+  border-color: #FF4500;
+  color: #FF4500;
+}
+
+.button.is-reddit.is-outlined:hover,
+.button.is-reddit.is-outlined:focus {
+  background-color: #FF4500;
+  border-color: #FF4500;
+  color: #fff;
+}
+
+.button.is-reddit.is-outlined.is-loading::after {
+  border-color: transparent transparent #FF4500 #FF4500 !important;
+}
+
+.button.is-reddit.is-outlined[disabled],
+fieldset[disabled] .button.is-reddit.is-outlined {
+  background-color: transparent;
+  border-color: #FF4500;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #FF4500;
+}
+
+.button.is-reddit.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+.button.is-reddit.is-inverted.is-outlined:hover,
+.button.is-reddit.is-inverted.is-outlined:focus {
+  background-color: #fff;
+  color: #FF4500;
+}
+
+.button.is-reddit.is-inverted.is-outlined[disabled],
+fieldset[disabled] .button.is-reddit.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #fff;
+}
+
+.button.is-whatsapp {
+  background-color: #4AC959;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-whatsapp:hover,
+.button.is-whatsapp.is-hovered {
+  background-color: #40c650;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-whatsapp:focus,
+.button.is-whatsapp.is-focused {
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-whatsapp:focus:not(:active),
+.button.is-whatsapp.is-focused:not(:active) {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(74, 201, 89, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(74, 201, 89, 0.25);
+}
+
+.button.is-whatsapp:active,
+.button.is-whatsapp.is-active {
+  background-color: #39c049;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-whatsapp[disabled],
+fieldset[disabled] .button.is-whatsapp {
+  background-color: #4AC959;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.button.is-whatsapp.is-inverted {
+  background-color: #fff;
+  color: #4AC959;
+}
+
+.button.is-whatsapp.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+.button.is-whatsapp.is-inverted[disabled],
+fieldset[disabled] .button.is-whatsapp.is-inverted {
+  background-color: #fff;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #4AC959;
+}
+
+.button.is-whatsapp.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+.button.is-whatsapp.is-outlined {
+  background-color: transparent;
+  border-color: #4AC959;
+  color: #4AC959;
+}
+
+.button.is-whatsapp.is-outlined:hover,
+.button.is-whatsapp.is-outlined:focus {
+  background-color: #4AC959;
+  border-color: #4AC959;
+  color: #fff;
+}
+
+.button.is-whatsapp.is-outlined.is-loading::after {
+  border-color: transparent transparent #4AC959 #4AC959 !important;
+}
+
+.button.is-whatsapp.is-outlined[disabled],
+fieldset[disabled] .button.is-whatsapp.is-outlined {
+  background-color: transparent;
+  border-color: #4AC959;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #4AC959;
+}
+
+.button.is-whatsapp.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+.button.is-whatsapp.is-inverted.is-outlined:hover,
+.button.is-whatsapp.is-inverted.is-outlined:focus {
+  background-color: #fff;
+  color: #4AC959;
+}
+
+.button.is-whatsapp.is-inverted.is-outlined[disabled],
+fieldset[disabled] .button.is-whatsapp.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #fff;
+}
+
+.button.is-twitter {
+  background-color: #1DA1F2;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-twitter:hover,
+.button.is-twitter.is-hovered {
+  background-color: #119cf1;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-twitter:focus,
+.button.is-twitter.is-focused {
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-twitter:focus:not(:active),
+.button.is-twitter.is-focused:not(:active) {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(29, 161, 242, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(29, 161, 242, 0.25);
+}
+
+.button.is-twitter:active,
+.button.is-twitter.is-active {
+  background-color: #0d95e8;
+  border-color: transparent;
+  color: #fff;
+}
+
+.button.is-twitter[disabled],
+fieldset[disabled] .button.is-twitter {
+  background-color: #1DA1F2;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+}
+
+.button.is-twitter.is-inverted {
+  background-color: #fff;
+  color: #1DA1F2;
+}
+
+.button.is-twitter.is-inverted:hover {
+  background-color: #f2f2f2;
+}
+
+.button.is-twitter.is-inverted[disabled],
+fieldset[disabled] .button.is-twitter.is-inverted {
+  background-color: #fff;
+  border-color: transparent;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #1DA1F2;
+}
+
+.button.is-twitter.is-loading::after {
+  border-color: transparent transparent #fff #fff !important;
+}
+
+.button.is-twitter.is-outlined {
+  background-color: transparent;
+  border-color: #1DA1F2;
+  color: #1DA1F2;
+}
+
+.button.is-twitter.is-outlined:hover,
+.button.is-twitter.is-outlined:focus {
+  background-color: #1DA1F2;
+  border-color: #1DA1F2;
+  color: #fff;
+}
+
+.button.is-twitter.is-outlined.is-loading::after {
+  border-color: transparent transparent #1DA1F2 #1DA1F2 !important;
+}
+
+.button.is-twitter.is-outlined[disabled],
+fieldset[disabled] .button.is-twitter.is-outlined {
+  background-color: transparent;
+  border-color: #1DA1F2;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #1DA1F2;
+}
+
+.button.is-twitter.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  color: #fff;
+}
+
+.button.is-twitter.is-inverted.is-outlined:hover,
+.button.is-twitter.is-inverted.is-outlined:focus {
+  background-color: #fff;
+  color: #1DA1F2;
+}
+
+.button.is-twitter.is-inverted.is-outlined[disabled],
+fieldset[disabled] .button.is-twitter.is-inverted.is-outlined {
+  background-color: transparent;
+  border-color: #fff;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  color: #fff;
+}
+
 .button.is-small {
   border-radius: 2px;
   font-size: 0.75rem;
@@ -3908,6 +4396,94 @@ fieldset[disabled]
           box-shadow: 0 0 0 0.125em rgba(255, 56, 96, 0.25);
 }
 
+.input.is-facebook,
+.taginput .is-facebook.taginput-container.is-focusable,
+.textarea.is-facebook {
+  border-color: #3C5A99;
+}
+
+.input.is-facebook:focus,
+.taginput .is-facebook.taginput-container.is-focusable:focus,
+.input.is-facebook.is-focused,
+.taginput .is-facebook.is-focused.taginput-container.is-focusable,
+.input.is-facebook:active,
+.taginput .is-facebook.taginput-container.is-focusable:active,
+.input.is-facebook.is-active,
+.taginput .is-facebook.is-active.taginput-container.is-focusable,
+.textarea.is-facebook:focus,
+.textarea.is-facebook.is-focused,
+.textarea.is-facebook:active,
+.textarea.is-facebook.is-active {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(60, 90, 153, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(60, 90, 153, 0.25);
+}
+
+.input.is-reddit,
+.taginput .is-reddit.taginput-container.is-focusable,
+.textarea.is-reddit {
+  border-color: #FF4500;
+}
+
+.input.is-reddit:focus,
+.taginput .is-reddit.taginput-container.is-focusable:focus,
+.input.is-reddit.is-focused,
+.taginput .is-reddit.is-focused.taginput-container.is-focusable,
+.input.is-reddit:active,
+.taginput .is-reddit.taginput-container.is-focusable:active,
+.input.is-reddit.is-active,
+.taginput .is-reddit.is-active.taginput-container.is-focusable,
+.textarea.is-reddit:focus,
+.textarea.is-reddit.is-focused,
+.textarea.is-reddit:active,
+.textarea.is-reddit.is-active {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(255, 69, 0, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(255, 69, 0, 0.25);
+}
+
+.input.is-whatsapp,
+.taginput .is-whatsapp.taginput-container.is-focusable,
+.textarea.is-whatsapp {
+  border-color: #4AC959;
+}
+
+.input.is-whatsapp:focus,
+.taginput .is-whatsapp.taginput-container.is-focusable:focus,
+.input.is-whatsapp.is-focused,
+.taginput .is-whatsapp.is-focused.taginput-container.is-focusable,
+.input.is-whatsapp:active,
+.taginput .is-whatsapp.taginput-container.is-focusable:active,
+.input.is-whatsapp.is-active,
+.taginput .is-whatsapp.is-active.taginput-container.is-focusable,
+.textarea.is-whatsapp:focus,
+.textarea.is-whatsapp.is-focused,
+.textarea.is-whatsapp:active,
+.textarea.is-whatsapp.is-active {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(74, 201, 89, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(74, 201, 89, 0.25);
+}
+
+.input.is-twitter,
+.taginput .is-twitter.taginput-container.is-focusable,
+.textarea.is-twitter {
+  border-color: #1DA1F2;
+}
+
+.input.is-twitter:focus,
+.taginput .is-twitter.taginput-container.is-focusable:focus,
+.input.is-twitter.is-focused,
+.taginput .is-twitter.is-focused.taginput-container.is-focusable,
+.input.is-twitter:active,
+.taginput .is-twitter.taginput-container.is-focusable:active,
+.input.is-twitter.is-active,
+.taginput .is-twitter.is-active.taginput-container.is-focusable,
+.textarea.is-twitter:focus,
+.textarea.is-twitter.is-focused,
+.textarea.is-twitter:active,
+.textarea.is-twitter.is-active {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(29, 161, 242, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(29, 161, 242, 0.25);
+}
+
 .input.is-small,
 .taginput .is-small.taginput-container.is-focusable,
 .textarea.is-small {
@@ -4317,6 +4893,90 @@ fieldset[disabled] .select select:hover {
           box-shadow: 0 0 0 0.125em rgba(255, 56, 96, 0.25);
 }
 
+.select.is-facebook:not(:hover)::after {
+  border-color: #3C5A99;
+}
+
+.select.is-facebook select {
+  border-color: #3C5A99;
+}
+
+.select.is-facebook select:hover,
+.select.is-facebook select.is-hovered {
+  border-color: #354f87;
+}
+
+.select.is-facebook select:focus,
+.select.is-facebook select.is-focused,
+.select.is-facebook select:active,
+.select.is-facebook select.is-active {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(60, 90, 153, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(60, 90, 153, 0.25);
+}
+
+.select.is-reddit:not(:hover)::after {
+  border-color: #FF4500;
+}
+
+.select.is-reddit select {
+  border-color: #FF4500;
+}
+
+.select.is-reddit select:hover,
+.select.is-reddit select.is-hovered {
+  border-color: #e63e00;
+}
+
+.select.is-reddit select:focus,
+.select.is-reddit select.is-focused,
+.select.is-reddit select:active,
+.select.is-reddit select.is-active {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(255, 69, 0, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(255, 69, 0, 0.25);
+}
+
+.select.is-whatsapp:not(:hover)::after {
+  border-color: #4AC959;
+}
+
+.select.is-whatsapp select {
+  border-color: #4AC959;
+}
+
+.select.is-whatsapp select:hover,
+.select.is-whatsapp select.is-hovered {
+  border-color: #39c049;
+}
+
+.select.is-whatsapp select:focus,
+.select.is-whatsapp select.is-focused,
+.select.is-whatsapp select:active,
+.select.is-whatsapp select.is-active {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(74, 201, 89, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(74, 201, 89, 0.25);
+}
+
+.select.is-twitter:not(:hover)::after {
+  border-color: #1DA1F2;
+}
+
+.select.is-twitter select {
+  border-color: #1DA1F2;
+}
+
+.select.is-twitter select:hover,
+.select.is-twitter select.is-hovered {
+  border-color: #0d95e8;
+}
+
+.select.is-twitter select:focus,
+.select.is-twitter select.is-focused,
+.select.is-twitter select:active,
+.select.is-twitter select.is-active {
+  -webkit-box-shadow: 0 0 0 0.125em rgba(29, 161, 242, 0.25);
+          box-shadow: 0 0 0 0.125em rgba(29, 161, 242, 0.25);
+}
+
 .select.is-small {
   border-radius: 2px;
   font-size: 0.75rem;
@@ -4628,6 +5288,118 @@ fieldset[disabled] .select select:hover {
   color: #fff;
 }
 
+.file.is-facebook .file-cta {
+  background-color: #3C5A99;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-facebook:hover .file-cta,
+.file.is-facebook.is-hovered .file-cta {
+  background-color: #385590;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-facebook:focus .file-cta,
+.file.is-facebook.is-focused .file-cta {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(60, 90, 153, 0.25);
+          box-shadow: 0 0 0.5em rgba(60, 90, 153, 0.25);
+  color: #fff;
+}
+
+.file.is-facebook:active .file-cta,
+.file.is-facebook.is-active .file-cta {
+  background-color: #354f87;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-reddit .file-cta {
+  background-color: #FF4500;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-reddit:hover .file-cta,
+.file.is-reddit.is-hovered .file-cta {
+  background-color: #f24200;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-reddit:focus .file-cta,
+.file.is-reddit.is-focused .file-cta {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(255, 69, 0, 0.25);
+          box-shadow: 0 0 0.5em rgba(255, 69, 0, 0.25);
+  color: #fff;
+}
+
+.file.is-reddit:active .file-cta,
+.file.is-reddit.is-active .file-cta {
+  background-color: #e63e00;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-whatsapp .file-cta {
+  background-color: #4AC959;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-whatsapp:hover .file-cta,
+.file.is-whatsapp.is-hovered .file-cta {
+  background-color: #40c650;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-whatsapp:focus .file-cta,
+.file.is-whatsapp.is-focused .file-cta {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(74, 201, 89, 0.25);
+          box-shadow: 0 0 0.5em rgba(74, 201, 89, 0.25);
+  color: #fff;
+}
+
+.file.is-whatsapp:active .file-cta,
+.file.is-whatsapp.is-active .file-cta {
+  background-color: #39c049;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-twitter .file-cta {
+  background-color: #1DA1F2;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-twitter:hover .file-cta,
+.file.is-twitter.is-hovered .file-cta {
+  background-color: #119cf1;
+  border-color: transparent;
+  color: #fff;
+}
+
+.file.is-twitter:focus .file-cta,
+.file.is-twitter.is-focused .file-cta {
+  border-color: transparent;
+  -webkit-box-shadow: 0 0 0.5em rgba(29, 161, 242, 0.25);
+          box-shadow: 0 0 0.5em rgba(29, 161, 242, 0.25);
+  color: #fff;
+}
+
+.file.is-twitter:active .file-cta,
+.file.is-twitter.is-active .file-cta {
+  background-color: #0d95e8;
+  border-color: transparent;
+  color: #fff;
+}
+
 .file.is-small {
   font-size: 0.75rem;
 }
@@ -4902,6 +5674,22 @@ fieldset[disabled] .select select:hover {
 
 .help.is-danger {
   color: #ff3860;
+}
+
+.help.is-facebook {
+  color: #3C5A99;
+}
+
+.help.is-reddit {
+  color: #FF4500;
+}
+
+.help.is-whatsapp {
+  color: #4AC959;
+}
+
+.help.is-twitter {
+  color: #1DA1F2;
 }
 
 .field:not(:last-child) {
@@ -5541,6 +6329,26 @@ fieldset[disabled] .select select:hover {
   color: #fff;
 }
 
+.notification.is-facebook {
+  background-color: #3C5A99;
+  color: #fff;
+}
+
+.notification.is-reddit {
+  background-color: #FF4500;
+  color: #fff;
+}
+
+.notification.is-whatsapp {
+  background-color: #4AC959;
+  color: #fff;
+}
+
+.notification.is-twitter {
+  background-color: #1DA1F2;
+  color: #fff;
+}
+
 .progress {
   -moz-appearance: none;
   -webkit-appearance: none;
@@ -5748,6 +6556,74 @@ fieldset[disabled] .select select:hover {
   background-image: linear-gradient(to right, #ff3860 30%, #dbdbdb 30%);
 }
 
+.progress.is-facebook::-webkit-progress-value {
+  background-color: #3C5A99;
+}
+
+.progress.is-facebook::-moz-progress-bar {
+  background-color: #3C5A99;
+}
+
+.progress.is-facebook::-ms-fill {
+  background-color: #3C5A99;
+}
+
+.progress.is-facebook:indeterminate {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(30%, #3C5A99), color-stop(30%, #dbdbdb));
+  background-image: linear-gradient(to right, #3C5A99 30%, #dbdbdb 30%);
+}
+
+.progress.is-reddit::-webkit-progress-value {
+  background-color: #FF4500;
+}
+
+.progress.is-reddit::-moz-progress-bar {
+  background-color: #FF4500;
+}
+
+.progress.is-reddit::-ms-fill {
+  background-color: #FF4500;
+}
+
+.progress.is-reddit:indeterminate {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(30%, #FF4500), color-stop(30%, #dbdbdb));
+  background-image: linear-gradient(to right, #FF4500 30%, #dbdbdb 30%);
+}
+
+.progress.is-whatsapp::-webkit-progress-value {
+  background-color: #4AC959;
+}
+
+.progress.is-whatsapp::-moz-progress-bar {
+  background-color: #4AC959;
+}
+
+.progress.is-whatsapp::-ms-fill {
+  background-color: #4AC959;
+}
+
+.progress.is-whatsapp:indeterminate {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(30%, #4AC959), color-stop(30%, #dbdbdb));
+  background-image: linear-gradient(to right, #4AC959 30%, #dbdbdb 30%);
+}
+
+.progress.is-twitter::-webkit-progress-value {
+  background-color: #1DA1F2;
+}
+
+.progress.is-twitter::-moz-progress-bar {
+  background-color: #1DA1F2;
+}
+
+.progress.is-twitter::-ms-fill {
+  background-color: #1DA1F2;
+}
+
+.progress.is-twitter:indeterminate {
+  background-image: -webkit-gradient(linear, left top, right top, color-stop(30%, #1DA1F2), color-stop(30%, #dbdbdb));
+  background-image: linear-gradient(to right, #1DA1F2 30%, #dbdbdb 30%);
+}
+
 .progress.is-small {
   height: 0.75rem;
 }
@@ -5853,6 +6729,34 @@ fieldset[disabled] .select select:hover {
 .table th.is-danger {
   background-color: #ff3860;
   border-color: #ff3860;
+  color: #fff;
+}
+
+.table td.is-facebook,
+.table th.is-facebook {
+  background-color: #3C5A99;
+  border-color: #3C5A99;
+  color: #fff;
+}
+
+.table td.is-reddit,
+.table th.is-reddit {
+  background-color: #FF4500;
+  border-color: #FF4500;
+  color: #fff;
+}
+
+.table td.is-whatsapp,
+.table th.is-whatsapp {
+  background-color: #4AC959;
+  border-color: #4AC959;
+  color: #fff;
+}
+
+.table td.is-twitter,
+.table th.is-twitter {
+  background-color: #1DA1F2;
+  border-color: #1DA1F2;
   color: #fff;
 }
 
@@ -6127,6 +7031,26 @@ fieldset[disabled] .select select:hover {
 
 .tag:not(body).is-danger {
   background-color: #ff3860;
+  color: #fff;
+}
+
+.tag:not(body).is-facebook {
+  background-color: #3C5A99;
+  color: #fff;
+}
+
+.tag:not(body).is-reddit {
+  background-color: #FF4500;
+  color: #fff;
+}
+
+.tag:not(body).is-whatsapp {
+  background-color: #4AC959;
+  color: #fff;
+}
+
+.tag:not(body).is-twitter {
+  background-color: #1DA1F2;
   color: #fff;
 }
 
@@ -7155,6 +8079,62 @@ a.list-item {
   color: #cd0930;
 }
 
+.message.is-facebook {
+  background-color: #f8f9fc;
+}
+
+.message.is-facebook .message-header {
+  background-color: #3C5A99;
+  color: #fff;
+}
+
+.message.is-facebook .message-body {
+  border-color: #3C5A99;
+  color: #30456f;
+}
+
+.message.is-reddit {
+  background-color: #fff8f5;
+}
+
+.message.is-reddit .message-header {
+  background-color: #FF4500;
+  color: #fff;
+}
+
+.message.is-reddit .message-body {
+  border-color: #FF4500;
+  color: #942d07;
+}
+
+.message.is-whatsapp {
+  background-color: #f7fdf8;
+}
+
+.message.is-whatsapp .message-header {
+  background-color: #4AC959;
+  color: #fff;
+}
+
+.message.is-whatsapp .message-body {
+  border-color: #4AC959;
+  color: #1e4623;
+}
+
+.message.is-twitter {
+  background-color: #f5fbfe;
+}
+
+.message.is-twitter .message-header {
+  background-color: #1DA1F2;
+  color: #fff;
+}
+
+.message.is-twitter .message-body {
+  border-color: #1DA1F2;
+  color: #0f527a;
+}
+
 .message-header {
   -webkit-box-align: center;
       -ms-flex-align: center;
@@ -7901,6 +8881,258 @@ a.list-item {
 
   .navbar.is-danger .navbar-dropdown a.navbar-item.is-active {
     background-color: #ff3860;
+    color: #fff;
+  }
+}
+
+.navbar.is-facebook {
+  background-color: #3C5A99;
+  color: #fff;
+}
+
+.navbar.is-facebook .navbar-brand > .navbar-item,
+.navbar.is-facebook .navbar-brand .navbar-link {
+  color: #fff;
+}
+
+.navbar.is-facebook .navbar-brand > a.navbar-item:hover,
+.navbar.is-facebook .navbar-brand > a.navbar-item.is-active,
+.navbar.is-facebook .navbar-brand .navbar-link:hover,
+.navbar.is-facebook .navbar-brand .navbar-link.is-active {
+  background-color: #354f87;
+  color: #fff;
+}
+
+.navbar.is-facebook .navbar-brand .navbar-link::after {
+  border-color: #fff;
+}
+
+.navbar.is-facebook .navbar-burger {
+  color: #fff;
+}
+
+@media screen and (min-width: 1088px) {
+  .navbar.is-facebook .navbar-start > .navbar-item,
+  .navbar.is-facebook .navbar-start .navbar-link,
+  .navbar.is-facebook .navbar-end > .navbar-item,
+  .navbar.is-facebook .navbar-end .navbar-link {
+    color: #fff;
+  }
+
+  .navbar.is-facebook .navbar-start > a.navbar-item:hover,
+  .navbar.is-facebook .navbar-start > a.navbar-item.is-active,
+  .navbar.is-facebook .navbar-start .navbar-link:hover,
+  .navbar.is-facebook .navbar-start .navbar-link.is-active,
+  .navbar.is-facebook .navbar-end > a.navbar-item:hover,
+  .navbar.is-facebook .navbar-end > a.navbar-item.is-active,
+  .navbar.is-facebook .navbar-end .navbar-link:hover,
+  .navbar.is-facebook .navbar-end .navbar-link.is-active {
+    background-color: #354f87;
+    color: #fff;
+  }
+
+  .navbar.is-facebook .navbar-start .navbar-link::after,
+  .navbar.is-facebook .navbar-end .navbar-link::after {
+    border-color: #fff;
+  }
+
+  .navbar.is-facebook .navbar-item.has-dropdown:hover .navbar-link,
+  .navbar.is-facebook .navbar-item.has-dropdown.is-active .navbar-link {
+    background-color: #354f87;
+    color: #fff;
+  }
+
+  .navbar.is-facebook .navbar-dropdown a.navbar-item.is-active {
+    background-color: #3C5A99;
+    color: #fff;
+  }
+}
+
+.navbar.is-reddit {
+  background-color: #FF4500;
+  color: #fff;
+}
+
+.navbar.is-reddit .navbar-brand > .navbar-item,
+.navbar.is-reddit .navbar-brand .navbar-link {
+  color: #fff;
+}
+
+.navbar.is-reddit .navbar-brand > a.navbar-item:hover,
+.navbar.is-reddit .navbar-brand > a.navbar-item.is-active,
+.navbar.is-reddit .navbar-brand .navbar-link:hover,
+.navbar.is-reddit .navbar-brand .navbar-link.is-active {
+  background-color: #e63e00;
+  color: #fff;
+}
+
+.navbar.is-reddit .navbar-brand .navbar-link::after {
+  border-color: #fff;
+}
+
+.navbar.is-reddit .navbar-burger {
+  color: #fff;
+}
+
+@media screen and (min-width: 1088px) {
+  .navbar.is-reddit .navbar-start > .navbar-item,
+  .navbar.is-reddit .navbar-start .navbar-link,
+  .navbar.is-reddit .navbar-end > .navbar-item,
+  .navbar.is-reddit .navbar-end .navbar-link {
+    color: #fff;
+  }
+
+  .navbar.is-reddit .navbar-start > a.navbar-item:hover,
+  .navbar.is-reddit .navbar-start > a.navbar-item.is-active,
+  .navbar.is-reddit .navbar-start .navbar-link:hover,
+  .navbar.is-reddit .navbar-start .navbar-link.is-active,
+  .navbar.is-reddit .navbar-end > a.navbar-item:hover,
+  .navbar.is-reddit .navbar-end > a.navbar-item.is-active,
+  .navbar.is-reddit .navbar-end .navbar-link:hover,
+  .navbar.is-reddit .navbar-end .navbar-link.is-active {
+    background-color: #e63e00;
+    color: #fff;
+  }
+
+  .navbar.is-reddit .navbar-start .navbar-link::after,
+  .navbar.is-reddit .navbar-end .navbar-link::after {
+    border-color: #fff;
+  }
+
+  .navbar.is-reddit .navbar-item.has-dropdown:hover .navbar-link,
+  .navbar.is-reddit .navbar-item.has-dropdown.is-active .navbar-link {
+    background-color: #e63e00;
+    color: #fff;
+  }
+
+  .navbar.is-reddit .navbar-dropdown a.navbar-item.is-active {
+    background-color: #FF4500;
+    color: #fff;
+  }
+}
+
+.navbar.is-whatsapp {
+  background-color: #4AC959;
+  color: #fff;
+}
+
+.navbar.is-whatsapp .navbar-brand > .navbar-item,
+.navbar.is-whatsapp .navbar-brand .navbar-link {
+  color: #fff;
+}
+
+.navbar.is-whatsapp .navbar-brand > a.navbar-item:hover,
+.navbar.is-whatsapp .navbar-brand > a.navbar-item.is-active,
+.navbar.is-whatsapp .navbar-brand .navbar-link:hover,
+.navbar.is-whatsapp .navbar-brand .navbar-link.is-active {
+  background-color: #39c049;
+  color: #fff;
+}
+
+.navbar.is-whatsapp .navbar-brand .navbar-link::after {
+  border-color: #fff;
+}
+
+.navbar.is-whatsapp .navbar-burger {
+  color: #fff;
+}
+
+@media screen and (min-width: 1088px) {
+  .navbar.is-whatsapp .navbar-start > .navbar-item,
+  .navbar.is-whatsapp .navbar-start .navbar-link,
+  .navbar.is-whatsapp .navbar-end > .navbar-item,
+  .navbar.is-whatsapp .navbar-end .navbar-link {
+    color: #fff;
+  }
+
+  .navbar.is-whatsapp .navbar-start > a.navbar-item:hover,
+  .navbar.is-whatsapp .navbar-start > a.navbar-item.is-active,
+  .navbar.is-whatsapp .navbar-start .navbar-link:hover,
+  .navbar.is-whatsapp .navbar-start .navbar-link.is-active,
+  .navbar.is-whatsapp .navbar-end > a.navbar-item:hover,
+  .navbar.is-whatsapp .navbar-end > a.navbar-item.is-active,
+  .navbar.is-whatsapp .navbar-end .navbar-link:hover,
+  .navbar.is-whatsapp .navbar-end .navbar-link.is-active {
+    background-color: #39c049;
+    color: #fff;
+  }
+
+  .navbar.is-whatsapp .navbar-start .navbar-link::after,
+  .navbar.is-whatsapp .navbar-end .navbar-link::after {
+    border-color: #fff;
+  }
+
+  .navbar.is-whatsapp .navbar-item.has-dropdown:hover .navbar-link,
+  .navbar.is-whatsapp .navbar-item.has-dropdown.is-active .navbar-link {
+    background-color: #39c049;
+    color: #fff;
+  }
+
+  .navbar.is-whatsapp .navbar-dropdown a.navbar-item.is-active {
+    background-color: #4AC959;
+    color: #fff;
+  }
+}
+
+.navbar.is-twitter {
+  background-color: #1DA1F2;
+  color: #fff;
+}
+
+.navbar.is-twitter .navbar-brand > .navbar-item,
+.navbar.is-twitter .navbar-brand .navbar-link {
+  color: #fff;
+}
+
+.navbar.is-twitter .navbar-brand > a.navbar-item:hover,
+.navbar.is-twitter .navbar-brand > a.navbar-item.is-active,
+.navbar.is-twitter .navbar-brand .navbar-link:hover,
+.navbar.is-twitter .navbar-brand .navbar-link.is-active {
+  background-color: #0d95e8;
+  color: #fff;
+}
+
+.navbar.is-twitter .navbar-brand .navbar-link::after {
+  border-color: #fff;
+}
+
+.navbar.is-twitter .navbar-burger {
+  color: #fff;
+}
+
+@media screen and (min-width: 1088px) {
+  .navbar.is-twitter .navbar-start > .navbar-item,
+  .navbar.is-twitter .navbar-start .navbar-link,
+  .navbar.is-twitter .navbar-end > .navbar-item,
+  .navbar.is-twitter .navbar-end .navbar-link {
+    color: #fff;
+  }
+
+  .navbar.is-twitter .navbar-start > a.navbar-item:hover,
+  .navbar.is-twitter .navbar-start > a.navbar-item.is-active,
+  .navbar.is-twitter .navbar-start .navbar-link:hover,
+  .navbar.is-twitter .navbar-start .navbar-link.is-active,
+  .navbar.is-twitter .navbar-end > a.navbar-item:hover,
+  .navbar.is-twitter .navbar-end > a.navbar-item.is-active,
+  .navbar.is-twitter .navbar-end .navbar-link:hover,
+  .navbar.is-twitter .navbar-end .navbar-link.is-active {
+    background-color: #0d95e8;
+    color: #fff;
+  }
+
+  .navbar.is-twitter .navbar-start .navbar-link::after,
+  .navbar.is-twitter .navbar-end .navbar-link::after {
+    border-color: #fff;
+  }
+
+  .navbar.is-twitter .navbar-item.has-dropdown:hover .navbar-link,
+  .navbar.is-twitter .navbar-item.has-dropdown.is-active .navbar-link {
+    background-color: #0d95e8;
+    color: #fff;
+  }
+
+  .navbar.is-twitter .navbar-dropdown a.navbar-item.is-active {
+    background-color: #1DA1F2;
     color: #fff;
   }
 }
@@ -12336,6 +13568,342 @@ label.panel-block:hover {
   }
 }
 
+.hero.is-facebook {
+  background-color: #3C5A99;
+  color: #fff;
+}
+
+.hero.is-facebook a:not(.button):not(.dropdown-item):not(.tag),
+.hero.is-facebook strong {
+  color: inherit;
+}
+
+.hero.is-facebook .title {
+  color: #fff;
+}
+
+.hero.is-facebook .subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero.is-facebook .subtitle a:not(.button),
+.hero.is-facebook .subtitle strong {
+  color: #fff;
+}
+
+@media screen and (max-width: 1087px) {
+  .hero.is-facebook .navbar-menu {
+    background-color: #3C5A99;
+  }
+}
+
+.hero.is-facebook .navbar-item,
+.hero.is-facebook .navbar-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hero.is-facebook a.navbar-item:hover,
+.hero.is-facebook a.navbar-item.is-active,
+.hero.is-facebook .navbar-link:hover,
+.hero.is-facebook .navbar-link.is-active {
+  background-color: #354f87;
+  color: #fff;
+}
+
+.hero.is-facebook .tabs a {
+  color: #fff;
+  opacity: 0.9;
+}
+
+.hero.is-facebook .tabs a:hover {
+  opacity: 1;
+}
+
+.hero.is-facebook .tabs li.is-active a {
+  opacity: 1;
+}
+
+.hero.is-facebook .tabs.is-boxed a,
+.hero.is-facebook .tabs.is-toggle a {
+  color: #fff;
+}
+
+.hero.is-facebook .tabs.is-boxed a:hover,
+.hero.is-facebook .tabs.is-toggle a:hover {
+  background-color: rgba(10, 10, 10, 0.1);
+}
+
+.hero.is-facebook .tabs.is-boxed li.is-active a,
+.hero.is-facebook .tabs.is-boxed li.is-active a:hover,
+.hero.is-facebook .tabs.is-toggle li.is-active a,
+.hero.is-facebook .tabs.is-toggle li.is-active a:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #3C5A99;
+}
+
+.hero.is-facebook.is-bold {
+  background-image: linear-gradient(141deg, #26507c 0%, #3C5A99 71%, #3d4fb1 100%);
+}
+
+@media screen and (max-width: 768px) {
+  .hero.is-facebook.is-bold .navbar-menu {
+    background-image: linear-gradient(141deg, #26507c 0%, #3C5A99 71%, #3d4fb1 100%);
+  }
+}
+
+.hero.is-reddit {
+  background-color: #FF4500;
+  color: #fff;
+}
+
+.hero.is-reddit a:not(.button):not(.dropdown-item):not(.tag),
+.hero.is-reddit strong {
+  color: inherit;
+}
+
+.hero.is-reddit .title {
+  color: #fff;
+}
+
+.hero.is-reddit .subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero.is-reddit .subtitle a:not(.button),
+.hero.is-reddit .subtitle strong {
+  color: #fff;
+}
+
+@media screen and (max-width: 1087px) {
+  .hero.is-reddit .navbar-menu {
+    background-color: #FF4500;
+  }
+}
+
+.hero.is-reddit .navbar-item,
+.hero.is-reddit .navbar-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hero.is-reddit a.navbar-item:hover,
+.hero.is-reddit a.navbar-item.is-active,
+.hero.is-reddit .navbar-link:hover,
+.hero.is-reddit .navbar-link.is-active {
+  background-color: #e63e00;
+  color: #fff;
+}
+
+.hero.is-reddit .tabs a {
+  color: #fff;
+  opacity: 0.9;
+}
+
+.hero.is-reddit .tabs a:hover {
+  opacity: 1;
+}
+
+.hero.is-reddit .tabs li.is-active a {
+  opacity: 1;
+}
+
+.hero.is-reddit .tabs.is-boxed a,
+.hero.is-reddit .tabs.is-toggle a {
+  color: #fff;
+}
+
+.hero.is-reddit .tabs.is-boxed a:hover,
+.hero.is-reddit .tabs.is-toggle a:hover {
+  background-color: rgba(10, 10, 10, 0.1);
+}
+
+.hero.is-reddit .tabs.is-boxed li.is-active a,
+.hero.is-reddit .tabs.is-boxed li.is-active a:hover,
+.hero.is-reddit .tabs.is-toggle li.is-active a,
+.hero.is-reddit .tabs.is-toggle li.is-active a:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #FF4500;
+}
+
+.hero.is-reddit.is-bold {
+  background-image: linear-gradient(141deg, #cc1500 0%, #FF4500 71%, #ff7e1a 100%);
+}
+
+@media screen and (max-width: 768px) {
+  .hero.is-reddit.is-bold .navbar-menu {
+    background-image: linear-gradient(141deg, #cc1500 0%, #FF4500 71%, #ff7e1a 100%);
+  }
+}
+
+.hero.is-whatsapp {
+  background-color: #4AC959;
+  color: #fff;
+}
+
+.hero.is-whatsapp a:not(.button):not(.dropdown-item):not(.tag),
+.hero.is-whatsapp strong {
+  color: inherit;
+}
+
+.hero.is-whatsapp .title {
+  color: #fff;
+}
+
+.hero.is-whatsapp .subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero.is-whatsapp .subtitle a:not(.button),
+.hero.is-whatsapp .subtitle strong {
+  color: #fff;
+}
+
+@media screen and (max-width: 1087px) {
+  .hero.is-whatsapp .navbar-menu {
+    background-color: #4AC959;
+  }
+}
+
+.hero.is-whatsapp .navbar-item,
+.hero.is-whatsapp .navbar-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hero.is-whatsapp a.navbar-item:hover,
+.hero.is-whatsapp a.navbar-item.is-active,
+.hero.is-whatsapp .navbar-link:hover,
+.hero.is-whatsapp .navbar-link.is-active {
+  background-color: #39c049;
+  color: #fff;
+}
+
+.hero.is-whatsapp .tabs a {
+  color: #fff;
+  opacity: 0.9;
+}
+
+.hero.is-whatsapp .tabs a:hover {
+  opacity: 1;
+}
+
+.hero.is-whatsapp .tabs li.is-active a {
+  opacity: 1;
+}
+
+.hero.is-whatsapp .tabs.is-boxed a,
+.hero.is-whatsapp .tabs.is-toggle a {
+  color: #fff;
+}
+
+.hero.is-whatsapp .tabs.is-boxed a:hover,
+.hero.is-whatsapp .tabs.is-toggle a:hover {
+  background-color: rgba(10, 10, 10, 0.1);
+}
+
+.hero.is-whatsapp .tabs.is-boxed li.is-active a,
+.hero.is-whatsapp .tabs.is-boxed li.is-active a:hover,
+.hero.is-whatsapp .tabs.is-toggle li.is-active a,
+.hero.is-whatsapp .tabs.is-toggle li.is-active a:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #4AC959;
+}
+
+.hero.is-whatsapp.is-bold {
+  background-image: linear-gradient(141deg, #2fb828 0%, #4AC959 71%, #58d47c 100%);
+}
+
+@media screen and (max-width: 768px) {
+  .hero.is-whatsapp.is-bold .navbar-menu {
+    background-image: linear-gradient(141deg, #2fb828 0%, #4AC959 71%, #58d47c 100%);
+  }
+}
+
+.hero.is-twitter {
+  background-color: #1DA1F2;
+  color: #fff;
+}
+
+.hero.is-twitter a:not(.button):not(.dropdown-item):not(.tag),
+.hero.is-twitter strong {
+  color: inherit;
+}
+
+.hero.is-twitter .title {
+  color: #fff;
+}
+
+.hero.is-twitter .subtitle {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.hero.is-twitter .subtitle a:not(.button),
+.hero.is-twitter .subtitle strong {
+  color: #fff;
+}
+
+@media screen and (max-width: 1087px) {
+  .hero.is-twitter .navbar-menu {
+    background-color: #1DA1F2;
+  }
+}
+
+.hero.is-twitter .navbar-item,
+.hero.is-twitter .navbar-link {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hero.is-twitter a.navbar-item:hover,
+.hero.is-twitter a.navbar-item.is-active,
+.hero.is-twitter .navbar-link:hover,
+.hero.is-twitter .navbar-link.is-active {
+  background-color: #0d95e8;
+  color: #fff;
+}
+
+.hero.is-twitter .tabs a {
+  color: #fff;
+  opacity: 0.9;
+}
+
+.hero.is-twitter .tabs a:hover {
+  opacity: 1;
+}
+
+.hero.is-twitter .tabs li.is-active a {
+  opacity: 1;
+}
+
+.hero.is-twitter .tabs.is-boxed a,
+.hero.is-twitter .tabs.is-toggle a {
+  color: #fff;
+}
+
+.hero.is-twitter .tabs.is-boxed a:hover,
+.hero.is-twitter .tabs.is-toggle a:hover {
+  background-color: rgba(10, 10, 10, 0.1);
+}
+
+.hero.is-twitter .tabs.is-boxed li.is-active a,
+.hero.is-twitter .tabs.is-boxed li.is-active a:hover,
+.hero.is-twitter .tabs.is-toggle li.is-active a,
+.hero.is-twitter .tabs.is-toggle li.is-active a:hover {
+  background-color: #fff;
+  border-color: #fff;
+  color: #1DA1F2;
+}
+
+.hero.is-twitter.is-bold {
+  background-image: linear-gradient(141deg, #01acdb 0%, #1DA1F2 71%, #308bf9 100%);
+}
+
+@media screen and (max-width: 768px) {
+  .hero.is-twitter.is-bold .navbar-menu {
+    background-image: linear-gradient(141deg, #01acdb 0%, #1DA1F2 71%, #308bf9 100%);
+  }
+}
+
 .hero.is-small .hero-body {
   padding-bottom: 1.5rem;
   padding-top: 1.5rem;
@@ -12899,6 +14467,26 @@ label.panel-block:hover {
   border-color: #ff3860;
 }
 
+.b-checkbox.checkbox input[type=checkbox]:checked + .check.is-facebook {
+  background: #3C5A99 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cpath style='fill:%23fff' d='M 0.04038059,0.6267767 0.14644661,0.52071068 0.42928932,0.80355339 0.3232233,0.90961941 z M 0.21715729,0.80355339 0.85355339,0.16715729 0.95961941,0.2732233 0.3232233,0.90961941 z'%3E%3C/path%3E%3C/svg%3E") no-repeat center center;
+  border-color: #3C5A99;
+}
+
+.b-checkbox.checkbox input[type=checkbox]:checked + .check.is-reddit {
+  background: #FF4500 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cpath style='fill:%23fff' d='M 0.04038059,0.6267767 0.14644661,0.52071068 0.42928932,0.80355339 0.3232233,0.90961941 z M 0.21715729,0.80355339 0.85355339,0.16715729 0.95961941,0.2732233 0.3232233,0.90961941 z'%3E%3C/path%3E%3C/svg%3E") no-repeat center center;
+  border-color: #FF4500;
+}
+
+.b-checkbox.checkbox input[type=checkbox]:checked + .check.is-whatsapp {
+  background: #4AC959 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cpath style='fill:%23fff' d='M 0.04038059,0.6267767 0.14644661,0.52071068 0.42928932,0.80355339 0.3232233,0.90961941 z M 0.21715729,0.80355339 0.85355339,0.16715729 0.95961941,0.2732233 0.3232233,0.90961941 z'%3E%3C/path%3E%3C/svg%3E") no-repeat center center;
+  border-color: #4AC959;
+}
+
+.b-checkbox.checkbox input[type=checkbox]:checked + .check.is-twitter {
+  background: #1DA1F2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Cpath style='fill:%23fff' d='M 0.04038059,0.6267767 0.14644661,0.52071068 0.42928932,0.80355339 0.3232233,0.90961941 z M 0.21715729,0.80355339 0.85355339,0.16715729 0.95961941,0.2732233 0.3232233,0.90961941 z'%3E%3C/path%3E%3C/svg%3E") no-repeat center center;
+  border-color: #1DA1F2;
+}
+
 .b-checkbox.checkbox input[type=checkbox]:indeterminate + .check {
   background: #00d1b2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect style='fill:%23fff' width='0.7' height='0.2' x='.15' y='.4'%3E%3C/rect%3E%3C/svg%3E") no-repeat center center;
   border-color: #00d1b2;
@@ -12947,6 +14535,26 @@ label.panel-block:hover {
 .b-checkbox.checkbox input[type=checkbox]:indeterminate + .check.is-danger {
   background: #ff3860 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect style='fill:%23fff' width='0.7' height='0.2' x='.15' y='.4'%3E%3C/rect%3E%3C/svg%3E") no-repeat center center;
   border-color: #ff3860;
+}
+
+.b-checkbox.checkbox input[type=checkbox]:indeterminate + .check.is-facebook {
+  background: #3C5A99 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect style='fill:%23fff' width='0.7' height='0.2' x='.15' y='.4'%3E%3C/rect%3E%3C/svg%3E") no-repeat center center;
+  border-color: #3C5A99;
+}
+
+.b-checkbox.checkbox input[type=checkbox]:indeterminate + .check.is-reddit {
+  background: #FF4500 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect style='fill:%23fff' width='0.7' height='0.2' x='.15' y='.4'%3E%3C/rect%3E%3C/svg%3E") no-repeat center center;
+  border-color: #FF4500;
+}
+
+.b-checkbox.checkbox input[type=checkbox]:indeterminate + .check.is-whatsapp {
+  background: #4AC959 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect style='fill:%23fff' width='0.7' height='0.2' x='.15' y='.4'%3E%3C/rect%3E%3C/svg%3E") no-repeat center center;
+  border-color: #4AC959;
+}
+
+.b-checkbox.checkbox input[type=checkbox]:indeterminate + .check.is-twitter {
+  background: #1DA1F2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 1'%3E%3Crect style='fill:%23fff' width='0.7' height='0.2' x='.15' y='.4'%3E%3C/rect%3E%3C/svg%3E") no-repeat center center;
+  border-color: #1DA1F2;
 }
 
 .b-checkbox.checkbox input[type=checkbox]:focus + .check {
@@ -13004,6 +14612,26 @@ label.panel-block:hover {
           box-shadow: 0 0 0.5em rgba(255, 56, 96, 0.8);
 }
 
+.b-checkbox.checkbox input[type=checkbox]:focus:checked + .check.is-facebook {
+  -webkit-box-shadow: 0 0 0.5em rgba(60, 90, 153, 0.8);
+          box-shadow: 0 0 0.5em rgba(60, 90, 153, 0.8);
+}
+
+.b-checkbox.checkbox input[type=checkbox]:focus:checked + .check.is-reddit {
+  -webkit-box-shadow: 0 0 0.5em rgba(255, 69, 0, 0.8);
+          box-shadow: 0 0 0.5em rgba(255, 69, 0, 0.8);
+}
+
+.b-checkbox.checkbox input[type=checkbox]:focus:checked + .check.is-whatsapp {
+  -webkit-box-shadow: 0 0 0.5em rgba(74, 201, 89, 0.8);
+          box-shadow: 0 0 0.5em rgba(74, 201, 89, 0.8);
+}
+
+.b-checkbox.checkbox input[type=checkbox]:focus:checked + .check.is-twitter {
+  -webkit-box-shadow: 0 0 0.5em rgba(29, 161, 242, 0.8);
+          box-shadow: 0 0 0.5em rgba(29, 161, 242, 0.8);
+}
+
 .b-checkbox.checkbox .control-label {
   padding-left: 0.5em;
 }
@@ -13050,6 +14678,22 @@ label.panel-block:hover {
 
 .b-checkbox.checkbox:hover input[type=checkbox] + .check.is-danger {
   border-color: #ff3860;
+}
+
+.b-checkbox.checkbox:hover input[type=checkbox] + .check.is-facebook {
+  border-color: #3C5A99;
+}
+
+.b-checkbox.checkbox:hover input[type=checkbox] + .check.is-reddit {
+  border-color: #FF4500;
+}
+
+.b-checkbox.checkbox:hover input[type=checkbox] + .check.is-whatsapp {
+  border-color: #4AC959;
+}
+
+.b-checkbox.checkbox:hover input[type=checkbox] + .check.is-twitter {
+  border-color: #1DA1F2;
 }
 
 .b-checkbox.checkbox.is-small {
@@ -13252,6 +14896,82 @@ label.panel-block:hover {
 
 .b-clockpicker.is-danger .b-clockpicker-face-number.active {
   background-color: #ff3860;
+  color: #fff;
+}
+
+.b-clockpicker.is-facebook .card-header {
+  background-color: #3C5A99;
+  color: #fff;
+}
+
+.b-clockpicker.is-facebook .b-clockpicker-face:after {
+  background-color: #3C5A99;
+}
+
+.b-clockpicker.is-facebook .b-clockpicker-face-hand {
+  background-color: #3C5A99;
+  border-color: #3C5A99;
+}
+
+.b-clockpicker.is-facebook .b-clockpicker-face-number.active {
+  background-color: #3C5A99;
+  color: #fff;
+}
+
+.b-clockpicker.is-reddit .card-header {
+  background-color: #FF4500;
+  color: #fff;
+}
+
+.b-clockpicker.is-reddit .b-clockpicker-face:after {
+  background-color: #FF4500;
+}
+
+.b-clockpicker.is-reddit .b-clockpicker-face-hand {
+  background-color: #FF4500;
+  border-color: #FF4500;
+}
+
+.b-clockpicker.is-reddit .b-clockpicker-face-number.active {
+  background-color: #FF4500;
+  color: #fff;
+}
+
+.b-clockpicker.is-whatsapp .card-header {
+  background-color: #4AC959;
+  color: #fff;
+}
+
+.b-clockpicker.is-whatsapp .b-clockpicker-face:after {
+  background-color: #4AC959;
+}
+
+.b-clockpicker.is-whatsapp .b-clockpicker-face-hand {
+  background-color: #4AC959;
+  border-color: #4AC959;
+}
+
+.b-clockpicker.is-whatsapp .b-clockpicker-face-number.active {
+  background-color: #4AC959;
+  color: #fff;
+}
+
+.b-clockpicker.is-twitter .card-header {
+  background-color: #1DA1F2;
+  color: #fff;
+}
+
+.b-clockpicker.is-twitter .b-clockpicker-face:after {
+  background-color: #1DA1F2;
+}
+
+.b-clockpicker.is-twitter .b-clockpicker-face-hand {
+  background-color: #1DA1F2;
+  border-color: #1DA1F2;
+}
+
+.b-clockpicker.is-twitter .b-clockpicker-face-number.active {
+  background-color: #1DA1F2;
   color: #fff;
 }
 
@@ -13659,6 +15379,22 @@ label.panel-block:hover {
 
 .datepicker .datepicker-table .datepicker-body.has-events .datepicker-cell.has-event .events .event.is-danger {
   background-color: #ff3860;
+}
+
+.datepicker .datepicker-table .datepicker-body.has-events .datepicker-cell.has-event .events .event.is-facebook {
+  background-color: #3C5A99;
+}
+
+.datepicker .datepicker-table .datepicker-body.has-events .datepicker-cell.has-event .events .event.is-reddit {
+  background-color: #FF4500;
+}
+
+.datepicker .datepicker-table .datepicker-body.has-events .datepicker-cell.has-event .events .event.is-whatsapp {
+  background-color: #4AC959;
+}
+
+.datepicker .datepicker-table .datepicker-body.has-events .datepicker-cell.has-event .events .event.is-twitter {
+  background-color: #1DA1F2;
 }
 
 .datepicker .datepicker-table .datepicker-body.has-events .datepicker-cell.has-event.dots .event {
@@ -14126,6 +15862,26 @@ label.panel-block:hover {
   background: #ff3860;
 }
 
+.notices .toast.is-facebook {
+  color: #fff;
+  background: #3C5A99;
+}
+
+.notices .toast.is-reddit {
+  color: #fff;
+  background: #FF4500;
+}
+
+.notices .toast.is-whatsapp {
+  color: #fff;
+  background: #4AC959;
+}
+
+.notices .toast.is-twitter {
+  color: #fff;
+  background: #1DA1F2;
+}
+
 .notices .snackbar {
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
@@ -14206,6 +15962,22 @@ label.panel-block:hover {
 
 .notices .snackbar .action.is-danger .button {
   color: #ff3860;
+}
+
+.notices .snackbar .action.is-facebook .button {
+  color: #3C5A99;
+}
+
+.notices .snackbar .action.is-reddit .button {
+  color: #FF4500;
+}
+
+.notices .snackbar .action.is-whatsapp .button {
+  color: #4AC959;
+}
+
+.notices .snackbar .action.is-twitter .button {
+  color: #1DA1F2;
 }
 
 @media screen and (max-width: 768px) {
@@ -14454,6 +16226,22 @@ label.panel-block:hover {
   background: #ff3860;
 }
 
+.b-radio.radio input[type=radio] + .check.is-facebook:before {
+  background: #3C5A99;
+}
+
+.b-radio.radio input[type=radio] + .check.is-reddit:before {
+  background: #FF4500;
+}
+
+.b-radio.radio input[type=radio] + .check.is-whatsapp:before {
+  background: #4AC959;
+}
+
+.b-radio.radio input[type=radio] + .check.is-twitter:before {
+  background: #1DA1F2;
+}
+
 .b-radio.radio input[type=radio]:checked + .check {
   border-color: #00d1b2;
 }
@@ -14492,6 +16280,22 @@ label.panel-block:hover {
 
 .b-radio.radio input[type=radio]:checked + .check.is-danger {
   border-color: #ff3860;
+}
+
+.b-radio.radio input[type=radio]:checked + .check.is-facebook {
+  border-color: #3C5A99;
+}
+
+.b-radio.radio input[type=radio]:checked + .check.is-reddit {
+  border-color: #FF4500;
+}
+
+.b-radio.radio input[type=radio]:checked + .check.is-whatsapp {
+  border-color: #4AC959;
+}
+
+.b-radio.radio input[type=radio]:checked + .check.is-twitter {
+  border-color: #1DA1F2;
 }
 
 .b-radio.radio input[type=radio]:checked + .check:before {
@@ -14547,6 +16351,22 @@ label.panel-block:hover {
   border-color: #ff3860;
 }
 
+.b-radio.radio:hover input[type=radio] + .check.is-facebook {
+  border-color: #3C5A99;
+}
+
+.b-radio.radio:hover input[type=radio] + .check.is-reddit {
+  border-color: #FF4500;
+}
+
+.b-radio.radio:hover input[type=radio] + .check.is-whatsapp {
+  border-color: #4AC959;
+}
+
+.b-radio.radio:hover input[type=radio] + .check.is-twitter {
+  border-color: #1DA1F2;
+}
+
 .b-radio.radio:focus input[type=radio] + .check {
   -webkit-box-shadow: 0 0 0.5em rgba(122, 122, 122, 0.8);
           box-shadow: 0 0 0.5em rgba(122, 122, 122, 0.8);
@@ -14600,6 +16420,26 @@ label.panel-block:hover {
 .b-radio.radio:focus input[type=radio]:checked + .check.is-danger {
   -webkit-box-shadow: 0 0 0.5em rgba(255, 56, 96, 0.8);
           box-shadow: 0 0 0.5em rgba(255, 56, 96, 0.8);
+}
+
+.b-radio.radio:focus input[type=radio]:checked + .check.is-facebook {
+  -webkit-box-shadow: 0 0 0.5em rgba(60, 90, 153, 0.8);
+          box-shadow: 0 0 0.5em rgba(60, 90, 153, 0.8);
+}
+
+.b-radio.radio:focus input[type=radio]:checked + .check.is-reddit {
+  -webkit-box-shadow: 0 0 0.5em rgba(255, 69, 0, 0.8);
+          box-shadow: 0 0 0.5em rgba(255, 69, 0, 0.8);
+}
+
+.b-radio.radio:focus input[type=radio]:checked + .check.is-whatsapp {
+  -webkit-box-shadow: 0 0 0.5em rgba(74, 201, 89, 0.8);
+          box-shadow: 0 0 0.5em rgba(74, 201, 89, 0.8);
+}
+
+.b-radio.radio:focus input[type=radio]:checked + .check.is-twitter {
+  -webkit-box-shadow: 0 0 0.5em rgba(29, 161, 242, 0.8);
+          box-shadow: 0 0 0.5em rgba(29, 161, 242, 0.8);
 }
 
 .b-radio.radio.is-small {
@@ -14745,6 +16585,22 @@ label.panel-block:hover {
   background: #ff3860;
 }
 
+.switch input[type=checkbox]:checked + .check.is-facebook {
+  background: #3C5A99;
+}
+
+.switch input[type=checkbox]:checked + .check.is-reddit {
+  background: #FF4500;
+}
+
+.switch input[type=checkbox]:checked + .check.is-whatsapp {
+  background: #4AC959;
+}
+
+.switch input[type=checkbox]:checked + .check.is-twitter {
+  background: #1DA1F2;
+}
+
 .switch input[type=checkbox]:checked + .check:before {
   -webkit-transform: translate3d(100%, 0, 0);
           transform: translate3d(100%, 0, 0);
@@ -14814,6 +16670,26 @@ label.panel-block:hover {
           box-shadow: 0 0 0.5em rgba(255, 56, 96, 0.8);
 }
 
+.switch input[type=checkbox]:focus:checked + .check.is-facebook {
+  -webkit-box-shadow: 0 0 0.5em rgba(60, 90, 153, 0.8);
+          box-shadow: 0 0 0.5em rgba(60, 90, 153, 0.8);
+}
+
+.switch input[type=checkbox]:focus:checked + .check.is-reddit {
+  -webkit-box-shadow: 0 0 0.5em rgba(255, 69, 0, 0.8);
+          box-shadow: 0 0 0.5em rgba(255, 69, 0, 0.8);
+}
+
+.switch input[type=checkbox]:focus:checked + .check.is-whatsapp {
+  -webkit-box-shadow: 0 0 0.5em rgba(74, 201, 89, 0.8);
+          box-shadow: 0 0 0.5em rgba(74, 201, 89, 0.8);
+}
+
+.switch input[type=checkbox]:focus:checked + .check.is-twitter {
+  -webkit-box-shadow: 0 0 0.5em rgba(29, 161, 242, 0.8);
+          box-shadow: 0 0 0.5em rgba(29, 161, 242, 0.8);
+}
+
 .switch .control-label {
   padding-left: 0.5em;
 }
@@ -14860,6 +16736,22 @@ label.panel-block:hover {
 
 .switch:hover input[type=checkbox]:checked + .check.is-danger {
   background: rgba(255, 56, 96, 0.9);
+}
+
+.switch:hover input[type=checkbox]:checked + .check.is-facebook {
+  background: rgba(60, 90, 153, 0.9);
+}
+
+.switch:hover input[type=checkbox]:checked + .check.is-reddit {
+  background: rgba(255, 69, 0, 0.9);
+}
+
+.switch:hover input[type=checkbox]:checked + .check.is-whatsapp {
+  background: rgba(74, 201, 89, 0.9);
+}
+
+.switch:hover input[type=checkbox]:checked + .check.is-twitter {
+  background: rgba(29, 161, 242, 0.9);
 }
 
 .switch.is-small {
@@ -15381,6 +17273,34 @@ label.panel-block:hover {
   bottom: calc(100% + 2px);
 }
 
+.b-tooltip.is-top.is-facebook:before {
+  border-top: 5px solid #3C5A99;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  bottom: calc(100% + 2px);
+}
+
+.b-tooltip.is-top.is-reddit:before {
+  border-top: 5px solid #FF4500;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  bottom: calc(100% + 2px);
+}
+
+.b-tooltip.is-top.is-whatsapp:before {
+  border-top: 5px solid #4AC959;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  bottom: calc(100% + 2px);
+}
+
+.b-tooltip.is-top.is-twitter:before {
+  border-top: 5px solid #1DA1F2;
+  border-right: 5px solid transparent;
+  border-left: 5px solid transparent;
+  bottom: calc(100% + 2px);
+}
+
 .b-tooltip.is-top.is-multiline.is-small:after {
   width: 180px;
 }
@@ -15462,6 +17382,34 @@ label.panel-block:hover {
 .b-tooltip.is-right.is-danger:before {
   border-top: 5px solid transparent;
   border-right: 5px solid #ff3860;
+  border-bottom: 5px solid transparent;
+  left: calc(100% + 2px);
+}
+
+.b-tooltip.is-right.is-facebook:before {
+  border-top: 5px solid transparent;
+  border-right: 5px solid #3C5A99;
+  border-bottom: 5px solid transparent;
+  left: calc(100% + 2px);
+}
+
+.b-tooltip.is-right.is-reddit:before {
+  border-top: 5px solid transparent;
+  border-right: 5px solid #FF4500;
+  border-bottom: 5px solid transparent;
+  left: calc(100% + 2px);
+}
+
+.b-tooltip.is-right.is-whatsapp:before {
+  border-top: 5px solid transparent;
+  border-right: 5px solid #4AC959;
+  border-bottom: 5px solid transparent;
+  left: calc(100% + 2px);
+}
+
+.b-tooltip.is-right.is-twitter:before {
+  border-top: 5px solid transparent;
+  border-right: 5px solid #1DA1F2;
   border-bottom: 5px solid transparent;
   left: calc(100% + 2px);
 }
@@ -15551,6 +17499,34 @@ label.panel-block:hover {
   top: calc(100% + 2px);
 }
 
+.b-tooltip.is-bottom.is-facebook:before {
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #3C5A99;
+  border-left: 5px solid transparent;
+  top: calc(100% + 2px);
+}
+
+.b-tooltip.is-bottom.is-reddit:before {
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #FF4500;
+  border-left: 5px solid transparent;
+  top: calc(100% + 2px);
+}
+
+.b-tooltip.is-bottom.is-whatsapp:before {
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #4AC959;
+  border-left: 5px solid transparent;
+  top: calc(100% + 2px);
+}
+
+.b-tooltip.is-bottom.is-twitter:before {
+  border-right: 5px solid transparent;
+  border-bottom: 5px solid #1DA1F2;
+  border-left: 5px solid transparent;
+  top: calc(100% + 2px);
+}
+
 .b-tooltip.is-bottom.is-multiline.is-small:after {
   width: 180px;
 }
@@ -15633,6 +17609,34 @@ label.panel-block:hover {
   border-top: 5px solid transparent;
   border-bottom: 5px solid transparent;
   border-left: 5px solid #ff3860;
+  right: calc(100% + 2px);
+}
+
+.b-tooltip.is-left.is-facebook:before {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #3C5A99;
+  right: calc(100% + 2px);
+}
+
+.b-tooltip.is-left.is-reddit:before {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #FF4500;
+  right: calc(100% + 2px);
+}
+
+.b-tooltip.is-left.is-whatsapp:before {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #4AC959;
+  right: calc(100% + 2px);
+}
+
+.b-tooltip.is-left.is-twitter:before {
+  border-top: 5px solid transparent;
+  border-bottom: 5px solid transparent;
+  border-left: 5px solid #1DA1F2;
   right: calc(100% + 2px);
 }
 
@@ -15722,6 +17726,26 @@ label.panel-block:hover {
 
 .b-tooltip.is-danger:after {
   background: #ff3860;
+  color: #fff;
+}
+
+.b-tooltip.is-facebook:after {
+  background: #3C5A99;
+  color: #fff;
+}
+
+.b-tooltip.is-reddit:after {
+  background: #FF4500;
+  color: #fff;
+}
+
+.b-tooltip.is-whatsapp:after {
+  background: #4AC959;
+  color: #fff;
+}
+
+.b-tooltip.is-twitter:after {
+  background: #1DA1F2;
   color: #fff;
 }
 
@@ -15860,6 +17884,30 @@ label.panel-block:hover {
 .upload .upload-draggable.is-hovered.is-danger {
   border-color: #ff3860;
   background: rgba(255, 56, 96, 0.05);
+}
+
+.upload .upload-draggable:hover.is-facebook,
+.upload .upload-draggable.is-hovered.is-facebook {
+  border-color: #3C5A99;
+  background: rgba(60, 90, 153, 0.05);
+}
+
+.upload .upload-draggable:hover.is-reddit,
+.upload .upload-draggable.is-hovered.is-reddit {
+  border-color: #FF4500;
+  background: rgba(255, 69, 0, 0.05);
+}
+
+.upload .upload-draggable:hover.is-whatsapp,
+.upload .upload-draggable.is-hovered.is-whatsapp {
+  border-color: #4AC959;
+  background: rgba(74, 201, 89, 0.05);
+}
+
+.upload .upload-draggable:hover.is-twitter,
+.upload .upload-draggable.is-hovered.is-twitter {
+  border-color: #1DA1F2;
+  background: rgba(29, 161, 242, 0.05);
 }
 
 .is-divider,
@@ -16082,6 +18130,78 @@ label.panel-block:hover {
 .is-divider.is-danger::before,
 .is-divider-vertical.is-danger::before {
   border-left-color: #ff3860;
+}
+
+.is-divider.is-facebook,
+.is-divider-vertical.is-facebook {
+  border-top-color: #3C5A99;
+}
+
+.is-divider.is-facebook[data-content]::after,
+.is-divider.is-facebook[data-content]::after,
+.is-divider-vertical.is-facebook[data-content]::after,
+.is-divider-vertical.is-facebook[data-content]::after {
+  background: #fff;
+  color: #3C5A99;
+}
+
+.is-divider.is-facebook::before,
+.is-divider-vertical.is-facebook::before {
+  border-left-color: #3C5A99;
+}
+
+.is-divider.is-reddit,
+.is-divider-vertical.is-reddit {
+  border-top-color: #FF4500;
+}
+
+.is-divider.is-reddit[data-content]::after,
+.is-divider.is-reddit[data-content]::after,
+.is-divider-vertical.is-reddit[data-content]::after,
+.is-divider-vertical.is-reddit[data-content]::after {
+  background: #fff;
+  color: #FF4500;
+}
+
+.is-divider.is-reddit::before,
+.is-divider-vertical.is-reddit::before {
+  border-left-color: #FF4500;
+}
+
+.is-divider.is-whatsapp,
+.is-divider-vertical.is-whatsapp {
+  border-top-color: #4AC959;
+}
+
+.is-divider.is-whatsapp[data-content]::after,
+.is-divider.is-whatsapp[data-content]::after,
+.is-divider-vertical.is-whatsapp[data-content]::after,
+.is-divider-vertical.is-whatsapp[data-content]::after {
+  background: #fff;
+  color: #4AC959;
+}
+
+.is-divider.is-whatsapp::before,
+.is-divider-vertical.is-whatsapp::before {
+  border-left-color: #4AC959;
+}
+
+.is-divider.is-twitter,
+.is-divider-vertical.is-twitter {
+  border-top-color: #1DA1F2;
+}
+
+.is-divider.is-twitter[data-content]::after,
+.is-divider.is-twitter[data-content]::after,
+.is-divider-vertical.is-twitter[data-content]::after,
+.is-divider-vertical.is-twitter[data-content]::after {
+  background: #fff;
+  color: #1DA1F2;
+}
+
+.is-divider.is-twitter::before,
+.is-divider-vertical.is-twitter::before {
+  border-left-color: #1DA1F2;
 }
 
 .is-divider.is-black-bis,
@@ -16331,6 +18451,30 @@ label.panel-block:hover {
   color: #fff;
 }
 
+.badge.is-badge-facebook[data-badge]::after,
+.badge.is-badge-facebook:not([data-badge])::after {
+  background: #3C5A99;
+  color: #fff;
+}
+
+.badge.is-badge-reddit[data-badge]::after,
+.badge.is-badge-reddit:not([data-badge])::after {
+  background: #FF4500;
+  color: #fff;
+}
+
+.badge.is-badge-whatsapp[data-badge]::after,
+.badge.is-badge-whatsapp:not([data-badge])::after {
+  background: #4AC959;
+  color: #fff;
+}
+
+.badge.is-badge-twitter[data-badge]::after,
+.badge.is-badge-twitter:not([data-badge])::after {
+  background: #1DA1F2;
+  color: #fff;
+}
+
 .badge.is-badge-outlined[data-badge]::after {
   background-color: white;
   -webkit-box-shadow: none;
@@ -16409,6 +18553,38 @@ label.panel-block:hover {
           box-shadow: none;
   border: 0.1rem solid #ff3860;
   color: #ff3860;
+}
+
+.badge.is-badge-outlined.is-badge-facebook[data-badge]::after {
+  background: white;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 0.1rem solid #3C5A99;
+  color: #3C5A99;
+}
+
+.badge.is-badge-outlined.is-badge-reddit[data-badge]::after {
+  background: white;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 0.1rem solid #FF4500;
+  color: #FF4500;
+}
+
+.badge.is-badge-outlined.is-badge-whatsapp[data-badge]::after {
+  background: white;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 0.1rem solid #4AC959;
+  color: #4AC959;
+}
+
+.badge.is-badge-outlined.is-badge-twitter[data-badge]::after {
+  background: white;
+  -webkit-box-shadow: none;
+          box-shadow: none;
+  border: 0.1rem solid #1DA1F2;
+  color: #1DA1F2;
 }
 
 .badge[data-badge]::after {
@@ -16674,6 +18850,66 @@ label.panel-block:hover {
 }
 
 .pageloader.is-danger .title {
+  color: #fff;
+}
+
+.pageloader.is-facebook {
+  background-color: #3C5A99;
+  background: #3c5a99;
+}
+
+.pageloader.is-facebook::after {
+  border-color: #fff;
+  -webkit-animation: loader-figure-facebook 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation: loader-figure-facebook 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.pageloader.is-facebook .title {
+  color: #fff;
+}
+
+.pageloader.is-reddit {
+  background-color: #FF4500;
+  background: orangered;
+}
+
+.pageloader.is-reddit::after {
+  border-color: #fff;
+  -webkit-animation: loader-figure-reddit 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation: loader-figure-reddit 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.pageloader.is-reddit .title {
+  color: #fff;
+}
+
+.pageloader.is-whatsapp {
+  background-color: #4AC959;
+  background: #4ac959;
+}
+
+.pageloader.is-whatsapp::after {
+  border-color: #fff;
+  -webkit-animation: loader-figure-whatsapp 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation: loader-figure-whatsapp 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.pageloader.is-whatsapp .title {
+  color: #fff;
+}
+
+.pageloader.is-twitter {
+  background-color: #1DA1F2;
+  background: #1da1f2;
+}
+
+.pageloader.is-twitter::after {
+  border-color: #fff;
+  -webkit-animation: loader-figure-twitter 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+  animation: loader-figure-twitter 1.15s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.pageloader.is-twitter .title {
   color: #fff;
 }
 
@@ -17271,6 +19507,230 @@ label.panel-block:hover {
 }
 
 @keyframes loader-figure-danger {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #fff;
+  }
+
+  29% {
+    background-color: #fff;
+  }
+
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1;
+  }
+
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@-webkit-keyframes loader-figure-facebook {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #fff;
+  }
+
+  29% {
+    background-color: #fff;
+  }
+
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1;
+  }
+
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@keyframes loader-figure-facebook {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #fff;
+  }
+
+  29% {
+    background-color: #fff;
+  }
+
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1;
+  }
+
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@-webkit-keyframes loader-figure-reddit {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #fff;
+  }
+
+  29% {
+    background-color: #fff;
+  }
+
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1;
+  }
+
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@keyframes loader-figure-reddit {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #fff;
+  }
+
+  29% {
+    background-color: #fff;
+  }
+
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1;
+  }
+
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@-webkit-keyframes loader-figure-whatsapp {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #fff;
+  }
+
+  29% {
+    background-color: #fff;
+  }
+
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1;
+  }
+
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@keyframes loader-figure-whatsapp {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #fff;
+  }
+
+  29% {
+    background-color: #fff;
+  }
+
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1;
+  }
+
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@-webkit-keyframes loader-figure-twitter {
+  0% {
+    height: 0;
+    width: 0;
+    background-color: #fff;
+  }
+
+  29% {
+    background-color: #fff;
+  }
+
+  30% {
+    height: 2em;
+    width: 2em;
+    background-color: transparent;
+    border-width: 1em;
+    opacity: 1;
+  }
+
+  100% {
+    height: 2em;
+    width: 2em;
+    border-width: 0;
+    opacity: 0;
+    background-color: transparent;
+  }
+}
+
+@keyframes loader-figure-twitter {
   0% {
     height: 0;
     width: 0;
@@ -17911,6 +20371,98 @@ input[type=range].slider.is-danger::-ms-fill-upper {
 input[type=range].slider.is-danger.has-output + output,
 input[type=range].slider.is-danger .has-output-tooltip + output {
   background-color: #ff3860;
+  color: #fff;
+}
+
+input[type=range].slider.is-facebook::-moz-range-track {
+  background: #3C5A99;
+}
+
+input[type=range].slider.is-facebook::-webkit-slider-runnable-track {
+  background: #3C5A99;
+}
+
+input[type=range].slider.is-facebook::-ms-track {
+  background: #3C5A99 !important;
+}
+
+input[type=range].slider.is-facebook::-ms-fill-lower,
+input[type=range].slider.is-facebook::-ms-fill-upper {
+  background: #3C5A99;
+}
+
+input[type=range].slider.is-facebook.has-output + output,
+input[type=range].slider.is-facebook .has-output-tooltip + output {
+  background-color: #3C5A99;
+  color: #fff;
+}
+
+input[type=range].slider.is-reddit::-moz-range-track {
+  background: #FF4500;
+}
+
+input[type=range].slider.is-reddit::-webkit-slider-runnable-track {
+  background: #FF4500;
+}
+
+input[type=range].slider.is-reddit::-ms-track {
+  background: #FF4500 !important;
+}
+
+input[type=range].slider.is-reddit::-ms-fill-lower,
+input[type=range].slider.is-reddit::-ms-fill-upper {
+  background: #FF4500;
+}
+
+input[type=range].slider.is-reddit.has-output + output,
+input[type=range].slider.is-reddit .has-output-tooltip + output {
+  background-color: #FF4500;
+  color: #fff;
+}
+
+input[type=range].slider.is-whatsapp::-moz-range-track {
+  background: #4AC959;
+}
+
+input[type=range].slider.is-whatsapp::-webkit-slider-runnable-track {
+  background: #4AC959;
+}
+
+input[type=range].slider.is-whatsapp::-ms-track {
+  background: #4AC959 !important;
+}
+
+input[type=range].slider.is-whatsapp::-ms-fill-lower,
+input[type=range].slider.is-whatsapp::-ms-fill-upper {
+  background: #4AC959;
+}
+
+input[type=range].slider.is-whatsapp.has-output + output,
+input[type=range].slider.is-whatsapp .has-output-tooltip + output {
+  background-color: #4AC959;
+  color: #fff;
+}
+
+input[type=range].slider.is-twitter::-moz-range-track {
+  background: #1DA1F2;
+}
+
+input[type=range].slider.is-twitter::-webkit-slider-runnable-track {
+  background: #1DA1F2;
+}
+
+input[type=range].slider.is-twitter::-ms-track {
+  background: #1DA1F2 !important;
+}
+
+input[type=range].slider.is-twitter::-ms-fill-lower,
+input[type=range].slider.is-twitter::-ms-fill-upper {
+  background: #1DA1F2;
+}
+
+input[type=range].slider.is-twitter.has-output + output,
+input[type=range].slider.is-twitter .has-output-tooltip + output {
+  background-color: #1DA1F2;
   color: #fff;
 }
 

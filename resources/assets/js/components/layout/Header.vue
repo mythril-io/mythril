@@ -45,10 +45,10 @@
 			        </a>
 			        <div class="navbar-dropdown">
 			          <router-link class="navbar-item" :to="{name: 'Forums' }" exact>
-			            <span class="icon has-text-info" style="margin-top: 2px;">
+			            <!-- <span class="icon has-text-info" style="margin-top: 2px;">
 										<i class="fas fa-info-circle"></i>
-									</span>
- 									<div>Forums</div>
+									</span> -->
+ 									<div>Forums</div><span class="tag is-success" style="margin-left: 7px;">New!</span>
 			          </router-link>
 			          <router-link class="navbar-item" :to="{name: 'Users'}" exact>
 			            Users

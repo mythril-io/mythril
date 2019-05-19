@@ -1,9 +1,12 @@
 <template>
   <div>
     <div v-if="reviews.length > 0">
-      <div class="columns is-mobile" v-for="review in reviews">
+      <div class="columns is-mobile" v-for="review in reviews" :key="review.id">
         <div class="column is-2 is-hidden-touch">
-					<user-avatar :user="review.user"/>
+						<user-avatar 
+								:user="review.user"
+								avatarSize="is-128x128">
+						</user-avatar>
         </div>
         <div class="column">
           <div class="is-clearfix">

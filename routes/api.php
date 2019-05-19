@@ -147,6 +147,8 @@ Route::group([
     Route::post('forums/discussions/like/{id}', 'Forums\DiscussionController@toggleLike');
     Route::patch('forums/discussions/{id}', 'Forums\DiscussionController@update');
     Route::post('forums/posts', 'Forums\PostController@store');
+    Route::post('forums/posts/like/{id}', 'Forums\PostController@toggleLike');
+    Route::patch('forums/post/{id}', 'Forums\PostController@update');
 });
 
 /*

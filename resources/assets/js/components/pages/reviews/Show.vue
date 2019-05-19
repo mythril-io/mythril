@@ -30,7 +30,10 @@
               
           <div class="columns is-vcentered is-mobile">
             <div class="column is-narrow is-hidden-touch" style="z-index: 2; width: 200px;">
-							<user-avatar :user="this.review.user" style="min-height: 176px" />
+							<user-avatar 
+								:user="this.review.user" 
+								dimension="176px"
+							/>
             </div>
             <div class="column margin-left" style="margin-right: -50px; z-index: 1;">
                     <div class="notification padding-left" style="padding-right: 50px; min-height: 134px;">

@@ -10,7 +10,7 @@ class Post extends Model
 {
     use CanBeLiked;
 
-    protected $appends = ['has_liked'];
+    protected $appends = ['has_liked', 'like_count'];
 
     /**
      * Hide the pivot table information, and the timestamps
@@ -23,7 +23,7 @@ class Post extends Model
      * @var array
      */
     protected $fillable = [
-        'body', 'discussion_id', 'user_id', 'edit_count', 'edit_time'
+        'body', 'discussion_id', 'user_id', 'parent_post_id', 'edit_count'
     ];
 
     /**
@@ -42,7 +42,26 @@ class Post extends Model
      */
     public function discussion()
     {
-      return $this->belongsTo('App\User', 'user_id');
+      return $this->belongsTo('App\Forums\Discussion', 'discussion_id');
+    }
+
+    /**
+     * The Parent Post the Post has.
+     *
+     */
+    public function parent()
+    {
+      return $this->belongsTo(self::class, 'parent_post_id');
+    }
+
+
+    /**
+     * The Replies the Post has.
+     *
+     */
+    public function replies()
+    {
+        return $this->hasMany(self::class, 'parent_post_id');
     }
 
     /**
@@ -54,6 +73,16 @@ class Post extends Model
     {
         $user = User::get();
         return $this->isLikedBy($user);
+    }
+
+    /**
+     * Get Like Count
+     *
+     * @return boolean
+     */
+    public function getLikeCountAttribute()
+    {
+        return $this->likers->count();
     }
 
 }

@@ -7,6 +7,7 @@ use \App\Filters\Filterable;
 use Overtrue\LaravelFollow\Traits\CanBeSubscribed;
 use Overtrue\LaravelFollow\Traits\CanBeLiked;
 use App\User;
+use App\Forum\Post;
 
 class Discussion extends Model
 {
@@ -62,6 +63,15 @@ class Discussion extends Model
     }
 
     /**
+     * The Last Post the Discussion belongs to.
+     *
+     */
+    public function lastPost()
+    {
+      return $this->hasOne('App\Forums\Post', 'id', 'last_post_id');
+    }
+
+    /**
      * Get User Subscription Status
      *
      * @return boolean
@@ -83,13 +93,33 @@ class Discussion extends Model
         return $this->isLikedBy($user);
     }
 
-    // /**
-    //  * Get Like Count
-    //  *
-    //  * @return boolean
-    //  */
-    // public function getLikeCountAttribute()
-    // {
-    //     return $this->likers->count();
-    // }
+    /**
+     * Get Like Count
+     *
+     * @return boolean
+     */
+    public function getLikeCountAttribute()
+    {
+        return $this->likers->count();
+    }
+
+    /**
+     * Get Replies Count
+     *
+     * @return boolean
+     */
+    public function getPostCountAttribute()
+    {
+        return $this->posts->count();
+    }
+
+    /**
+     * Get Unique User Count
+     *
+     * @return boolean
+     */
+    public function getUserCountAttribute()
+    {
+        return $this->posts->groupBy('user_id')->count();
+    }
 }

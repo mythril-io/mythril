@@ -1,137 +1,56 @@
 <template>
 <div>
 
-    <section class="hero is-primary">
-        <div class="hero-body">
-            <div class="container">
-            <h1 class="title has-text-centered">
-                {{ discussion.title }}
-            </h1>
-            <h2 class="subtitle has-text-centered">
-                <div class="field is-grouped is-grouped-multiline centered-tags">
-                    <div class="control" v-for="tag in discussion.tags" :key="tag.id">
-                        <div class="tags">
-                            <router-link tag="span" :to="{name: 'Forums', params: { tag: tag.slug }}" :class="'tag is-dark underline-link '">{{ tag.name }}</router-link>
-                        </div>
-                    </div>
-
-                    <div class="control" v-for="game in discussion.games" :key="game.id">
-                        <div class="tags has-addons">
-                            <span class="tag">
-                                <b-icon
-                                    icon="gamepad"
-                                    size="is-small">
-                                </b-icon>
-                            </span>
-                            <router-link tag="span" :to="{name: 'Game', params: { id: game.id }}" class="tag has-background-white-ter underline-link" style="padding-left: 0 !important">{{ game.title }}</router-link>
-                        </div>
-                    </div>
-                </div>
-            </h2>
-            </div>
-        </div>
-    </section>
-
-    <section class="section has-background-white-bis" style="border-bottom: 2px #f5f5f5 solid;">
-        <div class="container">
-            <div class="columns bounce-enter-active">
-                <div class="column is-narrow" style="width: 120px;">
-                    <b-tooltip
-                        :label="discussion.user.username"
-                        position="is-top"
-                        type="is-dark"
-                        animated> 
-                        <router-link 
-                            tag="figure" 
-                            :to="{name: 'User', params: { id: discussion.user.id }}" 
-                            class="image card is-96x96"
-                            :style="'background-size: cover; cursor:pointer; background-image: url('+ $store.state.userAvatarURL + discussion.user.avatar +');'"
-                            >
-                        </router-link>
-                    </b-tooltip>
-
-                </div>
-                <div class="column">
-                    <div class="content">
-                        <div style="margin-bottom: 7px;"><strong>{{ discussion.user.username }}</strong> <small>{{ discussion.created_at | ago($store.user)  }}</small></div>
-                        <p v-html="compiledMarkdown"></p>
-                    </div>
-
-                    <!-- Main container -->
-                    <nav class="level is-mobile">
-                        <!-- Left side -->
-                        <div class="level-left">
-                        <div class="level-item has-text-centered">
-                            <div>
-                            <p class="heading">Replies</p>
-                            <p class="title is-4">{{ discussion.post_count }}</p>
-                            </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                            <p class="heading">Views</p>
-                            <p class="title is-4">{{ discussion.view_count }}</p>
-                            </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                            <p class="heading">Users</p>
-                            <p class="title is-4">{{ discussion.user_count }}</p>
-                            </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                            <p class="heading">Likes</p>
-                            <p class="title is-4">{{ discussion.like_count }}</p>
-                            </div>
-                        </div>
-                        </div>
-
-                        <!-- Right side -->
-                        <div class="level-right">
-                        <!-- <p class="level-item">
-                            <a class="button" @click="quoteReply(discussion)">
-                                <span class="icon is-small">
-                                    <i class="fas fa-reply"></i>
-                                </span>
-                            </a>
-                        </p> -->
-                        <p class="level-item">
-                            <a class="button is-danger"
-                                :class="{ 'is-outlined' : !discussion.has_liked, 'is-loading' : liking }" 
-                                @click="toggleLike()">
-                                <span class="icon is-small">
-                                    <i class="fas fa-heart"></i>
-                                </span>
-                            </a>
-                        </p>
-                        <p class="level-item">
-                            <a class="button is-primary" 
-                               :class="{ 'is-outlined' : !discussion.is_subscribed, 'is-loading' : subscribing }" 
-                               @click="subscribe()">{{ discussion.is_subscribed ? 'Unsubscribe' : 'Subscribe'}}
-                            </a>
-                        </p>
-                        </div>
-                    </nav>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Discussion Info -->
+    <discussion 
+        :discussion="discussion"
+    ></discussion>
 
     <!-- Posts & Sidebar-->
-    <section class="section" v-if="posts.data.length > 0">
+    <section class="section" v-if="posts.data && posts.data.length > 0">
         <div class="container">
             <div class="columns is-variable is-5">
 
+                <!-- Loader -->
+                <b-loading :is-full-page="false" :active.sync="isLoadingPosts"></b-loading>
+
                 <!-- Posts -->
-                <div class="column" id="posts">
-                    <show-posts :posts="posts.data"></show-posts>
+                <div class="column" id="posts" v-show="!isLoadingPosts">
+                    <button 
+                        v-if="firstPage > 1"
+                        class="button is-light is-small heading is-rounded" 
+                        style="font-size: 11px; width: 50%; margin-left: auto; margin-right: auto"
+                        @click="getPreviousPage"
+                    >Load Previous</button>
+                    <show-posts 
+                        :posts="posts.data"
+                        :scrollTo="scrollTo"
+                        @onReply="setParentPost"
+                        @onViewPost="setViewPost"
+                    >
+                    </show-posts>
+                    <button 
+                        v-if="lastPage < posts.last_page"
+                        class="button is-light is-small heading is-rounded" 
+                        style="font-size: 11px; width: 50%; margin-left: auto; margin-right: auto"
+                        @click="getNextPage"
+                    >Load More</button>
                 </div>
+                
 
                 <!-- Sidebar-->
-                <div class="column is-narrow" style="width: 200px;">
+                <div class="column is-narrow is-hidden-mobile" style="width: 200px;">
                     <affix class="sidebar-menu" relative-element-selector="#posts" style="width: 200px; margin-top: 10px;">
-                        <sidebar :discussion="discussion" :posts="posts"></sidebar>
+                        <sidebar 
+                            :discussion="discussion" 
+                            :posts="posts"
+                            :postNumber="postNumber"
+                            @onReply="setParentPost"
+                            @onChangePostNumber="setViewPost"
+                            @onScrollToPost="scrollToPost"
+                            @onFetchPosts="setInitialPosts"
+                        >
+                        </sidebar>
                     </affix>
                 </div>
 
@@ -140,9 +59,16 @@
     </section>
 
     <!-- New Post -->
-    <section class="section">
+    <section class="section" id="reply-form">
         <div class="container">
-            <create-post :discussion="discussion"></create-post>
+            <create-post 
+                :discussion="discussion" 
+                :parentPost="parentPost"
+                :triggerForm="triggerForm"
+                @onRemoveParentPost="setParentPost(null)"
+                @onAddPost="addReply"
+            >
+            </create-post>
         </div>
     </section>
 
@@ -152,101 +78,96 @@
 <script>
 import { ModalProgrammatic } from 'buefy/dist/components/modal'
 import AuthenticationModal from "../../../utilities/AuthenticationModal.vue";
-import CreatePost from '../posts/Create.vue'
-import ShowPosts from '../posts/Show.vue'
-import Sidebar from './Sidebar.vue'
+import NProgress from 'nprogress'
+
+import Discussion from './components/Discussion.vue'
+import Sidebar from './components/Sidebar.vue'
 import { Affix } from 'vue-affix';
+
+import ShowPosts from '../posts/Show.vue'
+import CreatePost from '../posts/Create.vue'
+import MarkdownEditor from '../../../utilities/MarkdownEditor.vue'
 
 var md = require('markdown-it')();
 
 export default {
-  components: {CreatePost, ShowPosts, Sidebar, Affix},
+    components: {CreatePost, ShowPosts, Sidebar, Affix, MarkdownEditor, Discussion},
     data() {
         return {
             discussion: null,
             posts: null,
-            subscribing: false,
-            liking: false,
+            parentPost: null,
+            triggerForm: false,
 
+            firstPage: 1,
+            lastPage: 1,
+            postNumber: 1,
+
+            isLoadingPosts: true,
+            scrollTo: null
         };
     },
-	computed: {
-		compiledMarkdown: function () {
-			return md.render(this.discussion.body);
-		}
-	},
     methods: {
-        quoteReply(discussion) {
-            if (!this.$store.state.user) {
-                ModalProgrammatic.open({
-                parent: this,
-                component: AuthenticationModal,
-                hasModalCard: true
-                })
-            } else {
-                //Pass the discussion (discussion id and username) to the create post component
-                //Use @plugin to link bback to the original post
+        addReply(post) {
+            //this.posts.push(post);
+            //Go to last page
+            this.setParentPost(null);
+        },
+        setParentPost(post=null) {
+            this.parentPost = post;
+            this.triggerForm = true;
+            this.$scrollTo("#reply-form");
+        },
+        setViewPost(postNumber) {
+            this.postNumber = postNumber;
+        },
+        scrollToPost(postNumber) {
+            this.scrollTo = postNumber;
+        },
+        setInitialPosts(page = 1) {
+            this.isLoadingPosts = true;
+            axios.get('/api/forums/posts/' + this.$route.params.id + '?page=' + page )
+            .then((response) => { 
+                this.posts = response.data;
+                this.firstPage = response.data.current_page;
+                this.lastPage = response.data.current_page;
+                this.isLoadingPosts = false;
+            })
+            .catch((error) => {
+                this.isLoadingPosts = false; 
+            });
+
+            if(this.$route.params.postNum) {
+                this.scrollToPost(this.$route.params.postNum)
             }
         },
-        toggleLike() {
-            if (!this.$store.state.user) {
-                ModalProgrammatic.open({
-                parent: this,
-                component: AuthenticationModal,
-                hasModalCard: true
+        getPreviousPage(page = null) {
+            if(page != null) {
+                page = --this.firstPage;
+                axios.get('/api/forums/posts/' + this.$route.params.id + '?page=' + page )
+                .then((response) => { 
+                    this.posts.data = _.concat(response.data.data, this.posts.data)                
+
+                    this.firstPage = response.data.current_page;
+                    this.posts.last_page = response.data.last_page;
+                    this.posts.total = response.data.total;
                 })
-            } else {
-                this.liking = true;
-                axios.post('/api/forums/discussions/like/' + this.discussion.id )
-                .catch((error) => { 
-                    if(error.response.status === 403) { flash(error.response.data.error, 'error') }
-                    else{ 
-                        this.$snackbar.open({
-                            message: this.discussion.has_liked ? 'Unable to Remove Like' : 'Unable to Like', 
-                            type: 'is-danger',
-                        })
-                    }
-                    this.liking = false;
-                })
-                .then((response) => {
-                    this.discussion.has_liked = response.data;
-                    response.data ? this.discussion.like_count++ : this.discussion.like_count--;
-                    this.liking = false;
-                    this.$snackbar.open({
-                        message: response.data ? 'Liked Discussion' : 'Removed Like', 
-                        type: 'is-primary',
-                    })
-                });
+                .catch((error) => console.log("Previous page not loaded") );
             }
         },
-        subscribe() {
-            if (!this.$store.state.user) {
-                ModalProgrammatic.open({
-                parent: this,
-                component: AuthenticationModal,
-                hasModalCard: true
+        getNextPage(page = null) {
+            if(page != null) {
+                page = ++this.lastPage;
+                axios.get('/api/forums/posts/' + this.$route.params.id + '?page=' + page )
+                .then((response) => { 
+                    this.posts.data = _.concat(this.posts.data, response.data.data)
+                    this.lastPage = response.data.current_page;
+
+                    this.posts.last_page = response.data.last_page;
+                    this.posts.total = response.data.total;
+
                 })
-            } else {
-                this.subscribing = true;
-                axios.post('/api/forums/discussions/subscribe/' + this.discussion.id )
-                .catch((error) => { 
-                    if(error.response.status === 403) { flash(error.response.data.error, 'error') }
-                    else{ 
-                        this.$snackbar.open({
-                            message: this.discussion.is_subscribed ? 'Unable to Unsubscribe' : 'Unable to Subscribe', 
-                            type: 'is-danger',
-                        })
-                    }
-                    this.subscribing = false;
-                })
-                .then((response) => {
-                    this.discussion.is_subscribed = response.data;
-                    this.subscribing = false;
-                    this.$snackbar.open({
-                        message: (response.data ? 'Subscribed' : 'Unsubscribed') + ' to Discussion', 
-                        type: 'is-primary',
-                    })
-                });
+                .catch((error) => console.log("Next page not loaded") );
             }
         }
     },
@@ -260,12 +181,13 @@ export default {
             }
 		})
         .catch((error) => this.$router.replace({ name: 'Forums'}) );
-        
-		axios.get('/api/forums/posts/' + this.$route.params.id )
-		.then((response) => { 
-            this.posts = response.data;
-		})
-		.catch((error) => this.$router.replace({ name: 'Forums'}) );
+
+        var page = 1;
+        if(this.$route.params.postNum) {
+            page = Math.ceil(this.$route.params.postNum/5);
+        }
+
+        this.setInitialPosts(page);
     }
 }
 </script>

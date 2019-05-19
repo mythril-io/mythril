@@ -53,12 +53,15 @@
 		  </div>
 		</section>
 
-		<!-- Recent User Activity -->
+		<!-- Recent User/Forum Activity -->
 
 		<section class="section">
 			<div class="container">
 			
 				<recent-user-activity :recentUserActivity="recent_user_activity"></recent-user-activity>
+
+				<recent-forum-activity></recent-forum-activity>
+
 
 			</div>
 		</section>
@@ -84,10 +87,11 @@ import Reviews from './home/Reviews.vue';
 import Recommendations from './home/Recommendations.vue';
 import SiteStats from './home/SiteStats.vue';
 import RecentUserActivity from './home/RecentUserActivity.vue';
+import RecentForumActivity from './home/RecentForumActivity.vue';
 import TopGames from './home/TopGames.vue';
 
 export default {
-  	components:{ TrendingGames, Reviews, Recommendations, SiteStats, RecentUserActivity, TopGames },
+  	components:{ TrendingGames, Reviews, Recommendations, SiteStats, RecentUserActivity, RecentForumActivity, TopGames },
     data() {
     	return {
     		games_count: 0,

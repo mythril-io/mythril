@@ -479,6 +479,13 @@ input[type="range"].slider:not([orient="vertical"]).has-output + output, input[t
     background-color: rgba( 245, 245, 245,.4);
     border: solid 1px #e1e1e1;
   }
+  
+  .fade-enter-active, .fade-leave-active {
+    transition: opacity .3s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }
 
   .bounce-enter-active {
     animation: bounce-in .3s;

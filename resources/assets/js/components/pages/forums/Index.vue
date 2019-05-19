@@ -37,10 +37,10 @@
               <li>
                 <router-link :to="{name: 'Forums'}" :class="{ 'is-active': this.$route.params.tag==undefined }" exact>All</router-link>
               </li>
-              <li v-for="tag in parentTags">
+              <li v-for="tag in parentTags" :key="tag.id">
                 <router-link :to="{name: 'Forums', params: { tag: tag.slug }}">{{ tag.name }}</router-link>
                 <ul v-if="tag.children">
-                  <li v-for="tag in tag.children">
+                  <li v-for="tag in tag.children" :key="tag.id">
                     <router-link :to="{name: 'Forums', params: { tag: tag.slug }}">{{ tag.name }}</router-link>
                   </li>
                 </ul>
@@ -120,9 +120,8 @@
                     </span>
                     <span>Subscribed</span>
                   </a>
-                  <!-- <a @click="toggleSubsciptions()">Subscribed</a> -->
                 </p>
-                <p class="level-item">
+                <!-- <p class="level-item">
                   <a class="button is-light" title="Mark All as Read">
                     <b-icon
                         pack="fas"
@@ -130,7 +129,7 @@
                         size="is-small">
                     </b-icon>
                   </a>
-                </p>
+                </p> -->
               </div>
             </nav>
 
@@ -138,18 +137,18 @@
 
               <b-loading :is-full-page="false" :active.sync="isLoadingDiscussions"></b-loading>
 
-              <div v-if="!isLoadingDiscussions">
-                <div v-if="discussions.length>0" v-for="discussion in discussions" >
+              <div v-if="!isLoadingDiscussions && discussions.length>0">
+                <div v-for="discussion in discussions" :key="discussion.id">
                   <discussion-item :discussion="discussion"></discussion-item>
                 </div>
+              </div>
 
-                <div v-if="discussions.length==0">
-                  <article class="message is-warning">
-                    <div class="message-body">
-                      No Discussions Found :(
-                    </div>
-                  </article>
-                </div>
+              <div v-if="discussions.length==0">
+                <article class="message is-warning">
+                  <div class="message-body">
+                    No Discussions Found :(
+                  </div>
+                </article>
               </div>
 
               <b-pagination
@@ -174,7 +173,7 @@
 import { ModalProgrammatic } from 'buefy/dist/components/modal'
 import AuthenticationModal from "../../utilities/AuthenticationModal.vue";
 import ForumHeader from './common/ForumHeader.vue'
-import DiscussionItem from './discussions/DiscussionItem.vue'
+import DiscussionItem from './discussions/components/DiscussionItem.vue'
 
 export default {
   components: {ForumHeader, DiscussionItem},

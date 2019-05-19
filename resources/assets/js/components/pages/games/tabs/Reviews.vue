@@ -16,7 +16,7 @@
 	    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
 			</div>
 			<div v-else>
-				<reviews-component :reviews="reviews" :game="game"></reviews-component>
+				<reviews-component :reviews="game.reviews" showUserAvatar="true"></reviews-component>
 		    </div>
 
 		    <div v-if="newReviewsLoading" class="columns">
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import ReviewsComponent from '../components/ReviewsComponent.vue';
+import ReviewsComponent from '../../components/ReviewsComponent.vue';
 
 export default {
     props: ['game'],

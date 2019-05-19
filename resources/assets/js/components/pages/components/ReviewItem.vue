@@ -7,16 +7,20 @@
         @mouseleave="isHovered=false" 
         style="max-height: 160px;"
       >
-        <figure class="column is-narrow">
-          <p class="image is-square is-clipped" style="width: 160px;">
-            <img :src="$store.state.cdnURL + 'games/icons/' + review.game.icon">
+        <figure class="column is-narrow is-clipped">
+          <p class="image " style="width: 160px;">
+            <img :src="$store.state.userAvatarURL + review.user.avatar" v-if="showUserAvatar && review.user.avatar">
+            <img :src="$store.state.userAvatarURL + 'default.jpg'" v-else-if="showUserAvatar && !review.user.avatar">
+            <img :src="$store.state.cdnURL + 'games/icons/' + review.game.icon" v-else>
           </p>
         </figure>
         <div class="column" style="position: relative;">
           <div class="content " style="padding: 12px 15px;">
             <p>
-              <strong>{{ review.release.alternate_title ? review.release.alternate_title : review.game.title }}</strong>
-              <br>
+              <strong v-if="!showUserAvatar">{{ review.release.alternate_title ? review.release.alternate_title : review.game.title }}</strong>
+              <strong v-if="showUserAvatar">{{ review.user.username }} says:</strong>
+              <br v-if="!showUserAvatar">
+              
               {{ review.summary | truncate('120') }}
             </p>
           </div>
@@ -93,7 +97,7 @@
 var moment = require('moment-timezone');
 
 export default {
-    props: ['review', 'hideUser'],
+    props: ['review', 'hideUser', 'showUserAvatar'],
     data() {
       return { 
         isHovered: false

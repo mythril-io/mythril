@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Forums;
 
 use App\Forums\Post;
+use App\Forums\Discussion;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -28,9 +29,22 @@ class PostController extends Controller
      */
     public function index(int $discussion_id)
     {
-        return Post::with([
-            'user'
-          ])->where('discussion_id', $discussion_id)->paginate(20);
+        $posts = Post::with([
+            'user',
+            'parent' => function($q) {$q->with([
+                    'user', 
+                    'parent' => function($q) {$q->with(['user']);}  
+                ]);},
+            'replies' => function($q) {$q->with(['user']);}
+          ])->where('discussion_id', $discussion_id)->paginate(5);
+
+        $num = ($posts->currentPage() - 1) * $posts->perPage() + 1;
+
+        foreach($posts as $post) {
+            $post->num = $num++;
+        }
+
+        return $posts;
     }
 
     /**
@@ -57,18 +71,27 @@ class PostController extends Controller
         //Validate Request
         $this->validate($request, [
             'body' => 'required|string|min: 10',
-            'discussion_id' => 'required'
+            'discussion_id' => 'required|numeric',
+            'parent_post_id' => 'nullable|numeric',
         ]);
 
         //Create the Post
         $post = Post::create([
             'body' => $request->body,
             'user_id' => $userID,
-            'discussion_id' => $request->discussion_id
+            'discussion_id' => $request->discussion_id,
+            'parent_post_id' => $request->parent_post_id
         ]);
 
         //Eager load the Post, with the associated User
         $post->load(['user']);
+
+        $discussion = Discussion::find($request->discussion_id);
+            $discussion->increment('post_count', 1);
+            $discussion->user_count = $discussion->posts->groupBy('user_id')->count();
+            $discussion->last_post_id = $post->id;
+            $discussion->last_posted_at = $post->created_at;
+        $discussion->save();
 
         return response()->json($post, 201);
     }
@@ -99,12 +122,29 @@ class PostController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Forums\Post  $post
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(Request $request, int $id)
     {
-        //
+        $userID = User::getID();
+        if(!$userID) { return response()->json(['error' => 'Unauthorized to Edit Post'], 401); }
+
+        $this->validate($request, [
+            'body' => 'required|string|min: 10',
+        ]);
+
+        $existingPost = Post::where([
+            ['id', $id],
+            ['user_id', $userID]
+        ])->first();
+
+        if(!$existingPost) { return response()->json(['error' => "Post Doesn't Exist for the Authenticated User"], 404); }
+            $existingPost->body = $request->body;
+            $existingPost->edit_count++;
+        $existingPost->save();
+
+        return response()->json(null, 204);
     }
 
     /**
@@ -119,5 +159,33 @@ class PostController extends Controller
         $post->delete();
 
         return response()->json(null, 204);
+    }
+
+    /**
+     * Like the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function toggleLike($id)
+    {
+        $user = User::get();
+        if(!$user) { return response()->json(['error' => 'Unauthorized to Like'], 401); }
+
+        $post = Post::find($id);
+        if(!$post) { return response()->json(['error' => 'Post not Found'], 404); }
+
+        $user->toggleLike($post);
+
+        $status = $post->isLikedBy($user);
+
+        // if($status) {
+        //     $post->increment('like_count', 1);
+        // } else {
+        //     $post->decrement('like_count', 1);
+        // }
+        $post->save();
+
+        return response()->json($status, 200);
     }
 }

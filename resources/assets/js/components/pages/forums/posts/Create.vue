@@ -2,24 +2,87 @@
 
 <div>
 
-    <h2 class="subtitle">Post a Reply</h2>
+    <transition name="fade" mode="out-in">
+        <div class="columns is-mobile is-centered" v-if="!form" key="placeholder">
+            <div class="column is-narrow" style="opacity: 0.6">
+                <div style="width: 75px;">
+                    <user-avatar 
+                        :user="$store.state.user"
+                        dimension="75px">
+                    </user-avatar>
+                </div>
+            </div>
+            <div class="column is-8">
+                <div class="content">
+                    <div @click="toggleForm()" class="reply-placeholder has-text-centered has-background-white">
+                        <p class="heading is-size-7">Post a Reply...</p>
+                    </div>
+                </div>
 
-    <div class="field">
-        <markdown-editor 
-            v-model="body" 
-            name="body"
-            v-validate="'required|min: 10'"
-            lockHeight="true"
-            :monitorHeight="maximized">
-        </markdown-editor>
-        <p v-show="errors.has('body')" class="help is-danger">{{ errors.first('body') }}</p>
-    </div>
-
-    <div class="field">
-        <div class="control">
-            <button class="button is-primary" @click="validateBeforeSubmit" :disabled="errors.any()">Post Reply</button>
+            </div>
         </div>
-    </div>
+    
+        <div v-else key="form">
+            <h2 class="subtitle">Post a Reply</h2>
+
+            <div class="content" v-if="parentPost">
+                <blockquote>
+                    <nav class="level is-mobile" style="margin-bottom: 7px;">
+                        <div class="level-left">
+                            <p class="level-item">
+                                <b-tooltip
+                                    :label="parentPost.user.username"
+                                    position="is-top"
+                                    type="is-dark"
+                                    animated> 
+                                    <router-link 
+                                        :to="{name: 'User', params: { id: parentPost.user.id }}" 
+                                        class="image card is-32x32"
+                                        :style="'background-size: cover; cursor:pointer; background-image: url('+ $store.state.userAvatarURL + parentPost.user.avatar +');'"
+                                        >
+                                    </router-link>
+                                </b-tooltip>
+                            <!-- <span class="image card is-32x32" style="background: url(http://oi64.tinypic.com/2yla7tx.jpg); background-size: cover;">
+                            </span> -->
+                            </p>
+                            <p class="level-item">
+                            <strong>{{ parentPost.user.username }}</strong>&nbsp;<small>{{ parentPost.created_at | ago($store.user)  }}</small>
+                            </p>
+                        </div>
+                    <div class="level-right">
+                        <p class="level-item">
+                            <a class="button is-small" @click="$emit('onRemoveParentPost')">
+                                <span class="icon is-small">
+                                    <i class="fas fa-times"></i>
+                                </span>
+                            </a>
+                        </p>
+                    </div>
+                    </nav>{{ parentPost.body }}
+                        
+                </blockquote>
+            </div>
+
+            <div class="field">
+                <markdown-editor 
+                    v-model="body" 
+                    name="body"
+                    v-validate="'required|min: 10'"
+                    lockHeight="true"
+                    :monitorHeight="maximized">
+                </markdown-editor>
+                <p v-show="errors.has('body')" class="help is-danger">{{ errors.first('body') }}</p>
+            </div>
+
+            <div class="field">
+                <div class="control">
+                    <button class="button is-primary" @click="validateBeforeSubmit" :disabled="errors.any()">Post Reply</button>
+                </div>
+            </div>
+
+        </div>
+    </transition>
+
 
     <!-- <hr v-if="discussion.posts.length == 0"> -->
 
@@ -46,7 +109,7 @@
         </div>
     </div> -->
 
-    <transition name="slide">
+    <!-- <transition name="slide">
         <div v-if="form" class="form-container" v-bind:class="{ 'minimized': minimized, 'maximized': maximized }">
 
             <div v-bind:class="[maximized ? 'maximized' : 'container']">
@@ -106,7 +169,7 @@
 
             </div>
         </div>
-    </transition>
+    </transition> -->
 
 </div>
 
@@ -118,10 +181,19 @@ import AuthenticationModal from "../../../utilities/AuthenticationModal.vue";
 import MarkdownEditor from '../../../utilities/MarkdownEditor.vue'
 import VeeValidate from 'vee-validate';
 import NProgress from 'nprogress'
+import UserAvatar from '../../components/UserAvatar.vue';
 
 export default {
-  components: {MarkdownEditor},
-  props: ["discussion"],
+  components: {MarkdownEditor, UserAvatar},
+  props: {
+    discussion: {},
+    parentPost: {},
+    triggerForm: {},
+    // form: {
+    //   type: Boolean,
+    //   default: false
+    // }
+  },
   data() {
     return {
         form: false,
@@ -129,6 +201,18 @@ export default {
         minimized: false,
         body: ''
     };
+  },
+  watch: {
+    parentPost: function (post) {
+      if(post!=null) {
+          this.form = true
+      }
+    },
+    triggerForm: function (boolean) {
+      if(boolean) {
+          this.form = true
+      }
+    }
   },
   methods: {
     toggleForm() {
@@ -162,9 +246,16 @@ export default {
     submitPost(post) {
         var success = true;
         NProgress.start();
+
+        var parentPostId = null;
+        if(this.parentPost != null) {
+            parentPostId = this.parentPost.id
+        }
+
         axios.post('/api/forums/posts', {
             body: post.body,
-            discussion_id: this.discussion.id
+            discussion_id: this.discussion.id,
+            parent_post_id: parentPostId
         })
         .catch((error) => { 
             if(error.response.status === 403) { 
@@ -190,6 +281,7 @@ export default {
                     message: 'Post Created', 
                     type: 'is-primary',
                 })
+                this.$emit('onAddPost', response)
                 this.form = false;
                 this.body = ''
             }
@@ -269,6 +361,5 @@ export default {
             bottom: 0px;;
   }
 }
-
 
 </style>

@@ -26,20 +26,19 @@ class CreateDiscussionsTable extends Migration
             $table->integer('post_count')->unsigned()->default(0)->index();
             $table->integer('user_count')->unsigned()->default(0)->index();
             $table->integer('edit_count')->unsigned()->default(0);
+            $table->dateTime('edited_at')->nullable();
 
             $table->boolean('is_pinned')->default(false);
             $table->boolean('is_locked')->default(false);
             $table->boolean('is_subscribed')->default(false);
 
-                // $table->integer('post_number_index')->unsigned()->default(0);
-            $table->integer('first_user_id')->unsigned()->nullable();
-            $table->integer('first_post_id')->unsigned()->nullable();
-            $table->dateTime('first_posted_at')->nullable();
+            // $table->integer('first_user_id')->unsigned()->nullable();
+            // $table->integer('first_post_id')->unsigned()->nullable();
+            // $table->dateTime('first_posted_at')->nullable();
 
-            $table->integer('last_post_user_id')->unsigned()->nullable();
+            // $table->integer('last_post_user_id')->unsigned()->nullable();
             $table->integer('last_post_id')->unsigned()->nullable()->index();
             $table->dateTime('last_posted_at')->nullable()->index();
-                // $table->integer('last_post_number')->unsigned()->nullable();
 
             $table->dateTime('hidden_at')->nullable();
             $table->integer('hidden_user_id')->unsigned()->nullable();

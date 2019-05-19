@@ -43,7 +43,7 @@
             <h2>Recent Reviews</h2>
         </div>
             
-            <reviews-component :reviews="game.reviews" :game="game"></reviews-component>
+            <reviews-component :reviews="game.reviews" showUserAvatar="true"></reviews-component>
             <br>
 
         <div class="content">
@@ -53,7 +53,7 @@
         <!--<div class="notification has-text-centered">-->
         <!--<blockquote>-->
             <div class="columns is-multiline is-mobile" v-if="topRecommendations.length > 0">
-                <div class="column is-narrow" v-for="game in topRecommendations.splice(0,6)" style="min-width: 140px; max-width: 175px">
+                <div class="column is-narrow" v-for="game in topRecommendations.splice(0,6)" style="min-width: 140px; max-width: 175px" :key="game.id">
                     <router-link :to="{name: 'Game', params: { id: game[0].second_game_id }}">
                         <b-tooltip :label="game[0].second_game.title">
                         <figure class="card image imageFade item-shadow">
@@ -82,7 +82,7 @@
 </template>
 
 <script>
-import ReviewsComponent from '../components/ReviewsComponent.vue';
+import ReviewsComponent from '../../components/ReviewsComponent.vue';
 
 export default {
     props: ['game'],
