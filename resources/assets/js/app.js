@@ -94,7 +94,7 @@ Vue.component('bulma-paginate', require('./components/utilities/BulmaPaginate.vu
 /**
  * Uncomment below when compiling to production
  */
-Vue.config.devtools = true
+Vue.config.devtools = false
 Vue.config.debug = false
 Vue.config.silent = true
 
