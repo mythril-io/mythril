@@ -87,7 +87,7 @@
             </div>
 
             <!-- Main container -->
-            <nav class="level is-mobile">
+            <nav class="level">
               <!-- Left side -->
               <div class="level-left">
                 <div class="level-item">

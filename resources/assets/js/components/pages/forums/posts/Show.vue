@@ -40,7 +40,6 @@
                                             <b-input :value="'https://mythril.io/forums/discussions/' + discussion.id + '/' + discussion.slug + '/' + post.num"></b-input>
                                         </b-field>
                                             <social-sharing :url="'https://mythril.io/forums/discussions/' + discussion.id + '/' + discussion.slug + '/' + post.num"
-                                                                :description="post.body.substring(0, 20)"
                                                                 twitter-user="mythril_io"
                                                                 inline-template>
                                             <div>

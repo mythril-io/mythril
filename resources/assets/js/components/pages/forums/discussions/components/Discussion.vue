@@ -95,34 +95,65 @@
                         
                     </div>
 
+                    <nav class="level is-mobile is-hidden-tablet" v-show="!discussion.editing">
+                        <!-- Left side -->
+                        <div class="level-left">
+                            <div class="level-item has-text-centered">
+                                <div>
+                                <p class="heading">Replies</p>
+                                <p class="title is-4">{{ discussion.post_count | numberFormatK }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                <p class="heading">Views</p>
+                                <p class="title is-4">{{ discussion.view_count | numberFormatK }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                <p class="heading">Users</p>
+                                <p class="title is-4">{{ discussion.user_count | numberFormatK }}</p>
+                                </div>
+                            </div>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                <p class="heading">Likes</p>
+                                <p class="title is-4">{{ discussion.like_count | numberFormatK }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+
+
                     <!-- Main container -->
                     <nav class="level is-mobile" v-show="!discussion.editing">
                         <!-- Left side -->
-                        <div class="level-left">
-                        <div class="level-item has-text-centered">
-                            <div>
-                            <p class="heading">Replies</p>
-                            <p class="title is-4">{{ discussion.post_count | numberFormatK }}</p>
+                        <div class="level-left is-hidden-mobile">
+                            <div class="level-item has-text-centered">
+                                <div>
+                                <p class="heading">Replies</p>
+                                <p class="title is-4">{{ discussion.post_count | numberFormatK }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                            <p class="heading">Views</p>
-                            <p class="title is-4">{{ discussion.view_count | numberFormatK }}</p>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                <p class="heading">Views</p>
+                                <p class="title is-4">{{ discussion.view_count | numberFormatK }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                            <p class="heading">Users</p>
-                            <p class="title is-4">{{ discussion.user_count | numberFormatK }}</p>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                <p class="heading">Users</p>
+                                <p class="title is-4">{{ discussion.user_count | numberFormatK }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="level-item has-text-centered">
-                            <div>
-                            <p class="heading">Likes</p>
-                            <p class="title is-4">{{ discussion.like_count | numberFormatK }}</p>
+                            <div class="level-item has-text-centered">
+                                <div>
+                                <p class="heading">Likes</p>
+                                <p class="title is-4">{{ discussion.like_count | numberFormatK }}</p>
+                                </div>
                             </div>
-                        </div>
                         </div>
 
                         <!-- Right side -->
@@ -147,7 +178,6 @@
                                     </b-field>
                                         <social-sharing :url="'https://mythril.io/forums/discussions/' + discussion.id + '/' + discussion.slug"
                                                         :title="discussion.title"
-                                                        :description="discussion.body.substring(0, 20)"
                                                         twitter-user="mythril_io"
                                                         inline-template>
                                         <div>
