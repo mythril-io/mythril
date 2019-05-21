@@ -7,7 +7,7 @@
         @mouseleave="isHovered=false" 
         style="max-height: 160px;"
       >
-        <figure class="column is-narrow is-clipped">
+        <figure class="column is-narrow is-clipped is-hidden-mobile">
           <p class="image " style="width: 160px;">
             <img :src="$store.state.userAvatarURL + review.user.avatar" v-if="showUserAvatar && review.user.avatar">
             <img :src="$store.state.userAvatarURL + 'default.jpg'" v-else-if="showUserAvatar && !review.user.avatar">

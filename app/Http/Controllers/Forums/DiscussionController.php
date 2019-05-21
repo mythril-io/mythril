@@ -136,7 +136,6 @@ class DiscussionController extends Controller
             'body' => $request->body,
             'user_id' => $userID,
             'slug' => Str::slug($request->title),
-            'last_post_user_id' => $userID,
             'last_posted_at' => Carbon::now()->toDateTimeString()
         ]);
 
