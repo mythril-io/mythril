@@ -204,4 +204,64 @@ class ReviewController extends Controller
 
         return response()->json(['error' => 'Unauthorized to Remove Review'], 403);  
     }
+
+    public function likeReview(Request $request)
+    {
+        $user = User::get();
+        if(!$user) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+
+        $review = Review::find($request->review_id);
+        if(!$review) { return response()->json(['error' => "Review Doesn't Exist"], 404); }
+
+        if($user->hasUpvoted($review)) {
+            $user->cancelVote($review);
+        }
+        else {
+            $user->upvote($review);
+        }
+            
+        return response()->json([
+            'likes' => $review->like_count,
+            'dislikes' => $review->dislike_count,
+            'userLikes' => $user->hasUpvoted($review),
+            'userDislikes' => $user->hasDownvoted($review)
+        ], 200);
+    }
+
+    public function dislikeReview(Request $request)
+    {
+        $user = User::get();
+        if(!$user) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+
+        $review = Review::find($request->review_id);
+        if(!$review) { return response()->json(['error' => "Review Doesn't Exist"], 404); }
+
+        if($user->hasDownvoted($review)) {
+            $user->cancelVote($review);
+        }
+        else {
+            $user->downvote($review);
+        }
+
+        return response()->json([
+            'likes' => $review->like_count,
+            'dislikes' => $review->dislike_count,
+            'userLikes' => $user->hasUpvoted($review),
+            'userDislikes' => $user->hasDownvoted($review)
+        ], 200);
+    }
+
+    public function checkUserReview($id)
+    {
+        $user = User::get();
+        if(!$user) { return response()->json(['error' => 'Unauthorized, Please Login'], 403); }
+
+        $review = Review::find($id);
+        if(!$review) { return response()->json(['error' => "Review Doesn't Exist"], 404); }
+
+        return response()->json([
+            'userLikes' => $user->hasUpvoted($review),
+            'userDislikes' => $user->hasDownvoted($review)
+        ], 200);
+    }
 }

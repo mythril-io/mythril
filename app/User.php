@@ -9,10 +9,11 @@ use Spatie\Permission\Traits\HasRoles;
 use Illuminate\Support\Facades\Auth;
 use Overtrue\LaravelFollow\Traits\CanSubscribe;
 use Overtrue\LaravelFollow\Traits\CanLike;
+use Overtrue\LaravelFollow\Traits\CanVote;
 
 class User extends Authenticatable implements JWTSubject
 {
-    use Notifiable, HasRoles, CanSubscribe, CanLike;
+    use Notifiable, HasRoles, CanSubscribe, CanLike, CanVote;
 
     protected $guard_name = 'api';
 
@@ -138,5 +139,13 @@ class User extends Authenticatable implements JWTSubject
     public static function get() 
     {
         return Auth::guard()->user();
+    }
+
+    /**
+     * The permissions for this User.
+     */
+    public function permissions()
+    {
+        return $this->permissions;
     }
 }

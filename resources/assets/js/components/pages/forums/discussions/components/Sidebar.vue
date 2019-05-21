@@ -6,10 +6,10 @@
             </span>
             <span>Reply</span>
         </a>
-        <router-link :to="{name: 'Discussion', params: { id: discussion.id, slug: discussion.slug, postNum: 1 }}" 
+        <a @click="emitOnFetchData(1)" 
             class="button is-small is-rounded is-fullwidth is-light heading" 
             style="font-size: 11px;"
-        >First Post</router-link>
+        >First Post</a>
         <vue-slider
             ref="posts"
             v-model="postNumber"
@@ -40,10 +40,10 @@
                 </div>
             </template>
         </vue-slider>
-        <router-link :to="{name: 'Discussion', params: { id: discussion.id, slug: discussion.slug, postNum: max }}" 
+        <a @click="emitOnFetchData(max)"
             class="button is-small is-rounded is-fullwidth is-light heading" 
             style="font-size: 11px;"
-        >Last Post</router-link>
+        >Last Post</a>
     </div>
 </template>
 
@@ -79,10 +79,14 @@ export default {
                 this.$emit('onReply')
             }            
         },
-        emitOnFetchData() {
+        emitOnFetchData(value) {
             var minLoadedPost = _.minBy(this.posts.data, 'num');
             var maxLoadedPost = _.maxBy(this.posts.data, 'num');
-            var postNum = this.$refs.posts.getValue()
+            if(!isNaN(value)) {
+                var postNum = value
+            } else {
+                var postNum = this.$refs.posts.getValue()
+            }
 
             if(postNum <= maxLoadedPost.num && postNum >= minLoadedPost.num) {
                 this.$emit('onScrollToPost', postNum)

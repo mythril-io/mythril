@@ -29,8 +29,8 @@ class LikeController extends Controller
         $user->toggleLike($review);
 
         return response()->json([
-            'likes' => $review->likesCount,
-            'dislikes' => $review->dislikesCount,
+            'likes' => $review->upvoters->count(),
+            'dislikes' => $review->downvoters->count(),
             'userLikes' => $user->hasLiked($review),
             'userDislikes' => $user->hasDisliked($review)
         ], 200);
@@ -47,8 +47,8 @@ class LikeController extends Controller
         $user->toggleDislike($review);
 
         return response()->json([
-            'likes' => $review->likesCount,
-            'dislikes' => $review->dislikesCount,
+            'likes' => $review->upvoters->count(),
+            'dislikes' => $review->downvoters->count(),
             'userLikes' => $user->hasLiked($review),
             'userDislikes' => $user->hasDisliked($review)
         ], 200);
@@ -63,29 +63,11 @@ class LikeController extends Controller
         if(!$review) { return response()->json(['error' => "Review Doesn't Exist"], 404); }
 
         return response()->json([
-            'userLikes' => $user->hasLiked($review),
-            'userDislikes' => $user->hasDisliked($review)
+            'userLikes' => $user->hasUpvoted($review),
+            'userDislikes' => $user->hasDownvoted($review)
         ], 200);
     }
-    // public function handleLike($type, $id)
-    // {
-    //     $existing_like = Like::withTrashed()->whereLikeableType($type)->whereLikeableId($id)->whereUserId(Auth::id())->first();
 
-    //     if (is_null($existing_like)) {
-    //         Like::create([
-    //             'user_id'       => Auth::id(),
-    //             'likeable_id'   => $id,
-    //             'likeable_type' => $type,
-    //         ]);
-    //     } else {
-    //         if (is_null($existing_like->deleted_at)) {
-    //             $existing_like->delete();
-    //         } else {
-    //             $existing_like->restore();
-    //         }
-    //     }
-    // }
-    // 
     /**
      * Display a listing of the resource.
      *

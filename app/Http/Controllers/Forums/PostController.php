@@ -18,7 +18,7 @@ class PostController extends Controller
      */
     public function __construct(Request $request)
     {
-        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+        $this->middleware('auth:api', ['except' => ['index', 'show', 'find']]);
     }
 
     /**
@@ -36,7 +36,7 @@ class PostController extends Controller
                     'parent' => function($q) {$q->with(['user']);}  
                 ]);},
             'replies' => function($q) {$q->with(['user']);}
-          ])->where('discussion_id', $discussion_id)->paginate(5);
+          ])->where('discussion_id', $discussion_id)->paginate(25);
 
         $num = ($posts->currentPage() - 1) * $posts->perPage() + 1;
 
@@ -45,6 +45,42 @@ class PostController extends Controller
         }
 
         return $posts;
+    }
+
+    /**
+     * Return a paginated set of Posts.
+     *
+     * @param  Int  $discussion_id
+     * @param  Int  $post_id
+     * @return \Illuminate\Http\Response
+     */
+    public function find(int $discussion_id, int $post_id) {
+        
+        $position= Post::where([
+            ['id', '<=', $post_id],
+            ['discussion_id', '=', $discussion_id],
+        ])->count(); // for example 601
+
+        $page = ceil($position/25);
+
+        // return $page;
+
+        $posts = Post::with([
+            'user',
+            'parent' => function($q) {$q->with([
+                    'user', 
+                    'parent' => function($q) {$q->with(['user']);}  
+                ]);},
+            'replies' => function($q) {$q->with(['user']);}
+          ])->where('discussion_id', $discussion_id)->paginate(25, ['*'], 'page', $page);
+
+        $num = ($posts->currentPage() - 1) * $posts->perPage() + 1;
+
+        foreach($posts as $post) {
+            $post->num = $num++;
+        }
+
+        return $posts;        
     }
 
     /**

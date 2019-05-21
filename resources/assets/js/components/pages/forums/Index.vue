@@ -11,7 +11,7 @@
 
           <div class="columns is-mobile is-variable is-1-touch">
             <div class="column" style="padding-bottom: 0px;">
-              <router-link :to="{name: 'CreateThread'}" class="button is-primary is-fullwidth">Start a Discussion</router-link>
+              <router-link :to="{name: 'CreateDiscussion'}" class="button is-primary is-fullwidth">Start a Discussion</router-link>
             </div>
             <div class="column is-narrow is-hidden-desktop" style="padding-bottom: 0px;">
               <div class="control">

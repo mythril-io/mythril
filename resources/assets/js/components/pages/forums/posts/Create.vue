@@ -7,9 +7,11 @@
             <div class="column is-narrow" style="opacity: 0.6">
                 <div style="width: 75px;">
                     <user-avatar 
+                        v-if="$store.state.user"
                         :user="$store.state.user"
                         dimension="75px">
                     </user-avatar>
+                    <img v-else v-lazy="this.$store.state.userAvatarURL + 'default.jpg'" style="object-fit: cover;" />
                 </div>
             </div>
             <div class="column is-8">
@@ -281,7 +283,7 @@ export default {
                     message: 'Post Created', 
                     type: 'is-primary',
                 })
-                this.$emit('onAddPost', response)
+                this.$emit('onAddPost', response.data)
                 this.form = false;
                 this.body = ''
             }

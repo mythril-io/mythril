@@ -9,7 +9,7 @@
         ref="table"
         detailed
         detail-key="id"
-        :opened-detailed="[1]"
+        :opened-detailed="opened"
         :show-detail-icon="showDetailIcon">
 
         <template slot-scope="props">
@@ -78,7 +78,7 @@
                                             size="is-small">
                                         </b-icon>
                                     </span>
-                                    <router-link tag="span" :to="{name: 'Game', params: { id: game.id }}" class="tag has-background-grey-lighter underline-link" style="padding-left: 0 !important">{{ game.title }}</router-link>
+                                    <router-link tag="span" :to="{name: 'GameForums', params: { id: game.id }}" class="tag has-background-grey-lighter underline-link" style="padding-left: 0 !important">{{ game.title }}</router-link>
                                 </div>
                             </div>
                         </div>
@@ -102,6 +102,11 @@ export default {
             showDetailIcon: true,
         };
     },
+    computed: {
+        opened() {
+            return [this.discussions[0].id];
+        }
+    },
     methods: {
         toggle(row) {
             this.$refs.table.toggleDetails(row)
@@ -119,7 +124,7 @@ export default {
 		axios.get('/api/forums')
 		.then((response) => { 
 			if(response.data === 404) { this.discussions = [] }
-            this.discussions = response.data.data;
+            this.discussions = response.data.data.slice(0, 5);
 		})
         .catch((error) => this.discussions = [] );
     }

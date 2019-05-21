@@ -7,7 +7,7 @@
     ></discussion>
 
     <!-- Posts & Sidebar-->
-    <section class="section" v-if="posts.data && posts.data.length > 0">
+    <section class="section" v-if="posts && posts.data && posts.data.length > 0">
         <div class="container">
             <div class="columns is-variable is-5">
 
@@ -23,10 +23,12 @@
                         @click="getPreviousPage"
                     >Load Previous</button>
                     <show-posts 
+                        :discussion="discussion"
                         :posts="posts.data"
                         :scrollTo="scrollTo"
                         @onReply="setParentPost"
                         @onViewPost="setViewPost"
+                        @onFindPost="findPost"
                     >
                     </show-posts>
                     <button 
@@ -109,9 +111,8 @@ export default {
     },
     methods: {
         addReply(post) {
-            //this.posts.push(post);
-            //Go to last page
-            this.setParentPost(null);
+            this.parentPost = null;
+            this.findPost(post.id);
         },
         setParentPost(post=null) {
             this.parentPost = post;
@@ -124,7 +125,28 @@ export default {
         scrollToPost(postNumber) {
             this.scrollTo = postNumber;
         },
-        setInitialPosts(page = 1) {
+        findPost(id) {
+            this.isLoadingPosts = true;
+            axios.get('/api/forums/find/' + this.discussion.id + '/' + id )
+            .then((response) => { 
+                this.posts = response.data;
+                this.firstPage = response.data.current_page;
+                this.lastPage = response.data.current_page;
+                this.isLoadingPosts = false;
+
+                var reference = this;
+                setTimeout(function(){
+                    var post = _.find(response.data.data, ['id', id]);
+                    reference.setViewPost(post.num)
+                    reference.scrollToPost(post.num);
+                }, 500);
+
+            })
+            .catch((error) => {
+                this.isLoadingPosts = false; 
+            });
+        },
+        setInitialPosts(page = 1, postValue = null) {
             this.isLoadingPosts = true;
             axios.get('/api/forums/posts/' + this.$route.params.id + '?page=' + page )
             .then((response) => { 
@@ -132,14 +154,24 @@ export default {
                 this.firstPage = response.data.current_page;
                 this.lastPage = response.data.current_page;
                 this.isLoadingPosts = false;
+
+                var reference = this;
+                var postNum = postValue ? postValue : this.postNumber
+
+                if(postNum > 1) {
+                    setTimeout(function(){
+                        var integer = parseInt(postNum, 10);
+                        reference.setViewPost(postNum)
+                        reference.scrollToPost(postNum)
+                    }, 500);
+                }
+
             })
             .catch((error) => {
                 this.isLoadingPosts = false; 
             });
 
-            if(this.$route.params.postNum) {
-                this.scrollToPost(this.$route.params.postNum)
-            }
+
         },
         getPreviousPage(page = null) {
             if(page != null) {
@@ -183,11 +215,13 @@ export default {
         .catch((error) => this.$router.replace({ name: 'Forums'}) );
 
         var page = 1;
+        var postNum = null
         if(this.$route.params.postNum) {
-            page = Math.ceil(this.$route.params.postNum/5);
+            page = Math.ceil(this.$route.params.postNum/25);
+            postNum = this.$route.params.postNum;
         }
 
-        this.setInitialPosts(page);
+        this.setInitialPosts(page, postNum);
     }
 }
 </script>

@@ -45,7 +45,7 @@
                                         size="is-small">
                                     </b-icon>
                                 </span>
-                                <router-link tag="span" :to="{name: 'Game', params: { id: game.id }}" class="tag underline-link has-background-grey-lighter" style="padding-left: 0 !important">{{ game.title }}</router-link>
+                                <router-link tag="span" :to="{name: 'GameForums', params: { id: game.id }}" class="tag underline-link has-background-grey-lighter" style="padding-left: 0 !important">{{ game.title }}</router-link>
                             </div>
                         </div>
                     </div>

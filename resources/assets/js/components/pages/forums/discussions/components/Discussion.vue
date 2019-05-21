@@ -23,7 +23,7 @@
                                     size="is-small">
                                 </b-icon>
                             </span>
-                            <router-link tag="span" :to="{name: 'Game', params: { id: game.id }}" class="tag has-background-white-ter underline-link" style="padding-left: 0 !important">{{ game.title }}</router-link>
+                            <router-link tag="span" :to="{name: 'GameForums', params: { id: game.id }}" class="tag has-background-white-ter underline-link" style="padding-left: 0 !important">{{ game.title }}</router-link>
                         </div>
                     </div>
                 </div>
@@ -52,8 +52,6 @@
                                 <div class="level-item">
                                     <small>{{ discussion.created_at | ago($store.user) }}</small>
                                 </div>
-
-
                             </div>
 
                             <div class="level-right">
@@ -145,9 +143,10 @@
                                     icon-right="share-alt" />
                                 <b-dropdown-item custom style="width:300px;">
                                     <b-field :label="discussion.title">
-                                        <b-input value="http://mythril.test/forums/discussions/1/ivalice-lore"></b-input>
+                                        <b-input :value="'http://mythril.test/forums/discussions/'+ discussion.id + '/' + discussion.slug"></b-input>
                                     </b-field>
-                                        <social-sharing :title="discussion.title"
+                                        <social-sharing :url="'https://mythril.io/forums/discussions/' + discussion.id + '/' + discussion.slug"
+                                                        :title="discussion.title"
                                                         :description="discussion.body.substring(0, 20)"
                                                         twitter-user="mythril_io"
                                                         inline-template>

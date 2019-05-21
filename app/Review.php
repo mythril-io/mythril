@@ -3,15 +3,14 @@
 namespace App;
 
 use Cog\Laravel\Love\Likeable\Models\Traits\Likeable;
-use Cog\Contracts\Love\Likeable\Models\Likeable as LikeableContract;
+use Overtrue\LaravelFollow\Traits\CanBeVoted;
 use Illuminate\Database\Eloquent\Model;
 
-class Review extends Model implements LikeableContract
+class Review extends Model
 {
-    use Likeable;
+    use CanBeVoted;
 
     protected $appends = ['like_count', 'dislike_count'];
-
 
     /**
      * The attributes that are mass assignable.
@@ -56,7 +55,7 @@ class Review extends Model implements LikeableContract
      */
     public function getLikeCountAttribute()
     {
-        return $this->likesCount;
+        return $this->upvoters->count();
     }
 
     /**
@@ -66,6 +65,7 @@ class Review extends Model implements LikeableContract
      */
     public function getDislikeCountAttribute()
     {
-        return $this->dislikesCount;
+        return $this->downvoters->count();
     }
+
 }

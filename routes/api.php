@@ -43,6 +43,7 @@ Route::group([
     Route::get('games/{id}', 'GameController@show');
     Route::get('games/{id}/reviews', 'ReviewController@gameIndex');
     Route::get('games/{id}/recommendations', 'RecommendationController@gameIndex');
+    Route::get('games/{id}/forums', 'Forums\DiscussionController@gameIndex' );
 
     //Reviews
     Route::get('reviews', 'ReviewController@index');
@@ -68,6 +69,7 @@ Route::group([
     Route::get('forums/{tag?}', 'Forums\DiscussionController@index' );
     Route::get('forums/discussions/{id}', 'Forums\DiscussionController@show');
     Route::get('forums/posts/{id}', 'Forums\PostController@index');
+    Route::get('forums/find/{discussionId}/{postId}', 'Forums\PostController@find');
     Route::get('forums/tags/all', 'Forums\TagController@index' );
 
     //Misc
@@ -129,9 +131,9 @@ Route::group([
     Route::delete('recommendations/{id}', 'RecommendationController@destroy');
 
     //Review Likes/Dislikes
-    Route::get('reviews/{id}/user/', 'LikeController@checkUserReview');
-    Route::post('reviews/like/', 'LikeController@likeReview');
-    Route::post('reviews/dislike/', 'LikeController@dislikeReview');
+    Route::get('reviews/{id}/user/', 'ReviewController@checkUserReview');
+    Route::post('reviews/like/', 'ReviewController@likeReview');
+    Route::post('reviews/dislike/', 'ReviewController@dislikeReview');
 
     //Followings
     Route::get('users/{id}/follow', 'FollowController@checkUser');

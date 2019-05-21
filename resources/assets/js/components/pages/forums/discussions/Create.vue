@@ -21,11 +21,7 @@
                     {{ errors.first('title') }}
                 </p>
             </div>
-            <!-- tags: {{tags.length }}<br>
-            Selected: {{selectedTags }}<br>
-            Filters: {{filteredTags }}<br><br>
-            Child Tags: {{ filteredChildTags }}<br>
-            SelectedChild Tags: {{ selectedChildTags }} -->
+
             <div class="field">
                 <b-field label="Tag (Select at least one)">
                     <b-taginput
@@ -132,6 +128,8 @@ import ForumHeader from '../common/ForumHeader.vue'
 import MarkdownEditor from '../../../utilities/MarkdownEditor.vue'
 import VeeValidate from 'vee-validate';
 import NProgress from 'nprogress'
+import { ModalProgrammatic } from 'buefy/dist/components/modal'
+import AuthenticationModal from "../../../utilities/AuthenticationModal.vue";
 
 export default {
   components: {ForumHeader, MarkdownEditor},
@@ -144,8 +142,8 @@ export default {
       title: '',
       body: '',
 
-      selectedChildTags: [],
-      filteredChildTags: [],
+    //   selectedChildTags: [],
+    //   filteredChildTags: [],
 
       selectedGames: [],
       games: [],
@@ -159,9 +157,9 @@ export default {
           this.clearChildGameTags()
       }
     },
-    selectedChildTags: function () {
-      this.getFilteredChildTags()
-    }
+    // selectedChildTags: function () {
+    //   this.getFilteredChildTags()
+    // }
   },
   computed: {
     cdnURL() {
@@ -170,7 +168,7 @@ export default {
     tagsList() {
         var list = [];
         _.map(this.tags, function(tag){ 
-            if (tag.parent_id == null && tag.id != 7) {
+            if (tag.parent_id == null && tag.slug != 'site-updates') {
                 list.push(tag.name)
             }
         });
@@ -182,7 +180,7 @@ export default {
     tagsHasGame() {
         var boolean = false;
             _.map(this.selectedTags, function(tag){ 
-                if (tag.id == 2) {
+                if (tag.slug == 'games') {
                     boolean = true;
                 }
             });
@@ -192,7 +190,7 @@ export default {
     stopTagSelection() {
         var boolean = false;
             _.map(this.selectedTags, function(tag){ 
-                if (tag.id == 1 || tag.id == 7 || tag.id == 8 || tag.id == 9) {
+                if (tag.slug == 'general' || tag.slug == 'site-updates' || tag.slug == 'site-feedback' || tag.slug == 'bugs') {
                     boolean = true;
                 }
             });
@@ -214,7 +212,7 @@ export default {
                     'title': this.title,
                     'body': this.body,
                     'selectedTags': this.selectedTags,
-                    'selectedChildTags': this.selectedChildTags,
+                    // 'selectedChildTags': this.selectedChildTags,
                     'selectedGames': this.selectedGames
                 }
                 this.submitDiscussion(discussion);
@@ -228,26 +226,34 @@ export default {
             title: discussion.title,
             body: discussion.body,
             selectedTags: discussion.selectedTags,
-            selectedChildTags: discussion.selectedChildTags,
+            // selectedChildTags: discussion.selectedChildTags,
             selectedGames: discussion.selectedGames
         })
         .catch((error) => { 
             if(error.response.status === 403) { flash(error.response.data.error, 'error') }
-            else{ flash('Discussion Not Posted', 'error') }
+            else { 
+                this.$snackbar.open({
+                    message: 'Discussion Not Posted', 
+                    type: 'is-danger',
+                })
+            }
             NProgress.done();
             success = false;
         })
         .then((response) => {
             if(success) {
                 NProgress.done();
-                flash('Discussion Posted', 'success');
-                // const id = response.data.id
-                // this.$router.push({ name: 'Discussion', params: { id }})
+                this.$snackbar.open({
+                    message: 'Discussion Posted', 
+                    type: 'is-primary',
+                })
+                const id = response.data.id
+                this.$router.push({ name: 'Discussion', params: { id }})
             }
         });
     },
     clearChildGameTags() {
-        this.selectedChildTags = [];
+        // this.selectedChildTags = [];
         this.selectedGames = [];
     },
     getFilteredTags(text='') {
@@ -264,7 +270,12 @@ export default {
                     .indexOf(text.toLowerCase()) >= 0
             })
 
-            this.filteredTags = _.pullAllBy(tempTags, [{ 'id': 1 }, { 'id': 7 }, { 'id': 8 }, { 'id': 9 }], 'id');
+            this.filteredTags = _.pullAllBy(tempTags, [
+                { 'slug': 'general' }, 
+                { 'slug': 'site-updates' }, 
+                { 'slug': 'site-feedback' }, 
+                { 'slug': 'bugs' }
+            ], 'slug');
         }
         //else show all tags
         else {
@@ -276,20 +287,20 @@ export default {
             })
         }
     },
-    getFilteredChildTags(text='') {
-        var gameTag = _.filter(this.tags, function(o) { return o.id == 2; });
-        var childTags = JSON.parse(JSON.stringify(gameTag[0].children));
+    // getFilteredChildTags(text='') {
+    //     var gameTag = _.filter(this.tags, function(o) { return o.id == 2; });
+    //     var childTags = JSON.parse(JSON.stringify(gameTag[0].children));
         
-        var difference = _.differenceWith(childTags, this.selectedChildTags, _.isEqual);
+    //     var difference = _.differenceWith(childTags, this.selectedChildTags, _.isEqual);
         
-        this.filteredChildTags = difference.filter((option) => {
-            return option.name
-                .toString()
-                .toLowerCase()
-                .indexOf(text.toLowerCase()) >= 0
-        })
+    //     this.filteredChildTags = difference.filter((option) => {
+    //         return option.name
+    //             .toString()
+    //             .toLowerCase()
+    //             .indexOf(text.toLowerCase()) >= 0
+    //     })
 
-    },
+    // },
     getAsyncGames: _.debounce(function (name) {
                 if (!name.length) {
                     this.games = []
@@ -310,15 +321,15 @@ export default {
       .get("/api/forums/tags/all")
       .then(response => {
         var parentTags = _.filter(response.data, function(tag){ return (tag.parent_id == null && tag.id != 7); });
-        var childTags = _.filter(response.data, function(tag){ return tag.parent_id != null; });
+        // var childTags = _.filter(response.data, function(tag){ return tag.parent_id != null; });
 
-        _.map(parentTags, function(tag){ 
-            //for each category in childCategories, if the parent_id == tag.id, append it to tag.children
-            var children = _.filter(childTags, function(childTag){ return childTag.parent_id == tag.id; });
-            if (children.length > 0) {
-            tag.children = _.orderBy(children, 'name', 'asc');;
-            }
-        });
+        // _.map(parentTags, function(tag){ 
+        //     //for each category in childCategories, if the parent_id == tag.id, append it to tag.children
+        //     var children = _.filter(childTags, function(childTag){ return childTag.parent_id == tag.id; });
+        //     if (children.length > 0) {
+        //     tag.children = _.orderBy(children, 'name', 'asc');;
+        //     }
+        // });
 
         this.tags = _.orderBy(parentTags, 'order', 'asc');
         this.filteredTags = _.orderBy(parentTags, 'order', 'asc');

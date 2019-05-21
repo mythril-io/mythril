@@ -8,6 +8,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Http\Request;
 use DB;
 use Illuminate\Support\Facades\Cache;
+use \App\Forums\Discussion;
 
 class Game extends Model
 {
@@ -92,7 +93,7 @@ class Game extends Model
     *
     */
     public function discussions() {
-      return $this->hasMany('App\Forum\Discussion');
+      return $this->hasMany('\App\Forums\Discussion');
     }
 
     /**

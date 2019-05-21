@@ -123,10 +123,12 @@ export default {
 			if(!this.user) { 
 				this.userOwns = false;
 				this.userLikes = false,
-		  		this.userDislikes = false,
+		  	this.userDislikes = false,
 				this.editMode = false;
 				this.deletePrompt = false;
-			} else { this.checkUserLikeDislike() }
+			} else { 
+				this.checkUserLikeDislike() 
+			}
 		}
 	},
 	methods: {
@@ -209,7 +211,7 @@ export default {
 		toggleLike() {
 			//axios post to like review
 			var success = true;
-			axios.post('/api/reviews/like/', { review_id: this.review.id })
+			axios.post('/api/reviews/like', { review_id: this.review.id })
 			.catch((error) => { 
 				if((error.response.status === 403) || (error.response.status === 404)) { flash(error.response.data.error, 'error') }
 				else{ flash('Could Not Like Review', 'error') }
@@ -227,7 +229,7 @@ export default {
 		toggleDislike() {
 			//axios post to like review
 			var success = true;
-			axios.post('/api/reviews/dislike/', { review_id: this.review.id })
+			axios.post('/api/reviews/dislike', { review_id: this.review.id })
 			.catch((error) => { 
 				if((error.response.status === 403) || (error.response.status === 404)) { flash(error.response.data.error, 'error') }
 				else{ flash('Could Not Dislike Review', 'error') }
@@ -245,14 +247,14 @@ export default {
 		checkUserLikeDislike() {
 			if(this.user) {
 				var success = true;
-				axios.get('/api/reviews/' + this.$route.params.id + '/user/')
+				axios.get('/api/reviews/' + this.$route.params.id + '/user')
 				.catch((error) => { 
 						success = false;
 				})
 				.then((response) => {
 						if(success) {
-				this.userLikes = response.data.userLikes;
-						this.userDislikes = response.data.userDislikes;
+							this.userLikes = response.data.userLikes;
+							this.userDislikes = response.data.userDislikes;
 						}
 				});
 			}

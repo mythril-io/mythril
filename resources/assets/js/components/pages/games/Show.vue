@@ -49,6 +49,9 @@
           <router-link tag="li" :to="{name: 'GameReleases'}">
             <a>Releases ({{ this.game.releases.length }})</a>
           </router-link>
+          <router-link tag="li" :to="{name: 'GameForums'}">
+            <a>Discussions</a>
+          </router-link>
           <router-link tag="li" :to="{name: 'GameStats'}">
             <a>Stats</a>
           </router-link>

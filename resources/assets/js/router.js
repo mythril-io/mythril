@@ -92,6 +92,10 @@ const router = new VueRouter({
               name: 'GameReleases',
               component: require('./components/pages/games/tabs/Releases.vue')
             }, {
+              path: 'forums',
+              name: 'GameForums',
+              component: require('./components/pages/games/tabs/Forums.vue')
+            }, {
               path: 'stats',
               name: 'GameStats',
               component: require('./components/pages/games/tabs/Stats.vue')
@@ -107,9 +111,9 @@ const router = new VueRouter({
           meta: { title: 'Forums'},
         },  { 
           path: '/forums/create', 
-          name: 'CreateThread', 
+          name: 'CreateDiscussion', 
           component: require('./components/pages/forums/discussions/create.vue'),
-          meta: { title: 'Create a Thread', requiresAuth: true }
+          meta: { title: 'Create a Discussion', requiresAuth: true }
         }, { 
           path: '/forums/discussions/:id/:slug/:postNum?', 
           name: 'Discussion', 

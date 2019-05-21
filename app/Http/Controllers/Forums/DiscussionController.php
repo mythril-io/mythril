@@ -21,7 +21,7 @@ class DiscussionController extends Controller
      */
     public function __construct(Request $request)
     {
-        $this->middleware('auth:api', ['except' => ['index', 'show']]);
+        $this->middleware('auth:api', ['except' => ['index', 'gameIndex', 'show']]);
         // $this->middleware('role:admin', ['except' => ['index']]);
     }
 
@@ -58,6 +58,23 @@ class DiscussionController extends Controller
     }
 
     /**
+     * Return a paginated set of Discussions for a specified Game.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function gameIndex($id)
+    {
+        return Discussion::with([
+            'user',
+            'tags',
+            'games',
+            'lastPost' => function($q) {$q->with(['user']);}
+        ])->whereHas('games', function ($query) use ($id) {
+            $query->where('id', '=', $id);
+        })->orderBy('last_posted_at', 'desc')->paginate(15);
+    }
+
+    /**
      * Display a listing of the subscribed resources.
      *
      * @param  string  $tag
@@ -69,7 +86,7 @@ class DiscussionController extends Controller
                 'user',
                 'tags',
                 'games',
-                'lastUser'
+                'lastPost' => function($q) {$q->with(['user']);}
             ])->when($tag, function ($query, $tag) {
                 return $query->whereHas('tags', function ($query) use ($tag) {
                         $query->where('slug', '=', $tag);
@@ -98,6 +115,14 @@ class DiscussionController extends Controller
         $userID = User::getID();
         if(!$userID) { return response()->json(['error' => 'Unauthorized to Create Discussion. Please Login.'], 401); }
 
+        // $tagCheck = Arr::first($request->selectedTags, function ($value, $key) {
+        //     return $value.slug == 'site-updates';
+        // });
+
+        // if(userId != 1 && (count(tagCheck)==1) ) {
+        //     return response()->json(['error' => 'Unauthorized to Create Discussion for Specified Tag'], 403);
+        // }
+
         //Validate Request
         $this->validate($request, [
             'title' => 'required|string|min: 10',
@@ -105,7 +130,6 @@ class DiscussionController extends Controller
             'selectedTags' => 'required'
         ]);
 
-        
         //Create the Discussion
         $discussion = Discussion::create([
             'title' => $request->title,
@@ -119,10 +143,10 @@ class DiscussionController extends Controller
         //Attach Tags
         $tagIds = collect($request->selectedTags)->pluck(['id']);
 
-        if($request->selectedChildTags) {
-            $childTagIds = collect($request->selectedChildTags)->pluck(['id']);
-            $tagIds = $tagIds->merge($childTagIds);
-        }
+        // if($request->selectedChildTags) {
+        //     $childTagIds = collect($request->selectedChildTags)->pluck(['id']);
+        //     $tagIds = $tagIds->merge($childTagIds);
+        // }
 
         $discussion->tags()->sync($tagIds->all()); //sync: Any IDs that are not in the given array will be removed from the intermediate table
 

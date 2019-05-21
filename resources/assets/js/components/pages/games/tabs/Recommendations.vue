@@ -1,22 +1,23 @@
 <template>
 <div>
  	<div class="content">
-        <h2>Recommendations</h2>
-    </div>
+			<h2>Recommendations</h2>
+	</div>
+
+	<div style="position: relative; min-height: 100px;" v-if="recommendationsLoading">
+		<b-loading :is-full-page="false" active="true"></b-loading>
+	</div>
 
 	<div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" :infinite-scroll-immediate-check="false">
 
-	    <div v-if="recommendationsLoading">
-    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
-		</div>
-		<div v-else>
+		<div v-if="!recommendationsLoading">
 			<recommendations-component :recommendations="recommendations"></recommendations-component>
-	    </div>
+		</div>
 
-	    <div v-if="newRecommendationsLoading" class="columns">
-	    	<div class="column">
-	    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
-	    	</div>
+		<div v-if="newRecommendationsLoading" class="columns">
+			<div class="column">
+				<b-loading :is-full-page="false" active="true"></b-loading>
+			</div>
 		</div>
 
 	</div>

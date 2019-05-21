@@ -82,7 +82,7 @@
                 </div>
                 <div class="level-right">
                     <p class="level-item">
-                        <a class="button is-small">
+                        <a class="button is-small" @click="findPost(reply.id)">
                             <span class="icon is-small">
                                 <i class="fas fa-arrow-down"></i>
                             </span>
@@ -92,29 +92,6 @@
             </nav>
             <span v-html="compiledMarkdown(reply.body)"></span>
         </div>
-        <!-- <div class="notification">
-            <nav class="level is-mobile" style="margin-bottom: 7px;">
-                <div class="level-left">
-                    <p class="level-item">
-                    <span class="image card is-32x32" style="background: url(http://oi64.tinypic.com/2yla7tx.jpg); background-size: cover;">
-                    </span>
-                    </p>
-                    <p class="level-item">
-                    <strong>Vincent</strong>&nbsp;<small>2 days ago</small>
-                    </p>
-                </div>
-            <div class="level-right">
-                <p class="level-item">
-                    <a class="button is-small">
-                        <span class="icon is-small">
-                            <i class="fas fa-arrow-down"></i>
-                        </span>
-                    </a>
-                </p>
-            </div>
-            </nav>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium architecto vitae libero suscipit ullam eligendi repellat voluptatibus totam, dolorum dolore maxime explicabo consectetur veritatis, tempora recusandae error ducimus ea ratione.
-                
-        </div> -->
     </b-collapse>
 
 </div>
@@ -136,6 +113,9 @@ export default {
         };
     },
     methods: {
+        findPost(id) {
+            this.$emit('onGoToPost', id)
+        },
         emitOnReply(post) {
             if (!this.$store.state.user) {
                 ModalProgrammatic.open({

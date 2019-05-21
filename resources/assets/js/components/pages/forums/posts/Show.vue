@@ -37,9 +37,9 @@
                                     <a slot="trigger"><small>#{{ post.num }}</small></a>
                                     <b-dropdown-item custom style="width:300px;">
                                         <b-field :label="'Post #' + post.num">
-                                            <b-input :value="'http://mythril.test/forums/discussions/1/ivalice-lore/' + post.num"></b-input>
+                                            <b-input :value="'https://mythril.io/forums/discussions/' + discussion.id + '/' + discussion.slug + '/' + post.num"></b-input>
                                         </b-field>
-                                            <social-sharing :url="'http://mythril.test/forums/discussions/1/ivalice-lore/' + post.num"
+                                            <social-sharing :url="'https://mythril.io/forums/discussions/' + discussion.id + '/' + discussion.slug + '/' + post.num"
                                                                 :description="post.body.substring(0, 20)"
                                                                 twitter-user="mythril_io"
                                                                 inline-template>
@@ -97,7 +97,7 @@
                                         </a>
                                     </p> -->
                                     <p class="level-item">
-                                        <a class="button is-small is-light">
+                                        <a class="button is-small is-light" @click="findPost(post.parent.parent.id)">
                                             <span class="icon is-small">
                                                 <i class="fas fa-arrow-up"></i>
                                             </span>
@@ -129,7 +129,7 @@
                                     </a>
                                 </p> -->
                                 <p class="level-item">
-                                    <a class="button is-small">
+                                    <a class="button is-small" @click="findPost(post.parent.id)">
                                         <span class="icon is-small">
                                             <i class="fas fa-arrow-up"></i>
                                         </span>
@@ -171,6 +171,7 @@
                     :post="post" 
                     @onEdit="startEditing(post)"
                     @onReply="emitOnReply(post)"
+                    @onGoToPost="findPost"
                 ></post-footer>
 
             </div>
@@ -189,7 +190,7 @@ import UserAvatar from '../../components/UserAvatar.vue';
 var md = require('markdown-it')();
 
 export default {
-    props: ["posts", "scrollTo"],
+    props: ['posts', 'scrollTo', 'discussion'],
     components: {PostFooter, MarkdownEditor, UserAvatar},
     data() {
         return {
@@ -203,10 +204,7 @@ export default {
     },
     watch: {
         scrollTo: function () {
-            console.log('scrolling to ' +this.scrollTo)
-            this.$scrollTo("#post" + this.scrollTo, 500, {
-                offset: -150
-            });
+            this.scrollToPost(this.scrollTo)
         },
     },
     methods: {
@@ -218,9 +216,11 @@ export default {
         },
         viewHandler(node) {
             if(node.percentCenter > 0.25 && node.percentCenter < 0.35) {
-                // console.log(node.target.element.childNodes[0].id)
                 this.$emit('onViewPost', node.target.element.childNodes[0].id.substring(4));
             }
+        },
+        findPost(id) {
+            this.$emit('onFindPost', id)
         },
         startEditing(post) {
             //make backup of post
@@ -269,9 +269,14 @@ export default {
                     this.cancelEditing(post);
                 }
 			});
+        },
+        scrollToPost(postNum) {
+            this.$scrollTo("#post" + postNum, 500, {
+                offset: -150
+            });
         }
     },
-    created() {
-    }
+    created() {  
+    },
 };
 </script>
