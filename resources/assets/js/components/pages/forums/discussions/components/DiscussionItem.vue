@@ -25,8 +25,12 @@
 
                     </p>
                     <p class="heading">
-                        <router-link v-if="discussion.last_post" :to="{name: 'User', params: { id: discussion.last_post.user.id }}" class="underline-link">{{ discussion.last_post.user.username }}</router-link>
-                        <router-link v-else :to="{name: 'User', params: { id: discussion.user.id }}" class="underline-link">{{ discussion.user.username }}</router-link>
+                        <span v-if="discussion.last_post">
+                            <router-link :to="{name: 'User', params: { id: discussion.last_post.user.id }}" class="underline-link">{{ discussion.last_post.user.username }}sdfd</router-link>
+                        </span>
+                        <span v-else>
+                            <router-link :to="{name: 'User', params: { id: discussion.user.id }}" class="underline-link">{{ discussion.user.username }}</router-link>
+                        </span>
                         - {{ discussion.last_posted_at | ago($store.user)  }}
                     </p>
 
