@@ -29,14 +29,21 @@ import Meta       from 'vue-meta'
 import VeeValidate from 'vee-validate';
 import infiniteScroll from 'vue-infinite-scroll'
 import Buefy from 'buefy'
+import VueScrollTo from 'vue-scrollto'
+import checkView from 'vue-check-view'
+var SocialSharing = require('vue-social-sharing');
 
 Vue.use(VueRouter)
 Vue.use(Vuex)
 Vue.use(Meta)
 Vue.use(infiniteScroll)
 Vue.use(Buefy, {
-  defaultIconPack: 'fas',
+  // defaultIconPack: 'fas',
+  defaultIconPack: 'mdi',
 })
+Vue.use(VueScrollTo)
+Vue.use(checkView)
+Vue.use(SocialSharing);
 
 const config = {
   errorBagName: 'errors', // change if property conflicts
@@ -99,6 +106,7 @@ window.axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.
 
   //required imports
   import moment from 'moment';
+  import numeral from 'numeral';
 
   //Date Filter
   Vue.filter('dateFormat', function (date, datetype) {
@@ -127,6 +135,37 @@ window.axios.defaults.headers.common['Authorization'] = 'Bearer' + localStorage.
     }
   })
 
+  //Number Formating
+  Vue.filter('numberFormat', function (number) {
+    return numeral(number).format('0,0');
+  })
+
+  //Number Formating
+  Vue.filter('numberFormatK', function (number) {
+    return numeral(number).format('0a');
+  })
+
+
+  //Percentage Formating
+  Vue.filter('percentageFormat', function (number) {
+    return numeral(number).format('0%');
+  })
+
+  //Date Formating (ex. 3 days ago)
+  Vue.filter('ago', function (date, user) {
+    if(user) {
+      if(user.timezone) {
+          return moment.utc(date).tz(user.timezone).fromNow();
+      }               
+    }
+    return moment.utc(date).local().fromNow();
+  })
+
+  Vue.filter('truncate', function (string, value) {
+    if(string.length < value) { return string }
+    return string.substring(0, value) + '...';
+  })
+
 const app = new Vue({
     el: '#app',
     router,
@@ -135,3 +174,5 @@ const app = new Vue({
       title: 'Mythril',
     }
 });
+
+

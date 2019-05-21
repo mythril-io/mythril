@@ -17,6 +17,7 @@ const Staff = require('./components/pages/site/Staff.vue')
 const Faq = require('./components/pages/site/Faq.vue')
 const PrivacyPolicy = require('./components/pages/site/PrivacyPolicy.vue')
 const TermsOfService = require('./components/pages/site/TermsOfService.vue')
+const Forums = require('./components/pages/forums/Index.vue')
 
 // Define routes in VueRouter instance
 const router = new VueRouter({
@@ -91,10 +92,35 @@ const router = new VueRouter({
               name: 'GameReleases',
               component: require('./components/pages/games/tabs/Releases.vue')
             }, {
+              path: 'forums',
+              name: 'GameForums',
+              component: require('./components/pages/games/tabs/Forums.vue')
+            }, {
               path: 'stats',
               name: 'GameStats',
               component: require('./components/pages/games/tabs/Stats.vue')
             }]
+        }, { 
+          path: '/forums', redirect: { name: 'Forums', params: { feed: 'recent' } }
+        }, { 
+          path: '/forums/:tag?', 
+          name: 'Forums', 
+          components: {
+            reload: Forums
+          },
+          meta: { title: 'Forums'},
+        },  { 
+          path: '/forums/create', 
+          name: 'CreateDiscussion', 
+          component: require('./components/pages/forums/discussions/create.vue'),
+          meta: { title: 'Create a Discussion', requiresAuth: true }
+        }, { 
+          path: '/forums/discussions/:id/:slug/:postNum?', 
+          name: 'Discussion', 
+          components: {
+            reload: require('./components/pages/forums/discussions/show.vue')
+          },
+          meta: { title: 'Discussion' }
         }, { 
           path: '/users', 
           name: 'Users', 

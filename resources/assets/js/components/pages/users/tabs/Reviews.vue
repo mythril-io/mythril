@@ -6,17 +6,17 @@
 
 		<div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" :infinite-scroll-immediate-check="false">
 
-		    <div v-if="reviewsLoading">
-	    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
+			<div v-if="reviewsLoading">
+				<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
 			</div>
 			<div v-else>
 				<reviews-component :reviews="reviews" hideUser="true"></reviews-component>
-		    </div>
+		  </div>
 
-		    <div v-if="newReviewsLoading" class="columns">
-		    	<div class="column">
-		    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
-		    	</div>
+			<div v-if="newReviewsLoading" class="columns">
+				<div class="column">
+					<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
+				</div>
 			</div>
 
 		</div>

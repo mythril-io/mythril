@@ -180,6 +180,7 @@ return [
         
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
+        Overtrue\LaravelFollow\FollowServiceProvider::class,
     ],
 
     /*

@@ -43,6 +43,7 @@ Route::group([
     Route::get('games/{id}', 'GameController@show');
     Route::get('games/{id}/reviews', 'ReviewController@gameIndex');
     Route::get('games/{id}/recommendations', 'RecommendationController@gameIndex');
+    Route::get('games/{id}/forums', 'Forums\DiscussionController@gameIndex' );
 
     //Reviews
     Route::get('reviews', 'ReviewController@index');
@@ -63,6 +64,13 @@ Route::group([
 
     //Library
     Route::get('library/games/{gid}/', 'LibraryController@gameEntries');
+
+    //Forums
+    Route::get('forums/{tag?}', 'Forums\DiscussionController@index' );
+    Route::get('forums/discussions/{id}', 'Forums\DiscussionController@show');
+    Route::get('forums/posts/{id}', 'Forums\PostController@index');
+    Route::get('forums/find/{discussionId}/{postId}', 'Forums\PostController@find');
+    Route::get('forums/tags/all', 'Forums\TagController@index' );
 
     //Misc
     Route::get('allgames', function() {return App\Game::all();} );
@@ -123,9 +131,9 @@ Route::group([
     Route::delete('recommendations/{id}', 'RecommendationController@destroy');
 
     //Review Likes/Dislikes
-    Route::get('reviews/{id}/user/', 'LikeController@checkUserReview');
-    Route::post('reviews/like/', 'LikeController@likeReview');
-    Route::post('reviews/dislike/', 'LikeController@dislikeReview');
+    Route::get('reviews/{id}/user/', 'ReviewController@checkUserReview');
+    Route::post('reviews/like/', 'ReviewController@likeReview');
+    Route::post('reviews/dislike/', 'ReviewController@dislikeReview');
 
     //Followings
     Route::get('users/{id}/follow', 'FollowController@checkUser');
@@ -134,6 +142,15 @@ Route::group([
 
     //User Settings
     Route::patch('users/{id}', 'UserController@update');
+
+    //Forums
+    Route::post('forums/discussions', 'Forums\DiscussionController@store');
+    Route::post('forums/discussions/subscribe/{id}', 'Forums\DiscussionController@toggleSubscribe');
+    Route::post('forums/discussions/like/{id}', 'Forums\DiscussionController@toggleLike');
+    Route::patch('forums/discussions/{id}', 'Forums\DiscussionController@update');
+    Route::post('forums/posts', 'Forums\PostController@store');
+    Route::post('forums/posts/like/{id}', 'Forums\PostController@toggleLike');
+    Route::patch('forums/post/{id}', 'Forums\PostController@update');
 });
 
 /*
@@ -174,6 +191,11 @@ Route::group([
 
     Route::put('releases/{id}/edit', 'ReleaseController@update'); //Edit one Release entry
     Route::delete('releases/{id}/delete', 'ReleaseController@destroy');
+
+    //Forums
+    Route::post('forums/tags', 'Forums\TagController@store');
+    Route::put('forums/tags/{id}/edit', 'Forums\TagController@update');
+    Route::delete('forums/tags/{id}/delete', 'Forums\TagController@destroy');   
 });
 
 // // Route to create a new role

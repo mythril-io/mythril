@@ -127,7 +127,7 @@
 								<div class="field">
 									<p class="control is-expanded">
 										<div class="select is-small is-fullwidth">
-											<select name="status" v-model.lazy="playStatus" :disabled="isTBDRelease">
+											<select name="status" v-model.sync="playStatus" :disabled="isTBDRelease">
 												<option v-for="status in playStatuses" :value="status">
 													{{ status.name }}
 												</option>
@@ -224,7 +224,8 @@ export default {
 				var selectedRelease = _.find(this.game.releases, function(release){ return release.id == selectedReleaseID; });
 				if((selectedRelease.date_type != null) && (selectedRelease.date_type.id == 4)) {
 					this.isTBDRelease = true;
-					this.playstatus = _.find(this.playStatuses, function(status){ return status.id == 2; });
+					var status = _.find(this.playStatuses, function(status){ return status.id == 2; });
+					this.playstatus = status;
 
 					this.own = false;
 				}

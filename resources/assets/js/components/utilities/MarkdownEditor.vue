@@ -71,8 +71,8 @@
 			      <i class="fas fa-list-ol"></i>
 			    </span>
 			  </a>
-			  <span class="divider">|</span>
-			  <a class="button is-light is-small" @click="preview=!preview">
+			  <span v-if="!disablePreview" class="divider">|</span>
+			  <a v-if="!disablePreview" class="button is-light is-small" @click="preview=!preview">
             <b-icon
 								v-if="preview"
                 icon="eye"
@@ -84,14 +84,21 @@
 			  </a>
 			</p>
 		</div>
-			<div class="columns is-gapless is-paddingless" id="editor">
-			  <div class="column">
-			    <textarea :value="value" @input="update" ref="input" class="autoExpand" rows="10" data-min-rows="10" ></textarea>
-			  </div>
-			  <div class="column" v-if="preview">
-			    <div v-html="compiledMarkdown" class="content" id="parsed"></div>
-			  </div>
+		<div class="columns is-gapless is-paddingless" id="editor">
+			<div class="column">
+				<textarea 
+						:value="value" 
+						@input="update" 
+						ref="input" 
+						rows="10" 
+						data-min-rows="10" 
+						v-bind:class="{ 'lock-y-scroll' : lockHeight, 'autoExpand' : !lockHeight, 'monitor-height' : monitorHeight }"
+						></textarea>
 			</div>
+			<div class="column" v-if="preview && !disablePreview">
+				<div v-html="compiledMarkdown" class="content" id="parsed"></div>
+			</div>
+		</div>
 	</div>
 </div>
 </template>
@@ -101,10 +108,19 @@ var md = require('markdown-it')();
 window._ = require('lodash');
 
 export default {
-  props: ['value'],
+	props: {
+		value: {},
+		lockHeight: {},
+		monitorHeight: {},
+		preview: {
+			default: true
+		},
+		disablePreview: {
+			default: false
+		}
+	},
   data() {
   	return {
-  		preview: true,
 
   		styles: {
   			'bold': { prefix: '**', subfix: '**' },
@@ -159,9 +175,12 @@ export default {
 	background-color: #363636;
 	padding: 10px;
 	border-bottom: 1px solid #ccc;
+	border-radius: 4px 4px 0 0;
 }
 #editor {
 	background-color: #f6f6f6;
+	border-radius: 0 0 6px 6px;
+	min-height: 250px;
 }
 
 textarea, #parsed {
@@ -171,18 +190,27 @@ textarea, #parsed {
   vertical-align: top;
   box-sizing: border-box;
   padding: 20px;
+	border-radius: 0 0 6px 0;
 }
 textarea {
   border: none;
   border-right: 1px solid #ccc;
   resize: none;
   outline: none;
-  font-size: 14px;
-  font-family: 'Monaco', courier, monospace;
+  font-size: 16px;
+  /* font-family: 'Monaco', courier, monospace; */
+	border-radius: 0 0 0 6px;
 }
 
 #parsed pre {
 	background-color: #363636;
 	color: #FFFFFF;
+}
+
+.lock-y-scroll {
+	overflow-y: scroll;
+}
+.monitor-height {
+	height: 75vh;
 }
 </style>

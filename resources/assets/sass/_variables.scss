@@ -5,6 +5,15 @@
 $primary: hsl(171, 100%, 41%) !default;
 $primary-invert: findColorInvert($primary);
 
+$facebook: #3C5A99;
+$facebook-invert: findColorInvert($facebook);
+$reddit: #FF4500;
+$reddit-invert: findColorInvert($reddit);
+$whatsapp: #4AC959;
+$whatsapp-invert: findColorInvert($whatsapp);
+$twitter: #1DA1F2;
+$twitter-invert: findColorInvert($twitter);
+
 // Setup $colors to use as bulma classes (e.g. 'is-twitter')
 $colors: (
     "white": ($white, $black),
@@ -16,6 +25,10 @@ $colors: (
     "success": ($success, $success-invert),
     "warning": ($warning, $warning-invert),
     "danger": ($danger, $danger-invert),
+    "facebook": ($facebook, $facebook-invert),
+    "reddit": ($reddit, $reddit-invert),
+    "whatsapp": ($whatsapp, $whatsapp-invert),
+    "twitter": ($twitter, $twitter-invert),
 );
 
 // Links
@@ -27,7 +40,7 @@ $title-weight: $weight-light !default;
 $subtitle-weight: $weight-light !default;
 $content-heading-weight: $weight-normal;
 
-
+// $control-radius: 0px;
 
 // 1. Import the initial variables
 // @import "node_modules/bulma/sass/utilities/initial-variables";

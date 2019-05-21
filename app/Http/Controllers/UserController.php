@@ -110,7 +110,7 @@ class UserController extends Controller
     {
         $userID = User::getID();
         if(!$userID) { return response()->json(['error' => 'Unauthorized to View Settings. Please Login.'], 401); }
-        else if($userID != $id) { return response()->json(['error' => 'Unauthorized to View Settings. Please Login.'], 403); }
+        else if($userID != $id) { return response()->json(['error' => 'Unauthorized to View Settings.'], 403); }
 
         $this->validate($request, [
             'about_me' => 'string|nullable',

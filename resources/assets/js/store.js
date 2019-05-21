@@ -4,11 +4,16 @@ import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
+const cdnURL = 'https://mythril.nyc3.cdn.digitaloceanspaces.com/';
+
 const store = new Vuex.Store({
   state: {
     user: null,
     userAuthenticated: false,
-    cdnURL: 'https://mythril.nyc3.cdn.digitaloceanspaces.com/'
+    cdnURL: cdnURL,
+    userAvatarURL: cdnURL + 'users/avatars/',
+    gameIconURL: cdnURL + 'games/icons/',
+    gameBannerURL: cdnURL + 'games/banners/'
   },
   plugins: [createPersistedState()],
   mutations: {

@@ -10,19 +10,19 @@
 	      </div>
 	    </article>
 
-		<div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" :infinite-scroll-immediate-check="false">
-
-		    <div v-if="reviewsLoading">
-	    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
+			<div style="position: relative; min-height: 100px;" v-if="reviewsLoading">
+				<b-loading :is-full-page="false" active="true"></b-loading>
 			</div>
-			<div v-else>
-				<reviews-component :reviews="reviews" :game="game"></reviews-component>
-		    </div>
 
-		    <div v-if="newReviewsLoading" class="columns">
-		    	<div class="column">
-		    		<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
-		    	</div>
+		<div v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" :infinite-scroll-immediate-check="false">
+			<div v-if="!reviewsLoading">
+				<reviews-component :reviews="game.reviews" showUserAvatar="true"></reviews-component>
+			</div>
+
+			<div v-if="newReviewsLoading" class="columns">
+				<div class="column">
+					<b-loading :is-full-page="false" active="true"></b-loading>
+				</div>
 			</div>
 
 		</div>
@@ -30,7 +30,7 @@
 </template>
 
 <script>
-import ReviewsComponent from '../components/ReviewsComponent.vue';
+import ReviewsComponent from '../../components/ReviewsComponent.vue';
 
 export default {
     props: ['game'],
