@@ -32,10 +32,6 @@ class CreateDiscussionsTable extends Migration
             $table->boolean('is_locked')->default(false);
             $table->boolean('is_subscribed')->default(false);
 
-            // $table->integer('first_user_id')->unsigned()->nullable();
-            // $table->integer('first_post_id')->unsigned()->nullable();
-            // $table->dateTime('first_posted_at')->nullable();
-
             $table->integer('last_post_id')->unsigned()->nullable()->index();
             $table->dateTime('last_posted_at')->nullable()->index();
 

@@ -35,17 +35,6 @@ class CreatePostsTable extends Migration
             $table->timestamps();
         });
 
-        // Schema::create('post_parent', function(Blueprint $table)
-        // {
-        //     $table->integer('post_id')->unsigned()->index();
-        //     $table->foreign('post_id')->references('id')->on('posts');
-
-        //     $table->integer('parent_id')->unsigned()->index();
-        //     $table->foreign('parent_id')->references('id')->on('posts');
-
-        //     $table->primary(['post_id', 'parent_id']);
-        // });
-
     }
 
     /**
@@ -56,6 +45,5 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::dropIfExists('posts');
-        // Schema::dropIfExists('post_parent');
     }
 }
