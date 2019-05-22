@@ -210,7 +210,7 @@ export default {
       	addRecommendation(recommendation){
       		var success = true;
 	        NProgress.start();
-	        axios.post('/api/recommendations/', {
+	        axios.post('/api/recommendations', {
 	        	game_id: this.selectedGameOne.id,
 	        	release_id: this.selectedReleaseOne.id,
 	        	second_game_id: this.selectedGameTwo.id,
