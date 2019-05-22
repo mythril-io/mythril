@@ -18,7 +18,7 @@
 						</h2>
 				</div>
 				<div class="card" style="margin-top: 6rem; border-radius: 4px;">
-					<div class="card-content trending-padding" style="padding: 2rem 2rem 0.5rem 2rem">
+					<div class="card-content trending-padding" style="padding: 2rem">
 						<trending-games :trending="trending"></trending-games>
 						
 						<div class="section-break"></div>

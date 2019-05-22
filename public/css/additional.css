@@ -228,7 +228,7 @@ html ::selection {
 /*Reviews and Recomendations*/
 .recomendation-col {
   width: 200px;
-  margin-bottom: 35px;
+  margin-bottom: 20px;
 }
 .recomendation-image {
   position: absolute;

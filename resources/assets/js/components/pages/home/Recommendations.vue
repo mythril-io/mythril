@@ -5,7 +5,7 @@
 
 	<div class="columns is-multiline is-centered" v-if="recommendations.length > 0">
 	    <div class="column is-12-tablet is-6-desktop is-12-widescreen" v-for="recommendation in recommendations.slice(0, 3)" :key="recommendation.id" >
-            <div style="padding: 20px">
+            <div style="padding: 10px 20px 0 20px;">
                 <recommendation-item :recommendation="recommendation"></recommendation-item>
             </div>
 	        

@@ -113,7 +113,7 @@ export default {
       	addReview(review){
       		var success = true;
 	        NProgress.start();
-	        axios.post('/api/reviews/', {
+	        axios.post('/api/reviews', {
 	        	game_id: this.selectedGame.id,
 	        	release_id: this.selectedRelease.id,
 	        	summary: review.summary,
