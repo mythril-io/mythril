@@ -67,7 +67,7 @@
 						<div class="field is-grouped">
 
 							<p class="control has-icons-left is-hidden-touch">
-								<b-field>
+								<!-- <b-field>
 
 									<b-autocomplete
 											:data="games"
@@ -92,14 +92,14 @@
                             </div>
                         </template>
 									</b-autocomplete>
-								</b-field>
+								</b-field> -->
 
-							  <!-- <input class="input nav-search" type="text" placeholder="Search..." style="width: 200px"
+							  <input class="input" type="text" placeholder="Search..." style="width: 200px"
 							  	v-model="search" 
 							  	v-on:keyup.enter="submit">
 							  <span class="icon is-left">
 							    <i class="fas fa-search"></i>
-							  </span> -->
+							  </span>
 							</p>
 							
 <!-- 							<p class="control is-hidden-mobile" v-if="user">
