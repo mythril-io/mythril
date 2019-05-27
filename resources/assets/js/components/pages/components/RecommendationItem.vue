@@ -4,7 +4,7 @@
       <div class="column is-narrow recomendation-col is-clearfix">
         <div class="image-behind is-pulled-left" >
           <b-tooltip :label="recommendation.release.alternate_title ? recommendation.release.alternate_title : recommendation.game.title">
-            <div class="card image text-container">
+            <div class="card image imageFade text-container">
                 <router-link :to="{name: 'Game', params: { id: recommendation.game.id }}">
                     <img v-lazy="this.$store.state.cdnURL + 'games/icons/' + recommendation.game.icon" :alt="recommendation.release.alternate_title ? recommendation.release.alternate_title : recommendation.game.title" class="image is-128x128">
                 </router-link>
@@ -13,7 +13,7 @@
         </div>
         <div class="recomendation-image is-pulled-right">
           <b-tooltip position="is-bottom" :label="recommendation.second_release.alternate_title ? recommendation.second_release.alternate_title : recommendation.second_game.title">
-            <div class="card image text-container">
+            <div class="card image imageFade text-container">
                 <router-link :to="{name: 'Game', params: { id: recommendation.second_game.id }}">
                     <img v-lazy="this.$store.state.cdnURL + 'games/icons/' + recommendation.second_game.icon" :alt="recommendation.second_release.alternate_title ? recommendation.second_release.alternate_title : recommendation.second_game.title" class="image is-128x128">
                 </router-link>

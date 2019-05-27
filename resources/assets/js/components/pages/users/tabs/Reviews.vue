@@ -10,7 +10,11 @@
 				<center><i class="fas fa-spinner fa-spin fa-2x"></i></center>
 			</div>
 			<div v-else>
-				<reviews-component :reviews="reviews" hideUser="true"></reviews-component>
+				<reviews-component 
+					:reviews="reviews" 
+					hideUser="true"
+					customMessage="No reviews found."
+				></reviews-component>
 		  </div>
 
 			<div v-if="newReviewsLoading" class="columns">

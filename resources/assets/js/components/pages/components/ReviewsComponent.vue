@@ -17,7 +17,12 @@
 
     <article class="message is-warning" v-else>
       <div class="message-body">
-        No reviews found. Be the first to write one!
+        <span v-if="customMessage">
+            {{ customMessage }}
+        </span>
+        <span v-else>
+            No reviews found. Be the first to write one!
+        </span>
         <router-link :to="{name: 'CreateReview'}">Write a Review</router-link>
       </div>
     </article>
@@ -29,7 +34,7 @@
 import ReviewItem from './ReviewItem.vue';
 
 export default {
-    props: ['reviews', 'hideUser', 'showUserAvatar'],
+    props: ['reviews', 'hideUser', 'showUserAvatar', 'customMessage'],
     components: { ReviewItem }
 }
 </script>

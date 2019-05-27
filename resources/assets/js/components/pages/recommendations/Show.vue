@@ -57,7 +57,7 @@
             <div class="column is-hidden-touch is-narrow recomendation-col is-clearfix">
               <div class="image-behind is-pulled-left">
                 <b-tooltip :label="getFirstGameTitle">
-                  <div class="card image text-container">
+                  <div class="card image imageFade text-container">
                     <router-link :to="{name: 'Game', params: { id: recommendation.game.id }}">
                       <img
                         v-lazy="this.$store.state.cdnURL + 'games/icons/' + recommendation.game.icon"
@@ -70,7 +70,7 @@
               </div>
               <div class="recomendation-image is-pulled-right" :data-tooltip="getSecondGameTitle">
                 <b-tooltip :label="getSecondGameTitle" position="is-bottom">
-                  <div class="card image text-container">
+                  <div class="card image imageFade text-container">
                     <router-link
                       :to="{name: 'Game', params: { id: recommendation.second_game.id }}"
                     >
