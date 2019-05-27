@@ -5,7 +5,7 @@
         class="columns card is-gapless image-hover-scale custom-light-bg is-mobile" 
         @mouseover="isHovered=true" 
         @mouseleave="isHovered=false" 
-        style="max-height: 160px;"
+        style="max-height: 160px; min-height: 160px;"
       >
         <figure class="column is-narrow is-clipped is-hidden-mobile">
           <p class="image " style="width: 160px;">
