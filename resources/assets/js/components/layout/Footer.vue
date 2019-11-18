@@ -10,8 +10,8 @@
 	        	<router-link :to="{name: 'TermsOfService'}">Terms of Service</router-link> | 
 	        	<router-link :to="{name: 'PrivacyPolicy'}">Privacy Policy</router-link>
 	      </p>
-<!-- 	      <p>
-					<a href="https://discord.gg/VMp7UNJ" target="_blank">
+	      <p>
+					<a href="https://discord.gg/MwCZgz" target="_blank">
 						<b-icon 
 								pack="mdi"
 								icon="discord"
@@ -19,7 +19,7 @@
 								custom-size="mdi-24px">
 						</b-icon>
 					</a>
-					<a href="https://www.youtube.com/channel/UCSfbSlgiS3ghdcHihNJZ8TA" target="_blank">
+					<a href="https://www.youtube.com/channel/UCzyb3oKRlLgd9Bf6K7qHEoA" target="_blank">
 						<b-icon 
 								pack="mdi"
 								icon="youtube"
@@ -27,15 +27,15 @@
 								custom-size="mdi-24px">
 						</b-icon>
 					</a>
-					<a href="https://twitter.com/mythril_io" target="_blank">
+<!-- 					<a href="https://twitter.com/mythril_io" target="_blank">
 						<b-icon 
 								pack="mdi"
 								icon="twitter"
 								size="is-medium"
 								custom-size="mdi-24px">
 						</b-icon>
-					</a>
-	      </p> -->
+					</a> -->
+	      </p>
 	      <p v-html="kofiButton"></p>
 	    </div>
 	  </div>
