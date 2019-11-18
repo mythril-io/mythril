@@ -20,10 +20,7 @@
         <span v-if="customMessage">
             {{ customMessage }}
         </span>
-        <span v-else>
-            No reviews found. Be the first to write one!
-        </span>
-        <router-link :to="{name: 'CreateReview'}">Write a Review</router-link>
+        <span v-else>No reviews found. Be the first to write one! <router-link :to="{name: 'CreateReview'}">Write a Review</router-link></span>
       </div>
     </article>
 

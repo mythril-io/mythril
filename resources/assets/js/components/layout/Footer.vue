@@ -5,16 +5,24 @@
 	  <div class="container">
 	    <div class="content has-text-centered">
 	      <p>
-	        &copy; <strong>Mythril</strong> 2018-2019<br>
+	        &copy; <strong>Mythril</strong> 2018-{{currentYear}}<br>
 	        	<router-link :to="{name: 'Faq'}">FAQ</router-link> | 
 	        	<router-link :to="{name: 'TermsOfService'}">Terms of Service</router-link> | 
 	        	<router-link :to="{name: 'PrivacyPolicy'}">Privacy Policy</router-link>
 	      </p>
-	      <p>
+<!-- 	      <p>
 					<a href="https://discord.gg/VMp7UNJ" target="_blank">
 						<b-icon 
 								pack="mdi"
 								icon="discord"
+								size="is-medium"
+								custom-size="mdi-24px">
+						</b-icon>
+					</a>
+					<a href="https://www.youtube.com/channel/UCSfbSlgiS3ghdcHihNJZ8TA" target="_blank">
+						<b-icon 
+								pack="mdi"
+								icon="youtube"
 								size="is-medium"
 								custom-size="mdi-24px">
 						</b-icon>
@@ -27,31 +35,7 @@
 								custom-size="mdi-24px">
 						</b-icon>
 					</a>
-					<!-- <a href="https://www.facebook.com/Mythril-1856001717764618" target="_blank">
-						<b-icon 
-								pack="mdi"
-								icon="facebook"
-								size="is-medium"
-								custom-size="mdi-24px">
-						</b-icon>
-					</a> -->
-					<a href="https://www.youtube.com/channel/UCSfbSlgiS3ghdcHihNJZ8TA" target="_blank">
-						<b-icon 
-								pack="mdi"
-								icon="youtube"
-								size="is-medium"
-								custom-size="mdi-24px">
-						</b-icon>
-					</a>
-					<a href="https://www.instagram.com/mythril_io/" target="_blank">
-						<b-icon 
-								pack="mdi"
-								icon="instagram"
-								size="is-medium"
-								custom-size="mdi-24px">
-						</b-icon>
-					</a>
-	      </p>
+	      </p> -->
 	      <p v-html="kofiButton"></p>
 	    </div>
 	  </div>
@@ -65,6 +49,12 @@
 			return {
 				kofiButton: ''
 			}
+		},
+		computed: {
+			currentYear() {
+				const date = new Date();
+  				return date.getFullYear();
+			},
 		},
 		created() {
 			kofiwidget2.init('Buy Us a Coffee', '#ff5d61', 'P5P4BB7L');

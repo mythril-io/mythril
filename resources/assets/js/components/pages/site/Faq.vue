@@ -80,7 +80,7 @@
 						<p>Currently there isn't a method to contact us through the website (this feature will be coming in the near future), so the best way would be to join our Discord server and inform us of any issues, bugs, factual errors or feature requests.</p>
 					    
 					    <h2><a name="support" class="has-text-dark">How can I support Mythril?</a></h2>
-					    <p>Let us know what aspects of the site could be improved upon or what features you'd like to see. Join our Discord server, follow us on Twitter/Instagram and tell other people about Mythril!</p>
+					    <p>Let us know what aspects of the site could be improved upon or what features you'd like to see. <!-- Join our Discord server, and tell other people about Mythril! --></p>
 
 					    <p>If you would like to support our server costs, you could "<a href='https://ko-fi.com/P5P4BB7L'>Buy Us a Coffee</a>".</p>
 					</div>
